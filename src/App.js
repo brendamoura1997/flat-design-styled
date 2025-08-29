@@ -1,5 +1,20 @@
+import styled from "styled-components";
+import Navbar from "./components/Navbar";
+
+const Container = styled.div`
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+`;
+
 function App() {
-  return <div className="App">Hello World</div>;
+  return (
+    <>
+      <Container>
+        <Navbar />
+      </Container>
+    </>
+  );
 }
 
 export default App;
