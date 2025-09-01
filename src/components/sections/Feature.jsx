@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import App from "../assets/images/app.png";
-import AnimatedShapes from "./AnimatedShapes";
+import App from "../../assets/images/app.png";
 
 const Container = styled.div`
   display: flex;
@@ -89,7 +88,6 @@ const Feature = () => {
         </Desc>
         <Button>Saiba Mais</Button>
       </Right>
-      <AnimatedShapes />
     </Container>
   );
 };
