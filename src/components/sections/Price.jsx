@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PriceCard from "./PriceCard";
+import PriceCard from "../common/PriceCard";
 
 const Container = styled.div`
   height: 100%;

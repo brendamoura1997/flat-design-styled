@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Search from "../assets/images/search.png";
+import Search from "../../assets/icons/search.png";
 
 const Container = styled.div`
   width: 130px;

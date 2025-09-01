@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Map from "../assets/images/map.png";
-import Phone from "../assets/images/phone.png";
-import Send from "../assets/images/send.png";
+import Map from "../../assets/icons/map.png";
+import Phone from "../../assets/icons/phone.png";
+import Send from "../../assets/icons/send.png";
 
 const Container = styled.div`
   height: 90%;

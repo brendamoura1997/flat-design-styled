@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
-import Navbar from "./components/Navbar";
-import Intro from "./components/Intro";
-import Feature from "./components/Feature";
-import Service from "./components/Service";
-import Price from "./components/Price";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+import Navbar from "./components/layout/Navbar";
+import Intro from "./components/sections/Intro";
+import Feature from "./components/sections/Feature";
+import Service from "./components/sections/Service";
+import Price from "./components/sections/Price";
+import Contact from "./components/sections/Contact";
+import Footer from "./components/layout/Footer";
 
 const Container = styled.div`
   height: 100vh;
