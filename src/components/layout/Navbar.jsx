@@ -16,10 +16,40 @@ const Left = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+const WrapperLogo = styled.a`
+  display: flex;
+  padding: 0px 8px;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.6);
+  width: wrap-content;
+  height: wrap-content;
+  cursor: pointer;
+  border-radius: 10px;
+  text-decoration: none;
+`;
 
 const Logo = styled.h1`
   font-weight: bold;
   text-decoration: underline crimson;
+  color: black;
+`;
+
+const LogoDown = styled.h1`
+  font-weight: bold;
+  // text-decoration: underline crimson;
+  // font-size: 25px;
+  // top: -5px;
+  // left: 9px;
+  // position: relative;
+  // letter-spacing: 17px;
+
+  font-size: 12px;
+  top: -4px;
+  left: 9px;
+  position: relative;
+  letter-spacing: 15px;
+  color: crimson;
 `;
 
 const Menu = styled.ul`
@@ -53,7 +83,12 @@ const Navbar = () => {
     <Container>
       <Wrapper>
         <Left>
-          <Logo>Agência</Logo>
+          <WrapperLogo href="/">
+            <Logo>FLAT DESIGN</Logo>
+
+            <LogoDown>STYLED</LogoDown>
+          </WrapperLogo>
+
           <Menu>
             <MenuItem>Início</MenuItem>
             <MenuItem>Funcionalidades</MenuItem>
