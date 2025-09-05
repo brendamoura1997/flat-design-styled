@@ -6,6 +6,7 @@ import Service from "./components/sections/Service";
 import Price from "./components/sections/Price";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/layout/Footer";
+import { useScreenSize } from "./hooks/useDevice";
 
 const Container = styled.div`
   height: 100vh;
@@ -26,6 +27,12 @@ const IntroShape = styled.div`
   ${Shape}
   clip-path: polygon(67% 0, 100% 0%, 100% 100%, 55% 100%);
   background-color: crimson;
+
+  @media only screen and (max-width: 1024px) {
+    // clip-path: polygon(65% 0, 100% 0%, 100% 100%, 65% 100%);
+    clip-path: polygon(75% 0, 100% 0%, 100% 100%, 75% 100%);
+    z-index: -1;
+  }
 `;
 
 const FeatureShape = styled.div`
@@ -47,10 +54,11 @@ const PriceShape = styled.div`
 `;
 
 function App() {
-  const smallScreen = window.screen.width <= 480 ? true : false;
+  const { isMobile, isDesktop } = useScreenSize();
   return (
     <>
       <Container>
+        {/* {isDesktop && <Navbar />} */}
         <Navbar />
         <Intro />
         <IntroShape />
@@ -61,7 +69,7 @@ function App() {
       </Container>
       <Container>
         <Service />
-        {!smallScreen && <ServiceShape />}
+        {!isMobile && <ServiceShape />}
       </Container>
       <Container>
         <Price />
@@ -70,6 +78,7 @@ function App() {
       <Container>
         <Contact />
         <Footer />
+        {isDesktop && <Navbar />}
       </Container>
     </>
   );

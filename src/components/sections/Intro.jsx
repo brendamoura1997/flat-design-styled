@@ -1,13 +1,17 @@
 import styled from "styled-components";
 import Woman from "../../assets/images/woman.png";
 import AnimatedShapes from "../layout/AnimatedShapes";
+import FixedShapes from "../layout/FixedShapes";
+import { useScreenSize } from "../../hooks/useDevice";
 
 const Container = styled.div`
   height: calc(100vh - 50px);
   display: flex;
   padding: 20px;
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 768px) {
     flex-direction: column;
+    justify-content: center;
+    padding: 0 25px;
   }
 `;
 
@@ -17,27 +21,35 @@ const Left = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 768px) {
     width: 100%;
-    height: 100%;
+    height: 70%;
+    border-radius: 10px;
+    align-items: flex-start;
   }
 `;
 
 const Title = styled.h1`
   width: 60%;
   font-size: 60px;
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 768px) {
     width: 100%;
     font-size: 50px;
+    // text-align: center;
+    line-height: 55px;
+    z-index: 30;
   }
 `;
 
 const Desc = styled.p`
   width: 60%;
+  height: wrap-content;
   font-size: 20px;
   margin-top: 20px;
-  @media only screen and (max-width: 480px) {
-    width: 100%;
+  @media only screen and (max-width: 768px) {
+    width: 70%;
+    font-size: 17px;
+    // text-align: center;
   }
 `;
 
@@ -47,9 +59,17 @@ const Info = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 1024px) {
     width: 100%;
     flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
   }
 `;
 
@@ -62,7 +82,7 @@ const Button = styled.button`
   border: none;
   letter-spacing: 2px;
   cursor: pointer;
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 768px) {
     margin-bottom: 20px;
   }
 `;
@@ -84,9 +104,6 @@ const ContactText = styled.span`
 
 const Right = styled.div`
   width: 40%;
-  @media only screen and (max-width: 480px) {
-    display: none;
-  }
 `;
 
 const Image = styled.img`
@@ -94,9 +111,11 @@ const Image = styled.img`
 `;
 
 const Intro = () => {
+  const { isMobile } = useScreenSize();
   return (
     <Container>
       <Left>
+        {isMobile && <FixedShapes />}
         <Title>Aventuras na era criativa</Title>
         <Desc>
           Acreditamos que criar produtos e serviços em estreita parceria com
@@ -111,10 +130,17 @@ const Intro = () => {
           </Contact>
         </Info>
       </Left>
-      <Right>
-        <Image src={Woman} />
-      </Right>
-      <AnimatedShapes />
+      {!isMobile ? (
+        <>
+          <Right>
+            <Image src={Woman} />
+          </Right>
+        </>
+      ) : (
+        <></>
+      )}
+
+      {!isMobile && <AnimatedShapes />}
     </Container>
   );
 };
