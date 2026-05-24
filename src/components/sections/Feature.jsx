@@ -4,8 +4,10 @@ import App from "../../assets/images/app.png";
 const Container = styled.div`
   display: flex;
   @media only screen and (max-width: 480px) {
+    width: 80%;
     flex-direction: column;
     padding: 30px 20px;
+    margin-left: 40px;
   }
 `;
 

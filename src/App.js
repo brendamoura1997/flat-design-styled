@@ -39,6 +39,10 @@ const FeatureShape = styled.div`
   ${Shape}
   clip-path: polygon(0 0, 55% 0%, 43% 100%, 0 100%);
   background-color: pink;
+
+  @media only screen and (max-width: 1024px) {
+    clip-path: polygon(0 0, 20% 0%, 20% 100%, 0 100%);
+  }
 `;
 
 const ServiceShape = styled.div`
