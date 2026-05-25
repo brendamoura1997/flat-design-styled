@@ -3,6 +3,8 @@ import App from "../../assets/images/app.png";
 
 const Container = styled.div`
   display: flex;
+  justify-content: space-between;
+  height: 100%;
   @media only screen and (max-width: 480px) {
     width: 80%;
     flex-direction: column;
@@ -23,7 +25,7 @@ const Image = styled.img`
 `;
 
 const Right = styled.div`
-  width: 50%;
+  width: 47%;
   display: flex;
   flex-direction: column;
   justify-content: center;
