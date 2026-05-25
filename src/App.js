@@ -6,6 +6,7 @@ import Service from "./components/sections/Service";
 import Price from "./components/sections/Price";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/layout/Footer";
+import { useScreenSize } from "./hooks/useDevice";
 
 const Container = styled.div`
   height: 100vh;
@@ -26,31 +27,42 @@ const IntroShape = styled.div`
   ${Shape}
   clip-path: polygon(67% 0, 100% 0%, 100% 100%, 55% 100%);
   background-color: crimson;
+
+  @media only screen and (max-width: 1024px) {
+    // clip-path: polygon(65% 0, 100% 0%, 100% 100%, 65% 100%);
+    clip-path: polygon(75% 0, 100% 0%, 100% 100%, 75% 100%);
+    z-index: -1;
+  }
 `;
 
 const FeatureShape = styled.div`
   ${Shape}
-  clip-path: polygon(0 0, 55% 0%, 33% 100%, 0 100%);
+  clip-path: polygon(0 0, 55% 0%, 43% 100%, 0 100%);
   background-color: pink;
+
+  @media only screen and (max-width: 1024px) {
+    clip-path: polygon(0 0, 20% 0%, 20% 100%, 0 100%);
+  }
 `;
 
 const ServiceShape = styled.div`
   ${Shape}
-  clip-path: polygon(0 0, 33% 0%, 33% 100%, 0 100%);
+  clip-path: polygon(0 0, 43% 0%, 43% 100%, 0 100%);
   background-color: #f88497;
 `;
 
 const PriceShape = styled.div`
   ${Shape}
-  clip-path: polygon(33% 0, 100% 0%, 100% 100%, 67% 100%);
+  clip-path: polygon(43% 0, 100% 0%, 100% 100%, 67% 100%);
   background-color: crimson;
 `;
 
 function App() {
-  const smallScreen = window.screen.width <= 480 ? true : false;
+  const { isMobile, isDesktop } = useScreenSize();
   return (
     <>
       <Container>
+        {/* {isDesktop && <Navbar />} */}
         <Navbar />
         <Intro />
         <IntroShape />
@@ -61,7 +73,7 @@ function App() {
       </Container>
       <Container>
         <Service />
-        {!smallScreen && <ServiceShape />}
+        {!isMobile && <ServiceShape />}
       </Container>
       <Container>
         <Price />
@@ -70,6 +82,7 @@ function App() {
       <Container>
         <Contact />
         <Footer />
+        {isDesktop && <Navbar />}
       </Container>
     </>
   );
