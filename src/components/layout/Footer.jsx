@@ -42,7 +42,6 @@ const Footer = () => {
         <List>
           <ListItem>Guia</ListItem>
           <ListItem>Suporte</ListItem>
-          <ListItem>API</ListItem>
           <ListItem>Comunidade</ListItem>
         </List>
         <Copyright>Brenda Moura Ⓒ</Copyright>

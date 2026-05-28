@@ -229,7 +229,11 @@ const Btn = styled.button`
 
   &:hover {
     background: #1212c2;
-    transform: translateY(-2px);
+  }
+
+  &:active {
+    background: #3131de;
+    transform: scale(0.98);
   }
 `;
 

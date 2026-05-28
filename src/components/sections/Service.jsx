@@ -71,7 +71,7 @@ const Badge = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background-color: #fce4ec;
+  background: #ffeaed;
   color: #e8002d;
   font-size: 13px;
   font-weight: 500;
@@ -182,7 +182,11 @@ const Button = styled.button`
 
   &:hover {
     background: #1212c2;
-    transform: translateY(-2px);
+  }
+
+  &:active {
+    background: #3131de;
+    transform: scale(0.98);
   }
 `;
 

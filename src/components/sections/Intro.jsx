@@ -133,6 +133,15 @@ const Button = styled.button`
   white-space: nowrap;
   user-select: none;
 
+  &:hover {
+    background: #1212c2;
+  }
+
+  &:active {
+    background: #3131de;
+    transform: scale(0.98);
+  }
+
   transition:
     background-color 0.18s ease,
     transform 0.12s ease,
@@ -141,26 +150,6 @@ const Button = styled.button`
   svg {
     flex-shrink: 0;
     transition: transform 0.18s ease;
-  }
-
-  &:hover {
-    background-color: #22228a;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 0 0 #10105a;
-
-    svg {
-      transform: translateX(3px);
-    }
-  }
-
-  &:active {
-    background-color: #12126b;
-    transform: translateY(2px);
-    box-shadow: none;
-
-    svg {
-      transform: translateX(0);
-    }
   }
 
   &:focus-visible {

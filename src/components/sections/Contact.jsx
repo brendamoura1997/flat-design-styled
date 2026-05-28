@@ -1,8 +1,8 @@
 import styled, { keyframes } from "styled-components";
+import Maps from "../../assets/images/maps.png";
 
 const PINK = "#E8134A";
-const DARK_BLUE = "#0D0F8A";
-const PINK_BG = "#FFF0F4";
+const PINK_BG = "#fdf3f6";
 const ADDR_RED_BG = "#FFE4EC";
 const ADDR_BLUE_BG = "#E8EEFF";
 const ADDR_GREEN_BG = "#DFFAF0";
@@ -20,9 +20,10 @@ const fadeIn = keyframes`
 const Section = styled.section`
   background: white;
   // background: url("https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png");
-  padding: 72px 64px 64px;
+  padding: 72px 150px;
   position: relative;
   overflow: hidden;
+  height: 100%;
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   animation: ${fadeIn} 0.6s ease both;
 
@@ -81,9 +82,12 @@ const MainGrid = styled.div`
   display: flex;
   gap: 40px;
   align-items: flex-start;
+  justify-content: center;
+  gap: 60px;
   position: relative;
   z-index: 1;
   margin-bottom: 56px;
+  height: 55%;
 
   @media (max-width: 900px) {
     flex-direction: column;
@@ -99,13 +103,13 @@ const Badge = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: ${ADDR_RED_BG};
-  color: ${PINK};
-  font-weight: 700;
+  background: #ffeaed;
+  color: #e8002d;
   font-size: 13px;
-  padding: 8px 16px;
+  font-weight: 500;
+  padding: 8px 18px;
   border-radius: 999px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 const Headline = styled.h2`
@@ -225,32 +229,35 @@ const SubmitButton = styled.button`
   margin-top: 14px;
   width: 100%;
   padding: 15px 24px;
-  background: ${DARK_BLUE};
+  background: #1a1aad;
   color: #fff;
   border: none;
   border-radius: 10px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 800;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-family: inherit;
+  letter-spacing: 0.3px;
   transition:
     background 0.2s,
-    transform 0.1s;
+    transform 0.15s;
 
   &:hover {
-    background: #0a0c6e;
+    background: #1212c2;
   }
+
   &:active {
-    transform: scale(0.99);
+    background: #3131de;
+    transform: scale(0.98);
   }
 `;
 
 const RightCol = styled.div`
-  width: 46%;
+  width: 50%;
+  height: 100%;
   flex-shrink: 0;
   position: relative;
   z-index: 1;
@@ -263,10 +270,11 @@ const RightCol = styled.div`
 const InfoCard = styled.div`
   background: ${PINK_BG};
   border-radius: 18px;
-  padding: 80px 24px;
+  padding: 0px 24px;
+  height: 100%;
   display: flex;
-  gap: 20px;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 `;
 
 const InfoList = styled.div`
@@ -310,11 +318,12 @@ const InfoText = styled.div`
 `;
 
 const MapPlaceholder = styled.img`
-  width: 220px;
+  width: 50%;
+  height: 70%;
   flex-shrink: 0;
-  height: 100%;
   min-height: 220px;
   object-fit: cover;
+  border: 5px solid #fff;
   border-radius: 14px;
 
   @media (max-width: 1100px) {
@@ -544,10 +553,7 @@ const Contact = () => {
               </InfoItem>
             </InfoList>
 
-            <MapPlaceholder
-              src="https://picsum.photos/seed/city42/400/400"
-              alt="Localização"
-            />
+            <MapPlaceholder src={Maps} alt="Localização" />
           </InfoCard>
         </RightCol>
       </MainGrid>
