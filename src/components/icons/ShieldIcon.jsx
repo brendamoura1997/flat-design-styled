@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/prop-types
 const ShieldIcon = ({ width, height, color, viewBox, stroke }) => {
   return (
     <svg

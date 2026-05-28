@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/prop-types
 const PencilIcon = ({ width, height, color, viewBox, stroke }) => {
   return (
     <svg

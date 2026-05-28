@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/prop-types
 const UserIcon = ({ width, height, color, viewBox, stroke }) => {
   return (
     <svg

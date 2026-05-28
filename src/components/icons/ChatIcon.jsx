@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/prop-types
 const ChatIcon = ({ width, height, color, viewBox, stroke }) => {
   return (
     <svg
