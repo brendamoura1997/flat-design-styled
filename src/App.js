@@ -14,6 +14,12 @@ const Container = styled.div`
   position: relative;
 `;
 
+const ContainerExtra = styled.div`
+  height: 120vh;
+  overflow: hidden;
+  position: relative;
+`;
+
 const Shape = css`
   width: 100%;
   height: 100%;
@@ -53,7 +59,7 @@ const ServiceShape = styled.div`
 
 const PriceShape = styled.div`
   ${Shape}
-  clip-path: polygon(43% 0, 100% 0%, 100% 100%, 67% 100%);
+  clip-path: polygon(100% 100%, 100% 0%, 65% 67%, 75% 100%);
   background-color: crimson;
 `;
 
@@ -71,19 +77,20 @@ function App() {
         <Feature />
         <FeatureShape />
       </Container>
-      <Container>
+      <ContainerExtra>
         <Service />
         {!isMobile && <ServiceShape />}
-      </Container>
-      <Container>
+      </ContainerExtra>
+      <ContainerExtra>
         <Price />
         <PriceShape />
-      </Container>
-      <Container>
+      </ContainerExtra>
+      <ContainerExtra>
         <Contact />
-        <Footer />
-        {isDesktop && <Navbar />}
-      </Container>
+
+        {!isDesktop && <Navbar />}
+      </ContainerExtra>
+      <Footer />
     </>
   );
 }

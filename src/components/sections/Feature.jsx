@@ -15,6 +15,7 @@ const Container = styled.div`
 
 const Left = styled.div`
   width: 50%;
+
   @media only screen and (max-width: 480px) {
     display: none;
   }
@@ -34,36 +35,75 @@ const Right = styled.div`
   }
 `;
 
+const Badge = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #fde8ef;
+  color: #e8325a;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 50px;
+  width: fit-content;
+  margin-bottom: 24px;
+`;
+
+const BadgeIcon = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e8325a;
+  border-radius: 6px;
+  font-size: 11px;
+`;
+
 const Title = styled.span`
   font-size: 70px;
+  line-height: 1.1;
   @media only screen and (max-width: 480px) {
     font-size: 50px;
   }
 `;
 
+const Pink = styled.span`
+  color: #e8325a;
+  font-weight: 800;
+`;
+
 const SubTitle = styled.span`
-  font-size: 24px;
+  font-size: 20px;
   font-style: italic;
   color: #333;
   margin-top: 30px;
 `;
 
 const Desc = styled.p`
-  font-size: 20px;
-  color: #777;
-  margin-top: 30px;
+  font-size: 17px;
+  color: #666;
+  margin-top: 20px;
+  line-height: 1.6;
 `;
 
 const Button = styled.button`
-  width: 150px;
+  width: 160px;
   border: none;
-  padding: 15px 20px;
+  padding: 16px 24px;
   background-color: darkblue;
   color: white;
-  font-size: 20px;
-  border-radius: 20px;
-  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-top: 28px;
   cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #00008b;
+    opacity: 0.9;
+  }
 `;
 
 const Feature = () => {
@@ -73,10 +113,14 @@ const Feature = () => {
         <Image src={App} />
       </Left>
       <Right>
+        <Badge>
+          <BadgeIcon>★</BadgeIcon>
+          Funcionalidades que fazem a diferença
+        </Badge>
         <Title>
           <b>Ótimo</b> design
           <br />
-          <b>Ótimo</b> negócio
+          <b>Ótimo</b> <Pink>negócio</Pink>
         </Title>
         <SubTitle>
           Sabemos que um ótimo design significa ótimos negócios.
