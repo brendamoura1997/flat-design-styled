@@ -1,12 +1,24 @@
 import styled, { keyframes } from "styled-components";
 import Maps from "../../assets/images/maps.png";
+import LockIcon from "../icons/LockIcon";
+import ShieldIcon from "../icons/ShieldIcon";
+import ClockIcon from "../icons/ClockIcon";
+import LightningIcon from "../icons/LightningIcon";
+import ChatIcon from "../icons/ChatIcon";
+import UserIcon from "../icons/UserIcon";
+import EmailIcon from "../icons/EmailIcon";
+import EmailFillIcon from "../icons/EmailFillIcon";
+import PencilIcon from "../icons/PencilIcon.jsx";
+import TagIcon from "../icons/TagIcon.jsx";
+import PhoneIcon from "../icons/PhoneIcon.jsx";
+import LocationIcon from "../icons/LocationIcon.jsx";
 
 const PINK = "#E8134A";
 const PINK_BG = "#fdf3f6";
-const ADDR_RED_BG = "#FFE4EC";
-const ADDR_BLUE_BG = "#E8EEFF";
-const ADDR_GREEN_BG = "#DFFAF0";
-const ADDR_ORANGE_BG = "#FFF4DC";
+const ADDR_RED_BG = "#fadee6";
+const ADDR_BLUE_BG = "#e7e3f8";
+const ADDR_GREEN_BG = "#dfede4";
+const ADDR_ORANGE_BG = "#feecd8";
 const ADDR_RED = "#E8134A";
 const ADDR_BLUE = "#4B6BF5";
 const ADDR_GREEN = "#2BAF8E";
@@ -102,7 +114,7 @@ const LeftCol = styled.div`
 const Badge = styled.div`
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
   background: #ffeaed;
   color: #e8002d;
   font-size: 13px;
@@ -403,7 +415,15 @@ const Contact = () => {
       <MainGrid>
         <LeftCol>
           <Badge>
-            <span>💬</span>
+            <span>
+              <ChatIcon
+                width={25}
+                height={15}
+                color="#e31652"
+                stroke="#f48aa8"
+                viewBox="0 0 24 24"
+              />
+            </span>
             Fale com a gente
           </Badge>
 
@@ -421,22 +441,54 @@ const Contact = () => {
             <FormInputsCol>
               <InputWrapper>
                 <Input placeholder="Seu nome" />
-                <InputIcon>👤</InputIcon>
+                <InputIcon>
+                  <UserIcon
+                    width={20}
+                    height={20}
+                    color="#9CA3AF"
+                    stroke="#9CA3AF"
+                    viewBox="0 0 24 24"
+                  />
+                </InputIcon>
               </InputWrapper>
               <InputWrapper>
                 <Input placeholder="Seu email" />
-                <InputIcon>✉</InputIcon>
+                <InputIcon>
+                  <EmailIcon
+                    width={19}
+                    height={19}
+                    viewBox="0 0 24 24"
+                    color="none"
+                    stroke="#9CA3AF"
+                  />
+                </InputIcon>
               </InputWrapper>
               <InputWrapper>
                 <Input placeholder="Assunto" />
-                <InputIcon>🏷</InputIcon>
+                <InputIcon>
+                  <TagIcon
+                    width={18}
+                    height={18}
+                    viewBox="0 0 24 24"
+                    color="none"
+                    stroke="#9CA3AF"
+                  />
+                </InputIcon>
               </InputWrapper>
             </FormInputsCol>
 
             <FormTextareaCol>
               <TextareaWrapper>
                 <Textarea placeholder="Sua mensagem" />
-                <TextareaIcon>✏️</TextareaIcon>
+                <TextareaIcon>
+                  <PencilIcon
+                    width={20}
+                    height={20}
+                    viewBox="0 0 24 24"
+                    color="none"
+                    stroke="#9CA3AF"
+                  />
+                </TextareaIcon>
               </TextareaWrapper>
             </FormTextareaCol>
           </FormLayout>
@@ -464,7 +516,7 @@ const Contact = () => {
             <InfoList>
               <InfoItem>
                 <IconCircle bg={ADDR_RED_BG}>
-                  <svg
+                  {/* <svg
                     width="18"
                     height="18"
                     viewBox="0 0 24 24"
@@ -472,7 +524,14 @@ const Contact = () => {
                     stroke="none"
                   >
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                  </svg>
+                  </svg> */}
+                  <LocationIcon
+                    width={20}
+                    height={20}
+                    viewBox="0 0 24 24"
+                    color="#E11D48"
+                    stroke="#E11D48"
+                  />
                 </IconCircle>
                 <InfoContent>
                   <InfoLabel color={ADDR_RED}>Endereço</InfoLabel>
@@ -486,15 +545,13 @@ const Contact = () => {
 
               <InfoItem>
                 <IconCircle bg={ADDR_BLUE_BG}>
-                  <svg
-                    width="18"
-                    height="18"
+                  <PhoneIcon
+                    width={22}
+                    height={22}
                     viewBox="0 0 24 24"
-                    fill={ADDR_BLUE}
-                    stroke="none"
-                  >
-                    <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
-                  </svg>
+                    color="#6366F1"
+                    stroke="#6366F1"
+                  />
                 </IconCircle>
                 <InfoContent>
                   <InfoLabel color={ADDR_BLUE}>Telefone</InfoLabel>
@@ -508,15 +565,13 @@ const Contact = () => {
 
               <InfoItem>
                 <IconCircle bg={ADDR_GREEN_BG}>
-                  <svg
-                    width="18"
-                    height="18"
+                  <EmailFillIcon
+                    width={24}
+                    height={24}
                     viewBox="0 0 24 24"
-                    fill={ADDR_GREEN}
-                    stroke="none"
-                  >
-                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-                  </svg>
+                    color="#5BB580"
+                    stroke="white"
+                  />
                 </IconCircle>
                 <InfoContent>
                   <InfoLabel color={ADDR_GREEN}>Email</InfoLabel>
@@ -530,7 +585,7 @@ const Contact = () => {
 
               <InfoItem>
                 <IconCircle bg={ADDR_ORANGE_BG}>
-                  <svg
+                  {/* <svg
                     width="18"
                     height="18"
                     viewBox="0 0 24 24"
@@ -538,7 +593,14 @@ const Contact = () => {
                     stroke="none"
                   >
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z" />
-                  </svg>
+                  </svg> */}
+                  <ClockIcon
+                    width={24}
+                    height={24}
+                    viewBox="0 0 24 24"
+                    color="none"
+                    stroke="#F59E0B"
+                  />
                 </IconCircle>
                 <InfoContent>
                   <InfoLabel color={ADDR_ORANGE}>
@@ -561,15 +623,13 @@ const Contact = () => {
       <FeatureRow>
         <FeatureItem>
           <FeatureIcon bg={ADDR_RED_BG}>
-            <svg
-              width="22"
-              height="22"
+            <LightningIcon
+              width={24}
+              height={24}
               viewBox="0 0 24 24"
-              fill={ADDR_RED}
+              color="#E11D48"
               stroke="none"
-            >
-              <path d="M7 2v11h3v9l7-12h-4l4-8z" />
-            </svg>
+            />
           </FeatureIcon>
           <FeatureContent>
             <FeatureTitle color={ADDR_RED}>Resposta rápida</FeatureTitle>
@@ -583,15 +643,13 @@ const Contact = () => {
 
         <FeatureItem>
           <FeatureIcon bg={ADDR_GREEN_BG}>
-            <svg
-              width="22"
-              height="22"
+            <ShieldIcon
+              width={22}
+              height={22}
+              color={ADDR_GREEN}
               viewBox="0 0 24 24"
-              fill={ADDR_GREEN}
               stroke="none"
-            >
-              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
-            </svg>
+            />
           </FeatureIcon>
           <FeatureContent>
             <FeatureTitle color={ADDR_GREEN}>
@@ -607,15 +665,13 @@ const Contact = () => {
 
         <FeatureItem>
           <FeatureIcon bg={ADDR_BLUE_BG}>
-            <svg
-              width="22"
-              height="22"
+            <LockIcon
+              width={22}
+              height={22}
+              color={ADDR_BLUE}
               viewBox="0 0 24 24"
-              fill={ADDR_BLUE}
               stroke="none"
-            >
-              <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
-            </svg>
+            />
           </FeatureIcon>
           <FeatureContent>
             <FeatureTitle color={ADDR_BLUE}>Seus dados protegidos</FeatureTitle>
