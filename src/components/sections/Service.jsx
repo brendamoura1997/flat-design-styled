@@ -10,6 +10,8 @@ const fadeIn = keyframes`
 
 const Container = styled.div`
   display: flex;
+  justify-content: center;
+  gap: 20px;
   height: 100%;
   @media only screen and (max-width: 480px) {
     flex-direction: column;
@@ -17,7 +19,7 @@ const Container = styled.div`
 `;
 
 const Left = styled.div`
-  width: 50%;
+  width: 40%;
   position: relative;
   overflow: hidden;
   @media only screen and (max-width: 480px) {
@@ -70,16 +72,16 @@ const Badge = styled.div`
   align-items: center;
   gap: 8px;
   background-color: #fce4ec;
-  color: #c2185b;
+  color: #e8002d;
   font-size: 13px;
   font-weight: 500;
   padding: 8px 16px;
   border-radius: 999px;
+  margin-bottom: 10px;
   width: fit-content;
-  margin-bottom: 20px;
 `;
 
-const BadgeStar = styled.span`
+const BadgeIcon = styled.span`
   font-size: 15px;
 `;
 
@@ -141,7 +143,7 @@ const CardTitle = styled.h3`
   font-size: 15px;
   font-weight: 700;
   color: #111;
-  margin: 0 0 10px 0;
+  margin: 0 0 7px 0;
 `;
 
 const CardDivider = styled.div`
@@ -160,28 +162,27 @@ const CardDesc = styled.p`
 `;
 
 const Button = styled.button`
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   width: fit-content;
   border: none;
-  border-radius: 12px;
-  background-color: #1a237e;
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 16px 28px;
-  margin-top: 44px;
+  padding: 16px 24px;
+  background-color: #1a1aad;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  border-radius: 9px;
+  margin-top: 28px;
   cursor: pointer;
+  letter-spacing: 0.3px;
   transition:
-    background-color 0.2s ease,
-    transform 0.15s ease;
+    background 0.2s,
+    transform 0.15s;
+
   &:hover {
-    background-color: #283593;
+    background: #1212c2;
     transform: translateY(-2px);
-  }
-  &:active {
-    transform: translateY(0);
   }
 `;
 
@@ -306,7 +307,7 @@ const Service = () => {
       <Right>
         <Wrapper>
           <Badge>
-            <BadgeStar>☆</BadgeStar>
+            <BadgeIcon>☆</BadgeIcon>
             Soluções pensadas para impulsionar seu negócio
           </Badge>
           <Title>

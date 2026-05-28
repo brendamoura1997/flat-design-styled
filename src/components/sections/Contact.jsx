@@ -18,7 +18,8 @@ const fadeIn = keyframes`
 `;
 
 const Section = styled.section`
-  background: url("https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png");
+  background: white;
+  // background: url("https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png");
   padding: 72px 64px 64px;
   position: relative;
   overflow: hidden;

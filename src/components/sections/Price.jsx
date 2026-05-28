@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+// import Bg from "../../assets/images/double-bubble-outline.png";
 
 const fadeUp = keyframes`
   from { opacity: 0; transform: translateY(16px); }
@@ -113,14 +114,14 @@ const FeaturedBadge = styled.div`
   top: -13px;
   left: 50%;
   transform: translateX(-50%);
-  background: #e8002d;
+  background: #e43d5d;
   color: #fff;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  padding: 5px 18px;
-  border-radius: 999px;
+  padding: 7px 18px;
+  border-radius: 6px;
   white-space: nowrap;
 `;
 

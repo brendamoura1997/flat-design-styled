@@ -3,7 +3,8 @@ import App from "../../assets/images/app.png";
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 20px;
   height: 100%;
   @media only screen and (max-width: 480px) {
     width: 80%;
@@ -26,7 +27,7 @@ const Image = styled.img`
 `;
 
 const Right = styled.div`
-  width: 47%;
+  width: 43%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,25 +40,18 @@ const Badge = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background-color: #fde8ef;
-  color: #e8325a;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 8px 16px;
-  border-radius: 50px;
+  background: #ffeaed;
+  color: #e8002d;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 999px;
   width: fit-content;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 `;
 
 const BadgeIcon = styled.span`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #e8325a;
-  border-radius: 6px;
-  font-size: 11px;
+  font-size: 15px;
 `;
 
 const Title = styled.span`
@@ -91,18 +85,21 @@ const Button = styled.button`
   width: 160px;
   border: none;
   padding: 16px 24px;
-  background-color: darkblue;
-  color: white;
+  background-color: #1a1aad;
+  color: #fff;
   font-size: 18px;
-  font-weight: 600;
-  border-radius: 8px;
+  font-weight: 800;
+  border-radius: 9px;
   margin-top: 28px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  letter-spacing: 0.3px;
+  transition:
+    background 0.2s,
+    transform 0.15s;
 
   &:hover {
-    background-color: #00008b;
-    opacity: 0.9;
+    background: #1212c2;
+    transform: translateY(-2px);
   }
 `;
 
@@ -114,7 +111,7 @@ const Feature = () => {
       </Left>
       <Right>
         <Badge>
-          <BadgeIcon>★</BadgeIcon>
+          <BadgeIcon>☆</BadgeIcon>
           Funcionalidades que fazem a diferença
         </Badge>
         <Title>
