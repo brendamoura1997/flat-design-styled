@@ -1,5 +1,9 @@
 import styled, { keyframes } from "styled-components";
-// import Bg from "../../assets/images/double-bubble-outline.png";
+import SendIcon from "../icons/SendIcon";
+import StarIcon from "../icons/StarIcon";
+import RocketIcon from "../icons/RocketIcon";
+import CheckCircleIcon from "../icons/CheckCircleIcon";
+import HeartIcon from "../icons/HeartIcon";
 
 const fadeUp = keyframes`
   from { opacity: 0; transform: translateY(16px); }
@@ -196,21 +200,6 @@ const Feature = styled.li`
   color: #333;
 `;
 
-const CheckIcon = styled.span`
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 1.8px solid ${({ color }) => color};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-
-  svg {
-    color: ${({ color }) => color};
-  }
-`;
-
 const Btn = styled.button`
   width: 100%;
   padding: 11px;
@@ -276,19 +265,13 @@ const plans = [
     featured: false,
     delay: "0.1s",
     icon: (
-      <svg
-        width="22"
-        height="22"
+      <SendIcon
+        width={24}
+        height={24}
         viewBox="0 0 24 24"
-        fill="none"
-        stroke="#e8002d"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <line x1="22" y1="2" x2="11" y2="13" />
-        <polygon points="22 2 15 22 11 13 2 9 22 2" />
-      </svg>
+        color="none"
+        stroke="#E11D48"
+      />
     ),
   },
   {
@@ -300,18 +283,13 @@ const plans = [
     featured: true,
     delay: "0.2s",
     icon: (
-      <svg
-        width="22"
-        height="22"
+      <StarIcon
+        width={24}
+        height={24}
         viewBox="0 0 24 24"
-        fill="none"
-        stroke="#7c5cbf"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-      </svg>
+        color="none"
+        stroke="#7C6FCD"
+      />
     ),
   },
   {
@@ -323,21 +301,13 @@ const plans = [
     featured: false,
     delay: "0.3s",
     icon: (
-      <svg
-        width="22"
-        height="22"
+      <RocketIcon
+        width={24}
+        height={24}
         viewBox="0 0 24 24"
-        fill="none"
-        stroke="#2eaa7a"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
-        <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
-        <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
-        <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
-      </svg>
+        color="none"
+        stroke="#3DAA72"
+      />
     ),
   },
 ];
@@ -353,18 +323,13 @@ const Price = () => (
     <Inner>
       <div style={{ textAlign: "center" }}>
         <Badge>
-          <svg
-            width="13"
-            height="13"
+          <HeartIcon
+            width={13}
+            height={13}
             viewBox="0 0 24 24"
-            fill="none"
-            stroke="#e8002d"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-          </svg>
+            color="none"
+            stroke="#E11D48"
+          />
           Planos que se adaptam ao seu momento
         </Badge>
         <Headline>
@@ -392,20 +357,14 @@ const Price = () => (
             <FeatureList>
               {features.map((f) => (
                 <Feature key={f}>
-                  <CheckIcon color={plan.color}>
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </CheckIcon>
+                  <CheckCircleIcon
+                    width={24}
+                    height={24}
+                    viewBox="0 0 24 24"
+                    color={plan.color}
+                    stroke={plan.color}
+                  />
+
                   {f}
                 </Feature>
               ))}

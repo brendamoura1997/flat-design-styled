@@ -55,9 +55,8 @@ const BadgeIcon = styled.span`
 `;
 
 const Title = styled.span`
-  font-size: 70px;
-  line-height: 1.1;
-  @media only screen and (max-width: 480px) {
+  font-size: 60px;
+  line-height: 1.15 @media only screen and (max-width: 480px) {
     font-size: 50px;
   }
 `;

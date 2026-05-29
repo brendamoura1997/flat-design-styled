@@ -31,7 +31,6 @@ const fadeIn = keyframes`
 
 const Section = styled.section`
   background: white;
-  // background: url("https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png");
   padding: 72px 150px;
   position: relative;
   overflow: hidden;
@@ -56,15 +55,23 @@ const DecorSquareBlue = styled.div`
   z-index: 0;
 `;
 
-const DecorDotGrid = styled.div`
+const DotsGrid = styled.div`
   position: absolute;
-  top: 80px;
-  left: calc(50% - 10px);
-  width: 80px;
-  height: 80px;
-  background-image: radial-gradient(circle, #ccc 1.5px, transparent 1.5px);
-  background-size: 12px 12px;
+  top: 11%;
+  left: 46.5%;
+  display: grid;
+  grid-template-columns: repeat(5, 6px);
+  gap: 9px;
   z-index: 0;
+
+  span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #e8002d;
+    opacity: 0.35;
+    display: block;
+  }
 `;
 
 const DecorSquareGreen = styled.div`
@@ -408,7 +415,11 @@ const Contact = () => {
   return (
     <Section>
       <DecorSquareBlue />
-      <DecorDotGrid />
+      <DotsGrid>
+        {Array.from({ length: 25 }).map((_, i) => (
+          <span key={i} />
+        ))}
+      </DotsGrid>
       <DecorSquareGreen />
       <DecorCurveRed />
 
@@ -516,15 +527,6 @@ const Contact = () => {
             <InfoList>
               <InfoItem>
                 <IconCircle bg={ADDR_RED_BG}>
-                  {/* <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill={ADDR_RED}
-                    stroke="none"
-                  >
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                  </svg> */}
                   <LocationIcon
                     width={20}
                     height={20}

@@ -2,6 +2,9 @@ import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import How from "../../assets/images/how.png";
 import Play from "../../assets/icons/play.png";
+import MonitorIcon from "../icons/MonitorIcon";
+import CodeIcon from "../icons/CodeIcon";
+import PurseIcon from "../icons/PurseIcon";
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(16px); }
@@ -86,11 +89,9 @@ const BadgeIcon = styled.span`
 `;
 
 const Title = styled.h1`
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  font-weight: 800;
+  font-size: 60px;
+  line-height: 1.15
   color: #111;
-  line-height: 1.15;
-  margin: 0;
 `;
 
 const Highlight = styled.span`
@@ -225,20 +226,13 @@ const cards = [
   {
     bg: "#fce4ec",
     icon: (
-      <svg
-        width="28"
-        height="28"
+      <MonitorIcon
+        width={28}
+        height={28}
         viewBox="0 0 24 24"
-        fill="none"
-        stroke="#e91e63"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <rect x="2" y="3" width="20" height="14" rx="2" />
-        <line x1="8" y1="21" x2="16" y2="21" />
-        <line x1="12" y1="17" x2="12" y2="21" />
-      </svg>
+        color="none"
+        stroke="#E11D48"
+      />
     ),
     title: "Design",
     desc: "Criamos interfaces modernas e intuitivas que encantam e geram resultados.",
@@ -246,19 +240,13 @@ const cards = [
   {
     bg: "#ede7f6",
     icon: (
-      <svg
-        width="28"
-        height="28"
+      <CodeIcon
+        width={28}
+        height={28}
         viewBox="0 0 24 24"
-        fill="none"
-        stroke="#7c3aed"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <polyline points="16 18 22 12 16 6" />
-        <polyline points="8 6 2 12 8 18" />
-      </svg>
+        color="none"
+        stroke="#6D28D9"
+      />
     ),
     title: "Desenvolvimento",
     desc: "Soluções digitais sob medida com performance, segurança e escalabilidade.",
@@ -266,21 +254,13 @@ const cards = [
   {
     bg: "#e8f5e9",
     icon: (
-      <svg
-        width="28"
-        height="28"
+      <PurseIcon
+        width={28}
+        height={28}
         viewBox="0 0 24 24"
-        fill="none"
-        stroke="#2e7d32"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M22 10.5V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8" />
-        <path d="M22 10.5 12 14 2 10.5" />
-        <circle cx="19" cy="18" r="3" />
-        <line x1="19" y1="15" x2="19" y2="13" />
-      </svg>
+        color="none"
+        stroke="#3DAA72"
+      />
     ),
     title: "Marketing Digital",
     desc: "Estratégias que atraem, engajam e convertem o público certo.",
@@ -315,7 +295,8 @@ const Service = () => {
             Soluções pensadas para impulsionar seu negócio
           </Badge>
           <Title>
-            Processo simples para <Highlight>começar</Highlight>
+            Processo simples <br />
+            para <Highlight>começar</Highlight>
           </Title>
           <Desc>
             Oferecemos serviços de experiência digital para startups e pequenas
