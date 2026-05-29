@@ -1,13 +1,5 @@
 // eslint-disable-next-line react/prop-types
-const SendIcon = ({
-  width,
-  height,
-  color,
-  viewBox,
-  stroke,
-  strokeWidthOutside,
-  strokeWidthInside,
-}) => {
+const DesignIcon = ({ width, height, color, viewBox, stroke }) => {
   return (
     <svg
       width={width}
@@ -16,17 +8,28 @@ const SendIcon = ({
       fill={color}
       stroke={stroke}
     >
-      <path
-        d="M22 2L11 13"
+      <rect
+        x="3"
+        y="3"
+        width="18"
+        height="18"
+        rx="2"
         fill="none"
-        strokeWidth={strokeWidthInside}
+        strokeWidth="1.75"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="M22 2L15 22L11 13L2 9L22 2Z"
+        d="M3 9H21"
         fill="none"
-        strokeWidth={strokeWidthOutside}
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9 9V21"
+        fill="none"
+        strokeWidth="1.75"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -34,4 +37,4 @@ const SendIcon = ({
   );
 };
 
-export default SendIcon;
+export default DesignIcon;

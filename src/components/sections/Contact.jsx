@@ -12,6 +12,7 @@ import PencilIcon from "../icons/PencilIcon.jsx";
 import TagIcon from "../icons/TagIcon.jsx";
 import PhoneIcon from "../icons/PhoneIcon.jsx";
 import LocationIcon from "../icons/LocationIcon.jsx";
+import SendIcon from "../icons/SendIcon";
 
 const PINK = "#E8134A";
 const PINK_BG = "#fdf3f6";
@@ -506,19 +507,15 @@ const Contact = () => {
 
           <SubmitButton>
             Enviar mensagem
-            <svg
-              width="18"
-              height="18"
+            <SendIcon
+              width={18}
+              height={18}
               viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="22" y1="2" x2="11" y2="13" />
-              <polygon points="22 2 15 22 11 13 2 9 22 2" />
-            </svg>
+              color="none"
+              stroke="#FFF"
+              strokeWidthOutside="2.2"
+              strokeWidthInside="1.5"
+            />
           </SubmitButton>
         </LeftCol>
 

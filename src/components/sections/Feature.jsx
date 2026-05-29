@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import App from "../../assets/images/app.png";
+import StarIcon from "../icons/StarIcon";
+import PlusIcon from "../icons/PlusIcon";
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
-  gap: 20px;
+  justify-content: start;
+  gap: 12%;
   height: 100%;
   @media only screen and (max-width: 480px) {
     width: 80%;
@@ -15,15 +17,17 @@ const Container = styled.div`
 `;
 
 const Left = styled.div`
-  width: 50%;
-
+  width: 43%;
+  height: 143%;
   @media only screen and (max-width: 480px) {
     display: none;
   }
 `;
 
 const Image = styled.img`
-  width: 80%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const Right = styled.div`
@@ -48,10 +52,6 @@ const Badge = styled.div`
   border-radius: 999px;
   width: fit-content;
   margin-bottom: 20px;
-`;
-
-const BadgeIcon = styled.span`
-  font-size: 15px;
 `;
 
 const Title = styled.span`
@@ -81,7 +81,7 @@ const Desc = styled.p`
 `;
 
 const Button = styled.button`
-  width: 160px;
+  width: fit-content;
   border: none;
   padding: 16px 24px;
   background-color: #1a1aad;
@@ -95,6 +95,9 @@ const Button = styled.button`
   transition:
     background 0.2s,
     transform 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
   &:hover {
     background: #1212c2;
@@ -114,7 +117,13 @@ const Feature = () => {
       </Left>
       <Right>
         <Badge>
-          <BadgeIcon>☆</BadgeIcon>
+          <StarIcon
+            width={11}
+            height={11}
+            viewBox="0 0 24 24"
+            color="none"
+            stroke="#e8002d"
+          />
           Funcionalidades que fazem a diferença
         </Badge>
         <Title>
@@ -134,7 +143,16 @@ const Feature = () => {
           Cuidamos do seu negócio e garantimos que você alcance seus objetivos
           de marketing.
         </Desc>
-        <Button>Saiba Mais</Button>
+        <Button>
+          <PlusIcon
+            width={20}
+            height={20}
+            viewBox="0 0 24 24"
+            color="none"
+            stroke="white"
+          />{" "}
+          Saiba Mais
+        </Button>
       </Right>
     </Container>
   );

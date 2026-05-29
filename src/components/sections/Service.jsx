@@ -1,10 +1,11 @@
 import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import How from "../../assets/images/how.png";
-import Play from "../../assets/icons/play.png";
 import MonitorIcon from "../icons/MonitorIcon";
 import CodeIcon from "../icons/CodeIcon";
 import PurseIcon from "../icons/PurseIcon";
+import StarIcon from "../icons/StarIcon";
+import PlayIcon from "../icons/PlayIcon";
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(16px); }
@@ -82,10 +83,6 @@ const Badge = styled.div`
   border-radius: 999px;
   margin-bottom: 10px;
   width: fit-content;
-`;
-
-const BadgeIcon = styled.span`
-  font-size: 15px;
 `;
 
 const Title = styled.h1`
@@ -191,11 +188,6 @@ const Button = styled.button`
   }
 `;
 
-const ButtonIcon = styled.img`
-  width: 18px;
-  height: 18px;
-`;
-
 const Modal = styled.div`
   width: 100vw;
   height: 100vh;
@@ -291,7 +283,13 @@ const Service = () => {
       <Right>
         <Wrapper>
           <Badge>
-            <BadgeIcon>☆</BadgeIcon>
+            <StarIcon
+              width={11}
+              height={11}
+              viewBox="0 0 24 24"
+              color="none"
+              stroke="#e8002d"
+            />
             Soluções pensadas para impulsionar seu negócio
           </Badge>
           <Title>
@@ -315,7 +313,13 @@ const Service = () => {
             ))}
           </CardContainer>
           <Button onClick={() => setOpen(true)}>
-            <ButtonIcon src={Play} />
+            <PlayIcon
+              width={24}
+              height={24}
+              viewBox="0 0 24 24"
+              color="none"
+              stroke="white"
+            />
             Como funciona
           </Button>
         </Wrapper>

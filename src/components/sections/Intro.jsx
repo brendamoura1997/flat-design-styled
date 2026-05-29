@@ -3,6 +3,11 @@ import Woman from "../../assets/images/woman.png";
 import AnimatedShapes from "../layout/AnimatedShapes";
 import FixedShapes from "../layout/FixedShapes";
 import { useScreenSize } from "../../hooks/useDevice";
+import RocketIcon from "../icons/RocketIcon";
+import PhoneIcon from "../icons/PhoneIcon";
+import ClientIcon from "../icons/ClientIcon";
+import DesignIcon from "../icons/DesignIcon";
+import ArrowIcon from "../icons/ArrowIcon";
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -333,35 +338,24 @@ const Intro = () => {
           <Info>
             <Button>
               COMECE UM PROJETO
-              <svg
-                width="16"
-                height="16"
+              <ArrowIcon
+                width={20}
+                height={20}
                 viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
+                color="none"
+                stroke="white"
+              />
             </Button>
 
             <Contact>
               <PhoneIconWrap>
-                <svg
-                  width="20"
-                  height="20"
+                <PhoneIcon
+                  width={22}
+                  height={22}
                   viewBox="0 0 24 24"
-                  fill="none"
+                  color="#f53b5a"
                   stroke="#f53b5a"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
+                />
               </PhoneIconWrap>
 
               <ContactText>
@@ -374,21 +368,13 @@ const Intro = () => {
           <Features>
             <Feature>
               <FeatureIcon bg="#fde8ec">
-                <svg
-                  width="22"
-                  height="22"
+                <ClientIcon
+                  width={20}
+                  height={20}
                   viewBox="0 0 24 24"
-                  fill="none"
+                  color="none"
                   stroke="#f53b5a"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
+                />
               </FeatureIcon>
 
               <FeatureText>
@@ -399,21 +385,14 @@ const Intro = () => {
 
             <Feature>
               <FeatureIcon bg="#edeeff">
-                <svg
-                  width="22"
-                  height="22"
+                <RocketIcon
+                  width={22}
+                  height={22}
                   viewBox="0 0 24 24"
-                  fill="none"
+                  color="none"
                   stroke="#5b5bd6"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
-                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
-                  <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
-                  <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
-                </svg>
+                  strokeWidth="1.5"
+                />
               </FeatureIcon>
 
               <FeatureText>
@@ -426,20 +405,13 @@ const Intro = () => {
 
             <Feature>
               <FeatureIcon bg="#e8f5ee">
-                <svg
-                  width="22"
-                  height="22"
+                <DesignIcon
+                  width={22}
+                  height={22}
                   viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#2e9e60"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <path d="M3 9h18" />
-                  <path d="M9 21V9" />
-                </svg>
+                  color="none"
+                  stroke="#3DAA72"
+                />
               </FeatureIcon>
 
               <FeatureText>

@@ -4,6 +4,7 @@ import StarIcon from "../icons/StarIcon";
 import RocketIcon from "../icons/RocketIcon";
 import CheckCircleIcon from "../icons/CheckCircleIcon";
 import HeartIcon from "../icons/HeartIcon";
+import ShieldHollowIcon from "../icons/ShieldHollowIcon";
 
 const fadeUp = keyframes`
   from { opacity: 0; transform: translateY(16px); }
@@ -271,6 +272,8 @@ const plans = [
         viewBox="0 0 24 24"
         color="none"
         stroke="#E11D48"
+        strokeWidthOutside="2.2"
+        strokeWidthInside="1.5"
       />
     ),
   },
@@ -307,6 +310,7 @@ const plans = [
         viewBox="0 0 24 24"
         color="none"
         stroke="#3DAA72"
+        strokeWidth="2"
       />
     ),
   },
@@ -376,18 +380,13 @@ const Price = () => (
 
       <Footer>
         <span>
-          <svg
-            width="14"
-            height="14"
+          <ShieldHollowIcon
+            width={14}
+            height={14}
             viewBox="0 0 24 24"
-            fill="none"
+            color="none"
             stroke="#e8002d"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-          </svg>
+          />
           Pagamento seguro
         </span>
         <span className="dot" />
