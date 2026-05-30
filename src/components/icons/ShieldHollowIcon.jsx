@@ -15,6 +15,13 @@ const ShieldHollowIcon = ({ width, height, color, viewBox, stroke }) => {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+      <path
+        d="M8.5 12L11 14.5L15.5 10"
+        fill="none"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 };

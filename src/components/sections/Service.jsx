@@ -244,7 +244,7 @@ const cards = [
     desc: "Soluções digitais sob medida com performance, segurança e escalabilidade.",
   },
   {
-    bg: "#e8f5e9",
+    bg: "#def6ee",
     icon: (
       <PurseIcon
         width={28}

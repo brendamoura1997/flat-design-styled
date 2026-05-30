@@ -404,7 +404,7 @@ const Intro = () => {
             </Feature>
 
             <Feature>
-              <FeatureIcon bg="#e8f5ee">
+              <FeatureIcon bg="#def6ee">
                 <DesignIcon
                   width={22}
                   height={22}

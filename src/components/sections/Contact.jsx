@@ -89,12 +89,12 @@ const DecorSquareGreen = styled.div`
 
 const DecorCurveRed = styled.div`
   position: absolute;
-  bottom: 80px;
-  right: 0;
-  width: 80px;
-  height: 140px;
+  bottom: 0%;
+  right: -9%;
+  width: 20%;
+  height: 25%;
   background: ${PINK};
-  border-radius: 70px 0 0 70px;
+  border-radius: 100% 100% 0px 0px;
   z-index: 0;
 `;
 
@@ -120,14 +120,15 @@ const LeftCol = styled.div`
 `;
 
 const Badge = styled.div`
-  display: inline-flex;
+  width: fit-content;
+  display: flex;
   align-items: center;
   gap: 5px;
   background: #ffeaed;
   color: #e8002d;
   font-size: 13px;
   font-weight: 500;
-  padding: 8px 18px;
+  padding: 8px 16px;
   border-radius: 999px;
   margin-bottom: 10px;
 `;
@@ -345,6 +346,7 @@ const MapPlaceholder = styled.img`
   object-fit: cover;
   border: 5px solid #fff;
   border-radius: 14px;
+  z-index: 1;
 
   @media (max-width: 1100px) {
     width: 160px;
@@ -422,20 +424,17 @@ const Contact = () => {
         ))}
       </DotsGrid>
       <DecorSquareGreen />
-      <DecorCurveRed />
 
       <MainGrid>
         <LeftCol>
           <Badge>
-            <span>
-              <ChatIcon
-                width={25}
-                height={15}
-                color="#e31652"
-                stroke="#f48aa8"
-                viewBox="0 0 24 24"
-              />
-            </span>
+            <ChatIcon
+              width={13}
+              height={13}
+              color="#ffeaed"
+              stroke="#e31652"
+              viewBox="0 0 24 24"
+            />
             Fale com a gente
           </Badge>
 
@@ -615,6 +614,7 @@ const Contact = () => {
             </InfoList>
 
             <MapPlaceholder src={Maps} alt="Localização" />
+            <DecorCurveRed />
           </InfoCard>
         </RightCol>
       </MainGrid>

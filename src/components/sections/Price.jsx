@@ -239,7 +239,7 @@ const Footer = styled.div`
   span {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
   }
   .dot {
     width: 4px;
@@ -299,7 +299,7 @@ const plans = [
     type: "Advanced",
     price: "30",
     color: "#2eaa7a",
-    iconBg: "#e6f9f3",
+    iconBg: "#def6ee",
     divider: "#2eaa7a",
     featured: false,
     delay: "0.3s",
@@ -381,11 +381,11 @@ const Price = () => (
       <Footer>
         <span>
           <ShieldHollowIcon
-            width={14}
-            height={14}
+            width={18}
+            height={18}
             viewBox="0 0 24 24"
             color="none"
-            stroke="#e8002d"
+            stroke="#2BAF8E"
           />
           Pagamento seguro
         </span>
