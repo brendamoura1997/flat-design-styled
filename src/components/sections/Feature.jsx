@@ -44,8 +44,8 @@ const Badge = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #ffeaed;
-  color: #e8002d;
+  background: #def6ee;
+  color: #3daa72;
   font-size: 13px;
   font-weight: 500;
   padding: 8px 18px;
@@ -122,7 +122,7 @@ const Feature = () => {
             height={11}
             viewBox="0 0 24 24"
             color="none"
-            stroke="#e8002d"
+            stroke="#3DAA72"
           />
           Funcionalidades que fazem a diferença
         </Badge>

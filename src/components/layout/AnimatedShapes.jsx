@@ -4,6 +4,7 @@ const Square = styled.div`
   width: 60px;
   height: 60px;
   background-color: #4e6bff;
+  border-radius: 6px;
   opacity: 0.7;
   position: absolute;
   top: -60px;
@@ -40,6 +41,7 @@ const Rect = styled.div`
   width: 50px;
   height: 100px;
   background-color: #669966;
+  border-radius: 6px;
   opacity: 0.5;
   position: absolute;
   top: 400px;

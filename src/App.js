@@ -7,7 +7,6 @@ import Price from "./components/sections/Price";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/layout/Footer";
 import { useScreenSize } from "./hooks/useDevice";
-import PriceBg from "../src/assets/images/double-bubble-outline.png";
 
 const Container = styled.div`
   height: 100vh;
@@ -59,15 +58,6 @@ const ServiceShape = styled.div`
   background-color: #f88497;
 `;
 
-const PriceShape = styled.div`
-  ${Shape}
-  // clip-path: polygon(43% 0, 100% 0%, 100% 100%, 67% 100%);
-  // background-color: #fff8f9;
-  background: url("https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png");
-  // background-image: url(${PriceBg});
-  // opacity: 0.9;
-`;
-
 function App() {
   const { isMobile, isDesktop } = useScreenSize();
   return (
@@ -88,7 +78,6 @@ function App() {
       </ContainerExtra>
       <ContainerExtra>
         <Price />
-        <PriceShape />
       </ContainerExtra>
       <ContainerExtra>
         <Contact />

@@ -77,13 +77,14 @@ const DotsGrid = styled.div`
 
 const DecorSquareGreen = styled.div`
   position: absolute;
-  top: 50%;
-  left: 0;
+  top: 45%;
+  left: 3%;
   transform: translateY(-50%);
-  width: 32px;
-  height: 90px;
-  background: #2baf8e;
-  border-radius: 0 6px 6px 0;
+  width: 3%;
+  height: 11%;
+  background-color: #669966;
+  opacity: 0.5;
+  border-radius: 6px;
   z-index: 0;
 `;
 
@@ -124,8 +125,8 @@ const Badge = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
-  background: #ffeaed;
-  color: #e8002d;
+  background: #def6ee;
+  color: #3daa72;
   font-size: 13px;
   font-weight: 500;
   padding: 8px 16px;
@@ -291,7 +292,7 @@ const RightCol = styled.div`
 const InfoCard = styled.div`
   background: ${PINK_BG};
   border-radius: 18px;
-  padding: 0px 24px;
+  padding: 0px 24px 0px 44px;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -302,7 +303,13 @@ const InfoList = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 20px;
+
+  hr {
+    border: 1px solid #ececec;
+    width: 80%;
+  }
 `;
 
 const InfoItem = styled.div`
@@ -327,7 +334,7 @@ const InfoContent = styled.div``;
 
 const InfoLabel = styled.div`
   font-weight: 700;
-  font-size: 13.5px;
+  font-size: 14px;
   color: ${({ color }) => color};
   margin-bottom: 3px;
 `;
@@ -356,6 +363,8 @@ const MapPlaceholder = styled.img`
 
 const FeatureRow = styled.div`
   display: flex;
+  justify-content: center;
+  height: 12%;
   gap: 0;
   padding-top: 40px;
   border-top: 1.5px solid #f0f0f0;
@@ -371,9 +380,11 @@ const FeatureRow = styled.div`
 const FeatureItem = styled.div`
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   gap: 16px;
   flex: 1;
   padding: 0 32px;
+  // border: 1px solid red;
 
   &:first-child {
     padding-left: 40px;
@@ -414,6 +425,12 @@ const FeatureDesc = styled.div`
   line-height: 1.55;
 `;
 
+const VerticalDivider = styled.div`
+  width: 1px;
+  height: 55%;
+  background-color: #d9d9d9;
+`;
+
 const Contact = () => {
   return (
     <Section>
@@ -431,8 +448,8 @@ const Contact = () => {
             <ChatIcon
               width={13}
               height={13}
-              color="#ffeaed"
-              stroke="#e31652"
+              color="#def6ee"
+              stroke="#3DAA72"
               viewBox="0 0 24 24"
             />
             Fale com a gente
@@ -524,8 +541,8 @@ const Contact = () => {
               <InfoItem>
                 <IconCircle bg={ADDR_RED_BG}>
                   <LocationIcon
-                    width={20}
-                    height={20}
+                    width={24}
+                    height={24}
                     viewBox="0 0 24 24"
                     color="#E11D48"
                     stroke="#E11D48"
@@ -540,12 +557,12 @@ const Contact = () => {
                   </InfoText>
                 </InfoContent>
               </InfoItem>
-
+              <hr />
               <InfoItem>
                 <IconCircle bg={ADDR_BLUE_BG}>
                   <PhoneIcon
-                    width={22}
-                    height={22}
+                    width={24}
+                    height={24}
                     viewBox="0 0 24 24"
                     color="#6366F1"
                     stroke="#6366F1"
@@ -560,7 +577,7 @@ const Contact = () => {
                   </InfoText>
                 </InfoContent>
               </InfoItem>
-
+              <hr />
               <InfoItem>
                 <IconCircle bg={ADDR_GREEN_BG}>
                   <EmailFillIcon
@@ -580,18 +597,9 @@ const Contact = () => {
                   </InfoText>
                 </InfoContent>
               </InfoItem>
-
+              <hr />
               <InfoItem>
                 <IconCircle bg={ADDR_ORANGE_BG}>
-                  {/* <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill={ADDR_ORANGE}
-                    stroke="none"
-                  >
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z" />
-                  </svg> */}
                   <ClockIcon
                     width={24}
                     height={24}
@@ -639,6 +647,7 @@ const Contact = () => {
             </FeatureDesc>
           </FeatureContent>
         </FeatureItem>
+        <VerticalDivider />
 
         <FeatureItem>
           <FeatureIcon bg={ADDR_GREEN_BG}>
@@ -661,7 +670,7 @@ const Contact = () => {
             </FeatureDesc>
           </FeatureContent>
         </FeatureItem>
-
+        <VerticalDivider />
         <FeatureItem>
           <FeatureIcon bg={ADDR_BLUE_BG}>
             <LockIcon

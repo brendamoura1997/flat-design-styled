@@ -1,16 +1,18 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import SendIcon from "../icons/SendIcon";
 import StarIcon from "../icons/StarIcon";
 import RocketIcon from "../icons/RocketIcon";
 import CheckCircleIcon from "../icons/CheckCircleIcon";
 import HeartIcon from "../icons/HeartIcon";
 import ShieldHollowIcon from "../icons/ShieldHollowIcon";
-
 const fadeUp = keyframes`
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 `;
-
+const pulse = keyframes`
+  0%, 100% { box-shadow: 0 0 0 0 rgba(233, 30, 99, 0.35); }
+  50%       { box-shadow: 0 0 0 12px rgba(233, 30, 99, 0); }
+`;
 const Section = styled.section`
   position: relative;
   height: 120vh;
@@ -18,8 +20,8 @@ const Section = styled.section`
   align-items: center;
   overflow: hidden;
   font-family: "Nunito", "Segoe UI", sans-serif;
+  background: url("https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png");
 `;
-
 const DotsGrid = styled.div`
   position: absolute;
   top: 48px;
@@ -28,7 +30,6 @@ const DotsGrid = styled.div`
   grid-template-columns: repeat(7, 6px);
   gap: 9px;
   z-index: 0;
-
   span {
     width: 5px;
     height: 5px;
@@ -38,7 +39,6 @@ const DotsGrid = styled.div`
     display: block;
   }
 `;
-
 const Inner = styled.div`
   position: relative;
   z-index: 1;
@@ -47,54 +47,46 @@ const Inner = styled.div`
   width: 100%;
   padding: 0 24px;
 `;
-
 const Badge = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #ffeaed;
-  color: #e8002d;
+  background: #def6ee;
+  color: #3daa72;
   font-size: 13px;
   font-weight: 700;
   padding: 8px 18px;
   border-radius: 999px;
   margin-bottom: 24px;
-
   svg {
     flex-shrink: 0;
   }
 `;
-
 const Headline = styled.h2`
   font-size: clamp(32px, 4vw, 52px);
   font-weight: 900;
   color: #0d0d0d;
   line-height: 1.15;
   margin: 0 0 16px;
-
   span {
     color: #e8002d;
   }
 `;
-
 const Sub = styled.p`
   font-size: 16px;
   color: #777;
   margin: 0 0 56px;
 `;
-
 const Cards = styled.div`
   display: flex;
   align-items: stretch;
   justify-content: center;
   gap: 22px;
-
   @media (max-width: 900px) {
     flex-direction: column;
     align-items: center;
   }
 `;
-
 const Card = styled.div`
   background: #fff;
   border: 1.5px solid ${({ featured }) => (featured ? "#c7b8f7" : "#ebebeb")};
@@ -113,7 +105,6 @@ const Card = styled.div`
   animation: ${fadeUp} 0.5s ease both;
   animation-delay: ${({ delay }) => delay || "0s"};
 `;
-
 const FeaturedBadge = styled.div`
   position: absolute;
   top: -13px;
@@ -129,7 +120,6 @@ const FeaturedBadge = styled.div`
   border-radius: 6px;
   white-space: nowrap;
 `;
-
 const IconWrap = styled.div`
   width: 52px;
   height: 52px;
@@ -140,41 +130,35 @@ const IconWrap = styled.div`
   justify-content: center;
   margin-bottom: 10px;
 `;
-
 const PlanName = styled.h3`
   font-size: 17px;
   font-weight: 800;
   color: ${({ color }) => color};
   margin: 0 0 10px;
 `;
-
 const PriceRow = styled.div`
   display: flex;
   align-items: flex-end;
   gap: 3px;
   margin-bottom: 2px;
 `;
-
 const Currency = styled.span`
   font-size: 13px;
   font-weight: 700;
   color: #333;
   margin-bottom: 7px;
 `;
-
 const Amount = styled.span`
   font-size: 42px;
   font-weight: 900;
   color: #0d0d0d;
   line-height: 1;
 `;
-
 const Period = styled.span`
   font-size: 13px;
   color: #888;
   margin-bottom: 7px;
 `;
-
 const Divider = styled.div`
   width: 40px;
   height: 3px;
@@ -182,7 +166,6 @@ const Divider = styled.div`
   background: ${({ color }) => color};
   margin: 8px 0 16px;
 `;
-
 const FeatureList = styled.ul`
   list-style: none;
   padding: 0;
@@ -192,7 +175,6 @@ const FeatureList = styled.ul`
   flex-direction: column;
   gap: 9px;
 `;
-
 const Feature = styled.li`
   display: flex;
   align-items: center;
@@ -200,7 +182,6 @@ const Feature = styled.li`
   font-size: 13px;
   color: #333;
 `;
-
 const Btn = styled.button`
   width: 100%;
   padding: 11px;
@@ -216,17 +197,19 @@ const Btn = styled.button`
     background 0.2s,
     transform 0.15s;
   margin-top: auto;
-
+  ${({ featured }) =>
+    featured &&
+    css`
+      animation: ${pulse} 2.5s ease-in-out infinite;
+    `}
   &:hover {
     background: #1212c2;
   }
-
   &:active {
     background: #3131de;
     transform: scale(0.98);
   }
 `;
-
 const Footer = styled.div`
   display: flex;
   align-items: center;
@@ -235,7 +218,6 @@ const Footer = styled.div`
   margin-top: 48px;
   font-size: 13.5px;
   color: #888;
-
   span {
     display: flex;
     align-items: center;
@@ -248,14 +230,12 @@ const Footer = styled.div`
     background: #ccc;
   }
 `;
-
 const features = [
   "200 Modelos Feitos à Mão",
   "Suporte Exclusivo",
   "50+ Sites Pré-Construídos",
   "Plugins Premium",
 ];
-
 const plans = [
   {
     type: "Basic",
@@ -315,7 +295,6 @@ const plans = [
     ),
   },
 ];
-
 const Price = () => (
   <Section>
     <DotsGrid>
@@ -323,7 +302,6 @@ const Price = () => (
         <span key={i} />
       ))}
     </DotsGrid>
-
     <Inner>
       <div style={{ textAlign: "center" }}>
         <Badge>
@@ -332,7 +310,7 @@ const Price = () => (
             height={13}
             viewBox="0 0 24 24"
             color="none"
-            stroke="#E11D48"
+            stroke="#3DAA72"
           />
           Planos que se adaptam ao seu momento
         </Badge>
@@ -345,7 +323,6 @@ const Price = () => (
           Soluções completas para transformar ideias em resultados reais.
         </Sub>
       </div>
-
       <Cards>
         {plans.map((plan) => (
           <Card key={plan.type} featured={plan.featured} delay={plan.delay}>
@@ -368,16 +345,14 @@ const Price = () => (
                     color={plan.color}
                     stroke={plan.color}
                   />
-
                   {f}
                 </Feature>
               ))}
             </FeatureList>
-            <Btn>Assine Agora</Btn>
+            <Btn featured={plan.featured}>Assine Agora</Btn>
           </Card>
         ))}
       </Cards>
-
       <Footer>
         <span>
           <ShieldHollowIcon
@@ -397,5 +372,4 @@ const Price = () => (
     </Inner>
   </Section>
 );
-
 export default Price;
