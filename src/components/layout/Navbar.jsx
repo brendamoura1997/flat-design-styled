@@ -68,7 +68,7 @@ const WrapperLogo = styled.a`
   }
 
   &:hover::after {
-    animation: ${shine} 1.6s ease forwards;
+    animation: ${shine} 1.2s ease forwards;
   }
 `;
 
@@ -116,26 +116,17 @@ const MenuItem = styled.a`
   text-decoration: none;
   cursor: pointer;
   position: relative;
-  transition: color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
   padding: 10px;
 
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background-color: crimson;
-    transition: width 0.25s ease;
-  }
-
   &:hover {
-    color: crimson;
+    color: #a7a7a7;
   }
-
-  &:hover::after {
-    width: 100%;
+  &:active {
+    color: #adadad;
+    transform: scale(0.97);
   }
 `;
 
@@ -150,6 +141,30 @@ const Button = styled.button`
   transition:
     background-color 0.2s ease,
     transform 0.15s ease;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.25) 50%,
+      transparent 80%
+    );
+    transform: skewX(-15deg);
+    animation: none;
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    animation: ${shine} 1.2s ease forwards;
+  }
 
   &:hover {
     background-color: #e90c0c;

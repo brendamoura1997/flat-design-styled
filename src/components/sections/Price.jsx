@@ -13,6 +13,11 @@ const pulse = keyframes`
   0%, 100% { box-shadow: 0 0 0 0 rgba(233, 30, 99, 0.35); }
   50%       { box-shadow: 0 0 0 12px rgba(233, 30, 99, 0); }
 `;
+const shine = keyframes`
+  0%   { left: -100%; }
+  100% { left: 150%;  }
+`;
+
 const Section = styled.section`
   position: relative;
   height: 120vh;
@@ -202,6 +207,31 @@ const Btn = styled.button`
     css`
       animation: ${pulse} 2.5s ease-in-out infinite;
     `}
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.25) 50%,
+      transparent 80%
+    );
+    transform: skewX(-15deg);
+    animation: none;
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    animation: ${shine} 1.2s ease forwards;
+  }
+
   &:hover {
     background: #1212c2;
   }
@@ -309,7 +339,7 @@ const plans = [
 ];
 const Price = () => (
   <Section>
-    <DotsGrid>
+    <DotsGrid id="price">
       {Array.from({ length: 35 }).map((_, i) => (
         <span key={i} />
       ))}

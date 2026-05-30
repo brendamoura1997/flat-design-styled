@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Woman from "../../assets/images/woman.png";
 import AnimatedShapes from "../layout/AnimatedShapes";
 import FixedShapes from "../layout/FixedShapes";
@@ -8,6 +8,11 @@ import PhoneIcon from "../icons/PhoneIcon";
 import ClientIcon from "../icons/ClientIcon";
 import DesignIcon from "../icons/DesignIcon";
 import ArrowIcon from "../icons/ArrowIcon";
+
+const shine = keyframes`
+  0%   { left: -100%; }
+  100% { left: 150%;  }
+`;
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -138,6 +143,30 @@ const Button = styled.button`
   cursor: pointer;
   white-space: nowrap;
   user-select: none;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.25) 50%,
+      transparent 80%
+    );
+    transform: skewX(-15deg);
+    animation: none;
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    animation: ${shine} 1.2s ease forwards;
+  }
 
   &:hover {
     background: #1212c2;
@@ -152,11 +181,6 @@ const Button = styled.button`
     background-color 0.18s ease,
     transform 0.12s ease,
     box-shadow 0.18s ease;
-
-  svg {
-    flex-shrink: 0;
-    transition: transform 0.18s ease;
-  }
 
   &:focus-visible {
     outline: 2px solid #5b5bd6;

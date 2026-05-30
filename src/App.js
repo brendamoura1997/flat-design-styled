@@ -71,14 +71,14 @@ function App() {
         <Feature />
         <FeatureShape />
       </Container>
-      <ContainerExtra id="service">
+      <ContainerExtra>
         <Service />
         {!isMobile && <ServiceShape />}
       </ContainerExtra>
-      <ContainerExtra id="price">
+      <ContainerExtra>
         <Price />
       </ContainerExtra>
-      <ContainerExtra id="contact">
+      <ContainerExtra>
         <Contact />
         {!isDesktop && <Navbar />}
       </ContainerExtra>

@@ -1,7 +1,12 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import App from "../../assets/images/app.png";
 import StarIcon from "../icons/StarIcon";
 import PlusIcon from "../icons/PlusIcon";
+
+const shine = keyframes`
+  0%   { left: -100%; }
+  100% { left: 150%;  }
+`;
 
 const Container = styled.div`
   display: flex;
@@ -98,6 +103,30 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 8px;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.25) 50%,
+      transparent 80%
+    );
+    transform: skewX(-15deg);
+    animation: none;
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    animation: ${shine} 1.2s ease forwards;
+  }
 
   &:hover {
     background: #1212c2;

@@ -19,6 +19,11 @@ const modalSlideIn = keyframes`
   to   { opacity: 1; transform: scale(1) translateY(0); }
 `;
 
+const shine = keyframes`
+  0%   { left: -100%; }
+  100% { left: 150%;  }
+`;
+
 const GlobalStyle = createGlobalStyle`
   body { overflow: ${(p) => (p.locked ? "hidden" : "auto")}; }
 `;
@@ -192,6 +197,31 @@ const Button = styled.button`
   transition:
     background 0.2s,
     transform 0.15s;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.25) 50%,
+      transparent 80%
+    );
+    transform: skewX(-15deg);
+    animation: none;
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    animation: ${shine} 1.2s ease forwards;
+  }
+
   &:hover {
     background: #1212c2;
   }
@@ -363,7 +393,7 @@ const Service = () => {
     <>
       <GlobalStyle locked={open} />
       <Container>
-        <DotsGrid>
+        <DotsGrid id="service">
           {Array.from({ length: 25 }).map((_, i) => (
             <span key={i} />
           ))}

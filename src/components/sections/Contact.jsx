@@ -27,13 +27,18 @@ const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 `;
+
+const shine = keyframes`
+  0%   { left: -100%; }
+  100% { left: 150%;  }
+`;
 const Section = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 80px;
   background: white;
-  padding: 72px 150px;
+  padding: 32px 150px 72px 150px;
   position: relative;
   overflow: hidden;
   height: 100%;
@@ -46,7 +51,7 @@ const Section = styled.section`
 `;
 const DecorSquareBlue = styled.div`
   position: absolute;
-  top: 40px;
+  top: 12%;
   left: 50%;
   transform: translateX(-80px);
   width: 52px;
@@ -57,7 +62,7 @@ const DecorSquareBlue = styled.div`
 `;
 const DotsGrid = styled.div`
   position: absolute;
-  top: 11%;
+  top: 19%;
   left: 46.5%;
   display: grid;
   grid-template-columns: repeat(5, 6px);
@@ -74,7 +79,7 @@ const DotsGrid = styled.div`
 `;
 const DecorSquareGreen = styled.div`
   position: absolute;
-  top: 54%;
+  top: 52%;
   left: 3%;
   transform: translateY(-50%);
   width: 3%;
@@ -241,6 +246,31 @@ const SubmitButton = styled.button`
   transition:
     background 0.2s,
     transform 0.15s;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.25) 50%,
+      transparent 80%
+    );
+    transform: skewX(-15deg);
+    animation: none;
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    animation: ${shine} 1.2s ease forwards;
+  }
+
   &:hover {
     background: #1212c2;
   }
@@ -383,7 +413,7 @@ const VerticalDivider = styled.div`
 `;
 const Contact = () => {
   return (
-    <Section>
+    <Section id="contact">
       <DecorSquareBlue />
       <DotsGrid>
         {Array.from({ length: 25 }).map((_, i) => (
@@ -408,7 +438,7 @@ const Contact = () => {
             Vamos nos <span>conectar!</span>
           </Headline>
           <Subtitle>
-            Preencha o formulário ao lado ou utilize nossos canais de
+            Preencha o formulário abaixo ou utilize nossos canais de
             atendimento. Responderemos o mais rápido possível.
           </Subtitle>
           <FormLayout>
