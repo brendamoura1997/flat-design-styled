@@ -28,7 +28,6 @@ const Left = styled.div`
   width: 65%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 `;
 const WrapperLogo = styled.a`
   display: flex;
@@ -53,7 +52,7 @@ const Logo = styled.h1`
 const LogoDown = styled.h1`
   font-weight: bold;
   font-size: 12px;
-  top: -4px;
+  top: -2px;
   left: 9px;
   position: relative;
   letter-spacing: 15px;
@@ -63,6 +62,7 @@ const LogoDown = styled.h1`
 const Menu = styled.ul`
   display: flex;
   list-style: none;
+  margin-left: 20px;
 
   @media only screen and (max-width: 480px) {
     display: none;
@@ -77,7 +77,6 @@ const MenuItem = styled.a`
   text-decoration: none;
   cursor: pointer;
   position: relative;
-  padding-bottom: 4px;
   transition: color 0.2s ease;
   padding: 10px;
 

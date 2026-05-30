@@ -74,7 +74,7 @@ const DotsGrid = styled.div`
 `;
 const DecorSquareGreen = styled.div`
   position: absolute;
-  top: 55%;
+  top: 54%;
   left: 3%;
   transform: translateY(-50%);
   width: 3%;
