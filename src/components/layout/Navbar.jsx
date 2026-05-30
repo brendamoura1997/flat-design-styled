@@ -1,5 +1,10 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useState, useEffect } from "react";
+
+const shine = keyframes`
+  0%   { left: -100%; }
+  100% { left: 150%;  }
+`;
 
 const Container = styled.div`
   height: 10%;
@@ -41,12 +46,41 @@ const WrapperLogo = styled.a`
   cursor: pointer;
   border-radius: 10px;
   text-decoration: none;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.55) 50%,
+      transparent 80%
+    );
+    transform: skewX(-15deg);
+    animation: none;
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    animation: ${shine} 1.6s ease forwards;
+  }
 `;
 
 const Logo = styled.h1`
   font-weight: bold;
   text-decoration: underline crimson;
   color: black;
+  transition: color 0.3s ease;
+
+  ${WrapperLogo}:hover & {
+    color: #222;
+  }
 `;
 
 const LogoDown = styled.h1`
@@ -57,6 +91,11 @@ const LogoDown = styled.h1`
   position: relative;
   letter-spacing: 15px;
   color: crimson;
+  transition: color 0.3s ease;
+
+  ${WrapperLogo}:hover & {
+    color: #ff3355;
+  }
 `;
 
 const Menu = styled.ul`
