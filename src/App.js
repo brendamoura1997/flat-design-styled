@@ -62,26 +62,24 @@ function App() {
   const { isMobile, isDesktop } = useScreenSize();
   return (
     <>
-      <Container>
-        {/* {isDesktop && <Navbar />} */}
-        <Navbar />
+      <Navbar />
+      <Container id="intro">
         <Intro />
         <IntroShape />
       </Container>
-      <Container>
+      <Container id="feature">
         <Feature />
         <FeatureShape />
       </Container>
-      <ContainerExtra>
+      <ContainerExtra id="service">
         <Service />
         {!isMobile && <ServiceShape />}
       </ContainerExtra>
-      <ContainerExtra>
+      <ContainerExtra id="price">
         <Price />
       </ContainerExtra>
-      <ContainerExtra>
+      <ContainerExtra id="contact">
         <Contact />
-
         {!isDesktop && <Navbar />}
       </ContainerExtra>
       <Footer />

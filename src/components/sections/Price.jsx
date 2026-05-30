@@ -230,12 +230,6 @@ const Footer = styled.div`
     background: #ccc;
   }
 `;
-const features = [
-  "200 Modelos Feitos à Mão",
-  "Suporte Exclusivo",
-  "50+ Sites Pré-Construídos",
-  "Plugins Premium",
-];
 const plans = [
   {
     type: "Basic",
@@ -245,6 +239,12 @@ const plans = [
     divider: "#e8002d",
     featured: false,
     delay: "0.1s",
+    features: [
+      "20 Modelos Feitos à Mão",
+      "Suporte Exclusivo",
+      "5+ Sites Pré-Construídos",
+      "Plugins Básicos",
+    ],
     icon: (
       <SendIcon
         width={24}
@@ -265,6 +265,12 @@ const plans = [
     divider: "#7c5cbf",
     featured: true,
     delay: "0.2s",
+    features: [
+      "50 Modelos Feitos à Mão",
+      "Suporte Exclusivo",
+      "10+ Sites Pré-Construídos",
+      "Plugins Premium",
+    ],
     icon: (
       <StarIcon
         width={24}
@@ -283,6 +289,12 @@ const plans = [
     divider: "#2eaa7a",
     featured: false,
     delay: "0.3s",
+    features: [
+      "70 Modelos Feitos à Mão",
+      "Suporte Exclusivo",
+      "20+ Sites Pré-Construídos",
+      "Plugins Advanced",
+    ],
     icon: (
       <RocketIcon
         width={24}
@@ -336,7 +348,7 @@ const Price = () => (
             </PriceRow>
             <Divider color={plan.divider} />
             <FeatureList>
-              {features.map((f) => (
+              {plan.features.map((f) => (
                 <Feature key={f}>
                   <CheckCircleIcon
                     width={24}

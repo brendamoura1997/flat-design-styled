@@ -12,7 +12,7 @@ import ArrowIcon from "../icons/ArrowIcon";
 const Container = styled.div`
   height: calc(100vh - 50px);
   display: flex;
-  padding: 20px 20px 20px 60px;
+  padding: 20px 20px 30px 60px;
   position: relative;
   overflow: hidden;
 
@@ -24,6 +24,7 @@ const Container = styled.div`
 `;
 
 const Left = styled.div`
+  margin-top: 7%;
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -94,7 +95,7 @@ const Title = styled.h1`
 `;
 
 const Desc = styled.p`
-  width: 58%;
+  width: 62%;
   font-size: clamp(0.9rem, 1.25vw, 1.1rem);
   line-height: 1.65;
   color: #444;
@@ -264,6 +265,8 @@ const FeatureDesc = styled.span`
 
 const Right = styled.div`
   width: 40%;
+  height: 100%;
+  margin-top: 7%;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -286,8 +289,8 @@ const DotGrid = styled.div`
   z-index: 3;
   opacity: 0.55;
 
-  ${({ pos }) => pos === "tl" && `top: 24px; left: 24px;`}
-  ${({ pos }) => pos === "tr" && `top: 24px; right: 24px;`}
+  ${({ pos }) => pos === "tl" && `top: 11%; left: 2%;`}
+  ${({ pos }) => pos === "tr" && `top: 11%; right: 2%;`}
 
   span {
     width: 5px;
@@ -330,9 +333,12 @@ const Intro = () => {
           </Title>
 
           <Desc>
-            Acreditamos que criar produtos e serviços em estreita parceria com
+            {/* Acreditamos que criar produtos e serviços em estreita parceria com
             nossos clientes é a única maneira de ter um impacto real em seus
-            negócios.
+            negócios. */}
+            Este site tem como objetivo mostrar meus conhecimentos em UI/UX para
+            construir um site cuja identidade visual seja baseada na estética
+            flat-design.
           </Desc>
 
           <Info>

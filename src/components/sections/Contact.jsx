@@ -13,7 +13,6 @@ import TagIcon from "../icons/TagIcon.jsx";
 import PhoneIcon from "../icons/PhoneIcon.jsx";
 import LocationIcon from "../icons/LocationIcon.jsx";
 import SendIcon from "../icons/SendIcon";
-
 const PINK = "#E8134A";
 const PINK_BG = "#fdf3f6";
 const ADDR_RED_BG = "#fadee6";
@@ -24,13 +23,15 @@ const ADDR_RED = "#E8134A";
 const ADDR_BLUE = "#4B6BF5";
 const ADDR_GREEN = "#2BAF8E";
 const ADDR_ORANGE = "#F5A623";
-
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 `;
-
 const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 80px;
   background: white;
   padding: 72px 150px;
   position: relative;
@@ -43,7 +44,6 @@ const Section = styled.section`
     padding: 48px 32px;
   }
 `;
-
 const DecorSquareBlue = styled.div`
   position: absolute;
   top: 40px;
@@ -55,7 +55,6 @@ const DecorSquareBlue = styled.div`
   border-radius: 6px;
   z-index: 0;
 `;
-
 const DotsGrid = styled.div`
   position: absolute;
   top: 11%;
@@ -64,7 +63,6 @@ const DotsGrid = styled.div`
   grid-template-columns: repeat(5, 6px);
   gap: 9px;
   z-index: 0;
-
   span {
     width: 5px;
     height: 5px;
@@ -74,10 +72,9 @@ const DotsGrid = styled.div`
     display: block;
   }
 `;
-
 const DecorSquareGreen = styled.div`
   position: absolute;
-  top: 45%;
+  top: 55%;
   left: 3%;
   transform: translateY(-50%);
   width: 3%;
@@ -87,7 +84,6 @@ const DecorSquareGreen = styled.div`
   border-radius: 6px;
   z-index: 0;
 `;
-
 const DecorCurveRed = styled.div`
   position: absolute;
   bottom: 0%;
@@ -98,28 +94,22 @@ const DecorCurveRed = styled.div`
   border-radius: 100% 100% 0px 0px;
   z-index: 0;
 `;
-
 const MainGrid = styled.div`
   display: flex;
-  gap: 40px;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: center;
   gap: 60px;
   position: relative;
   z-index: 1;
-  margin-bottom: 56px;
-  height: 55%;
 
   @media (max-width: 900px) {
     flex-direction: column;
   }
 `;
-
 const LeftCol = styled.div`
   flex: 1;
   min-width: 0;
 `;
-
 const Badge = styled.div`
   width: fit-content;
   display: flex;
@@ -133,19 +123,16 @@ const Badge = styled.div`
   border-radius: 999px;
   margin-bottom: 10px;
 `;
-
 const Headline = styled.h2`
   font-size: clamp(32px, 4vw, 48px);
   font-weight: 900;
   line-height: 1.1;
   color: #111;
   margin: 0 0 14px;
-
   span {
     color: ${PINK};
   }
 `;
-
 const Subtitle = styled.p`
   color: #666;
   font-size: 14.5px;
@@ -153,26 +140,22 @@ const Subtitle = styled.p`
   margin: 0 0 28px;
   line-height: 1.65;
 `;
-
 const FormLayout = styled.div`
   display: flex;
   gap: 14px;
   align-items: stretch;
 `;
-
 const FormInputsCol = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 12px;
 `;
-
 const InputWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
 `;
-
 const Input = styled.input`
   width: 100%;
   padding: 13px 42px 13px 16px;
@@ -185,7 +168,6 @@ const Input = styled.input`
   outline: none;
   transition: border-color 0.2s;
   font-family: inherit;
-
   &::placeholder {
     color: #bbb;
   }
@@ -193,7 +175,6 @@ const Input = styled.input`
     border-color: ${PINK};
   }
 `;
-
 const InputIcon = styled.span`
   position: absolute;
   right: 14px;
@@ -202,18 +183,15 @@ const InputIcon = styled.span`
   pointer-events: none;
   line-height: 1;
 `;
-
 const FormTextareaCol = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
 `;
-
 const TextareaWrapper = styled.div`
   position: relative;
   flex: 1;
 `;
-
 const Textarea = styled.textarea`
   width: 100%;
   height: 100%;
@@ -229,7 +207,6 @@ const Textarea = styled.textarea`
   outline: none;
   font-family: inherit;
   line-height: 1.5;
-
   &::placeholder {
     color: #bbb;
   }
@@ -237,7 +214,6 @@ const Textarea = styled.textarea`
     border-color: ${PINK};
   }
 `;
-
 const TextareaIcon = styled.span`
   position: absolute;
   right: 14px;
@@ -246,7 +222,6 @@ const TextareaIcon = styled.span`
   font-size: 15px;
   pointer-events: none;
 `;
-
 const SubmitButton = styled.button`
   margin-top: 14px;
   width: 100%;
@@ -266,20 +241,17 @@ const SubmitButton = styled.button`
   transition:
     background 0.2s,
     transform 0.15s;
-
   &:hover {
     background: #1212c2;
   }
-
   &:active {
     background: #3131de;
     transform: scale(0.98);
   }
 `;
-
 const RightCol = styled.div`
   width: 50%;
-  height: 100%;
+  display: flex;
   flex-shrink: 0;
   position: relative;
   z-index: 1;
@@ -288,36 +260,31 @@ const RightCol = styled.div`
     width: 100%;
   }
 `;
-
 const InfoCard = styled.div`
   background: ${PINK_BG};
   border-radius: 18px;
   padding: 0px 24px 0px 44px;
-  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-
 const InfoList = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-
   hr {
     border: 1px solid #ececec;
     width: 80%;
   }
 `;
-
 const InfoItem = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 14px;
 `;
-
 const IconCircle = styled.div`
   width: 42px;
   height: 42px;
@@ -329,22 +296,18 @@ const IconCircle = styled.div`
   font-size: 18px;
   flex-shrink: 0;
 `;
-
 const InfoContent = styled.div``;
-
 const InfoLabel = styled.div`
   font-weight: 700;
   font-size: 14px;
   color: ${({ color }) => color};
   margin-bottom: 3px;
 `;
-
 const InfoText = styled.div`
   font-size: 13px;
   color: #555;
   line-height: 1.55;
 `;
-
 const MapPlaceholder = styled.img`
   width: 50%;
   height: 70%;
@@ -354,29 +317,25 @@ const MapPlaceholder = styled.img`
   border: 5px solid #fff;
   border-radius: 14px;
   z-index: 1;
-
   @media (max-width: 1100px) {
     width: 160px;
     min-height: 180px;
   }
 `;
-
 const FeatureRow = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   height: 12%;
   gap: 0;
-  padding-top: 40px;
-  border-top: 1.5px solid #f0f0f0;
+  padding: 40px 0;
   position: relative;
+  border-top: 1px solid #eee;
   z-index: 1;
-
   @media (max-width: 700px) {
     flex-direction: column;
     gap: 24px;
   }
 `;
-
 const FeatureItem = styled.div`
   display: flex;
   align-items: flex-start;
@@ -384,20 +343,16 @@ const FeatureItem = styled.div`
   gap: 16px;
   flex: 1;
   padding: 0 32px;
-  // border: 1px solid red;
-
   &:first-child {
     padding-left: 40px;
   }
   &:last-child {
     padding-right: 40px;
   }
-
   @media (max-width: 700px) {
     padding: 0 16px;
   }
 `;
-
 const FeatureIcon = styled.div`
   width: 50px;
   height: 50px;
@@ -409,28 +364,23 @@ const FeatureIcon = styled.div`
   font-size: 22px;
   flex-shrink: 0;
 `;
-
 const FeatureContent = styled.div``;
-
 const FeatureTitle = styled.div`
   font-weight: 700;
   font-size: 14px;
   color: ${({ color }) => color};
   margin-bottom: 5px;
 `;
-
 const FeatureDesc = styled.div`
   font-size: 13px;
   color: #666;
   line-height: 1.55;
 `;
-
 const VerticalDivider = styled.div`
   width: 1px;
-  height: 55%;
+  height: 60px;
   background-color: #d9d9d9;
 `;
-
 const Contact = () => {
   return (
     <Section>
@@ -441,7 +391,6 @@ const Contact = () => {
         ))}
       </DotsGrid>
       <DecorSquareGreen />
-
       <MainGrid>
         <LeftCol>
           <Badge>
@@ -454,17 +403,14 @@ const Contact = () => {
             />
             Fale com a gente
           </Badge>
-
           <Headline>
             Perguntas? <br />
             Vamos nos <span>conectar!</span>
           </Headline>
-
           <Subtitle>
             Preencha o formulário ao lado ou utilize nossos canais de
             atendimento. Responderemos o mais rápido possível.
           </Subtitle>
-
           <FormLayout>
             <FormInputsCol>
               <InputWrapper>
@@ -504,7 +450,6 @@ const Contact = () => {
                 </InputIcon>
               </InputWrapper>
             </FormInputsCol>
-
             <FormTextareaCol>
               <TextareaWrapper>
                 <Textarea placeholder="Sua mensagem" />
@@ -520,7 +465,6 @@ const Contact = () => {
               </TextareaWrapper>
             </FormTextareaCol>
           </FormLayout>
-
           <SubmitButton>
             Enviar mensagem
             <SendIcon
@@ -534,7 +478,6 @@ const Contact = () => {
             />
           </SubmitButton>
         </LeftCol>
-
         <RightCol>
           <InfoCard>
             <InfoList>
@@ -620,7 +563,6 @@ const Contact = () => {
                 </InfoContent>
               </InfoItem>
             </InfoList>
-
             <MapPlaceholder src={Maps} alt="Localização" />
             <DecorCurveRed />
           </InfoCard>
@@ -648,7 +590,6 @@ const Contact = () => {
           </FeatureContent>
         </FeatureItem>
         <VerticalDivider />
-
         <FeatureItem>
           <FeatureIcon bg={ADDR_GREEN_BG}>
             <ShieldIcon
@@ -694,5 +635,4 @@ const Contact = () => {
     </Section>
   );
 };
-
 export default Contact;

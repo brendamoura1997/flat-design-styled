@@ -1,35 +1,14 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  height: 10%;
+  padding: 1%;
+  text-align: right;
   background-color: #111;
   color: lightgray;
 `;
 
-const Wrapper = styled.div`
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  @media only screen and (max-width: 480px) {
-    padding: 10px;
-  }
-`;
-
-const List = styled.ul`
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-`;
-
-const ListItem = styled.li`
-  margin-right: 20px;
-  @media only screen and (max-width: 480px) {
-    margin-right: 10px;
-    font-size: 14px;
-  }
-`;
 const Copyright = styled.span`
+  font-size: 12px;
   @media only screen and (max-width: 480px) {
     font-size: 14px;
   }
@@ -38,14 +17,7 @@ const Copyright = styled.span`
 const Footer = () => {
   return (
     <Container>
-      <Wrapper>
-        <List>
-          <ListItem>Guia</ListItem>
-          <ListItem>Suporte</ListItem>
-          <ListItem>Comunidade</ListItem>
-        </List>
-        <Copyright>Brenda Moura Ⓒ</Copyright>
-      </Wrapper>
+      <Copyright> Brenda Moura TI | All Rights Reserved. ©2026 </Copyright>
     </Container>
   );
 };
