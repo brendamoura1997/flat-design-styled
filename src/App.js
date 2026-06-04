@@ -14,6 +14,12 @@ const Container = styled.div`
   position: relative;
 `;
 
+const ContainerExtra = styled.div`
+  height: 120vh;
+  overflow: hidden;
+  position: relative;
+`;
+
 const Shape = css`
   width: 100%;
   height: 100%;
@@ -48,42 +54,35 @@ const FeatureShape = styled.div`
 const ServiceShape = styled.div`
   ${Shape}
   clip-path: polygon(0 0, 43% 0%, 43% 100%, 0 100%);
+  // clip-path: polygon(43% 0%, 28% 100%, 0% 100%, 0% 0%);
   background-color: #f88497;
-`;
-
-const PriceShape = styled.div`
-  ${Shape}
-  clip-path: polygon(43% 0, 100% 0%, 100% 100%, 67% 100%);
-  background-color: crimson;
 `;
 
 function App() {
   const { isMobile, isDesktop } = useScreenSize();
   return (
     <>
-      <Container>
-        {/* {isDesktop && <Navbar />} */}
-        <Navbar />
+      <Navbar />
+      <Container id="intro">
         <Intro />
         <IntroShape />
       </Container>
-      <Container>
+      <Container id="feature">
         <Feature />
         <FeatureShape />
       </Container>
-      <Container>
+      <ContainerExtra>
         <Service />
         {!isMobile && <ServiceShape />}
-      </Container>
-      <Container>
+      </ContainerExtra>
+      <ContainerExtra>
         <Price />
-        <PriceShape />
-      </Container>
-      <Container>
+      </ContainerExtra>
+      <ContainerExtra>
         <Contact />
-        <Footer />
-        {isDesktop && <Navbar />}
-      </Container>
+        {!isDesktop && <Navbar />}
+      </ContainerExtra>
+      <Footer />
     </>
   );
 }
