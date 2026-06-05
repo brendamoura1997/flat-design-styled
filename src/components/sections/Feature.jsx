@@ -61,7 +61,8 @@ const Badge = styled.div`
 
 const Title = styled.span`
   font-size: 60px;
-  line-height: 1.15 @media only screen and (max-width: 480px) {
+  line-height: 1.15;
+  @media only screen and (max-width: 480px) {
     font-size: 50px;
   }
 `;

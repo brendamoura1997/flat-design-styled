@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, ThemeProvider } from "styled-components";
 import Navbar from "./components/layout/Navbar";
 import Intro from "./components/sections/Intro";
 import Feature from "./components/sections/Feature";
@@ -7,6 +7,7 @@ import Price from "./components/sections/Price";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/layout/Footer";
 import { useScreenSize } from "./hooks/useDevice";
+import { theme } from "./styles/theme";
 
 const Container = styled.div`
   height: 100vh;
@@ -35,9 +36,9 @@ const IntroShape = styled.div`
   background-color: crimson;
 
   @media only screen and (max-width: 1024px) {
-    // clip-path: polygon(65% 0, 100% 0%, 100% 100%, 65% 100%);
-    clip-path: polygon(75% 0, 100% 0%, 100% 100%, 75% 100%);
-    z-index: -1;
+    clip-path: polygon(0 8%, 100% 0%, 100% 100%, 0% 100%);
+    height: 30%;
+    top: 70%;
   }
 `;
 
@@ -61,8 +62,8 @@ const ServiceShape = styled.div`
 function App() {
   const { isMobile, isDesktop } = useScreenSize();
   return (
-    <>
-      <Navbar />
+    <ThemeProvider theme={theme}>
+      {!isMobile && <Navbar />}
       <Container id="intro">
         <Intro />
         <IntroShape />
@@ -80,10 +81,9 @@ function App() {
       </ContainerExtra>
       <ContainerExtra>
         <Contact />
-        {!isDesktop && <Navbar />}
       </ContainerExtra>
       <Footer />
-    </>
+    </ThemeProvider>
   );
 }
 
