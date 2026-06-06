@@ -36,7 +36,7 @@ const IntroShape = styled.div`
   background-color: crimson;
 
   @media only screen and (max-width: 1024px) {
-    clip-path: polygon(0 8%, 100% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(80% 20%, 100% 0%, 100% 100%, 0% 100%);
     height: 30%;
     top: 70%;
   }
