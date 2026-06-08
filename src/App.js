@@ -35,7 +35,11 @@ const IntroShape = styled.div`
   clip-path: polygon(67% 0, 100% 0%, 100% 100%, 55% 100%);
   background-color: crimson;
 
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: ${theme.breakpoints.tablet}) {
+    clip-path: polygon(100% 46%, 100% 100%, 13% 100%);
+  }
+
+  @media only screen and (max-width: ${theme.breakpoints.mobile}) {
     clip-path: polygon(80% 20%, 100% 0%, 100% 100%, 0% 100%);
     height: 30%;
     top: 70%;
@@ -63,7 +67,7 @@ function App() {
   const { isMobile, isDesktop } = useScreenSize();
   return (
     <ThemeProvider theme={theme}>
-      {!isMobile && <Navbar />}
+      {/* {!isMobile && <Navbar />} */}
       <Container id="intro">
         <Intro />
         <IntroShape />
