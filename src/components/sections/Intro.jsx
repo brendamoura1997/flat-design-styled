@@ -1,3 +1,4 @@
+// Intro.jsx
 import styled, { keyframes } from "styled-components";
 import Woman from "../../assets/images/woman.png";
 import AnimatedShapes from "../layout/AnimatedShapes";
@@ -21,12 +22,14 @@ const Container = styled.div`
   padding: 20px 20px 30px 60px;
   position: relative;
   overflow: hidden;
-  @media only screen and (max-width: 1024px) {
+
+  @media only screen and (max-aspect-ratio: 1000/1000) {
     flex-direction: column;
     height: auto;
     padding: 10% 0 0 0;
     overflow: visible;
   }
+
   @media ${theme.mediaQueries.mobile} {
     padding: 15% 0 0 0;
   }
@@ -40,7 +43,8 @@ const Left = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 2;
-  @media only screen and (max-width: 1024px) {
+
+  @media only screen and (max-aspect-ratio: 1000/1000) {
     width: 100%;
     height: auto;
     margin-top: 0;
@@ -53,14 +57,16 @@ const LeftContent = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 85%;
-  @media only screen and (max-width: 1024px) {
+
+  @media only screen and (max-aspect-ratio: 1000/1000) {
     width: 100%;
   }
 `;
 
 const TopSection = styled.div`
   display: none;
-  @media only screen and (max-width: 1024px) {
+
+  @media only screen and (max-aspect-ratio: 1000/1000) {
     display: flex;
     flex-direction: column;
     padding: 0 6%;
@@ -85,66 +91,86 @@ const TaglineDash = styled.span`
 `;
 
 const Subtitle = styled.p`
-  font-size: clamp(0.65rem, 0.9vw, 0.85rem);
+  font-size: 13.6px;
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
   color: #f53b5a;
   margin: 0;
-  @media only screen and (max-width: 1024px) {
-    font-size: 0.65rem;
+
+  @media ${theme.mediaQueries.tablet} {
+    font-size: 13.6px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 12px;
+    line-height: 12px;
     letter-spacing: 2px;
   }
 `;
 
 const Title = styled.h1`
-  width: 65%;
-  font-size: clamp(2.7rem, 5.5vw, 4.5rem);
-  line-height: clamp(2.7rem, 5.8vw, 4.7rem);
+  width: 80vw;
+  font-size: 72px;
+  line-height: 75.2px;
   font-weight: 900;
   color: #1a1a2e;
   margin: 0 0 20px;
+
   span {
     color: #de113a;
   }
-  @media only screen and (max-width: 1300px) {
-    width: 80%;
-  }
+
   @media ${theme.mediaQueries.tablet} {
     width: 80%;
-    font-size: 7vh;
-    line-height: 6.5vh;
+    font-size: 78.2px;
+    line-height: 75.8px;
     margin-bottom: 3%;
   }
+
   @media ${theme.mediaQueries.mobile} {
     width: 100%;
-    font-size: 2.7rem;
-    line-height: 2.7rem;
+    font-size: 48.2px;
+    line-height: 50.2px;
+    margin-bottom: 4%;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    width: 100%;
+    font-size: 40.2px;
+    line-height: 40.2px;
     margin-bottom: 4%;
   }
 `;
 
 const Desc = styled.p`
   width: 62%;
-  font-size: clamp(0.9rem, 1.25vw, 1.1rem);
+  font-size: 17.6px;
   line-height: 1.65;
   color: #444;
   margin: 0 0 44px;
 
-  @media only screen and (max-width: 1300px) {
+  @media only screen and (max-aspect-ratio: 5/4) {
     width: 72%;
   }
+
   @media ${theme.mediaQueries.tablet} {
-    width: 65%;
-    font-size: 1.5vh;
-    line-height: 1.5rem;
+    width: 69%;
+    font-size: 20.6px;
+    line-height: 30.4px;
     margin-bottom: 0;
   }
+
   @media ${theme.mediaQueries.mobile} {
     width: 80%;
-    font-size: 0.9rem;
-    line-height: 1.4rem;
+    font-size: 15px;
+    line-height: 22.4px;
     margin-bottom: 0;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    font-size: 13px;
+    line-height: 18px;
   }
 `;
 
@@ -154,14 +180,6 @@ const ActionSection = styled.div`
   gap: 20px;
   padding: 0 6%;
   margin-top: 4%;
-
-  @media ${theme.mediaQueries.mobile} {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 0 6%;
-    margin-top: 4%;
-  }
 `;
 
 const Button = styled.button`
@@ -173,7 +191,7 @@ const Button = styled.button`
   color: white;
   border-radius: 8px;
   font-weight: 700;
-  font-size: clamp(0.68rem, 1vw, 0.9rem);
+  font-size: 14.4px;
   border: none;
   letter-spacing: 2px;
   cursor: pointer;
@@ -185,6 +203,7 @@ const Button = styled.button`
     background-color 0.18s ease,
     transform 0.12s ease,
     box-shadow 0.18s ease;
+
   &::after {
     content: "";
     position: absolute;
@@ -201,30 +220,49 @@ const Button = styled.button`
     transform: skewX(-15deg);
     pointer-events: none;
   }
+
   &:hover::after {
     animation: ${shine} 1.2s ease forwards;
   }
+
   &:hover {
     background: #1212c2;
   }
+
   &:active {
     background: #3131de;
     transform: scale(0.98);
   }
+
   &:focus-visible {
     outline: 2px solid #5b5bd6;
     outline-offset: 3px;
   }
+
   @media ${theme.mediaQueries.tablet} {
     width: fit-content;
-    justify-content: start;
+    justify-content: flex-start;
     padding: 2% 3%;
   }
+
+  @media ${theme.mediaQueries.mobile} {
+    width: fit-content;
+    justify-content: flex-start;
+    padding: 3% 4%;
+    font-size: 12.4px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    font-size: 10px;
+    line-height: 16px;
+  }
+}
 `;
 
 const MobileContact = styled.div`
   display: none;
-  @media only screen and (max-width: 1024px) {
+
+  @media only screen and (max-aspect-ratio: 1000/1000) {
     width: fit-content;
     display: flex;
     align-items: center;
@@ -253,15 +291,18 @@ const PhoneIconWrap = styled.div`
   transition:
     background-color 0.18s ease,
     transform 0.12s ease;
+
   &:hover {
     background-color: #fbd0d8;
     transform: scale(1.08);
   }
+
   &:active {
     transform: scale(0.96);
     background-color: #f8bac5;
   }
-  @media only screen and (max-width: 1024px) {
+
+  @media only screen and (max-aspect-ratio: 1000/1000) {
     background-color: #fff;
     border: 1px solid #fbd0d8;
     width: 40px;
@@ -272,23 +313,43 @@ const PhoneIconWrap = styled.div`
 const ContactText = styled.div`
   display: flex;
   flex-direction: column;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  padding: 1% 3% 0% 0%;
 `;
 
 const Phone = styled.span`
   color: #de113a;
   font-weight: 700;
-  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
-  @media only screen and (max-width: 1024px) {
-    font-size: 0.85rem;
+  font-size: 15.2px;
+
+  @media ${theme.mediaQueries.tablet} {
+    font-size: 20px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 16.4px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    font-size: 14px;
   }
 `;
 
 const PhoneSub = styled.span`
   color: #888;
-  font-size: clamp(0.65rem, 0.9vw, 0.82rem);
+  font-size: 13.12px;
   margin-top: 3px;
-  @media only screen and (max-width: 1024px) {
-    font-size: 0.75rem;
+
+  @media ${theme.mediaQueries.tablet} {
+    font-size: 19px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 15px;
+  }
+  @media ${theme.mediaQueries.smallMobile} {
+    font-size: 12px;
   }
 `;
 
@@ -297,14 +358,16 @@ const Info = styled.div`
   align-items: center;
   gap: 36px;
   margin-bottom: 60px;
-  @media only screen and (max-width: 1024px) {
+
+  @media only screen and (max-aspect-ratio: 1000/1000) {
     display: none;
   }
 `;
 
 const MobileImageSection = styled.div`
   display: none;
-  @media only screen and (max-width: 1024px) {
+
+  @media only screen and (max-aspect-ratio: 1000/1000) {
     display: block;
     position: absolute;
     width: 100%;
@@ -318,6 +381,7 @@ const WomanImage = styled.img`
   bottom: 0;
   right: 0;
   z-index: 1;
+
   @media ${theme.mediaQueries.tablet} {
     width: 45%;
     height: 55%;
@@ -325,6 +389,7 @@ const WomanImage = styled.img`
     object-fit: contain;
     object-position: center bottom;
   }
+
   @media ${theme.mediaQueries.mobile} {
     width: 52%;
     height: 40%;
@@ -332,11 +397,17 @@ const WomanImage = styled.img`
     object-fit: contain;
     object-position: center bottom;
   }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    width: 40%;
+    height: 40%;
+  }
 `;
 
 const MobileBottomCard = styled.div`
   display: none;
-  @media only screen and (max-width: 1024px) {
+
+  @media only screen and (max-aspect-ratio: 1000/1000) {
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -355,13 +426,15 @@ const MobileBottomCard = styled.div`
 
 const MobileDotGrid = styled.div`
   display: none;
-  @media only screen and (max-width: 1024px) {
+
+  @media only screen and (max-aspect-ratio: 1000/1000) {
     display: grid;
     grid-template-columns: repeat(4, 6px);
     gap: 6px;
     position: absolute;
     opacity: 0.55;
     ${({ $pos }) => $pos === "tr" && `bottom: 5%; right: 5%;`}
+
     span {
       width: 5px;
       height: 5px;
@@ -375,7 +448,11 @@ const MobileDotGrid = styled.div`
 const Features = styled.div`
   display: flex;
   gap: 36px;
-  @media only screen and (max-width: 1300px) {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  padding: 1% 3% 0% 0%;
+
+  @media only screen and (max-aspect-ratio: 5/4) {
     gap: 16px;
   }
 
@@ -399,7 +476,8 @@ const FeatureIcon = styled.div`
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  @media only screen and (max-width: 1024px) {
+
+  @media only screen and (max-aspect-ratio: 1000/1000) {
     width: 40px;
     height: 40px;
   }
@@ -412,24 +490,44 @@ const FeatureText = styled.div`
 
 const FeatureTitle = styled.span`
   font-weight: 700;
-  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  font-size: 15.2px;
   color: #1a1a2e;
-  @media only screen and (max-width: 1024px) {
-    font-size: 0.75rem;
+
+  @media ${theme.mediaQueries.tablet} {
+    font-size: 20.4px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 15.4px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    font-size: 14px;
   }
 `;
 
 const FeatureDesc = styled.span`
-  font-size: clamp(0.65rem, 0.9vw, 0.82rem);
+  font-size: 13.12px;
   color: #888;
   margin-top: 4px;
   max-width: 130px;
   line-height: 1.45;
-  @media only screen and (max-width: 1024px) {
-    font-size: 0.7rem;
-    line-height: 1.4;
-    max-width: 110px;
+
+  @media ${theme.mediaQueries.tablet} {
+    font-size: 19px;
+    max-width: 100%;
   }
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 15px;
+    max-width: 100%;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
 `;
 
 const Right = styled.div`
@@ -439,7 +537,8 @@ const Right = styled.div`
   position: relative;
   overflow: hidden;
   z-index: 1;
-  @media only screen and (max-width: 1024px) {
+
+  @media only screen and (max-aspect-ratio: 1000/1000) {
     display: none;
   }
 `;
@@ -462,6 +561,7 @@ const DotGrid = styled.div`
   opacity: 0.55;
   ${({ $pos }) => $pos === "tl" && `top: 11%; left: 2%;`}
   ${({ $pos }) => $pos === "tr" && `top: 11%; right: 2%;`}
+
   span {
     width: 5px;
     height: 5px;
@@ -469,7 +569,8 @@ const DotGrid = styled.div`
     background-color: ${({ $color }) => $color || "#f53b5a"};
     display: block;
   }
-  @media only screen and (max-width: 1024px) {
+
+  @media only screen and (max-aspect-ratio: 1000/1000) {
     display: none;
   }
 `;

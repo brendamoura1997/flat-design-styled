@@ -13,6 +13,13 @@ const Container = styled.div`
   height: 100vh;
   overflow: hidden;
   position: relative;
+
+  // @media ${theme.mediaQueries.tablet} {
+  //   height: fit-content;
+  // }
+  // @media ${theme.mediaQueries.mobile} {
+  //   height: fit-content;
+  // }
 `;
 
 const ContainerExtra = styled.div`
@@ -32,17 +39,22 @@ const Shape = css`
 
 const IntroShape = styled.div`
   ${Shape}
-  clip-path: polygon(67% 0, 100% 0%, 100% 100%, 55% 100%);
+  clip-path: polygon(67% 0, 100% 0%, 100% 100%, 58vw 100%);
   background-color: crimson;
 
-  @media only screen and (max-width: ${theme.breakpoints.tablet}) {
+  @media ${theme.mediaQueries.tablet} {
     clip-path: polygon(100% 46%, 100% 100%, 13% 100%);
   }
 
-  @media only screen and (max-width: ${theme.breakpoints.mobile}) {
+  @media ${theme.mediaQueries.mobile} {
     clip-path: polygon(80% 20%, 100% 0%, 100% 100%, 0% 100%);
     height: 30%;
     top: 70%;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    // clip-path: polygon(80% 20%, 100% 0%, 100% 100%, 20% 100%);
+    clip-path: polygon(100% 16%, 100% 100%, 0% 100%);
   }
 `;
 

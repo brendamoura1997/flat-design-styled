@@ -1,24 +1,46 @@
+// useDevice.jsx
 import { useState, useEffect, useCallback } from "react";
 import { theme } from "../styles/theme";
 
 const DEFAULT_BREAKPOINTS = {
-  mobile: parseInt(theme.breakpoints.mobile, 10), // 480
-  tablet: parseInt(theme.breakpoints.tablet, 10), // 1024
-  desktop: parseInt(theme.breakpoints.desktop, 10), // 1025
+  smallMobile: theme.breakpoints.smallMobile,
+  mobile: theme.breakpoints.mobile,
+  tabletMinWidth: theme.breakpoints.tabletMinWidth,
+  tabletMaxWidth: theme.breakpoints.tabletMaxWidth,
+  desktop: theme.breakpoints.desktop,
 };
 
 export function useScreenSize(customBreakpoints = {}) {
   const breakpoints = { ...DEFAULT_BREAKPOINTS, ...customBreakpoints };
 
   const getScreenSize = useCallback(() => {
+    const ratio = window.innerWidth / window.innerHeight;
     const width = window.innerWidth;
+
+    const isSmallMobile = width < breakpoints.smallMobile;
+    const isMobile =
+      ratio <= breakpoints.mobile || width < breakpoints.tabletMinWidth;
+    const isTablet =
+      !isMobile &&
+      width >= breakpoints.tabletMinWidth &&
+      width <= breakpoints.tabletMaxWidth &&
+      ratio <= breakpoints.desktop;
+    const isDesktop = !isMobile && !isTablet && ratio > breakpoints.desktop;
+
     return {
-      isMobile: width <= breakpoints.mobile,
-      isTablet: width > breakpoints.mobile && width <= breakpoints.tablet,
-      isDesktop: width > breakpoints.tablet,
-      screenWidth: width,
+      isSmallMobile,
+      isMobile,
+      isTablet,
+      isDesktop,
+      aspectRatio: ratio,
     };
-  }, [breakpoints.mobile, breakpoints.tablet]);
+  }, [
+    breakpoints.smallMobile,
+    breakpoints.mobile,
+    breakpoints.tabletMinWidth,
+    breakpoints.tabletMaxWidth,
+    breakpoints.desktop,
+  ]);
 
   const [screenSize, setScreenSize] = useState(getScreenSize);
 
