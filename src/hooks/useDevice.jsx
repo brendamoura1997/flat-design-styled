@@ -3,11 +3,11 @@ import { useState, useEffect, useCallback } from "react";
 import { theme } from "../styles/theme";
 
 const DEFAULT_BREAKPOINTS = {
-  smallMobile: theme.breakpoints.smallMobile,
   mobile: theme.breakpoints.mobile,
   tabletMinWidth: theme.breakpoints.tabletMinWidth,
   tabletMaxWidth: theme.breakpoints.tabletMaxWidth,
   desktop: theme.breakpoints.desktop,
+  desktopWide: theme.breakpoints.desktopWide,
 };
 
 export function useScreenSize(customBreakpoints = {}) {
@@ -17,7 +17,6 @@ export function useScreenSize(customBreakpoints = {}) {
     const ratio = window.innerWidth / window.innerHeight;
     const width = window.innerWidth;
 
-    const isSmallMobile = width < breakpoints.smallMobile;
     const isMobile =
       ratio <= breakpoints.mobile || width < breakpoints.tabletMinWidth;
     const isTablet =
@@ -25,17 +24,19 @@ export function useScreenSize(customBreakpoints = {}) {
       width >= breakpoints.tabletMinWidth &&
       width <= breakpoints.tabletMaxWidth &&
       ratio <= breakpoints.desktop;
-    const isDesktop = !isMobile && !isTablet && ratio > breakpoints.desktop;
+    const isDesktop =
+      !isMobile &&
+      width >= breakpoints.tabletMaxWidth &&
+      !isTablet &&
+      ratio > breakpoints.desktop;
 
     return {
-      isSmallMobile,
       isMobile,
       isTablet,
       isDesktop,
       aspectRatio: ratio,
     };
   }, [
-    breakpoints.smallMobile,
     breakpoints.mobile,
     breakpoints.tabletMinWidth,
     breakpoints.tabletMaxWidth,

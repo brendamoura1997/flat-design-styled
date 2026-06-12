@@ -23,15 +23,39 @@ const Container = styled.div`
   position: relative;
   overflow: hidden;
 
-  @media only screen and (max-aspect-ratio: 1000/1000) {
-    flex-direction: column;
-    height: auto;
+  // @media only screen and (max-aspect-ratio: 1000/1000) {
+  //   height: auto;
+  //   padding: 10% 0 0 0;
+  //   overflow: visible;
+  // }
+
+  @media ${theme.mediaQueries.isDesktopWide} {
+    // height: 115vh;
+    height: 100%;
+  }
+
+  @media ${theme.mediaQueries.tablet} {
     padding: 10% 0 0 0;
-    overflow: visible;
+    flex-direction: column;
+  }
+
+  @media ${theme.mediaQueries.tabletWide} {
+    padding: 10% 0 0 0;
+    flex-direction: column;
+    height: fit-content;
+    height: 100%;
   }
 
   @media ${theme.mediaQueries.mobile} {
+    flex-direction: column;
     padding: 15% 0 0 0;
+  }
+
+  @media ${theme.mediaQueries.isMobileWide} {
+    height: fit-content;
+    flex-direction: column;
+    // height: 200vh;
+    // background: green;
   }
 `;
 
@@ -42,7 +66,7 @@ const Left = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 5;
 
   @media only screen and (max-aspect-ratio: 1000/1000) {
     width: 100%;
@@ -61,17 +85,17 @@ const LeftContent = styled.div`
   @media only screen and (max-aspect-ratio: 1000/1000) {
     width: 100%;
   }
+
+  @media ${theme.mediaQueries.isDesktopWide} {
+    width: 100%;
+  }
 `;
 
 const TopSection = styled.div`
-  display: none;
-
-  @media only screen and (max-aspect-ratio: 1000/1000) {
-    display: flex;
-    flex-direction: column;
-    padding: 0 6%;
-    position: relative;
-  }
+  display: flex;
+  flex-direction: column;
+  padding: 0 6%;
+  position: relative;
 `;
 
 const Tagline = styled.div`
@@ -121,6 +145,11 @@ const Title = styled.h1`
     color: #de113a;
   }
 
+  @media ${theme.mediaQueries.isDesktopWide} {
+    font-size: 60.2px;
+    line-height: 60.8px;
+  }
+
   @media ${theme.mediaQueries.tablet} {
     width: 80%;
     font-size: 78.2px;
@@ -150,8 +179,11 @@ const Desc = styled.p`
   color: #444;
   margin: 0 0 44px;
 
-  @media only screen and (max-aspect-ratio: 5/4) {
-    width: 72%;
+  @media ${theme.mediaQueries.isDesktopWide} {
+    width: 80%;
+    font-size: 16.6px;
+    line-height: 1.65;
+    margin: 0 0 3%;
   }
 
   @media ${theme.mediaQueries.tablet} {
@@ -177,15 +209,22 @@ const Desc = styled.p`
 const ActionSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 3vh;
   padding: 0 6%;
   margin-top: 4%;
+
+  @media ${theme.mediaQueries.tabletWide} {
+    // position: relative;
+    // border: 1px solid red;
+    margin-top: 0%;
+  }
 `;
 
 const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: fit-content;
   padding: 16px 28px;
   background-color: #1a1a6e;
   color: white;
@@ -239,36 +278,48 @@ const Button = styled.button`
     outline-offset: 3px;
   }
 
+  @media ${theme.mediaQueries.isDesktopWide} {
+    font-size: 12.4px;
+    padding: 10px 18px;
+  }
+
   @media ${theme.mediaQueries.tablet} {
     width: fit-content;
     justify-content: flex-start;
     padding: 2% 3%;
-  }
-
-  @media ${theme.mediaQueries.mobile} {
-    width: fit-content;
-    justify-content: flex-start;
-    padding: 3% 4%;
-    font-size: 12.4px;
-  }
-
-  @media ${theme.mediaQueries.smallMobile} {
-    font-size: 10px;
-    line-height: 16px;
-  }
 }
+
+    @media ${theme.mediaQueries.tabletWide} {
+      width: fit-content;
+      justify-content: flex-start;
+      padding: 2% 3%;
+      margin-bottom: 2%;
+    }
+
+    @media ${theme.mediaQueries.mobile} {
+      width: fit-content;
+      justify-content: flex-start;
+      padding: 3% 4%;
+      font-size: 12.4px;
+    }
+
+    @media ${theme.mediaQueries.smallMobile} {
+      font-size: 10px;
+      line-height: 16px;
+    }
+  }
 `;
 
 const MobileContact = styled.div`
-  display: none;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  margin-bottom: 1%;
 
-  @media only screen and (max-aspect-ratio: 1000/1000) {
-    width: fit-content;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 0;
-    margin-bottom: 1%;
+  @media ${theme.mediaQueries.tabletWide} {
+    margin-bottom: 4%;
   }
 `;
 
@@ -302,7 +353,7 @@ const PhoneIconWrap = styled.div`
     background-color: #f8bac5;
   }
 
-  @media only screen and (max-aspect-ratio: 1000/1000) {
+  @media only screen and (max-aspect-ratio: 1) {
     background-color: #fff;
     border: 1px solid #fbd0d8;
     width: 40px;
@@ -313,9 +364,6 @@ const PhoneIconWrap = styled.div`
 const ContactText = styled.div`
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 8px;
-  padding: 1% 3% 0% 0%;
 `;
 
 const Phone = styled.span`
@@ -357,22 +405,34 @@ const Info = styled.div`
   display: flex;
   align-items: center;
   gap: 36px;
-  margin-bottom: 60px;
+  // margin-bottom: 60px;
+  margin-bottom: 8%;
+  // border: 1px solid green;
 
-  @media only screen and (max-aspect-ratio: 1000/1000) {
-    display: none;
+  @media ${theme.mediaQueries.isDesktopWide} {
+    gap: 26px;
   }
 `;
 
 const MobileImageSection = styled.div`
-  display: none;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  right: 2%;
 
-  @media only screen and (max-aspect-ratio: 1000/1000) {
-    display: block;
+  @media ${theme.mediaQueries.tabletWide} {
     position: absolute;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    bottom: 0%;
+    // height: 58vh;
+    height: 50%;
+  }
+
+  @media ${theme.mediaQueries.isMobileWide} {
+    position: relative;
+    // height: fit-content;
+    height: 28vh;
   }
 `;
 
@@ -380,7 +440,11 @@ const WomanImage = styled.img`
   position: absolute;
   bottom: 0;
   right: 0;
-  z-index: 1;
+  z-index: 3;
+  // width: 45%;
+  height: 55%;
+  object-fit: contain;
+  object-position: center bottom;
 
   @media ${theme.mediaQueries.tablet} {
     width: 45%;
@@ -388,6 +452,11 @@ const WomanImage = styled.img`
     bottom: 0;
     object-fit: contain;
     object-position: center bottom;
+  }
+
+  @media ${theme.mediaQueries.tabletWide} {
+    bottom: 0%;
+    height: 100%;
   }
 
   @media ${theme.mediaQueries.mobile} {
@@ -402,25 +471,43 @@ const WomanImage = styled.img`
     width: 40%;
     height: 40%;
   }
+
+  @media ${theme.mediaQueries.isMobileWide} {
+    bottom: 0%;
+    height: 100%;
+  }
+`;
+
+const PhantomDiv = styled.div`
+  display: none;
+
+  @media ${theme.mediaQueries.tabletWide} {
+    display: block;
+    width: 100%;
+    height: 32vh;
+    // height: 22vh;
+  }
 `;
 
 const MobileBottomCard = styled.div`
-  display: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 14px;
+  background-color: rgba(255, 255, 255, 0.97);
+  border-radius: 14px;
+  padding: 3% 3%;
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
+  width: calc(50% - 8px);
+  z-index: 3;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 
-  @media only screen and (max-aspect-ratio: 1000/1000) {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 14px;
-    background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 14px;
-    padding: 3% 2%;
-    position: absolute;
-    bottom: 10%;
-    left: 16px;
-    width: calc(50% - 8px);
-    z-index: 3;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  @media ${theme.mediaQueries.tabletWide} {
+    width: 30%;
+    left: 8%;
+    bottom: 5%;
   }
 `;
 
@@ -448,12 +535,16 @@ const MobileDotGrid = styled.div`
 const Features = styled.div`
   display: flex;
   gap: 36px;
-  background: rgba(255, 255, 255, 0.8);
   border-radius: 8px;
-  padding: 1% 3% 0% 0%;
 
-  @media only screen and (max-aspect-ratio: 5/4) {
-    gap: 16px;
+  @media ${theme.mediaQueries.isDesktopWide} {
+    width: 95%;
+    padding: 3% 3% 3% 0%;
+    gap: 18px;
+  }
+
+  @media ${theme.mediaQueries.isDesktopWide} {
+    margin-bottom: 8%;
   }
 
   @media ${theme.mediaQueries.tablet} {
@@ -513,6 +604,11 @@ const FeatureDesc = styled.span`
   max-width: 130px;
   line-height: 1.45;
 
+  
+  @media ${theme.mediaQueries.isDesktopWide} {
+  line-height: 1.35;
+  }
+
   @media ${theme.mediaQueries.tablet} {
     font-size: 19px;
     max-width: 100%;
@@ -536,16 +632,12 @@ const Right = styled.div`
   margin-top: 7%;
   position: relative;
   overflow: hidden;
-  z-index: 1;
-
-  @media only screen and (max-aspect-ratio: 1000/1000) {
-    display: none;
-  }
+  z-index: 4;
 `;
 
 const Image = styled.img`
   position: relative;
-  z-index: 1;
+  z-index: 5;
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -580,6 +672,7 @@ const MobileFeatureRow = styled.div`
   align-items: flex-start;
   gap: 12px;
   margin-bottom: 3%;
+  z-index: 5;
 `;
 
 const FEATURES = [
@@ -710,6 +803,7 @@ const Intro = () => {
             <MobileContact>
               <PhoneBlock mobile />
             </MobileContact>
+
             {FEATURES.slice(0, 2).map(({ bg, icon, title, desc }) => (
               <MobileFeatureRow key={title}>
                 <FeatureIcon $bg={bg}>{icon(iconSize)}</FeatureIcon>
@@ -720,8 +814,10 @@ const Intro = () => {
               </MobileFeatureRow>
             ))}
           </ActionSection>
+          <PhantomDiv />
           <MobileImageSection>
             <WomanImage src={Woman} alt="Mulher com smartphone" />
+
             <MobileBottomCard>
               <FeatureIcon $bg={FEATURES[2].bg}>
                 {FEATURES[2].icon(20)}
@@ -732,6 +828,7 @@ const Intro = () => {
               </FeatureText>
             </MobileBottomCard>
           </MobileImageSection>
+
           <AnimatedShapesMobile />
         </>
       ) : (

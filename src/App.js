@@ -14,12 +14,31 @@ const Container = styled.div`
   overflow: hidden;
   position: relative;
 
-  // @media ${theme.mediaQueries.tablet} {
-  //   height: fit-content;
-  // }
-  // @media ${theme.mediaQueries.mobile} {
-  //   height: fit-content;
-  // }
+  @media ${theme.mediaQueries.isMobileWide} {
+    height: fit-content;
+  }
+`;
+
+const ContainerIntro = styled.div`
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+
+  @media ${theme.mediaQueries.isDesktopWide} {
+    height: 100vh;
+    // background: blue;
+  }
+
+  @media ${theme.mediaQueries.tabletWide} {
+    height: fit-content;
+    // height: 120vh;
+  }
+
+  @media ${theme.mediaQueries.isMobileWide} {
+    height: fit-content;
+    // height: 200vh;
+    // background: green;
+  }
 `;
 
 const ContainerExtra = styled.div`
@@ -39,11 +58,18 @@ const Shape = css`
 
 const IntroShape = styled.div`
   ${Shape}
-  clip-path: polygon(67% 0, 100% 0%, 100% 100%, 58vw 100%);
+  // clip-path: polygon(67% 0, 100% 0%, 100% 100%, 58vw 100%);
+  clip-path: polygon(67% 0, 100% 0%, 100% 100%, 55% 100%);
   background-color: crimson;
+  z-index: 2;
 
   @media ${theme.mediaQueries.tablet} {
-    clip-path: polygon(100% 46%, 100% 100%, 13% 100%);
+    clip-path: polygon(100% 59%, 100% 100%, 0% 100%);
+  }
+
+  @media ${theme.mediaQueries.tabletWide} {
+    clip-path: polygon(100% 59%, 100% 100%, 0% 100%);
+    // background: blue;
   }
 
   @media ${theme.mediaQueries.mobile} {
@@ -75,15 +101,68 @@ const ServiceShape = styled.div`
   background-color: #f88497;
 `;
 
+const DotGrid = styled.div`
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(${({ $cols }) => $cols || 5}, 1fr);
+  grid-template-rows: repeat(${({ $rows }) => $rows || 5}, 1fr);
+  bottom: 0;
+  width: 100%;
+  height: 36%;
+  gap: 6px;
+  z-index: 1;
+  opacity: 0.55;
+  // border: 5px solid black;
+  ${({ $pos }) => $pos === "tl" && ``}
+  ${({ $pos }) => $pos === "tr" && `right: 0%;`}
+  span {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: ${({ $color }) => $color || "#f53b5a"};
+    display: block;
+  }
+
+  @media ${theme.mediaQueries.tabletWide} {
+    span {
+      background-color: #fff;
+    }
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    height: 29%;
+
+    span {
+      width: 2.5px;
+      height: 2.5px;
+      border-radius: 50%;
+      background-color: ${({ $color }) => $color || "#f53b5a"};
+      display: block;
+    }
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    height: 25%;
+  }
+`;
+
+const dots = (count) =>
+  Array.from({ length: count }).map((_, i) => <span key={i} />);
+
 function App() {
-  const { isMobile, isDesktop } = useScreenSize();
+  const { isMobile, isDesktop, isTablet } = useScreenSize();
   return (
     <ThemeProvider theme={theme}>
       {/* {!isMobile && <Navbar />} */}
-      <Container id="intro">
+      <ContainerIntro id="intro">
         <Intro />
         <IntroShape />
-      </Container>
+        {!isDesktop && (
+          <DotGrid $pos="tr" $cols={30} $rows={10} $color="#f53b5a">
+            {isTablet ? dots(320) : dots(1000)}
+          </DotGrid>
+        )}
+      </ContainerIntro>
       <Container id="feature">
         <Feature />
         <FeatureShape />
