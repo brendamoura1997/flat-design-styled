@@ -13,7 +13,6 @@ const Container = styled.div`
   height: 100vh;
   overflow: hidden;
   position: relative;
-
   @media ${theme.mediaQueries.isMobileWide} {
     height: fit-content;
   }
@@ -23,21 +22,14 @@ const ContainerIntro = styled.div`
   height: 100vh;
   overflow: hidden;
   position: relative;
-
   @media ${theme.mediaQueries.isDesktopWide} {
     height: 100vh;
-    // background: blue;
   }
-
   @media ${theme.mediaQueries.tabletWide} {
     height: fit-content;
-    // height: 120vh;
   }
-
   @media ${theme.mediaQueries.isMobileWide} {
     height: fit-content;
-    // height: 200vh;
-    // background: green;
   }
 `;
 
@@ -58,28 +50,21 @@ const Shape = css`
 
 const IntroShape = styled.div`
   ${Shape}
-  // clip-path: polygon(67% 0, 100% 0%, 100% 100%, 58vw 100%);
   clip-path: polygon(67% 0, 100% 0%, 100% 100%, 55% 100%);
   background-color: crimson;
   z-index: 2;
-
   @media ${theme.mediaQueries.tablet} {
     clip-path: polygon(100% 59%, 100% 100%, 0% 100%);
   }
-
   @media ${theme.mediaQueries.tabletWide} {
     clip-path: polygon(100% 59%, 100% 100%, 0% 100%);
-    // background: blue;
   }
-
   @media ${theme.mediaQueries.mobile} {
     clip-path: polygon(80% 20%, 100% 0%, 100% 100%, 0% 100%);
     height: 30%;
     top: 70%;
   }
-
   @media ${theme.mediaQueries.smallMobile} {
-    // clip-path: polygon(80% 20%, 100% 0%, 100% 100%, 20% 100%);
     clip-path: polygon(100% 16%, 100% 100%, 0% 100%);
   }
 `;
@@ -88,7 +73,6 @@ const FeatureShape = styled.div`
   ${Shape}
   clip-path: polygon(0 0, 55% 0%, 43% 100%, 0 100%);
   background-color: pink;
-
   @media only screen and (max-width: 1024px) {
     clip-path: polygon(0 0, 20% 0%, 20% 100%, 0 100%);
   }
@@ -97,7 +81,6 @@ const FeatureShape = styled.div`
 const ServiceShape = styled.div`
   ${Shape}
   clip-path: polygon(0 0, 43% 0%, 43% 100%, 0 100%);
-  // clip-path: polygon(43% 0%, 28% 100%, 0% 100%, 0% 0%);
   background-color: #f88497;
 `;
 
@@ -112,7 +95,6 @@ const DotGrid = styled.div`
   gap: 6px;
   z-index: 1;
   opacity: 0.55;
-  // border: 5px solid black;
   ${({ $pos }) => $pos === "tl" && ``}
   ${({ $pos }) => $pos === "tr" && `right: 0%;`}
   span {
@@ -122,16 +104,13 @@ const DotGrid = styled.div`
     background-color: ${({ $color }) => $color || "#f53b5a"};
     display: block;
   }
-
   @media ${theme.mediaQueries.tabletWide} {
     span {
       background-color: #fff;
     }
   }
-
   @media ${theme.mediaQueries.mobile} {
     height: 29%;
-
     span {
       width: 2.5px;
       height: 2.5px;
@@ -140,7 +119,6 @@ const DotGrid = styled.div`
       display: block;
     }
   }
-
   @media ${theme.mediaQueries.smallMobile} {
     height: 25%;
   }
@@ -151,9 +129,9 @@ const dots = (count) =>
 
 function App() {
   const { isMobile, isDesktop, isTablet } = useScreenSize();
+
   return (
     <ThemeProvider theme={theme}>
-      {/* {!isMobile && <Navbar />} */}
       <ContainerIntro id="intro">
         <Intro />
         <IntroShape />
@@ -163,20 +141,25 @@ function App() {
           </DotGrid>
         )}
       </ContainerIntro>
+
       <Container id="feature">
         <Feature />
         <FeatureShape />
       </Container>
+
       <ContainerExtra>
         <Service />
         {!isMobile && <ServiceShape />}
       </ContainerExtra>
+
       <ContainerExtra>
         <Price />
       </ContainerExtra>
+
       <ContainerExtra>
         <Contact />
       </ContainerExtra>
+
       <Footer />
     </ThemeProvider>
   );
