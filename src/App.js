@@ -1,5 +1,5 @@
 import styled, { css, ThemeProvider } from "styled-components";
-import Navbar from "./components/layout/Navbar";
+import NavbarDesktop from "./components/layout/NavbarDesktop";
 import Intro from "./components/sections/Intro";
 import Feature from "./components/sections/Feature";
 import Service from "./components/sections/Service";
@@ -132,6 +132,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      {isDesktop ? <NavbarDesktop /> : null}
       <ContainerIntro id="intro">
         <Intro />
         <IntroShape />

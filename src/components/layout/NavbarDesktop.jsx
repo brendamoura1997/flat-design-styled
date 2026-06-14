@@ -39,8 +39,9 @@ const WrapperLogo = styled.a`
   padding: 0px 8px;
   flex-direction: column;
   align-items: center;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  // backdrop-filter: blur(10px);
+  // -webkit-backdrop-filter: blur(10px);
+  // background: rgba(255, 255, 255, 0.7);
   width: wrap-content;
   height: wrap-content;
   cursor: pointer;
@@ -176,7 +177,7 @@ const Button = styled.button`
   }
 `;
 
-const Navbar = () => {
+const NavbarDesktop = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -241,4 +242,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarDesktop;

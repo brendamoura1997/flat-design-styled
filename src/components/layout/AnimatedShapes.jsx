@@ -7,7 +7,7 @@ const Square = styled.div`
   border-radius: 6px;
   opacity: 0.7;
   position: absolute;
-  top: -60px;
+  top: 10px;
   left: -60px;
   z-index: -1;
   animation: square 35s linear alternate infinite;
