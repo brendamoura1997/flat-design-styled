@@ -8,6 +8,7 @@ import Contact from "./components/sections/Contact";
 import Footer from "./components/layout/Footer";
 import { useScreenSize } from "./hooks/useDevice";
 import { theme } from "./styles/theme";
+import GlobalStyle from "./styles/GlobalStyle";
 
 const Container = styled.div`
   height: 100vh;
@@ -22,6 +23,7 @@ const ContainerIntro = styled.div`
   height: 100vh;
   overflow: hidden;
   position: relative;
+
   @media ${theme.mediaQueries.isDesktopWide} {
     height: 100vh;
   }
@@ -132,6 +134,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
       {isDesktop ? <NavbarDesktop /> : null}
       <ContainerIntro id="intro">
         <Intro />

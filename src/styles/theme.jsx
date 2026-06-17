@@ -19,6 +19,6 @@ export const theme = {
     isMobileWide: `only screen and (max-width: 699px) and (min-aspect-ratio: 0.5)`,
 
     // Desktop com proporção IGUAL ou MAIOR que 1.70 (ex: 1024x600)
-    isDesktopWide: `only screen and (min-aspect-ratio: 1.70) and (max-width: 1200px)`,
+    isDesktopWide: `only screen and (min-aspect-ratio: 1.70) and (max-width: 1300px)`,
   },
 };

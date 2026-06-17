@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { useState, useEffect } from "react";
+import { theme } from "../../styles/theme";
 
 const shine = keyframes`
   0%   { left: -100%; }
@@ -21,7 +22,7 @@ const Container = styled.div`
   box-shadow: ${({ scrolled }) =>
     scrolled ? "0 2px 10px rgba(0,0,0,0.15)" : "none"};
 
-  border: 1px solid blue;
+  // border: 1px solid blue;
 `;
 
 const Wrapper = styled.div`
@@ -32,26 +33,31 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  border: 1px solid yellow;
+  // border: 1px solid yellow;
 `;
 
 const Left = styled.div`
   width: 65%;
+  height: 100%;
   display: flex;
   align-items: center;
+  justify-content: start;
+
+  // border: 5px solid black;
 `;
 const WrapperLogo = styled.a`
   display: flex;
-  padding: 0px 8px;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: wrap-content;
-  height: wrap-content;
+  height: 100%;
   cursor: pointer;
-  border-radius: 10px;
   text-decoration: none;
   overflow: hidden;
   position: relative;
+  border: 1px solid red;
+  margin-right: 2%;
 
   &::after {
     content: "";
@@ -79,51 +85,80 @@ const WrapperLogo = styled.a`
 const Logo = styled.h1`
   font-weight: bold;
   text-decoration: underline crimson;
+  white-space: nowrap;
   color: black;
   transition: color 0.3s ease;
+  font-size: 33px;
+  font-size: clamp(1.1375rem, 0.9206rem + 1.0847vw, 2.0625rem);
+  // border: 2px solid purple;
 
   ${WrapperLogo}:hover & {
     color: #222;
+  }
+
+  @media ${theme.mediaQueries.isDesktopWide} {
+    font-size: clamp(1.4375rem, 0.8206rem + 1.0847vw, 2.0625rem);
+    // font-size: 23px;
   }
 `;
 
 const LogoDown = styled.h1`
   font-weight: bold;
-  font-size: 12px;
+  // font-size: 12px;
+  font-size: clamp(0.625rem, 0.5382rem + 0.434vw, 0.75rem);
   top: -2px;
-  left: 9px;
+  // left: 9px;
+  left: 3%;
   position: relative;
   letter-spacing: 15px;
   color: crimson;
   transition: color 0.3s ease;
+  // border: 2px solid purple;
 
   ${WrapperLogo}:hover & {
     color: #ff3355;
+  }
+
+  @media ${theme.mediaQueries.isDesktopWide} {
+    font-size: clamp(0.625rem, 0.5382rem + 0.434vw, 0.75rem);
+    // font-size: 10px;
+    // letter-spacing: 8px;
   }
 `;
 
 const Menu = styled.ul`
   display: flex;
+  // justify-content: end;
+  justify-content: space-around;
+  // gap: 9%;
   list-style: none;
-  margin-left: 20px;
+  // margin-left: 2%;
+  border: 2px solid gray;
+  width: 70%;
+  // padding-right: 5%;
 
-  @media only screen and (max-width: 480px) {
-    display: none;
+  @media ${theme.mediaQueries.isDesktopWide} {
+    width: 70%;
+    padding: 0%;
+    // gap: 7.5%;
   }
 `;
 
 const MenuItem = styled.a`
-  margin-right: 30px;
-  font-size: 20px;
+  // margin-right: 30px;
+  // margin-right: 6%;
+  // font-size: 20px;
+  font-size: clamp(0.9375rem, 0.8rem + 0.4vw, 1.25rem);
   font-weight: bold;
   color: gray;
   text-decoration: none;
   cursor: pointer;
   position: relative;
+  border: 1px solid red;
   transition:
     background-color 0.2s ease,
     transform 0.2s ease;
-  padding: 10px;
+  // padding: 10px;
 
   &:hover {
     color: #a7a7a7;
@@ -131,6 +166,12 @@ const MenuItem = styled.a`
   &:active {
     color: #adadad;
     transform: scale(0.97);
+  }
+
+  @media ${theme.mediaQueries.isDesktopWide} {
+    // font-size: 15px;
+    font-size: clamp(0.9375rem, 0.629rem + 0.5424vw, 1.25rem);
+    // margin-right: 5%;
   }
 `;
 
