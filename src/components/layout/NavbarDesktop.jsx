@@ -20,13 +20,19 @@ const Container = styled.div`
     scrolled ? "rgba(255, 255, 255, 0.99)" : "transparent"};
   box-shadow: ${({ scrolled }) =>
     scrolled ? "0 2px 10px rgba(0,0,0,0.15)" : "none"};
+
+  border: 1px solid blue;
 `;
 
 const Wrapper = styled.div`
-  padding: 10px 20px;
+  // padding: 10px 20px;
+  padding: 0% 1%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  border: 1px solid yellow;
 `;
 
 const Left = styled.div`
@@ -39,9 +45,6 @@ const WrapperLogo = styled.a`
   padding: 0px 8px;
   flex-direction: column;
   align-items: center;
-  // backdrop-filter: blur(10px);
-  // -webkit-backdrop-filter: blur(10px);
-  // background: rgba(255, 255, 255, 0.7);
   width: wrap-content;
   height: wrap-content;
   cursor: pointer;
