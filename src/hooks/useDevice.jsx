@@ -1,40 +1,74 @@
-import { useState, useEffect } from "react";
+// useDevice.jsx
+import { useState, useEffect, useCallback } from "react";
+import { theme } from "../styles/theme";
 
 const DEFAULT_BREAKPOINTS = {
-  mobile: 768, // <= 768px: mobile
-  tablet: 1024, // 769px - 1024px: tablet
-  desktop: 1025, // >= 1025px: desktop
+  mobile: theme.breakpoints.mobile,
+  tabletMinWidth: theme.breakpoints.tabletMinWidth,
+  tabletMaxWidth: theme.breakpoints.tabletMaxWidth,
+  desktop: theme.breakpoints.desktop,
+  desktopWide: theme.breakpoints.desktopWide,
 };
 
 export function useScreenSize(customBreakpoints = {}) {
   const breakpoints = { ...DEFAULT_BREAKPOINTS, ...customBreakpoints };
 
-  const [screenSize, setScreenSize] = useState({
-    isMobile: window.innerWidth <= breakpoints.mobile,
-    isTablet:
-      window.innerWidth > breakpoints.mobile &&
-      window.innerWidth <= breakpoints.tablet,
-    isDesktop: window.innerWidth >= breakpoints.desktop,
-    screenWidth: window.innerWidth,
-  });
+  const getScreenSize = useCallback(() => {
+    const ratio = window.innerWidth / window.innerHeight;
+    const width = window.innerWidth;
+
+    const isMobile =
+      ratio <= breakpoints.mobile || width < breakpoints.tabletMinWidth;
+    const isTablet =
+      !isMobile &&
+      width >= breakpoints.tabletMinWidth &&
+      width <= breakpoints.tabletMaxWidth &&
+      ratio <= breakpoints.desktop;
+    const isDesktop =
+      !isMobile &&
+      width >= breakpoints.tabletMaxWidth &&
+      !isTablet &&
+      ratio > breakpoints.desktop;
+    const desktopWide =
+      isDesktop && ratio >= breakpoints.desktopWide && width <= 1300;
+
+    return {
+      isMobile,
+      isTablet,
+      isDesktop,
+      desktopWide,
+      aspectRatio: ratio,
+    };
+  }, [
+    breakpoints.mobile,
+    breakpoints.tabletMinWidth,
+    breakpoints.tabletMaxWidth,
+    breakpoints.desktop,
+    breakpoints.desktopWide,
+  ]);
+
+  const [screenSize, setScreenSize] = useState(getScreenSize);
 
   useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      setScreenSize({
-        isMobile: width <= breakpoints.mobile,
-        isTablet: width > breakpoints.mobile && width <= breakpoints.tablet,
-        isDesktop: width >= breakpoints.desktop,
-        screenWidth: width,
-      });
-    };
-
+    const handleResize = () => setScreenSize(getScreenSize());
     window.addEventListener("resize", handleResize);
-
-    handleResize();
-
     return () => window.removeEventListener("resize", handleResize);
-  }, [breakpoints.mobile, breakpoints.tablet, breakpoints.desktop]);
+  }, [getScreenSize]);
 
   return screenSize;
+}
+
+export function useMediaQuery(query) {
+  const [matches, setMatches] = useState(
+    () => window.matchMedia(query).matches,
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+    const handler = (e) => setMatches(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, [query]);
+
+  return matches;
 }

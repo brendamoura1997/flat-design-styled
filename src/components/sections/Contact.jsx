@@ -130,7 +130,6 @@ const Badge = styled.div`
 `;
 const Headline = styled.h2`
   font-size: clamp(32px, 4vw, 48px);
-  font-weight: 900;
   line-height: 1.1;
   color: #111;
   margin: 0 0 14px;
@@ -236,7 +235,6 @@ const SubmitButton = styled.button`
   border: none;
   border-radius: 10px;
   font-size: 15px;
-  font-weight: 800;
   cursor: pointer;
   display: flex;
   align-items: center;

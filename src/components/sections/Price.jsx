@@ -69,7 +69,6 @@ const Badge = styled.div`
 `;
 const Headline = styled.h2`
   font-size: clamp(32px, 4vw, 52px);
-  font-weight: 900;
   color: #0d0d0d;
   line-height: 1.15;
   margin: 0 0 16px;
@@ -97,7 +96,7 @@ const Card = styled.div`
   border: 1.5px solid ${({ featured }) => (featured ? "#c7b8f7" : "#ebebeb")};
   border-radius: 18px;
   padding: 24px 26px 22px;
-  width: 280px;
+  width: 32%;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -137,7 +136,6 @@ const IconWrap = styled.div`
 `;
 const PlanName = styled.h3`
   font-size: 17px;
-  font-weight: 800;
   color: ${({ color }) => color};
   margin: 0 0 10px;
 `;
@@ -155,7 +153,7 @@ const Currency = styled.span`
 `;
 const Amount = styled.span`
   font-size: 42px;
-  font-weight: 900;
+  font-weight: 700;
   color: #0d0d0d;
   line-height: 1;
 `;
@@ -184,7 +182,7 @@ const Feature = styled.li`
   display: flex;
   align-items: center;
   gap: 9px;
-  font-size: 13px;
+  // font-size: 13px;
   color: #333;
 `;
 const Btn = styled.button`
@@ -193,7 +191,6 @@ const Btn = styled.button`
   background: #1a1aad;
   color: #fff;
   font-size: 14px;
-  font-weight: 800;
   border: none;
   border-radius: 9px;
   cursor: pointer;

@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { useState, useEffect } from "react";
+import { theme } from "../../styles/theme";
 
 const shine = keyframes`
   0%   { left: -100%; }
@@ -13,6 +14,7 @@ const Container = styled.div`
   left: 0;
   width: 100%;
   z-index: 999;
+  padding: 0% 1% 0% 1%;
   transition:
     background-color 0.3s ease,
     box-shadow 0.3s ease;
@@ -23,7 +25,8 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  padding: 10px 20px;
+  padding: 0% 1%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,23 +34,23 @@ const Wrapper = styled.div`
 
 const Left = styled.div`
   width: 65%;
+  height: 100%;
   display: flex;
   align-items: center;
+  justify-content: start;
 `;
 const WrapperLogo = styled.a`
   display: flex;
-  padding: 0px 8px;
   flex-direction: column;
   align-items: center;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  justify-content: center;
   width: wrap-content;
-  height: wrap-content;
+  height: 100%;
   cursor: pointer;
-  border-radius: 10px;
   text-decoration: none;
   overflow: hidden;
   position: relative;
+  margin-right: 2%;
 
   &::after {
     content: "";
@@ -75,19 +78,26 @@ const WrapperLogo = styled.a`
 const Logo = styled.h1`
   font-weight: bold;
   text-decoration: underline crimson;
+  text-decoration-thickness: 3px;
+  white-space: nowrap;
   color: black;
   transition: color 0.3s ease;
+  font-size: clamp(1.1375rem, 0.9206rem + 1.0847vw, 2.0625rem);
 
   ${WrapperLogo}:hover & {
     color: #222;
   }
+
+  @media ${theme.mediaQueries.desktopWide} {
+    font-size: clamp(1.4375rem, 0.8906rem + 1.0847vw, 2.0625rem);
+  }
 `;
 
 const LogoDown = styled.h1`
-  font-weight: bold;
-  font-size: 12px;
-  top: -2px;
-  left: 9px;
+  font-weight: 900;
+  font-size: clamp(0.625rem, 0.5382rem + 0.434vw, 0.75rem);
+  top: -9px;
+  left: 3%;
   position: relative;
   letter-spacing: 15px;
   color: crimson;
@@ -96,30 +106,39 @@ const LogoDown = styled.h1`
   ${WrapperLogo}:hover & {
     color: #ff3355;
   }
+
+  @media ${theme.mediaQueries.desktopWide} {
+    font-size: clamp(0.625rem, 0.3382rem + 0.434vw, 0.75rem);
+    top: -6px;
+    letter-spacing: 13px;
+  }
 `;
 
 const Menu = styled.ul`
   display: flex;
+  justify-content: space-around;
+  gap: 2%;
   list-style: none;
-  margin-left: 20px;
+  margin-left: 3%;
+  width: 70%;
 
-  @media only screen and (max-width: 480px) {
-    display: none;
+  @media ${theme.mediaQueries.desktopWide} {
+    width: 70%;
+    padding: 0%;
   }
 `;
 
 const MenuItem = styled.a`
-  margin-right: 30px;
-  font-size: 20px;
+  font-size: clamp(0.9375rem, 0.8rem + 0.4vw, 1.25rem);
   font-weight: bold;
   color: gray;
   text-decoration: none;
   cursor: pointer;
   position: relative;
+  // border: 1px solid red;
   transition:
     background-color 0.2s ease,
     transform 0.2s ease;
-  padding: 10px;
 
   &:hover {
     color: #a7a7a7;
@@ -128,11 +147,18 @@ const MenuItem = styled.a`
     color: #adadad;
     transform: scale(0.97);
   }
+
+  @media ${theme.mediaQueries.desktopWide} {
+    // font-size: 15px;
+    font-size: clamp(0.9375rem, 0.629rem + 0.5424vw, 1.25rem);
+    // margin-right: 5%;
+  }
 `;
 
 const Button = styled.button`
   border: 2px solid white;
   padding: 10px 15px;
+  font-size: clamp(0.75rem, 0.75rem + 0.15vw, 0.875rem);
   background-color: crimson;
   color: white;
   font-weight: bold;
@@ -174,9 +200,14 @@ const Button = styled.button`
     background-color: rgb(248, 20, 20);
     transform: scale(0.97);
   }
+
+  @media ${theme.mediaQueries.desktopWide} {
+    padding: 8px 15px;
+    font-size: clamp(0.75rem, 0.6rem + 0.15vw, 0.875rem);
+  }
 `;
 
-const Navbar = () => {
+const NavbarDesktop = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -241,4 +272,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarDesktop;
