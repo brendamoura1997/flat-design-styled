@@ -52,15 +52,8 @@ const GlobalStyle = createGlobalStyle`
     body textarea {
       &:focus-visible {
      outline: none;
+  } 
   }
-
-    
-  }
-
-
-  
-
-
 `;
 
 export default GlobalStyle;
