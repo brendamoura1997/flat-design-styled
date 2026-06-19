@@ -29,11 +29,14 @@ export function useScreenSize(customBreakpoints = {}) {
       width >= breakpoints.tabletMaxWidth &&
       !isTablet &&
       ratio > breakpoints.desktop;
+    const isDesktopWide =
+      isDesktop && ratio >= breakpoints.desktopWide && width <= 1300;
 
     return {
       isMobile,
       isTablet,
       isDesktop,
+      isDesktopWide,
       aspectRatio: ratio,
     };
   }, [
@@ -41,6 +44,7 @@ export function useScreenSize(customBreakpoints = {}) {
     breakpoints.tabletMinWidth,
     breakpoints.tabletMaxWidth,
     breakpoints.desktop,
+    breakpoints.desktopWide,
   ]);
 
   const [screenSize, setScreenSize] = useState(getScreenSize);
@@ -52,4 +56,19 @@ export function useScreenSize(customBreakpoints = {}) {
   }, [getScreenSize]);
 
   return screenSize;
+}
+
+export function useMediaQuery(query) {
+  const [matches, setMatches] = useState(
+    () => window.matchMedia(query).matches,
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+    const handler = (e) => setMatches(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, [query]);
+
+  return matches;
 }

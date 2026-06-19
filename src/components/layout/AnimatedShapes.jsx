@@ -14,7 +14,7 @@ const Square = styled.div`
 
   @keyframes square {
     to {
-      transform: translate(100vw, 100vh);
+      transform: translate(50vw, 100vh);
     }
   }
 `;
@@ -32,7 +32,7 @@ const Circle = styled.div`
 
   @keyframes circle {
     to {
-      transform: translate(100vw, -100vh);
+      transform: translate(50vw, -100vh);
     }
   }
 `;
@@ -51,7 +51,7 @@ const Rect = styled.div`
 
   @keyframes rect {
     to {
-      transform: translate(100vw, -50vh);
+      transform: translate(50vw, -50vh);
     }
   }
 `;

@@ -20,28 +20,33 @@ const Container = styled.div`
   height: 100%;
   display: flex;
   // padding: 20px 20px 30px 60px;
-  padding: 5% 2% 0% 3%;
+  padding: 5% 1% 0% 3%;
   // border: 4px solid blue;
 
   position: relative;
   overflow: hidden;
+
   @media ${theme.mediaQueries.isDesktopWide} {
-    padding: 6% 2% 0% 5%;
+    padding: 0% 2% 0% 5%;
     height: 100%;
   }
+
   @media ${theme.mediaQueries.tablet} {
     padding: 10% 0 0 0;
     flex-direction: column;
   }
+
   @media ${theme.mediaQueries.tabletWide} {
     padding: 10% 0 0 0;
     flex-direction: column;
     height: 100%;
   }
+
   @media ${theme.mediaQueries.mobile} {
     flex-direction: column;
     padding: 15% 0 0 0;
   }
+
   @media ${theme.mediaQueries.isMobileWide} {
     height: fit-content;
     flex-direction: column;
@@ -56,6 +61,11 @@ const Left = styled.div`
   align-items: center;
   z-index: 5;
   // border: 2px solid blue;
+
+  @media ${theme.mediaQueries.isDesktopWide} {
+    padding: 10% 0% 0% 0%;
+  }
+
   @media only screen and (max-aspect-ratio: 1000/1000) {
     width: 100%;
     height: auto;
@@ -170,7 +180,7 @@ const Desc = styled.p`
     width: 62%;
     font-size: 14.6px;
     line-height: 1.65;
-    margin: 0 0 3%;
+    margin: 0 0 4%;
   }
   @media ${theme.mediaQueries.tablet} {
     width: 69%;
@@ -255,7 +265,7 @@ const Button = styled.button`
   }
   @media ${theme.mediaQueries.isDesktopWide} {
     font-size: 12.4px;
-    padding: 10px 18px;
+    padding: 13px 18px;
   }
   @media ${theme.mediaQueries.tablet} {
     width: fit-content;
@@ -308,6 +318,12 @@ const PhoneIconWrap = styled.div`
   transition:
     background-color 0.18s ease,
     transform 0.12s ease;
+
+  @media ${theme.mediaQueries.isDesktopWide} {
+    width: 40px;
+    height: 40px;
+  }
+
   @media only screen and (max-aspect-ratio: 1) {
     width: 40px;
     height: 40px;
@@ -338,10 +354,16 @@ const Phone = styled.span`
 const PhoneSub = styled.span`
   color: #888;
   font-size: 13.12px;
-  margin-top: 3px;
+  margin-top: 2%;
+
+  @media ${theme.mediaQueries.isDesktopWide} {
+    margin-top: 0px;
+  }
+
   @media ${theme.mediaQueries.tablet} {
     font-size: 19px;
   }
+
   @media ${theme.mediaQueries.mobile} {
     font-size: 15px;
   }
@@ -428,19 +450,25 @@ const MobileBottomCard = styled.div`
   align-items: flex-start;
   justify-content: center;
   gap: 14px;
-  background-color: rgba(255, 255, 255, 0.97);
+  background-color: rgba(255, 255, 255, 0.98);
   border-radius: 14px;
   padding: 3% 3%;
   position: absolute;
   bottom: 10%;
-  left: 10%;
-  width: calc(50% - 8px);
+  left: 7%;
+  width: calc(56% - 8px);
   z-index: 3;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
   @media ${theme.mediaQueries.tabletWide} {
     width: 30%;
     left: 8%;
     bottom: 5%;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    bottom: 30%;
+    padding: 2% 2%;
   }
 `;
 
@@ -569,25 +597,30 @@ const FeatureDesc = styled.span`
 
 const Right = styled.div`
   width: 40%;
-  height: 100%;
+  height: 115%;
   position: relative;
   overflow: hidden;
   display: flex;
   justify-content: center;
   z-index: 4;
-
+  top: 2%;
   // border: 1px solid green;
+
+  @media ${theme.mediaQueries.isDesktopWide} {
+    top: 3%;
+    height: 100%;
+  }
 `;
 
 const Image = styled.img`
   position: absolute;
   z-index: 5;
   width: fit-content;
-  bottom: 0;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  // border: 1px solid blue;
   object-position: bottom center;
+  // border: 1px solid blue;
 `;
 
 const DotGrid = styled.div`
@@ -612,8 +645,7 @@ const DotGrid = styled.div`
   @media ${theme.mediaQueries.isDesktopWide} {
     gap: 3px;
     grid-template-columns: repeat(${({ $cols }) => $cols || 5}, 5px);
-    ${({ $pos }) => $pos === "tl" && `top: 26%; left: 2%;`}
-    ${({ $pos }) => $pos === "tr" && `top: 26%; right: 2%;`}
+
     span {
       width: 4px;
       height: 4px;
@@ -626,8 +658,10 @@ const MobileFeatureRow = styled.div`
   align-items: flex-start;
   gap: 12px;
   margin-bottom: 3%;
+  padding: 0% 1% 1% 0%;
   z-index: 5;
-  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.95);
   width: fit-content;
 `;
 
@@ -749,12 +783,12 @@ const DescBlock = () => (
   </Desc>
 );
 
-const PhoneBlock = ({ mobile }) => (
+const PhoneBlock = ({ mobile, isDesktopWide }) => (
   <Contact href="#">
     <PhoneIconWrap>
       <PhoneIcon
-        width={mobile ? 18 : 22}
-        height={mobile ? 18 : 22}
+        width={mobile ? 18 : isDesktopWide ? 20 : 22}
+        height={mobile ? 18 : isDesktopWide ? 20 : 22}
         viewBox="0 0 24 24"
         color="#f53b5a"
         stroke="#f53b5a"
@@ -775,8 +809,10 @@ const dots = (count) =>
   Array.from({ length: count }).map((_, i) => <span key={i} />);
 
 const Intro = () => {
-  const { isMobile, isDesktop } = useScreenSize();
+  const { isMobile, isDesktop, isDesktopWide } = useScreenSize();
   const iconSize = isMobile ? 15 : 22;
+
+  const desktopIconSize = isDesktopWide ? 18 : 22;
 
   return (
     <Container>
@@ -859,13 +895,13 @@ const Intro = () => {
                     stroke="white"
                   />
                 </Button>
-                <PhoneBlock />
+                <PhoneBlock isDesktopWide={isDesktopWide} />
               </Info>
 
               <Features>
                 {FEATURES.map(({ bg, icon, title, desc }) => (
                   <Feature key={title}>
-                    <FeatureIcon $bg={bg}>{icon(22)}</FeatureIcon>
+                    <FeatureIcon $bg={bg}>{icon(desktopIconSize)}</FeatureIcon>
                     <FeatureText>
                       <FeatureTitle>{title}</FeatureTitle>
                       <FeatureDesc>{desc}</FeatureDesc>

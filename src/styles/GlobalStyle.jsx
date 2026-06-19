@@ -1,55 +1,23 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  @font-face {
+    font-family: "Glacial";
+    src: url("./fonts/GlacialIndifference-Regular.otf");
   }
 
-  html, body {
-    height: 100%;
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  @font-face {
+    font-family: "Glacial";
+    font-weight: bold;
+    src: url("./fonts/GlacialIndifference-Bold.otf");
   }
 
   body {
     line-height: 1.5;
+    font-family: "Glacial", sans-serif;
   }
 
-  ul, ol {
-    list-style: none;
-  }
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  button {
-    border: none;
-    background: none;
-    cursor: pointer;
-    font: inherit;
-  }
-
-  img, picture, video, canvas, svg {
-    display: block;
-    max-width: 100%;
-  }
-
-  input, button, textarea, select {
-    font: inherit;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    overflow-wrap: break-word;
-  }
-
-  #root {
-    isolation: isolate;
-  }
 `;
 
 export default GlobalStyle;

@@ -56,7 +56,7 @@ const Rect = styled.div`
   }
 `;
 
-const AnimatedShapes = () => {
+const AnimatedShapesMobile = () => {
   return (
     <>
       <Square />
@@ -66,4 +66,4 @@ const AnimatedShapes = () => {
   );
 };
 
-export default AnimatedShapes;
+export default AnimatedShapesMobile;

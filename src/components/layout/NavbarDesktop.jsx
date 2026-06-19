@@ -14,6 +14,7 @@ const Container = styled.div`
   left: 0;
   width: 100%;
   z-index: 999;
+  padding: 0% 1% 0% 1%;
   transition:
     background-color 0.3s ease,
     box-shadow 0.3s ease;
@@ -56,7 +57,7 @@ const WrapperLogo = styled.a`
   text-decoration: none;
   overflow: hidden;
   position: relative;
-  border: 1px solid red;
+  // border: 1px solid red;
   margin-right: 2%;
 
   &::after {
@@ -85,10 +86,11 @@ const WrapperLogo = styled.a`
 const Logo = styled.h1`
   font-weight: bold;
   text-decoration: underline crimson;
+  text-decoration-thickness: 3px;
   white-space: nowrap;
   color: black;
   transition: color 0.3s ease;
-  font-size: 33px;
+  // font-size: 33px;
   font-size: clamp(1.1375rem, 0.9206rem + 1.0847vw, 2.0625rem);
   // border: 2px solid purple;
 
@@ -97,16 +99,16 @@ const Logo = styled.h1`
   }
 
   @media ${theme.mediaQueries.isDesktopWide} {
-    font-size: clamp(1.4375rem, 0.8206rem + 1.0847vw, 2.0625rem);
+    font-size: clamp(1.4375rem, 0.8906rem + 1.0847vw, 2.0625rem);
     // font-size: 23px;
   }
 `;
 
 const LogoDown = styled.h1`
-  font-weight: bold;
+  font-weight: 900;
   // font-size: 12px;
   font-size: clamp(0.625rem, 0.5382rem + 0.434vw, 0.75rem);
-  top: -2px;
+  top: -9px;
   // left: 9px;
   left: 3%;
   position: relative;
@@ -120,9 +122,10 @@ const LogoDown = styled.h1`
   }
 
   @media ${theme.mediaQueries.isDesktopWide} {
-    font-size: clamp(0.625rem, 0.5382rem + 0.434vw, 0.75rem);
+    font-size: clamp(0.625rem, 0.3382rem + 0.434vw, 0.75rem);
+    top: -6px;
     // font-size: 10px;
-    // letter-spacing: 8px;
+    letter-spacing: 13px;
   }
 `;
 
@@ -130,10 +133,10 @@ const Menu = styled.ul`
   display: flex;
   // justify-content: end;
   justify-content: space-around;
-  // gap: 9%;
+  gap: 2%;
   list-style: none;
-  // margin-left: 2%;
-  border: 2px solid gray;
+  margin-left: 3%;
+  // border: 2px solid gray;
   width: 70%;
   // padding-right: 5%;
 
@@ -154,7 +157,7 @@ const MenuItem = styled.a`
   text-decoration: none;
   cursor: pointer;
   position: relative;
-  border: 1px solid red;
+  // border: 1px solid red;
   transition:
     background-color 0.2s ease,
     transform 0.2s ease;
@@ -178,6 +181,7 @@ const MenuItem = styled.a`
 const Button = styled.button`
   border: 2px solid white;
   padding: 10px 15px;
+  font-size: clamp(0.75rem, 0.75rem + 0.15vw, 0.875rem);
   background-color: crimson;
   color: white;
   font-weight: bold;
@@ -218,6 +222,11 @@ const Button = styled.button`
   &:active {
     background-color: rgb(248, 20, 20);
     transform: scale(0.97);
+  }
+
+  @media ${theme.mediaQueries.isDesktopWide} {
+    padding: 8px 15px;
+    font-size: clamp(0.75rem, 0.6rem + 0.15vw, 0.875rem);
   }
 `;
 
