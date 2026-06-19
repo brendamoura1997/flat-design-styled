@@ -8,7 +8,7 @@ import Contact from "./components/sections/Contact";
 import Footer from "./components/layout/Footer";
 import { useScreenSize } from "./hooks/useDevice";
 import { theme } from "./styles/theme.jsx";
-import GlobalStyle from "./styles/globalStyle.jsx"; //
+import GlobalStyle from "./styles/GlobalStyle.jsx";
 import ResetStyle from "./styles/resetStyle.jsx";
 
 const Container = styled.div`
