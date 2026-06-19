@@ -9,7 +9,7 @@ import Footer from "./components/layout/Footer";
 import { useScreenSize } from "./hooks/useDevice";
 import { theme } from "./styles/theme.jsx";
 import GlobalStyle from "./styles/GlobalStyle.jsx";
-import ResetStyle from "./styles/resetStyle.jsx";
+import ResetStyle from "./styles/ResetStyle.jsx";
 
 const Container = styled.div`
   height: 100vh;
