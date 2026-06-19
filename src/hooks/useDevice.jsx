@@ -29,14 +29,14 @@ export function useScreenSize(customBreakpoints = {}) {
       width >= breakpoints.tabletMaxWidth &&
       !isTablet &&
       ratio > breakpoints.desktop;
-    const isDesktopWide =
+    const desktopWide =
       isDesktop && ratio >= breakpoints.desktopWide && width <= 1300;
 
     return {
       isMobile,
       isTablet,
       isDesktop,
-      isDesktopWide,
+      desktopWide,
       aspectRatio: ratio,
     };
   }, [

@@ -19,40 +19,30 @@ const shine = keyframes`
 const Container = styled.div`
   height: 100%;
   display: flex;
-  // padding: 20px 20px 30px 60px;
   padding: 5% 1% 0% 3%;
-  // border: 4px solid blue;
-
   position: relative;
   overflow: hidden;
-
-  @media ${theme.mediaQueries.isDesktopWide} {
+  @media ${theme.mediaQueries.desktopWide} {
     padding: 0% 2% 0% 5%;
     height: 100%;
   }
-
   @media ${theme.mediaQueries.tablet} {
     padding: 10% 0 0 0;
     flex-direction: column;
   }
-
   @media ${theme.mediaQueries.tabletWide} {
     padding: 10% 0 0 0;
     flex-direction: column;
     height: 100%;
   }
-
   @media ${theme.mediaQueries.mobile} {
     flex-direction: column;
     padding: 15% 0 0 0;
   }
-
-  @media ${theme.mediaQueries.isMobileWide} {
-    height: fit-content;
-    flex-direction: column;
+  @media ${theme.mediaQueries.mobileWide} {
+    padding: 12% 0 0 0;
   }
 `;
-
 const Left = styled.div`
   width: 60%;
   display: flex;
@@ -60,49 +50,39 @@ const Left = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 5;
-  // border: 2px solid blue;
-
-  @media ${theme.mediaQueries.isDesktopWide} {
+  @media ${theme.mediaQueries.desktopWide} {
     padding: 10% 0% 0% 0%;
   }
-
   @media only screen and (max-aspect-ratio: 1000/1000) {
     width: 100%;
     height: auto;
-    // margin-top: 0;
     align-items: flex-start;
   }
 `;
-
 const LeftContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 85%;
-  // border: 2px solid red;
-
   @media only screen and (max-aspect-ratio: 1000/1000) {
     width: 100%;
   }
-  @media ${theme.mediaQueries.isDesktopWide} {
+  @media ${theme.mediaQueries.desktopWide} {
     width: 100%;
   }
 `;
-
 const TopSection = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 6%;
   position: relative;
 `;
-
 const Tagline = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 16px;
 `;
-
 const TaglineDash = styled.span`
   display: inline-block;
   width: 22px;
@@ -111,95 +91,86 @@ const TaglineDash = styled.span`
   border-radius: 2px;
   flex-shrink: 0;
 `;
-
 const Subtitle = styled.p`
-  font-size: 13.6px;
+  font-size: clamp(0.7225rem, 0.7225rem + 0.15vw, 0.85rem);
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
   color: #f53b5a;
-
-  @media ${theme.mediaQueries.isDesktopWide} {
-    font-size: 9.6px;
+  @media ${theme.mediaQueries.desktopWide} {
+    font-size: clamp(0.51rem, 0.51rem + 0.11vw, 0.6rem);
   }
-
   @media ${theme.mediaQueries.tablet} {
-    font-size: 13.6px;
+    font-size: clamp(0.7225rem, 0.7225rem + 0.15vw, 0.85rem);
   }
   @media ${theme.mediaQueries.mobile} {
-    font-size: 12px;
+    font-size: clamp(0.6375rem, 0.6375rem + 0.13vw, 0.75rem);
     line-height: 12px;
     letter-spacing: 2px;
   }
 `;
-
 const Title = styled.h1`
   width: 80vw;
-  font-size: 72px;
+  font-size: clamp(3.825rem, 3.825rem + 0.81vw, 4.5rem);
   line-height: 75.2px;
   font-weight: 900;
   color: #1a1a2e;
-  // margin: 0 0 20px;
   margin: 0 0 2% 0;
   span {
     color: #de113a;
   }
-  @media ${theme.mediaQueries.isDesktopWide} {
-    font-size: 55.2px;
+  @media ${theme.mediaQueries.desktopWide} {
+    font-size: clamp(2.9325rem, 2.9325rem + 0.62vw, 3.45rem);
     line-height: 55.8px;
   }
-
   @media ${theme.mediaQueries.tablet} {
     width: 80%;
-    font-size: 78.2px;
+    font-size: clamp(4.154rem, 4.154rem + 0.88vw, 4.8875rem);
     line-height: 75.8px;
     margin-bottom: 3%;
   }
   @media ${theme.mediaQueries.mobile} {
     width: 100%;
-    font-size: 48.2px;
+    font-size: clamp(2.561rem, 2.561rem + 0.54vw, 3.0125rem);
     line-height: 50.2px;
     margin-bottom: 4%;
   }
   @media ${theme.mediaQueries.smallMobile} {
     width: 100%;
-    font-size: 40.2px;
+    font-size: clamp(2.136rem, 2.936rem + 0.95vw, 2.5125rem);
     line-height: 40.2px;
     margin-bottom: 4%;
   }
 `;
-
 const Desc = styled.p`
   width: 62%;
-  font-size: 17.6px;
+  font-size: clamp(0.935rem, 0.935rem + 0.2vw, 1.1rem);
   line-height: 1.65;
   color: #444;
-  // margin: 0 0 44px;
   margin: 0 0 4%;
-  @media ${theme.mediaQueries.isDesktopWide} {
+  @media ${theme.mediaQueries.desktopWide} {
     width: 62%;
-    font-size: 14.6px;
+    font-size: clamp(0.7756rem, 0.7756rem + 0.16vw, 0.9125rem);
     line-height: 1.65;
     margin: 0 0 4%;
   }
   @media ${theme.mediaQueries.tablet} {
     width: 69%;
-    font-size: 20.6px;
+    font-size: clamp(1.0944rem, 1.0944rem + 0.23vw, 1.2875rem);
     line-height: 30.4px;
     margin-bottom: 0;
   }
   @media ${theme.mediaQueries.mobile} {
     width: 80%;
-    font-size: 15px;
+    font-size: clamp(0.7969rem, 0.7969rem + 0.17vw, 0.9375rem);
     line-height: 22.4px;
     margin-bottom: 0;
   }
   @media ${theme.mediaQueries.smallMobile} {
-    font-size: 13px;
+    font-size: clamp(0.6906rem, 0.8906rem + 0.19vw, 0.8125rem);
     line-height: 18px;
   }
 `;
-
 const ActionSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -210,7 +181,6 @@ const ActionSection = styled.div`
     margin-top: 0%;
   }
 `;
-
 const Button = styled.button`
   display: flex;
   align-items: center;
@@ -221,7 +191,7 @@ const Button = styled.button`
   color: white;
   border-radius: 8px;
   font-weight: 700;
-  font-size: 14.4px;
+  font-size: clamp(0.765rem, 0.765rem + 0.16vw, 0.9rem);
   border: none;
   letter-spacing: 2px;
   cursor: pointer;
@@ -259,12 +229,13 @@ const Button = styled.button`
     background: #3131de;
     transform: scale(0.98);
   }
+
   &:focus-visible {
     outline: 2px solid #5b5bd6;
     outline-offset: 3px;
   }
-  @media ${theme.mediaQueries.isDesktopWide} {
-    font-size: 12.4px;
+  @media ${theme.mediaQueries.desktopWide} {
+    font-size: clamp(0.6588rem, 0.6588rem + 0.14vw, 0.775rem);
     padding: 13px 18px;
   }
   @media ${theme.mediaQueries.tablet} {
@@ -282,14 +253,13 @@ const Button = styled.button`
     width: fit-content;
     justify-content: flex-start;
     padding: 3% 4%;
-    font-size: 12.4px;
+    font-size: clamp(0.6588rem, 0.6588rem + 0.14vw, 0.775rem);
   }
   @media ${theme.mediaQueries.smallMobile} {
-    font-size: 10px;
+    font-size: clamp(0.5313rem, 0.7313rem + 0.15vw, 0.625rem);
     line-height: 16px;
   }
 `;
-
 const MobileContact = styled.div`
   width: fit-content;
   display: flex;
@@ -301,10 +271,12 @@ const MobileContact = styled.div`
     margin-bottom: 4%;
   }
   @media ${theme.mediaQueries.tablet} {
+    margin-bottom: 0%;
+  }
+  @media ${theme.mediaQueries.mobile} {
     margin-bottom: 3%;
   }
 `;
-
 const PhoneIconWrap = styled.div`
   width: 46px;
   height: 46px;
@@ -318,70 +290,60 @@ const PhoneIconWrap = styled.div`
   transition:
     background-color 0.18s ease,
     transform 0.12s ease;
-
-  @media ${theme.mediaQueries.isDesktopWide} {
+  @media ${theme.mediaQueries.desktopWide} {
     width: 40px;
     height: 40px;
   }
-
   @media only screen and (max-aspect-ratio: 1) {
     width: 40px;
     height: 40px;
   }
 `;
-
 const ContactText = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
 const Phone = styled.span`
   color: #de113a;
   font-weight: 700;
-  font-size: 15.2px;
+  font-size: clamp(0.8075rem, 0.8075rem + 0.17vw, 0.95rem);
   transition: color 0.18s ease;
   @media ${theme.mediaQueries.tablet} {
-    font-size: 20px;
+    font-size: clamp(1.0625rem, 1.0625rem + 0.23vw, 1.25rem);
   }
   @media ${theme.mediaQueries.mobile} {
-    font-size: 16.4px;
+    font-size: clamp(0.8713rem, 0.8713rem + 0.18vw, 1.025rem);
   }
   @media ${theme.mediaQueries.smallMobile} {
-    font-size: 14px;
+    font-size: clamp(0.7438rem, 0.9438rem + 0.19vw, 0.875rem);
   }
 `;
-
 const PhoneSub = styled.span`
   color: #888;
-  font-size: 13.12px;
+  font-size: clamp(0.697rem, 0.697rem + 0.15vw, 0.82rem);
   margin-top: 2%;
-
-  @media ${theme.mediaQueries.isDesktopWide} {
+  @media ${theme.mediaQueries.desktopWide} {
     margin-top: 0px;
   }
-
   @media ${theme.mediaQueries.tablet} {
-    font-size: 19px;
+    font-size: clamp(1.0094rem, 1.0094rem + 0.21vw, 1.1875rem);
   }
-
   @media ${theme.mediaQueries.mobile} {
-    font-size: 15px;
+    font-size: clamp(0.7969rem, 0.7969rem + 0.17vw, 0.9375rem);
   }
   @media ${theme.mediaQueries.smallMobile} {
-    font-size: 12px;
+    font-size: clamp(0.6375rem, 0.9375rem + 0.19vw, 0.75rem);
   }
 `;
-
 const Info = styled.div`
   display: flex;
   align-items: center;
   gap: 36px;
   margin-bottom: 8%;
-  @media ${theme.mediaQueries.isDesktopWide} {
+  @media ${theme.mediaQueries.desktopWide} {
     gap: 26px;
   }
 `;
-
 const MobileImageSection = styled.div`
   display: block;
   position: absolute;
@@ -394,12 +356,11 @@ const MobileImageSection = styled.div`
     bottom: 0%;
     height: 50%;
   }
-  @media ${theme.mediaQueries.isMobileWide} {
+  @media ${theme.mediaQueries.mobileWide} {
     position: relative;
     height: 28vh;
   }
 `;
-
 const WomanImage = styled.img`
   position: absolute;
   bottom: 0;
@@ -430,12 +391,14 @@ const WomanImage = styled.img`
     width: 40%;
     height: 40%;
   }
-  @media ${theme.mediaQueries.isMobileWide} {
+  @media ${theme.mediaQueries.mobileWide} {
     bottom: 0%;
     height: 100%;
+    object-fit: contain;
+    object-position: right bottom;
+    right: 2%;
   }
 `;
-
 const PhantomDiv = styled.div`
   display: none;
   @media ${theme.mediaQueries.tabletWide} {
@@ -444,21 +407,21 @@ const PhantomDiv = styled.div`
     height: 32vh;
   }
 `;
-
 const MobileBottomCard = styled.div`
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: start;
   gap: 14px;
   background-color: rgba(255, 255, 255, 0.98);
   border-radius: 14px;
-  padding: 3% 3%;
+  padding: 3% 4%;
   position: absolute;
   bottom: 10%;
   left: 7%;
   width: calc(56% - 8px);
   z-index: 3;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  width: fit-content;
 
   @media ${theme.mediaQueries.tabletWide} {
     width: 30%;
@@ -466,12 +429,18 @@ const MobileBottomCard = styled.div`
     bottom: 5%;
   }
 
+  @media ${theme.mediaQueries.mobile} {
+    justify-content: center;
+    padding: 3% 3%;
+    max-width: 53%;
+  }
   @media ${theme.mediaQueries.smallMobile} {
-    bottom: 30%;
+    bottom: 10%;
     padding: 2% 2%;
+    max-width: 56%;
+    left: 5%;
   }
 `;
-
 const MobileDotGrid = styled.div`
   display: none;
   @media only screen and (max-aspect-ratio: 1000/1000) {
@@ -506,19 +475,13 @@ const MobileDotGrid = styled.div`
     }
   }
 `;
-
 const Features = styled.div`
   display: flex;
-  // gap: 36px;
   gap: 5%;
   border-radius: 8px;
-  // border: 1px solid red;
   width: 100%;
-
-  @media ${theme.mediaQueries.isDesktopWide} {
+  @media ${theme.mediaQueries.desktopWide} {
     width: 93%;
-    // padding: 3% 3% 3% 0%;
-    // gap: 18px;
     gap: 4%;
     margin-bottom: 8%;
   }
@@ -526,13 +489,11 @@ const Features = styled.div`
     display: none;
   }
 `;
-
 const Feature = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 14px;
 `;
-
 const FeatureIcon = styled.div`
   width: 46px;
   height: 46px;
@@ -546,55 +507,52 @@ const FeatureIcon = styled.div`
     width: 40px;
     height: 40px;
   }
-  @media ${theme.mediaQueries.isDesktopWide} {
+  @media ${theme.mediaQueries.desktopWide} {
     width: 35px;
     height: 35px;
   }
 `;
-
 const FeatureText = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
 const FeatureTitle = styled.span`
   font-weight: 700;
-  font-size: 15.2px;
+  font-size: clamp(0.8075rem, 0.8075rem + 0.17vw, 0.95rem);
   color: #1a1a2e;
   @media ${theme.mediaQueries.tablet} {
-    font-size: 20.4px;
+    font-size: clamp(1.0838rem, 1.0838rem + 0.23vw, 1.275rem);
   }
   @media ${theme.mediaQueries.mobile} {
-    font-size: 15.4px;
+    font-size: clamp(0.8181rem, 0.8181rem + 0.17vw, 0.9625rem);
   }
   @media ${theme.mediaQueries.smallMobile} {
-    font-size: 14px;
+    font-size: clamp(0.7438rem, 0.9438rem + 0.19vw, 0.875rem);
   }
 `;
-
 const FeatureDesc = styled.span`
-  font-size: 13.12px;
+  font-size: clamp(0.697rem, 0.697rem + 0.15vw, 0.82rem);
   color: #888;
-  margin-top: 4px;
+  // margin-top: 4px;
+  margin-top: 1%;
   max-width: 130px;
   line-height: 1.45;
-  @media ${theme.mediaQueries.isDesktopWide} {
+  @media ${theme.mediaQueries.desktopWide} {
     line-height: 1.35;
   }
   @media ${theme.mediaQueries.tablet} {
-    font-size: 19px;
+    font-size: clamp(1.0094rem, 1.0094rem + 0.21vw, 1.1875rem);
     max-width: 100%;
   }
   @media ${theme.mediaQueries.mobile} {
-    font-size: 15px;
+    font-size: clamp(0.7969rem, 0.7969rem + 0.17vw, 0.9375rem);
     max-width: 100%;
   }
   @media ${theme.mediaQueries.smallMobile} {
-    font-size: 12px;
+    font-size: clamp(0.6375rem, 0.9375rem + 0.19vw, 0.75rem);
     line-height: 18px;
   }
 `;
-
 const Right = styled.div`
   width: 40%;
   height: 115%;
@@ -604,14 +562,11 @@ const Right = styled.div`
   justify-content: center;
   z-index: 4;
   top: 2%;
-  // border: 1px solid green;
-
-  @media ${theme.mediaQueries.isDesktopWide} {
+  @media ${theme.mediaQueries.desktopWide} {
     top: 3%;
     height: 100%;
   }
 `;
-
 const Image = styled.img`
   position: absolute;
   z-index: 5;
@@ -620,9 +575,7 @@ const Image = styled.img`
   height: 100%;
   object-fit: contain;
   object-position: bottom center;
-  // border: 1px solid blue;
 `;
-
 const DotGrid = styled.div`
   position: absolute;
   display: grid;
@@ -642,29 +595,29 @@ const DotGrid = styled.div`
   @media only screen and (max-aspect-ratio: 1000/1000) {
     display: none;
   }
-  @media ${theme.mediaQueries.isDesktopWide} {
+  @media ${theme.mediaQueries.desktopWide} {
     gap: 3px;
     grid-template-columns: repeat(${({ $cols }) => $cols || 5}, 5px);
-
     span {
       width: 4px;
       height: 4px;
     }
   }
 `;
-
 const MobileFeatureRow = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  margin-bottom: 3%;
+  margin-bottom: 0%;
   padding: 0% 1% 1% 0%;
   z-index: 5;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.95);
   width: fit-content;
+  @media ${theme.mediaQueries.mobile} {
+    margin-bottom: 2%;
+  }
 `;
-
 const Contact = styled.a`
   display: flex;
   align-items: center;
@@ -783,12 +736,12 @@ const DescBlock = () => (
   </Desc>
 );
 
-const PhoneBlock = ({ mobile, isDesktopWide }) => (
+const PhoneBlock = ({ mobile, desktopWide }) => (
   <Contact href="#">
     <PhoneIconWrap>
       <PhoneIcon
-        width={mobile ? 18 : isDesktopWide ? 20 : 22}
-        height={mobile ? 18 : isDesktopWide ? 20 : 22}
+        width={mobile ? 18 : desktopWide ? 20 : 22}
+        height={mobile ? 18 : desktopWide ? 20 : 22}
         viewBox="0 0 24 24"
         color="#f53b5a"
         stroke="#f53b5a"
@@ -809,10 +762,10 @@ const dots = (count) =>
   Array.from({ length: count }).map((_, i) => <span key={i} />);
 
 const Intro = () => {
-  const { isMobile, isDesktop, isDesktopWide } = useScreenSize();
+  const { isMobile, isDesktop, desktopWide } = useScreenSize();
   const iconSize = isMobile ? 15 : 22;
 
-  const desktopIconSize = isDesktopWide ? 18 : 22;
+  const desktopIconSize = desktopWide ? 18 : 22;
 
   return (
     <Container>
@@ -895,7 +848,7 @@ const Intro = () => {
                     stroke="white"
                   />
                 </Button>
-                <PhoneBlock isDesktopWide={isDesktopWide} />
+                <PhoneBlock desktopWide={desktopWide} />
               </Info>
 
               <Features>

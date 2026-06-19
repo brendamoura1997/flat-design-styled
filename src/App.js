@@ -15,7 +15,7 @@ const Container = styled.div`
   height: 100vh;
   overflow: hidden;
   position: relative;
-  @media ${theme.mediaQueries.isMobileWide} {
+  @media ${theme.mediaQueries.mobileWide} {
     height: fit-content;
   }
 `;
@@ -25,13 +25,13 @@ const ContainerIntro = styled.div`
   overflow: hidden;
   position: relative;
 
-  @media ${theme.mediaQueries.isDesktopWide} {
+  @media ${theme.mediaQueries.desktopWide} {
     height: 100vh;
   }
   @media ${theme.mediaQueries.tabletWide} {
     height: fit-content;
   }
-  @media ${theme.mediaQueries.isMobileWide} {
+  @media ${theme.mediaQueries.mobileWide} {
     height: fit-content;
   }
 `;
