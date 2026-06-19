@@ -7,9 +7,9 @@ import Price from "./components/sections/Price";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/layout/Footer";
 import { useScreenSize } from "./hooks/useDevice";
-import { theme } from "./styles/theme.jsx";
-import GlobalStyle from "./styles/GlobalStyle.jsx";
-import ResetStyle from "./styles/ResetStyle.jsx";
+import { theme } from "./styles/theme";
+import GlobalStyle from "./styles/GlobalStyle";
+import ResetStyle from "./styles/resetStyle";
 
 const Container = styled.div`
   height: 100vh;
