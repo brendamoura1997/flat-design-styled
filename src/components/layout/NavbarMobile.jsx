@@ -165,49 +165,113 @@ const Panel = styled.div`
   display: flex;
   flex-direction: column;
   //   justify-content: space-between;
-  padding: 4% 4% 0%;
+  padding: 4% 4% 3%;
 
   @media ${theme.mediaQueries.mobile} {
-    width: 75%;
-    padding: 6% 6% 0%;
+    width: 80%;
+    padding: 4% 4% 3%;
   }
 
   @media ${theme.mediaQueries.smallMobile} {
     width: 85%;
-    padding: 4% 5% 6%;
+    padding: 4% 4% 3%;
   }
 `;
 
 const PanelHeader = styled.div`
-  //   display: flex;
-  //   align-items: flex-start;
-  //   justify-content: space-between;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 
-  border: 1px solid red;
+  // border: 1px solid red;
 `;
+const LeftHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  // border: 1px solid blue;
+`;
+const RightHeader = styled.div``;
 
 const PanelLogoBlock = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  cursor: pointer;
+  text-decoration: none;
+  overflow: hidden;
+  position: relative;
+  // border: 1px solid red;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.55) 50%,
+      transparent 80%
+    );
+    transform: skewX(-15deg);
+    animation: none;
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    animation: ${shine} 1.2s ease forwards;
+  }
 `;
 
 const PanelLogo = styled.h1`
   font-weight: bold;
   text-decoration: underline crimson;
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 4px;
   white-space: nowrap;
   color: black;
-  font-size: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
+  transition: color 0.3s ease;
+  // font-size: 46px;
+  font-size: clamp(1.5rem, 1.2rem + 3vw, 35rem);
   line-height: 1.1;
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 30px;
+    text-decoration-thickness: 3px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    font-size: 24px;
+    text-decoration-thickness: 2px;
+  }
 `;
 
 const PanelLogoDown = styled.h1`
   font-weight: 900;
-  font-size: 0.75rem;
+  // font-size: 20px;
+  font-size: clamp(0.625rem, 0.6rem + 1vw, 1.5rem);
   top: -4px;
   position: relative;
-  letter-spacing: 13px;
+  letter-spacing: 22px;
+  margin-left: 3%;
   color: crimson;
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 13px;
+    letter-spacing: 14px;
+    top: -2px;
+    font-weight: 700;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    font-size: 10px;
+    letter-spacing: 12px;
+    top: -1px;
+  }
 `;
 
 const CloseButton = styled.button`
@@ -225,8 +289,9 @@ const CloseButton = styled.button`
 `;
 
 const Description = styled.p`
-  margin-top: 6%;
-  font-size: 0.9375rem;
+  margin-top: 4%;
+  // font-size: 22px;
+  font-size: clamp(0.8125rem, 0.7rem + 1.3vw, 1.75rem);
   color: #333;
   line-height: 1.5;
 
@@ -234,12 +299,21 @@ const Description = styled.p`
     color: crimson;
     font-weight: 900;
   }
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 15px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    margin-top: 3%;
+    font-size: 13px;
+  }
 `;
 
 const Divider = styled.hr`
   width: 100%;
   border: none;
-  border-top: 1px solid #e6e6e6;
+  border-top: 1px solid #dadada;
   margin: 6% 0%;
 `;
 
@@ -279,14 +353,23 @@ const MenuItem = styled.a`
 `;
 
 const IconWrapper = styled.div`
-  width: 42px;
-  height: 42px;
-  min-width: 42px;
-  border-radius: 12px;
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: ${({ $bg }) => $bg};
+
+  @media ${theme.mediaQueries.mobile} {
+    width: 42px;
+    height: 42px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 const MenuItemLabel = styled.span`
@@ -296,7 +379,11 @@ const MenuItemLabel = styled.span`
   color: ${({ $active }) => ($active ? "crimson" : "#1a1a1a")};
 
   @media ${theme.mediaQueries.mobile} {
-    font-size: 12px;
+    font-size: 15px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    font-size: 14px;
   }
 `;
 
@@ -317,50 +404,99 @@ const ContainerContact = styled.div`
 const ContactCard = styled.div`
   //   margin-top: 8%;
   background-color: #fdecee;
-  border-radius: 16px;
-  padding: 6%;
+  border-radius: 8px;
+  padding: 5%;
   display: flex;
   align-items: flex-start;
   gap: 5%;
+
+  @media ${theme.mediaQueries.mobile} {
+    padding: 4%;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    padding: 4% 3%;
+  }
 `;
 
 const ContactIconCircle = styled.div`
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 2%;
+
+  @media ${theme.mediaQueries.mobile} {
+    width: 42px;
+    height: 42px;
+  }
+  @media ${theme.mediaQueries.smallMobile} {
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 const ContactTitle = styled.p`
-  font-weight: bold;
-  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 22px;
   color: #1a1a1a;
-  margin-bottom: 2%;
+  // margin-bottom: 1%;
+
+  @media ${theme.mediaQueries.mobile} {
+    letter-spacing: 0.5px;
+    font-size: 15px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    letter-spacing: 0px;
+    font-size: 14px;
+  }
 `;
 
 const ContactPhone = styled.p`
   font-weight: 900;
-  font-size: 1.25rem;
+  letter-spacing: 1px;
+  font-size: 23px;
   color: crimson;
-  margin-bottom: 3%;
+  margin-bottom: 2%;
+
+  @media ${theme.mediaQueries.mobile} {
+    letter-spacing: 0.5px;
+    font-size: 16px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    letter-spacing: 0px;
+    font-size: 15px;
+  }
 `;
 
 const ContactNote = styled.p`
-  font-size: 0.875rem;
+  font-size: 20px;
   color: #555;
   line-height: 1.4;
+
+  @media ${theme.mediaQueries.mobile} {
+    line-height: 1.2;
+    font-size: 15px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    line-height: 1;
+    font-size: 12px;
+  }
 `;
 
 const SubscribeButton = styled.a`
   margin-top: 5%;
   background-color: crimson;
   color: white;
-  border-radius: 16px;
-  padding: 6%;
+  border-radius: 8px;
+  padding: 4%;
   display: flex;
   align-items: center;
   gap: 5%;
@@ -396,17 +532,32 @@ const SubscribeButton = styled.a`
     background-color: rgb(248, 20, 20);
     transform: scale(0.98);
   }
+
+  @media ${theme.mediaQueries.mobile} {
+    padding: 4%;
+  }
+  @media ${theme.mediaQueries.smallMobile} {
+    padding: 4% 3%;
+  }
 `;
 
 const SubscribeIconCircle = styled.div`
   width: 44px;
   height: 44px;
-  min-width: 44px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media ${theme.mediaQueries.mobile} {
+    width: 42px;
+    height: 42px;
+  }
+  @media ${theme.mediaQueries.smallMobile} {
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 const SubscribeTextBlock = styled.div`
@@ -415,25 +566,121 @@ const SubscribeTextBlock = styled.div`
 
 const SubscribeTitle = styled.p`
   font-weight: 900;
-  font-size: 1rem;
-  letter-spacing: 0.5px;
+  font-size: 22px;
+  letter-spacing: 1px;
+
+  @media ${theme.mediaQueries.mobile} {
+    letter-spacing: 0.5px;
+    font-size: 16px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    letter-spacing: 0px;
+    font-size: 14px;
+  }
 `;
 
 const SubscribeSubtitle = styled.p`
-  font-size: 0.8125rem;
+  font-size: 20px;
   margin-top: 1%;
   opacity: 0.95;
   line-height: 1.35;
+
+  @media ${theme.mediaQueries.mobile} {
+    line-height: 1.2;
+    font-size: 15px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    line-height: 1.1;
+    font-size: 13px;
+  }
 `;
 
 const Footer = styled.p`
   //   margin-top: 8%;
   text-align: center;
-  font-size: 0.75rem;
+  font-size: 20px;
   color: #999;
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 14px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    font-size: 12px;
+  }
 `;
 
-/* ---------- Ícones SVG inline ---------- */
+const MobileDotGrid = styled.div`
+  display: none;
+  @media only screen and (max-aspect-ratio: 1000/1000) {
+    display: grid;
+    grid-template-columns: repeat(4, 6px);
+    gap: 13px;
+    position: absolute;
+    opacity: 0.55;
+    ${({ $pos }) => $pos === "tr" && `top: 11.5%; right: 15%;`}
+    span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: ${({ $color }) => $color || "#f53b5a"};
+      display: block;
+    }
+
+    @media ${theme.mediaQueries.mobile} {
+      gap: 6px;
+      grid-template-columns: repeat(4, 5px);
+      ${({ $pos }) => $pos === "tr" && `top: 10%; right: 11%;`}
+      span {
+        width: 4px;
+        height: 4px;
+      }
+    }
+    @media ${theme.mediaQueries.smallMobile} {
+      ${({ $pos }) => $pos === "tr" && `top: 11%; right: 11%;`}
+    }
+  }
+`;
+
+const Rect = styled.div`
+  width: 50px;
+  height: 90px;
+  background-color: #669966;
+  border-radius: 6px;
+  opacity: 0.5;
+  position: absolute;
+  top: 6%;
+  right: 6%;
+  // top: 370px;
+  // left: -20px;
+  // z-index: -1;
+
+  @media ${theme.mediaQueries.mobile} {
+    width: 28px;
+    height: 45px;
+  }
+`;
+
+const Circle = styled.div`
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #ff97af;
+  position: absolute;
+  top: 5%;
+  right: 24%;
+
+  @media ${theme.mediaQueries.mobile} {
+    width: 35px;
+    height: 35px;
+    right: 21%;
+  }
+`;
+
+const dots = (count) =>
+  Array.from({ length: count }).map((_, i) => <span key={i} />);
 
 const CloseIcon = () => (
   <svg
@@ -591,16 +838,23 @@ const NavbarMobile = () => {
               <CloseIcon />
             </CloseButton>
             <PanelHeader>
-              <PanelLogoBlock>
-                <PanelLogo>FLAT DESIGN</PanelLogo>
-                <PanelLogoDown>STYLED</PanelLogoDown>
-              </PanelLogoBlock>
+              <LeftHeader>
+                <PanelLogoBlock>
+                  <PanelLogo>FLAT DESIGN</PanelLogo>
+                  <PanelLogoDown>STYLED</PanelLogoDown>
+                </PanelLogoBlock>
 
-              <Description>
-                Design que gera <span>impacto</span>.
-                <br />
-                Soluções que transformam.
-              </Description>
+                <Description>
+                  Design que gera <span>impacto</span>.
+                  <br />
+                  Soluções que transformam.
+                </Description>
+              </LeftHeader>
+              <RightHeader>
+                <Circle />
+                <Rect />
+                <MobileDotGrid $pos="tr">{dots(16)}</MobileDotGrid>
+              </RightHeader>
             </PanelHeader>
 
             <Divider />
@@ -638,11 +892,7 @@ const NavbarMobile = () => {
                 <div>
                   <ContactTitle>Ligue para nós</ContactTitle>
                   <ContactPhone>(11) 91234 – 5678</ContactPhone>
-                  <ContactNote>
-                    Para qualquer dúvida
-                    <br />
-                    ou sugestão
-                  </ContactNote>
+                  <ContactNote>Para qualquer dúvida ou sugestão</ContactNote>
                 </div>
               </ContactCard>
 
