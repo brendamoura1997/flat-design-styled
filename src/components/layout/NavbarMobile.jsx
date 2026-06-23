@@ -169,12 +169,12 @@ const Panel = styled.div`
 
   @media ${theme.mediaQueries.mobile} {
     width: 80%;
-    padding: 4% 4% 3%;
+    padding: 6% 5% 3%;
   }
 
   @media ${theme.mediaQueries.smallMobile} {
     width: 85%;
-    padding: 4% 4% 3%;
+    padding: 5% 5% 3%;
   }
 `;
 
@@ -236,7 +236,7 @@ const PanelLogo = styled.h1`
   color: black;
   transition: color 0.3s ease;
   // font-size: 46px;
-  font-size: clamp(1.5rem, 1.2rem + 3vw, 35rem);
+  font-size: clamp(1.5rem, 1.5rem + 2.7vw, 3rem);
   line-height: 1.1;
 
   @media ${theme.mediaQueries.mobile} {
@@ -253,8 +253,8 @@ const PanelLogo = styled.h1`
 const PanelLogoDown = styled.h1`
   font-weight: 900;
   // font-size: 20px;
-  font-size: clamp(0.625rem, 0.6rem + 1vw, 1.5rem);
-  top: -4px;
+  font-size: clamp(0.625rem, 0.6rem + 1.2vw, 1.5rem);
+  top: -3px;
   position: relative;
   letter-spacing: 22px;
   margin-left: 3%;
@@ -291,7 +291,7 @@ const CloseButton = styled.button`
 const Description = styled.p`
   margin-top: 4%;
   // font-size: 22px;
-  font-size: clamp(0.8125rem, 0.7rem + 1.3vw, 1.75rem);
+  font-size: clamp(0.8125rem, 0.7rem + 1.3vw, 1.45rem);
   color: #333;
   line-height: 1.5;
 
@@ -322,7 +322,7 @@ const MenuList = styled.nav`
   flex-direction: column;
   //   gap: 4%;
   gap: 1vh;
-  border: 1px solid green;
+  // border: 1px solid green;
   height: max-content;
 `;
 
@@ -332,7 +332,7 @@ const MenuItem = styled.a`
   gap: 5%;
   text-decoration: none;
   cursor: pointer;
-  padding: 5% 5%;
+  padding: 4%;
   border-radius: 8px;
   background-color: ${({ $active }) => ($active ? "#fdecee" : "#fafafa")};
   transition:
@@ -344,11 +344,11 @@ const MenuItem = styled.a`
   }
 
   @media ${theme.mediaQueries.mobile} {
-    padding: 5% 5%;
+    padding: 4%;
   }
 
   @media ${theme.mediaQueries.smallMobile} {
-    padding: 3% 3%;
+    padding: 3%;
   }
 `;
 
@@ -397,7 +397,7 @@ const ContainerContact = styled.div`
   width: 100%;
   //   margin-top: 10%;
   //   margin-top: auto;
-  border: 2px solid purple;
+  // border: 1px solid purple;
   bottom: 0;
 `;
 
@@ -405,7 +405,7 @@ const ContactCard = styled.div`
   //   margin-top: 8%;
   background-color: #fdecee;
   border-radius: 8px;
-  padding: 5%;
+  padding: 4%;
   display: flex;
   align-items: flex-start;
   gap: 5%;
@@ -617,10 +617,11 @@ const MobileDotGrid = styled.div`
   @media only screen and (max-aspect-ratio: 1000/1000) {
     display: grid;
     grid-template-columns: repeat(4, 6px);
-    gap: 13px;
+    // gap: 10px;
+    gap: clamp(6px, 8px + 0.5vw, 15px);
     position: absolute;
     opacity: 0.55;
-    ${({ $pos }) => $pos === "tr" && `top: 11.5%; right: 15%;`}
+    ${({ $pos }) => $pos === "tr" && `top: 12%; right: 13%;`}
     span {
       width: 6px;
       height: 6px;
@@ -639,7 +640,9 @@ const MobileDotGrid = styled.div`
       }
     }
     @media ${theme.mediaQueries.smallMobile} {
-      ${({ $pos }) => $pos === "tr" && `top: 11%; right: 11%;`}
+      gap: 5px;
+      grid-template-columns: repeat(4, 4px);
+      ${({ $pos }) => $pos === "tr" && `top: 11.5%; right: 11%;`}
     }
   }
 `;
@@ -648,18 +651,21 @@ const Rect = styled.div`
   width: 50px;
   height: 90px;
   background-color: #669966;
-  border-radius: 6px;
+  border-radius: 4px;
   opacity: 0.5;
   position: absolute;
   top: 6%;
   right: 6%;
-  // top: 370px;
-  // left: -20px;
-  // z-index: -1;
 
   @media ${theme.mediaQueries.mobile} {
     width: 28px;
     height: 45px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    width: 23px;
+    height: 40px;
+    top: 6.5%;
   }
 `;
 
@@ -676,6 +682,13 @@ const Circle = styled.div`
     width: 35px;
     height: 35px;
     right: 21%;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    width: 30px;
+    height: 30px;
+    top: 5.5%;
+    right: 20%;
   }
 `;
 
@@ -917,7 +930,6 @@ const NavbarMobile = () => {
                     Vamos conversar sobre o seu projeto
                   </SubscribeSubtitle>
                 </SubscribeTextBlock>
-                <ChevronIcon />
               </SubscribeButton>
             </ContainerContact>
             <Divider />
