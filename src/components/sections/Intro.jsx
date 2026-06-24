@@ -39,6 +39,7 @@ const Container = styled.div`
     flex-direction: column;
     padding: 15% 0 0 0;
   }
+
   @media ${theme.mediaQueries.mobileWide} {
     padding: 12% 0 0 0;
   }
@@ -76,6 +77,14 @@ const TopSection = styled.div`
   flex-direction: column;
   padding: 0 6%;
   position: relative;
+
+  @media ${theme.mediaQueries.mobile} {
+    padding: 4% 6% 0;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    padding: 7% 6% 0;
+  }
 `;
 const Tagline = styled.div`
   display: flex;

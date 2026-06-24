@@ -1,6 +1,7 @@
 import styled, { keyframes, createGlobalStyle } from "styled-components";
 import { useState, useEffect } from "react";
 import { theme } from "../../styles/theme";
+import { useScreenSize } from "../../hooks/useDevice";
 import HomeIcon from "../icons/HomeIcon";
 import PurseIcon from "../icons/PurseIcon";
 import StarIcon from "../icons/StarIcon";
@@ -24,7 +25,6 @@ const fadeIn = keyframes`
   to   { opacity: 1; }
 `;
 
-/* Trava o scroll do body quando o menu está aberto */
 const GlobalLockStyle = createGlobalStyle`
   body {
     overflow: ${({ $locked }) => ($locked ? "hidden" : "auto")};
@@ -32,7 +32,7 @@ const GlobalLockStyle = createGlobalStyle`
 `;
 
 const Container = styled.div`
-  height: 9%;
+  height: 8%;
   position: fixed;
   top: 0;
   left: 0;
@@ -43,12 +43,16 @@ const Container = styled.div`
     background-color 0.3s ease,
     box-shadow 0.3s ease;
   background-color: ${({ $scrolled }) =>
-    $scrolled ? "rgba(255, 255, 255, 0.99)" : "rgba(255, 255, 255, 0.99)"};
+    $scrolled ? "rgba(255, 255, 255, 0.99)" : "none"};
   box-shadow: ${({ $scrolled }) =>
     $scrolled ? "0 2px 10px rgba(0,0,0,0.15)" : "none"};
 
-  @media ${theme.mediaQueries.tablet} {
-    height: 8%;
+  @media ${theme.mediaQueries.mobile} {
+    height: 7%;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    height: 9%;
   }
 `;
 
@@ -98,20 +102,39 @@ const Logo = styled.h1`
   text-decoration-thickness: 3px;
   white-space: nowrap;
   color: black;
-  font-size: clamp(1.1375rem, 0.9206rem + 1.0847vw, 1.5rem);
+  // font-size: 28px;
+  font-size: clamp(1.5625rem, 1.5rem + 0.9vw, 2.2rem);
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 25px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    font-size: 25px;
+  }
 `;
 
 const LogoDown = styled.h1`
   font-weight: 900;
-  font-size: clamp(0.625rem, 0.5382rem + 0.434vw, 0.6875rem);
+  // font-size: 12px;
+  font-size: clamp(0.5rem, 1.5rem + 0.9vw, 0.9rem);
   top: -7px;
   left: 3%;
   position: relative;
-  letter-spacing: 12px;
+  letter-spacing: 14px;
   color: crimson;
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 10px;
+    letter-spacing: 12px;
+    top: -6px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    font-size: 8px;
+  }
 `;
 
-/* Botão hamburguer */
 const BurgerButton = styled.button`
   width: 44px;
   height: 44px;
@@ -136,6 +159,13 @@ const BurgerButton = styled.button`
 
   &:active span {
     transform: scaleX(0.9);
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    span {
+      width: 24px;
+      height: 2.5px;
+    }
   }
 `;
 
@@ -375,7 +405,8 @@ const IconWrapper = styled.div`
 const MenuItemLabel = styled.span`
   flex: 1;
   font-weight: bold;
-  font-size: 22px;
+  // font-size: 22px;
+  font-size: clamp(0.875rem, 0.8rem + 0.95vw, 1.375rem);
   color: ${({ $active }) => ($active ? "crimson" : "#1a1a1a")};
 
   @media ${theme.mediaQueries.mobile} {
@@ -403,7 +434,8 @@ const ContainerContact = styled.div`
 
 const ContactCard = styled.div`
   //   margin-top: 8%;
-  background-color: #fdecee;
+  // background-color: #fdecee;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   padding: 4%;
   display: flex;
@@ -412,6 +444,7 @@ const ContactCard = styled.div`
 
   @media ${theme.mediaQueries.mobile} {
     padding: 4%;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
   }
 
   @media ${theme.mediaQueries.smallMobile} {
@@ -424,6 +457,7 @@ const ContactIconCircle = styled.div`
   height: 52px;
   border-radius: 50%;
   background-color: #ffffff;
+  border: 1px solid #f5b4c0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -442,7 +476,8 @@ const ContactIconCircle = styled.div`
 const ContactTitle = styled.p`
   font-weight: 600;
   letter-spacing: 1px;
-  font-size: 22px;
+  // font-size: 22px;
+  font-size: clamp(0.875rem, 0.8rem + 0.95vw, 1.375rem);
   color: #1a1a1a;
   // margin-bottom: 1%;
 
@@ -460,7 +495,8 @@ const ContactTitle = styled.p`
 const ContactPhone = styled.p`
   font-weight: 900;
   letter-spacing: 1px;
-  font-size: 23px;
+  // font-size: 23px;
+  font-size: clamp(0.9375rem, 0.85rem + 1.2vw, 1.5375rem);
   color: crimson;
   margin-bottom: 2%;
 
@@ -476,7 +512,8 @@ const ContactPhone = styled.p`
 `;
 
 const ContactNote = styled.p`
-  font-size: 20px;
+  // font-size: 20px;
+  font-size: clamp(0.8125rem, 0.77rem + 1vw, 1.35rem);
   color: #555;
   line-height: 1.4;
 
@@ -492,7 +529,7 @@ const ContactNote = styled.p`
 `;
 
 const SubscribeButton = styled.a`
-  margin-top: 5%;
+  margin-bottom: 5%;
   background-color: crimson;
   color: white;
   border-radius: 8px;
@@ -566,7 +603,8 @@ const SubscribeTextBlock = styled.div`
 
 const SubscribeTitle = styled.p`
   font-weight: 900;
-  font-size: 22px;
+  // font-size: 22px;
+  font-size: clamp(0.875rem, 0.8rem + 0.95vw, 1.375rem);
   letter-spacing: 1px;
 
   @media ${theme.mediaQueries.mobile} {
@@ -581,7 +619,8 @@ const SubscribeTitle = styled.p`
 `;
 
 const SubscribeSubtitle = styled.p`
-  font-size: 20px;
+  // font-size: 20px;
+  font-size: clamp(0.8125rem, 0.77rem + 1vw, 1.35rem);
   margin-top: 1%;
   opacity: 0.95;
   line-height: 1.35;
@@ -600,7 +639,8 @@ const SubscribeSubtitle = styled.p`
 const Footer = styled.p`
   //   margin-top: 8%;
   text-align: center;
-  font-size: 20px;
+  // font-size: 20px;
+  font-size: clamp(0.75rem, 0.6rem + 1vw, 1.25rem);
   color: #999;
 
   @media ${theme.mediaQueries.mobile} {
@@ -724,16 +764,14 @@ const ChevronIcon = () => (
   </Chevron>
 );
 
-/* ---------- Configuração dos itens de menu ---------- */
-
 const menuItems = [
   {
     id: "intro",
     label: "Início",
-    icon: (
+    icon: (size) => (
       <HomeIcon
-        width={18}
-        height={18}
+        width={size}
+        height={size}
         viewBox="0 0 24 24"
         color="none"
         stroke="#E8003D"
@@ -744,13 +782,13 @@ const menuItems = [
   {
     id: "feature",
     label: "Funcionalidades",
-    icon: (
+    icon: (size) => (
       <StarIcon
-        width={18}
-        height={18}
+        width={size}
+        height={size}
         viewBox="0 0 24 24"
         color="none"
-        stroke="#3DAA72"
+        stroke="#6955d8"
       />
     ),
     bg: "#e3e0fc",
@@ -758,13 +796,14 @@ const menuItems = [
   {
     id: "service",
     label: "Serviços",
-    icon: (
+    icon: (size) => (
       <PurseIcon
-        width={18}
-        height={18}
+        width={size}
+        height={size}
         viewBox="0 0 24 24"
         color="none"
         stroke="#3DAA72"
+        strokeWidth="2"
       />
     ),
     bg: "#d8f0e2",
@@ -772,13 +811,13 @@ const menuItems = [
   {
     id: "price",
     label: "Preço",
-    icon: (
+    icon: (size) => (
       <CoinIcon
-        width={18}
-        height={18}
+        width={size}
+        height={size}
         viewBox="0 0 24 24"
         color="none"
-        stroke="#D4A017"
+        stroke="#d19703"
       />
     ),
     bg: "#fbeacb",
@@ -786,13 +825,14 @@ const menuItems = [
   {
     id: "contact",
     label: "Contato",
-    icon: (
+    icon: (size) => (
       <EmailIcon
-        width={18}
-        height={18}
+        width={size}
+        height={size}
         viewBox="0 0 24 24"
         color="none"
-        stroke="#3DAA72"
+        stroke="#6955d8"
+        strokeWidth="2"
       />
     ),
     bg: "#e3e0fc",
@@ -803,6 +843,9 @@ const NavbarMobile = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [activeId, setActiveId] = useState("intro");
+  const { isMobile, isTablet } = useScreenSize();
+
+  const iconSize = isMobile ? 18 : 25;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -880,7 +923,7 @@ const NavbarMobile = () => {
                   $active={activeId === id}
                   onClick={(e) => handleNavClick(e, id)}
                 >
-                  <IconWrapper $bg={bg}>{icon}</IconWrapper>
+                  <IconWrapper $bg={bg}>{icon(iconSize)}</IconWrapper>
                   <MenuItemLabel $active={activeId === id}>
                     {label}
                   </MenuItemLabel>
@@ -892,31 +935,14 @@ const NavbarMobile = () => {
             <Divider />
 
             <ContainerContact>
-              <ContactCard>
-                <ContactIconCircle>
-                  <PhoneIcon
-                    width={22}
-                    height={22}
-                    viewBox="0 0 24 24"
-                    color="#f53b5a"
-                    stroke="#f53b5a"
-                  />
-                </ContactIconCircle>
-                <div>
-                  <ContactTitle>Ligue para nós</ContactTitle>
-                  <ContactPhone>(11) 91234 – 5678</ContactPhone>
-                  <ContactNote>Para qualquer dúvida ou sugestão</ContactNote>
-                </div>
-              </ContactCard>
-
               <SubscribeButton
                 href="#contact"
                 onClick={(e) => handleNavClick(e, "contact")}
               >
                 <SubscribeIconCircle>
                   <SendIcon
-                    width={22}
-                    height={22}
+                    width={iconSize}
+                    height={iconSize}
                     viewBox="0 0 24 24"
                     color="none"
                     stroke="#FFF"
@@ -931,6 +957,23 @@ const NavbarMobile = () => {
                   </SubscribeSubtitle>
                 </SubscribeTextBlock>
               </SubscribeButton>
+
+              <ContactCard>
+                <ContactIconCircle>
+                  <PhoneIcon
+                    width={iconSize}
+                    height={iconSize}
+                    viewBox="0 0 24 24"
+                    color="#f53b5a"
+                    stroke="#f53b5a"
+                  />
+                </ContactIconCircle>
+                <div>
+                  <ContactTitle>Ligue para nós</ContactTitle>
+                  <ContactPhone>(11) 91234 – 5678</ContactPhone>
+                  <ContactNote>Para qualquer dúvida ou sugestão</ContactNote>
+                </div>
+              </ContactCard>
             </ContainerContact>
             <Divider />
             <Footer>
