@@ -462,6 +462,7 @@ const Contact = () => {
                     viewBox="0 0 24 24"
                     color="none"
                     stroke="#9CA3AF"
+                    strokeWidth="1.5"
                   />
                 </InputIcon>
               </InputWrapper>

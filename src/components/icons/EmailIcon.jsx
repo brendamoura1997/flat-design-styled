@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/prop-types
-const EmailIcon = ({ width, height, color, viewBox, stroke }) => {
+const EmailIcon = ({ width, height, color, viewBox, stroke, strokeWidth }) => {
   return (
     <svg
       width={width}
@@ -7,6 +7,7 @@ const EmailIcon = ({ width, height, color, viewBox, stroke }) => {
       viewBox={viewBox}
       fill={color}
       stroke={stroke}
+      strokeWidth={strokeWidth}
     >
       <rect
         x="3"
@@ -15,14 +16,12 @@ const EmailIcon = ({ width, height, color, viewBox, stroke }) => {
         height="14"
         rx="1.5"
         fill="none"
-        strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M3 7L12 13L21 7"
         fill="none"
-        strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

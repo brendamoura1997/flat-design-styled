@@ -44,7 +44,7 @@ const WrapperLogo = styled.a`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: wrap-content;
+  width: fit-content;
   height: 100%;
   cursor: pointer;
   text-decoration: none;

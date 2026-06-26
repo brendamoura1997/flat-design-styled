@@ -27,7 +27,6 @@ const Container = styled.div`
     height: 100%;
   }
   @media ${theme.mediaQueries.tablet} {
-    padding: 10% 0 0 0;
     flex-direction: column;
   }
   @media ${theme.mediaQueries.tabletWide} {
@@ -39,6 +38,7 @@ const Container = styled.div`
     flex-direction: column;
     padding: 15% 0 0 0;
   }
+
   @media ${theme.mediaQueries.mobileWide} {
     padding: 12% 0 0 0;
   }
@@ -74,8 +74,16 @@ const LeftContent = styled.div`
 const TopSection = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 6%;
+  padding: 10% 3% 0;
   position: relative;
+
+  @media ${theme.mediaQueries.mobile} {
+    padding: 4% 6% 0;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    padding: 7% 6% 0;
+  }
 `;
 const Tagline = styled.div`
   display: flex;
@@ -175,10 +183,15 @@ const ActionSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3vh;
-  padding: 0 6%;
+  padding: 0 3%;
   margin-top: 4%;
-  @media ${theme.mediaQueries.tabletWide} {
-    margin-top: 0%;
+
+  @media ${theme.mediaQueries.mobile} {
+    padding: 0 6%;
+  }
+
+  @media ${theme.mediaQueries.mobileWide} {
+    padding: 0 6%;
   }
 `;
 const Button = styled.button`
@@ -369,6 +382,7 @@ const WomanImage = styled.img`
   height: 55%;
   object-fit: contain;
   object-position: center bottom;
+
   @media ${theme.mediaQueries.tablet} {
     width: 45%;
     height: 55%;
@@ -533,7 +547,6 @@ const FeatureTitle = styled.span`
 const FeatureDesc = styled.span`
   font-size: clamp(0.697rem, 0.697rem + 0.15vw, 0.82rem);
   color: #888;
-  // margin-top: 4px;
   margin-top: 1%;
   max-width: 130px;
   line-height: 1.45;
@@ -562,6 +575,7 @@ const Right = styled.div`
   justify-content: center;
   z-index: 4;
   top: 2%;
+
   @media ${theme.mediaQueries.desktopWide} {
     top: 3%;
     height: 100%;
