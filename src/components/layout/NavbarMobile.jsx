@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { theme } from "../../styles/theme";
 import { useScreenSize } from "../../hooks/useDevice";
 import HomeIcon from "../icons/HomeIcon";
@@ -839,6 +839,7 @@ const NavbarMobile = () => {
   const { isMobile } = useScreenSize();
 
   const iconSize = isMobile ? 18 : 25;
+  const scrollTargetRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -859,7 +860,13 @@ const NavbarMobile = () => {
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.width = "";
-      window.scrollTo(0, Number.parseInt(scrollY || "0") * -1);
+
+      if (scrollTargetRef.current !== null) {
+        window.scrollTo({ top: scrollTargetRef.current, behavior: "smooth" });
+        scrollTargetRef.current = null;
+      } else {
+        window.scrollTo(0, Number.parseInt(scrollY || "0") * -1);
+      }
     }
   }, [isOpen]);
 
@@ -867,13 +874,15 @@ const NavbarMobile = () => {
     e.preventDefault();
     const target = document.getElementById(targetId);
     setActiveId(targetId);
+
+    if (target) {
+      const navbarHeight =
+        document.querySelector("nav, [data-navbar]")?.offsetHeight || 60;
+      scrollTargetRef.current =
+        target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+    }
+
     setIsOpen(false);
-    if (!target) return;
-    const navbarHeight =
-      document.querySelector("nav, [data-navbar]")?.offsetHeight || 60;
-    const top =
-      target.getBoundingClientRect().top + window.scrollY - navbarHeight;
-    window.scrollTo({ top, behavior: "smooth" });
   };
 
   return (
