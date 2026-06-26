@@ -1,4 +1,4 @@
-import styled, { keyframes, createGlobalStyle } from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useState, useEffect } from "react";
 import { theme } from "../../styles/theme";
 import { useScreenSize } from "../../hooks/useDevice";
@@ -23,12 +23,6 @@ const slideIn = keyframes`
 const fadeIn = keyframes`
   from { opacity: 0; }
   to   { opacity: 1; }
-`;
-
-const GlobalLockStyle = createGlobalStyle`
-  body {
-    overflow: ${({ $locked }) => ($locked ? "hidden" : "auto")};
-  }
 `;
 
 const Container = styled.div`
@@ -852,6 +846,23 @@ const NavbarMobile = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      const scrollY = window.scrollY;
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, Number.parseInt(scrollY || "0") * -1);
+    }
+  }, [isOpen]);
+
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
     const target = document.getElementById(targetId);
@@ -867,7 +878,6 @@ const NavbarMobile = () => {
 
   return (
     <>
-      <GlobalLockStyle $locked={isOpen} />
       <Container scrolled={scrolled} $scrolled={scrolled} data-navbar>
         <Wrapper>
           <WrapperLogo href="/">
