@@ -842,7 +842,7 @@ const NavbarMobile = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [activeId, setActiveId] = useState("intro");
-  const { isMobile, isTablet } = useScreenSize();
+  const { isMobile } = useScreenSize();
 
   const iconSize = isMobile ? 18 : 25;
 
