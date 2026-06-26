@@ -10,6 +10,7 @@ import { useScreenSize } from "./hooks/useDevice";
 import { theme } from "./styles/theme";
 import GlobalStyle from "./styles/globalStyle";
 import ResetStyle from "./styles/resetStyle";
+import NavbarMobile from "./components/layout/NavbarMobile";
 
 const Container = styled.div`
   height: 100vh;
@@ -137,7 +138,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <ResetStyle />
       <GlobalStyle />
-      {isDesktop ? <NavbarDesktop /> : null}
+      {isDesktop ? <NavbarDesktop /> : <NavbarMobile />}
+
       <ContainerIntro id="intro">
         <Intro />
         <IntroShape />
