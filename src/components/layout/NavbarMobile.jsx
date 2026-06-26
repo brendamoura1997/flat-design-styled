@@ -38,7 +38,7 @@ const Container = styled.div`
   left: 0;
   width: 100%;
   z-index: 999;
-  padding: 0% 4%;
+  padding: 0% 3%;
   transition:
     background-color 0.3s ease,
     box-shadow 0.3s ease;
@@ -102,10 +102,9 @@ const Logo = styled.h1`
   text-decoration-thickness: 3px;
   white-space: nowrap;
   color: black;
-  // font-size: 28px;
   font-size: clamp(1.5625rem, 1.5rem + 0.9vw, 2.2rem);
 
-  @media ${theme.mediaQueries.mobile} {
+  @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     font-size: 25px;
   }
 
@@ -116,7 +115,6 @@ const Logo = styled.h1`
 
 const LogoDown = styled.h1`
   font-weight: 900;
-  // font-size: 12px;
   font-size: clamp(0.5rem, 1.5rem + 0.9vw, 0.9rem);
   top: -7px;
   left: 3%;
@@ -124,7 +122,7 @@ const LogoDown = styled.h1`
   letter-spacing: 14px;
   color: crimson;
 
-  @media ${theme.mediaQueries.mobile} {
+  @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     font-size: 10px;
     letter-spacing: 12px;
     top: -6px;
@@ -192,18 +190,32 @@ const Panel = styled.div`
   overflow-y: auto;
   transform: translateX(100%);
   animation: ${slideIn} 0.3s ease forwards;
-  display: flex;
-  flex-direction: column;
-  //   justify-content: space-between;
-  padding: 4% 4% 3%;
 
   @media ${theme.mediaQueries.mobile} {
     width: 80%;
-    padding: 6% 5% 3%;
   }
-
+  @media ${theme.mediaQueries.mobileWide} {
+    width: 75%;
+  }
   @media ${theme.mediaQueries.smallMobile} {
     width: 85%;
+  }
+`;
+
+const PanelInner = styled.div`
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 4% 4% 3%;
+
+  @media ${theme.mediaQueries.mobile} {
+    padding: 6% 5% 3%;
+  }
+  @media ${theme.mediaQueries.mobileWide} {
+    padding: 4% 5% 3%;
+  }
+  @media ${theme.mediaQueries.smallMobile} {
     padding: 5% 5% 3%;
   }
 `;
@@ -212,14 +224,10 @@ const PanelHeader = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-
-  // border: 1px solid red;
 `;
 const LeftHeader = styled.div`
   display: flex;
   flex-direction: column;
-
-  // border: 1px solid blue;
 `;
 const RightHeader = styled.div``;
 
@@ -233,7 +241,6 @@ const PanelLogoBlock = styled.div`
   text-decoration: none;
   overflow: hidden;
   position: relative;
-  // border: 1px solid red;
 
   &::after {
     content: "";
@@ -265,11 +272,10 @@ const PanelLogo = styled.h1`
   white-space: nowrap;
   color: black;
   transition: color 0.3s ease;
-  // font-size: 46px;
-  font-size: clamp(1.5rem, 1.5rem + 2.7vw, 3rem);
+  font-size: clamp(1.5rem, 1.3rem + 2.8vw, 3rem);
   line-height: 1.1;
 
-  @media ${theme.mediaQueries.mobile} {
+  @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     font-size: 30px;
     text-decoration-thickness: 3px;
   }
@@ -282,15 +288,14 @@ const PanelLogo = styled.h1`
 
 const PanelLogoDown = styled.h1`
   font-weight: 900;
-  // font-size: 20px;
-  font-size: clamp(0.625rem, 0.6rem + 1.2vw, 1.5rem);
+  font-size: clamp(0.625rem, 0.5rem + 1.3vw, 1.5rem);
   top: -3px;
   position: relative;
-  letter-spacing: 22px;
+  letter-spacing: 21px;
   margin-left: 3%;
   color: crimson;
 
-  @media ${theme.mediaQueries.mobile} {
+  @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     font-size: 13px;
     letter-spacing: 14px;
     top: -2px;
@@ -320,8 +325,7 @@ const CloseButton = styled.button`
 
 const Description = styled.p`
   margin-top: 4%;
-  // font-size: 22px;
-  font-size: clamp(0.8125rem, 0.7rem + 1.3vw, 1.45rem);
+  font-size: clamp(0.8125rem, 0.4rem + 1.8vw, 1.45rem);
   color: #333;
   line-height: 1.5;
 
@@ -330,7 +334,7 @@ const Description = styled.p`
     font-weight: 900;
   }
 
-  @media ${theme.mediaQueries.mobile} {
+  @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     font-size: 15px;
   }
 
@@ -350,9 +354,7 @@ const Divider = styled.hr`
 const MenuList = styled.nav`
   display: flex;
   flex-direction: column;
-  //   gap: 4%;
   gap: 1vh;
-  // border: 1px solid green;
   height: max-content;
 `;
 
@@ -373,8 +375,8 @@ const MenuItem = styled.a`
     transform: scale(0.98);
   }
 
-  @media ${theme.mediaQueries.mobile} {
-    padding: 4%;
+  @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobileWide} {
+    padding: 3%;
   }
 
   @media ${theme.mediaQueries.smallMobile} {
@@ -391,7 +393,7 @@ const IconWrapper = styled.div`
   justify-content: center;
   background-color: ${({ $bg }) => $bg};
 
-  @media ${theme.mediaQueries.mobile} {
+  @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     width: 42px;
     height: 42px;
   }
@@ -405,16 +407,15 @@ const IconWrapper = styled.div`
 const MenuItemLabel = styled.span`
   flex: 1;
   font-weight: bold;
-  // font-size: 22px;
-  font-size: clamp(0.875rem, 0.8rem + 0.95vw, 1.375rem);
+  font-size: clamp(0.875rem, 0.6rem + 1.2vw, 1.375rem);
   color: ${({ $active }) => ($active ? "crimson" : "#1a1a1a")};
 
-  @media ${theme.mediaQueries.mobile} {
+  @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     font-size: 15px;
   }
 
   @media ${theme.mediaQueries.smallMobile} {
-    font-size: 14px;
+    font-size: 13.5px;
   }
 `;
 
@@ -426,15 +427,10 @@ const Chevron = styled.svg`
 
 const ContainerContact = styled.div`
   width: 100%;
-  //   margin-top: 10%;
-  //   margin-top: auto;
-  // border: 1px solid purple;
   bottom: 0;
 `;
 
 const ContactCard = styled.div`
-  //   margin-top: 8%;
-  // background-color: #fdecee;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   padding: 4%;
@@ -463,7 +459,7 @@ const ContactIconCircle = styled.div`
   justify-content: center;
   margin-top: 2%;
 
-  @media ${theme.mediaQueries.mobile} {
+  @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     width: 42px;
     height: 42px;
   }
@@ -476,12 +472,28 @@ const ContactIconCircle = styled.div`
 const ContactTitle = styled.p`
   font-weight: 600;
   letter-spacing: 1px;
-  // font-size: 22px;
-  font-size: clamp(0.875rem, 0.8rem + 0.95vw, 1.375rem);
+  font-size: clamp(0.875rem, 0.65rem + 1vw, 1.375rem);
   color: #1a1a1a;
-  // margin-bottom: 1%;
 
-  @media ${theme.mediaQueries.mobile} {
+  @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
+    letter-spacing: 0.5px;
+    font-size: 14px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    letter-spacing: 0px;
+    font-size: 13px;
+  }
+`;
+
+const ContactPhone = styled.p`
+  font-weight: 900;
+  letter-spacing: 1px;
+  font-size: clamp(0.9375rem, 0.75rem + 1.2vw, 1.5375rem);
+  color: crimson;
+  margin-bottom: 2%;
+
+  @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     letter-spacing: 0.5px;
     font-size: 15px;
   }
@@ -492,39 +504,19 @@ const ContactTitle = styled.p`
   }
 `;
 
-const ContactPhone = styled.p`
-  font-weight: 900;
-  letter-spacing: 1px;
-  // font-size: 23px;
-  font-size: clamp(0.9375rem, 0.85rem + 1.2vw, 1.5375rem);
-  color: crimson;
-  margin-bottom: 2%;
-
-  @media ${theme.mediaQueries.mobile} {
-    letter-spacing: 0.5px;
-    font-size: 16px;
-  }
-
-  @media ${theme.mediaQueries.smallMobile} {
-    letter-spacing: 0px;
-    font-size: 15px;
-  }
-`;
-
 const ContactNote = styled.p`
-  // font-size: 20px;
-  font-size: clamp(0.8125rem, 0.77rem + 1vw, 1.35rem);
+  font-size: clamp(0.8125rem, 0.64rem + 1vw, 1.35rem);
   color: #555;
   line-height: 1.4;
 
-  @media ${theme.mediaQueries.mobile} {
+  @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     line-height: 1.2;
-    font-size: 15px;
+    font-size: 13px;
   }
 
   @media ${theme.mediaQueries.smallMobile} {
     line-height: 1;
-    font-size: 12px;
+    font-size: 11.5px;
   }
 `;
 
@@ -587,7 +579,7 @@ const SubscribeIconCircle = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media ${theme.mediaQueries.mobile} {
+  @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     width: 42px;
     height: 42px;
   }
@@ -603,13 +595,12 @@ const SubscribeTextBlock = styled.div`
 
 const SubscribeTitle = styled.p`
   font-weight: 900;
-  // font-size: 22px;
-  font-size: clamp(0.875rem, 0.8rem + 0.95vw, 1.375rem);
+  font-size: clamp(0.875rem, 0.65rem + 1vw, 1.375rem);
   letter-spacing: 1px;
 
-  @media ${theme.mediaQueries.mobile} {
+  @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     letter-spacing: 0.5px;
-    font-size: 16px;
+    font-size: 14px;
   }
 
   @media ${theme.mediaQueries.smallMobile} {
@@ -619,85 +610,86 @@ const SubscribeTitle = styled.p`
 `;
 
 const SubscribeSubtitle = styled.p`
-  // font-size: 20px;
-  font-size: clamp(0.8125rem, 0.77rem + 1vw, 1.35rem);
+  font-size: clamp(0.8125rem, 0.64rem + 1vw, 1.35rem);
   margin-top: 1%;
   opacity: 0.95;
   line-height: 1.35;
 
-  @media ${theme.mediaQueries.mobile} {
+  @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     line-height: 1.2;
-    font-size: 15px;
+    font-size: 13px;
   }
 
   @media ${theme.mediaQueries.smallMobile} {
     line-height: 1.1;
-    font-size: 13px;
+    font-size: 11.5px;
   }
 `;
 
 const Footer = styled.p`
-  //   margin-top: 8%;
   text-align: center;
-  // font-size: 20px;
   font-size: clamp(0.75rem, 0.6rem + 1vw, 1.25rem);
   color: #999;
 
-  @media ${theme.mediaQueries.mobile} {
-    font-size: 14px;
+  @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
+    font-size: 12px;
   }
 
   @media ${theme.mediaQueries.smallMobile} {
-    font-size: 12px;
+    font-size: 11px;
   }
 `;
 
 const MobileDotGrid = styled.div`
-  display: none;
-  @media only screen and (max-aspect-ratio: 1000/1000) {
-    display: grid;
+  display: grid;
+  grid-template-columns: repeat(4, 10%);
+  gap: clamp(6px, 8px + 0.5vw, 15px);
+  position: absolute;
+  opacity: 0.55;
+  ${({ $pos }) => $pos === "tr" && `top: 12%; right: 13%;`}
+  span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: ${({ $color }) => $color || "#f53b5a"};
+    display: block;
+  }
+  @media ${theme.mediaQueries.tabletWide} {
+    gap: 6px;
     grid-template-columns: repeat(4, 6px);
-    // gap: 10px;
-    gap: clamp(6px, 8px + 0.5vw, 15px);
-    position: absolute;
-    opacity: 0.55;
-    ${({ $pos }) => $pos === "tr" && `top: 12%; right: 13%;`}
+    ${({ $pos }) => $pos === "tr" && `top: 13%; right: 11%;`}
     span {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background-color: ${({ $color }) => $color || "#f53b5a"};
-      display: block;
+      width: 4px;
+      height: 4px;
     }
-
-    @media ${theme.mediaQueries.mobile} {
-      gap: 6px;
-      grid-template-columns: repeat(4, 5px);
-      ${({ $pos }) => $pos === "tr" && `top: 10%; right: 11%;`}
-      span {
-        width: 4px;
-        height: 4px;
-      }
+  }
+  @media ${theme.mediaQueries.mobile} {
+    gap: 6px;
+    grid-template-columns: repeat(4, 5px);
+    ${({ $pos }) => $pos === "tr" && `top: 10%; right: 11%;`}
+    span {
+      width: 4px;
+      height: 4px;
     }
-    @media ${theme.mediaQueries.smallMobile} {
-      gap: 5px;
-      grid-template-columns: repeat(4, 4px);
-      ${({ $pos }) => $pos === "tr" && `top: 11.5%; right: 11%;`}
-    }
+  }
+  @media ${theme.mediaQueries.smallMobile} {
+    gap: 5px;
+    grid-template-columns: repeat(4, 4px);
+    ${({ $pos }) => $pos === "tr" && `top: 11.5%; right: 11%;`}
   }
 `;
 
 const Rect = styled.div`
-  width: 50px;
-  height: 90px;
+  width: 8%;
+  height: 7%;
   background-color: #669966;
   border-radius: 4px;
   opacity: 0.5;
   position: absolute;
-  top: 6%;
-  right: 6%;
+  top: 7%;
+  right: 8%;
 
-  @media ${theme.mediaQueries.mobile} {
+  @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     width: 28px;
     height: 45px;
   }
@@ -710,13 +702,20 @@ const Rect = styled.div`
 `;
 
 const Circle = styled.div`
-  width: 70px;
-  height: 70px;
+  width: 11%;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   background-color: #ff97af;
   position: absolute;
   top: 5%;
   right: 24%;
+
+  @media ${theme.mediaQueries.tabletWide} {
+    width: 40px;
+    height: 40px;
+    top: 7%;
+    right: 19%;
+  }
 
   @media ${theme.mediaQueries.mobile} {
     width: 35px;
@@ -887,98 +886,100 @@ const NavbarMobile = () => {
         <>
           <Overlay onClick={() => setIsOpen(false)} />
           <Panel>
-            <CloseButton
-              aria-label="Fechar menu"
-              onClick={() => setIsOpen(false)}
-            >
-              <CloseIcon />
-            </CloseButton>
-            <PanelHeader>
-              <LeftHeader>
-                <PanelLogoBlock>
-                  <PanelLogo>FLAT DESIGN</PanelLogo>
-                  <PanelLogoDown>STYLED</PanelLogoDown>
-                </PanelLogoBlock>
-
-                <Description>
-                  Design que gera <span>impacto</span>.
-                  <br />
-                  Soluções que transformam.
-                </Description>
-              </LeftHeader>
-              <RightHeader>
-                <Circle />
-                <Rect />
-                <MobileDotGrid $pos="tr">{dots(16)}</MobileDotGrid>
-              </RightHeader>
-            </PanelHeader>
-
-            <Divider />
-
-            <MenuList>
-              {menuItems.map(({ id, label, icon, bg }) => (
-                <MenuItem
-                  key={id}
-                  href={`#${id}`}
-                  $active={activeId === id}
-                  onClick={(e) => handleNavClick(e, id)}
-                >
-                  <IconWrapper $bg={bg}>{icon(iconSize)}</IconWrapper>
-                  <MenuItemLabel $active={activeId === id}>
-                    {label}
-                  </MenuItemLabel>
-                  <ChevronIcon />
-                </MenuItem>
-              ))}
-            </MenuList>
-
-            <Divider />
-
-            <ContainerContact>
-              <SubscribeButton
-                href="#contact"
-                onClick={(e) => handleNavClick(e, "contact")}
+            <PanelInner>
+              <CloseButton
+                aria-label="Fechar menu"
+                onClick={() => setIsOpen(false)}
               >
-                <SubscribeIconCircle>
-                  <SendIcon
-                    width={iconSize}
-                    height={iconSize}
-                    viewBox="0 0 24 24"
-                    color="none"
-                    stroke="#FFF"
-                    strokeWidthOutside="2.2"
-                    strokeWidthInside="1.5"
-                  />
-                </SubscribeIconCircle>
-                <SubscribeTextBlock>
-                  <SubscribeTitle>INSCREVA-SE JÁ</SubscribeTitle>
-                  <SubscribeSubtitle>
-                    Vamos conversar sobre o seu projeto
-                  </SubscribeSubtitle>
-                </SubscribeTextBlock>
-              </SubscribeButton>
+                <CloseIcon />
+              </CloseButton>
+              <PanelHeader>
+                <LeftHeader>
+                  <PanelLogoBlock>
+                    <PanelLogo>FLAT DESIGN</PanelLogo>
+                    <PanelLogoDown>STYLED</PanelLogoDown>
+                  </PanelLogoBlock>
 
-              <ContactCard>
-                <ContactIconCircle>
-                  <PhoneIcon
-                    width={iconSize}
-                    height={iconSize}
-                    viewBox="0 0 24 24"
-                    color="#f53b5a"
-                    stroke="#f53b5a"
-                  />
-                </ContactIconCircle>
-                <div>
-                  <ContactTitle>Ligue para nós</ContactTitle>
-                  <ContactPhone>(11) 91234 – 5678</ContactPhone>
-                  <ContactNote>Para qualquer dúvida ou sugestão</ContactNote>
-                </div>
-              </ContactCard>
-            </ContainerContact>
-            <Divider />
-            <Footer>
-              © 2026 Brenda Moura TI. Todos os direitos reservados.
-            </Footer>
+                  <Description>
+                    Design que gera <span>impacto</span>.
+                    <br />
+                    Soluções que transformam.
+                  </Description>
+                </LeftHeader>
+                <RightHeader>
+                  <Circle />
+                  <Rect />
+                  <MobileDotGrid $pos="tr">{dots(16)}</MobileDotGrid>
+                </RightHeader>
+              </PanelHeader>
+
+              <Divider />
+
+              <MenuList>
+                {menuItems.map(({ id, label, icon, bg }) => (
+                  <MenuItem
+                    key={id}
+                    href={`#${id}`}
+                    $active={activeId === id}
+                    onClick={(e) => handleNavClick(e, id)}
+                  >
+                    <IconWrapper $bg={bg}>{icon(iconSize)}</IconWrapper>
+                    <MenuItemLabel $active={activeId === id}>
+                      {label}
+                    </MenuItemLabel>
+                    <ChevronIcon />
+                  </MenuItem>
+                ))}
+              </MenuList>
+
+              <Divider />
+
+              <ContainerContact>
+                <SubscribeButton
+                  href="#contact"
+                  onClick={(e) => handleNavClick(e, "contact")}
+                >
+                  <SubscribeIconCircle>
+                    <SendIcon
+                      width={iconSize}
+                      height={iconSize}
+                      viewBox="0 0 24 24"
+                      color="none"
+                      stroke="#FFF"
+                      strokeWidthOutside="2.2"
+                      strokeWidthInside="1.5"
+                    />
+                  </SubscribeIconCircle>
+                  <SubscribeTextBlock>
+                    <SubscribeTitle>INSCREVA-SE JÁ</SubscribeTitle>
+                    <SubscribeSubtitle>
+                      Vamos conversar sobre o seu projeto
+                    </SubscribeSubtitle>
+                  </SubscribeTextBlock>
+                </SubscribeButton>
+
+                <ContactCard>
+                  <ContactIconCircle>
+                    <PhoneIcon
+                      width={iconSize}
+                      height={iconSize}
+                      viewBox="0 0 24 24"
+                      color="#f53b5a"
+                      stroke="#f53b5a"
+                    />
+                  </ContactIconCircle>
+                  <div>
+                    <ContactTitle>Ligue para nós</ContactTitle>
+                    <ContactPhone>(11) 91234 – 5678</ContactPhone>
+                    <ContactNote>Para qualquer dúvida ou sugestão</ContactNote>
+                  </div>
+                </ContactCard>
+              </ContainerContact>
+              <Divider />
+              <Footer>
+                © 2026 Brenda Moura TI. Todos os direitos reservados.
+              </Footer>
+            </PanelInner>
           </Panel>
         </>
       )}
