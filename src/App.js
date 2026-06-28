@@ -16,6 +16,11 @@ const Container = styled.div`
   height: 100vh;
   overflow: hidden;
   position: relative;
+
+  @media ${theme.mediaQueries.tablet} {
+    height: fit-content;
+  }
+
   @media ${theme.mediaQueries.mobileWide} {
     height: fit-content;
   }
@@ -58,7 +63,8 @@ const IntroShape = styled.div`
   background-color: crimson;
   z-index: 2;
   @media ${theme.mediaQueries.tablet} {
-    clip-path: polygon(100% 59%, 100% 100%, 0% 100%);
+    // clip-path: polygon(100% 59%, 100% 100%, 0% 100%);
+    clip-path: polygon(100% 59%, 100% 100%, 30% 100%);
   }
   @media ${theme.mediaQueries.tabletWide} {
     clip-path: polygon(100% 59%, 100% 100%, 0% 100%);
@@ -77,8 +83,9 @@ const FeatureShape = styled.div`
   ${Shape}
   clip-path: polygon(0 0, 55% 0%, 43% 100%, 0 100%);
   background-color: pink;
-  @media only screen and (max-width: 1024px) {
-    clip-path: polygon(0 0, 20% 0%, 20% 100%, 0 100%);
+
+  @media ${theme.mediaQueries.tablet} {
+    clip-path: polygon(0 0, 30% 0%, 43% 100%, 0 100%);
   }
 `;
 
