@@ -3,15 +3,19 @@ import App from "../../assets/images/app.png";
 import StarIcon from "../icons/StarIcon";
 import PlusIcon from "../icons/PlusIcon";
 import { theme } from "../../styles/theme";
+import { useScreenSize } from "../../hooks/useDevice";
+
 const shine = keyframes`
   0%   { left: -100%; }
   100% { left: 150%;  }
 `;
+
 const Wrapper = styled.div`
   position: relative;
   overflow: hidden;
   height: 100%;
 `;
+
 const DotGrid = styled.div`
   position: absolute;
   display: grid;
@@ -38,7 +42,32 @@ const DotGrid = styled.div`
       height: 6px;
     }
   }
+  @media ${theme.mediaQueries.mobile} {
+    // gap: 20px;
+    gap: 60%;
+    grid-template-columns: repeat(${({ $cols }) => $cols || 5}, 20%);
+    ${({ $pos }) => $pos === "tl" && `bottom: 13%; left: 26%; top: auto;`}
+    ${({ $pos }) => $pos === "tr" && `bottom: 45%; right: 25%; top: auto;`}
+    opacity: 1;
+    span {
+      width: 6px;
+      height: 6px;
+    }
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    gap: 50%;
+    grid-template-columns: repeat(${({ $cols }) => $cols || 5}, 40%);
+    ${({ $pos }) => $pos === "tl" && `bottom: 10%; left: 33%; top: auto;`}
+    ${({ $pos }) => $pos === "tr" && `bottom: 43%; right: 25%; top: auto;`}
+    opacity: 1;
+    span {
+      width: 6px;
+      height: 6px;
+    }
+  }
 `;
+
 const PinkBlob = styled.div`
   position: absolute;
   width: 15%;
@@ -51,27 +80,43 @@ const PinkBlob = styled.div`
   z-index: 2;
   @media ${theme.mediaQueries.tablet} {
     width: 15%;
-    top: 28%;
-    left: 4%;
+    top: 18%;
+    left: 13%;
     z-index: 2;
   }
+  @media ${theme.mediaQueries.mobile} {
+    width: 14%;
+    top: 63%;
+    background: #fb8da5;
+    left: 4%;
+    opacity: 1;
+  }
 `;
+
 const PurpleSquare = styled.div`
   position: absolute;
   width: 70px;
   height: 90px;
   background: #8c7ae6;
-  border-radius: 16px;
+  border-radius: 8px;
   bottom: 22%;
   left: 5%;
   z-index: 2;
   @media ${theme.mediaQueries.tablet} {
-    width: 52px;
+    width: 78px;
+    height: 78px;
+    bottom: 58%;
+    left: 8%;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    width: 68px;
     height: 68px;
-    bottom: 38%;
-    left: 3%;
+    bottom: 12%;
+    left: auto;
+    right: 20%;
   }
 `;
+
 const PinkRect = styled.div`
   position: absolute;
   height: 16%;
@@ -81,12 +126,15 @@ const PinkRect = styled.div`
   bottom: 15%;
   right: -1%;
   z-index: 0;
-
   @media ${theme.mediaQueries.tablet} {
     height: 11%;
     width: 5%;
   }
+  @media ${theme.mediaQueries.mobile} {
+    display: none;
+  }
 `;
+
 const PurpleCircle = styled.div`
   position: absolute;
   width: 20%;
@@ -96,41 +144,50 @@ const PurpleCircle = styled.div`
   bottom: -29%;
   right: -5%;
   z-index: 0;
-
   @media ${theme.mediaQueries.tablet} {
-    width: 29%;
+    width: 32%;
     bottom: -20%;
-    right: -5%;
+    right: -12%;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    display: none;
   }
 `;
+
 const CurvedPath = styled.svg`
   position: absolute;
   top: 38%;
   left: 35%;
   z-index: 2;
-
   @media ${theme.mediaQueries.tablet} {
-    // width: 120px;
-    // height: 240px;
     width: 20%;
     height: auto;
     top: auto;
     bottom: 3%;
-    left: 26%;
+    left: 23%;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    width: 20%;
+    top: auto;
+    bottom: -7%;
+    left: 53%;
   }
 `;
+
 const ArchBackground = styled.svg`
   display: none;
-  @media ${theme.mediaQueries.mobile} {
-    display: block;
-    position: absolute;
-    width: 36%;
-    height: 64%;
-    top: 10%;
-    left: 6%;
-    z-index: 0;
-  }
+  // @media ${theme.mediaQueries.mobile} {
+  //   display: block;
+  //   position: absolute;
+  //   width: 80%;
+  //   height: 47%;
+  //   bottom: 0%;
+  //   left: 50%;
+  //   transform: translateX(-50%);
+  //   z-index: 0;
+  // }
 `;
+
 const Container = styled.div`
   display: flex;
   justify-content: start;
@@ -140,20 +197,64 @@ const Container = styled.div`
   z-index: 3;
   @media ${theme.mediaQueries.tablet} {
     gap: 2%;
+    padding: 20% 0 30%;
+  }
+  @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.mobileWide} {
+    flex-direction: column;
+    gap: 0;
+    padding: 0% 0 0%;
   }
 `;
+
+const PhantomDiv = styled.div`
+  display: none;
+  @media ${theme.mediaQueries.mobile}б {
+    display: block;
+    width: 100%;
+    height: 46vh;
+    // margin-top: 10%;
+    // border: 1px solid black;
+    order: 2;
+  }
+  @media ${theme.mediaQueries.tabletWide}б {
+    display: block;
+    width: 100%;
+    height: 46vh;
+    // margin-top: 10%;
+    // border: 1px solid black;
+    order: 2;
+  }
+  @media ${theme.mediaQueries.smallMobile}, ${theme.mediaQueries.mobileWide} {
+    display: block;
+    width: 100%;
+    height: 70vh;
+    // border: 1px solid green;
+    order: 2;
+  }
+`;
+
 const Left = styled.div`
   width: 43%;
   height: 143%;
   z-index: 0;
   @media ${theme.mediaQueries.tablet} {
+    width: 43%;
+    position: absolute;
+    bottom: 0;
+    left: -5%;
+    height: auto;
+  }
+  @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.mobileWide} {
+    width: 60%;
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 43%;
     height: auto;
+    padding: 0 0%;
+    // border: 1px solid orange;
   }
 `;
+
 const Image = styled.img`
   width: 90%;
   height: auto;
@@ -163,18 +264,31 @@ const Image = styled.img`
   @media ${theme.mediaQueries.tablet} {
     width: 100%;
   }
+  @media ${theme.mediaQueries.mobile} {
+    width: 100%;
+    // margin: 0 auto;
+  }
 `;
+
 const Right = styled.div`
   width: 41%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  // border: 1px solid red;
+
   @media ${theme.mediaQueries.tablet} {
-    width: 52%;
-    margin-left: 45%;
-    padding: 20% 0;
+    width: 55%;
+    margin-left: 42%;
+  }
+  @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.mobileWide} {
+    width: 100%;
+    margin-left: 0;
+    padding: 8% 5% 0;
+    order: 1;
   }
 `;
+
 const Badge = styled.div`
   display: inline-flex;
   align-items: center;
@@ -188,44 +302,67 @@ const Badge = styled.div`
   width: fit-content;
   margin-bottom: 3%;
   @media ${theme.mediaQueries.tablet} {
-    font-size: 16px;
+    font-size: 17px;
     padding: 7px 14px;
     margin-bottom: 4%;
   }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 12px;
+    padding: 5px 10px;
+    margin-bottom: 4%;
+  }
 `;
+
 const Title = styled.span`
   font-size: 60px;
   line-height: 1.15;
   @media ${theme.mediaQueries.tablet} {
-    font-size: 58px;
+    font-size: 60px;
     line-height: 1.15;
   }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 42px;
+    line-height: 1.2;
+  }
 `;
+
 const Pink = styled.span`
   color: #e8325a;
   font-weight: 800;
 `;
+
 const SubTitle = styled.span`
   font-size: 20px;
   font-style: italic;
   color: #333;
   margin-top: 4%;
   @media ${theme.mediaQueries.tablet} {
-    font-size: 19px;
+    font-size: 20px;
     margin-top: 5%;
   }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 16px;
+    margin-top: 3%;
+  }
 `;
+
 const Desc = styled.p`
   font-size: 17px;
   color: #666;
   margin-top: 3%;
   line-height: 1.6;
   @media ${theme.mediaQueries.tablet} {
-    font-size: 17px;
+    font-size: 19px;
     margin-top: 4%;
     line-height: 1.4;
   }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 14px;
+    margin-top: 2%;
+    line-height: 1.5;
+  }
 `;
+
 const Button = styled.button`
   width: fit-content;
   border: none;
@@ -278,18 +415,39 @@ const Button = styled.button`
     padding: 12px 18px;
     margin-top: 5%;
   }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 15px;
+    padding: 10px 15px;
+    margin-top: 5%;
+  }
 `;
+
 const dots = (count) =>
   Array.from({ length: count }).map((_, i) => <span key={i} />);
+
 const Feature = () => {
+  const { isMobile } = useScreenSize();
   return (
     <Wrapper>
-      <DotGrid $pos="tl" $cols={4} $color="#f53b5a">
-        {dots(16)}
-      </DotGrid>
-      <DotGrid $pos="tr" $cols={4} $color="#b2aee6">
-        {dots(16)}
-      </DotGrid>
+      {isMobile ? (
+        <>
+          <DotGrid $pos="tl" $cols={5} $color="#ffffff">
+            {dots(25)}
+          </DotGrid>
+          <DotGrid $pos="tr" $cols={5} $color="#f58699">
+            {dots(25)}
+          </DotGrid>
+        </>
+      ) : (
+        <>
+          <DotGrid $pos="tl" $cols={4} $color="#f53b5a">
+            {dots(16)}
+          </DotGrid>
+          <DotGrid $pos="tr" $cols={4} $color="#b2aee6">
+            {dots(16)}
+          </DotGrid>
+        </>
+      )}
       <PinkBlob />
       <PurpleSquare />
       <PinkRect />
@@ -297,7 +455,7 @@ const Feature = () => {
       <ArchBackground viewBox="0 0 300 420" preserveAspectRatio="none">
         <path
           d="M0 420 L0 150 C0 67, 67 0, 150 0 C233 0, 300 67, 300 150 L300 420 Z"
-          fill="#f4a0b3"
+          fill="pink"
         />
       </ArchBackground>
       <CurvedPath width="160" height="320" viewBox="0 0 160 320" fill="none">
@@ -352,8 +510,10 @@ const Feature = () => {
             Saiba Mais
           </Button>
         </Right>
+        <PhantomDiv />
       </Container>
     </Wrapper>
   );
 };
+
 export default Feature;

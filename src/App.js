@@ -21,8 +21,16 @@ const Container = styled.div`
     height: fit-content;
   }
 
-  @media ${theme.mediaQueries.mobileWide} {
+  @media ${theme.mediaQueries.mobile} {
+    // height: 100vh;
     height: fit-content;
+    // border: 2px solid blue;
+  }
+
+  @media ${theme.mediaQueries.mobileWide} {
+    // height: fit-content;
+    min-height: 125vh;
+    // border: 2px solid red;
   }
 `;
 
@@ -64,7 +72,7 @@ const IntroShape = styled.div`
   z-index: 2;
   @media ${theme.mediaQueries.tablet} {
     // clip-path: polygon(100% 59%, 100% 100%, 0% 100%);
-    clip-path: polygon(100% 59%, 100% 100%, 30% 100%);
+    clip-path: polygon(100% 59%, 100% 100%, 37% 100%);
   }
   @media ${theme.mediaQueries.tabletWide} {
     clip-path: polygon(100% 59%, 100% 100%, 0% 100%);
@@ -85,7 +93,12 @@ const FeatureShape = styled.div`
   background-color: pink;
 
   @media ${theme.mediaQueries.tablet} {
-    clip-path: polygon(0 0, 30% 0%, 43% 100%, 0 100%);
+    clip-path: polygon(0 0, 37% 0%, 37% 100%, 0 100%);
+    // clip-path: polygon(0 0, 30% 0%, 43% 100%, 0 100%);
+  }
+  @media ${theme.mediaQueries.mobile} {
+    // display: none;
+    clip-path: polygon(0 80%, 100% 55%, 100% 100%, 0% 100%);
   }
 `;
 
