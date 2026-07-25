@@ -32,6 +32,12 @@ const Container = styled.div`
     min-height: 125vh;
     // border: 2px solid red;
   }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    height: 100vh;
+
+    // border: 2px solid blue;
+  }
 `;
 
 const ContainerIntro = styled.div`

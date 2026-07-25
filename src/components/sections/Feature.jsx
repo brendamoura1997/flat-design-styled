@@ -56,14 +56,14 @@ const DotGrid = styled.div`
   }
 
   @media ${theme.mediaQueries.smallMobile} {
-    gap: 50%;
-    grid-template-columns: repeat(${({ $cols }) => $cols || 5}, 40%);
+    gap: 55%;
+    grid-template-columns: repeat(${({ $cols }) => $cols || 5}, 30%);
     ${({ $pos }) => $pos === "tl" && `bottom: 10%; left: 33%; top: auto;`}
-    ${({ $pos }) => $pos === "tr" && `bottom: 43%; right: 25%; top: auto;`}
+    ${({ $pos }) => $pos === "tr" && `bottom: 43%; right: 28vw; top: auto;`}
     opacity: 1;
     span {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
     }
   }
 `;
@@ -172,6 +172,11 @@ const CurvedPath = styled.svg`
     bottom: -7%;
     left: 53%;
   }
+
+  @media ${theme.mediaQueries.mobileWide} {
+    bottom: 0%;
+    left: 48%;
+  }
 `;
 
 const ArchBackground = styled.svg`
@@ -192,9 +197,11 @@ const Container = styled.div`
   display: flex;
   justify-content: start;
   gap: 12%;
+  // gap: 5vh;
   height: 100%;
   position: relative;
   z-index: 3;
+
   @media ${theme.mediaQueries.tablet} {
     gap: 2%;
     padding: 20% 0 30%;
@@ -211,7 +218,7 @@ const PhantomDiv = styled.div`
   @media ${theme.mediaQueries.mobile}б {
     display: block;
     width: 100%;
-    height: 46vh;
+    height: 44vh;
     // margin-top: 10%;
     // border: 1px solid black;
     order: 2;
@@ -227,6 +234,7 @@ const PhantomDiv = styled.div`
   @media ${theme.mediaQueries.smallMobile}, ${theme.mediaQueries.mobileWide} {
     display: block;
     width: 100%;
+    // height: 70vh;
     height: 70vh;
     // border: 1px solid green;
     order: 2;
@@ -235,8 +243,13 @@ const PhantomDiv = styled.div`
 
 const Left = styled.div`
   width: 43%;
-  height: 143%;
+  height: 113%;
   z-index: 0;
+  border: 5px solid yellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
   @media ${theme.mediaQueries.tablet} {
     width: 43%;
     position: absolute;
@@ -251,16 +264,26 @@ const Left = styled.div`
     left: 0;
     height: auto;
     padding: 0 0%;
-    // border: 1px solid orange;
+    border: 1px solid blue;
   }
 `;
-
 const Image = styled.img`
-  width: 90%;
+  // max-width: 90%;
+  width: 75vh;
+  // width: auto;
   height: auto;
   object-fit: cover;
   z-index: 3;
+  // position: absolute;
   display: block;
+  bottom: 0;
+  left: 0;
+  border: 1px solid red;
+
+  @media ${theme.mediaQueries.desktopWide} {
+    width: 100%;
+    border: 5px solid purple;
+  }
   @media ${theme.mediaQueries.tablet} {
     width: 100%;
   }
@@ -275,7 +298,7 @@ const Right = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // border: 1px solid red;
+  border: 1px solid red;
 
   @media ${theme.mediaQueries.tablet} {
     width: 55%;
