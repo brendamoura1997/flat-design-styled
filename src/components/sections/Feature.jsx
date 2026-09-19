@@ -165,7 +165,7 @@ const PurpleCircle = styled.div`
 const CurvedPath = styled.svg`
   position: absolute;
   top: 38%;
-  left: 35%;
+  left: 30%;
   z-index: 2;
 
   @media ${theme.mediaQueries.mobile} {
