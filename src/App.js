@@ -1,3 +1,4 @@
+//App.js
 import styled, { css, ThemeProvider } from "styled-components";
 import NavbarDesktop from "./components/layout/NavbarDesktop";
 import Intro from "./components/sections/Intro";
@@ -12,32 +13,13 @@ import GlobalStyle from "./styles/globalStyle";
 import ResetStyle from "./styles/resetStyle";
 import NavbarMobile from "./components/layout/NavbarMobile";
 
-const Container = styled.div`
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-
-  @media ${theme.mediaQueries.tablet} {
-    height: fit-content;
-  }
-
-  @media ${theme.mediaQueries.mobile} {
-    // height: 100vh;
-    height: fit-content;
-    // border: 2px solid blue;
-  }
-
-  @media ${theme.mediaQueries.mobileWide} {
-    // height: fit-content;
-    min-height: 125vh;
-    // border: 2px solid red;
-  }
-
-  @media ${theme.mediaQueries.smallMobile} {
-    height: 100vh;
-
-    // border: 2px solid blue;
-  }
+const Shape = css`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 `;
 
 const ContainerIntro = styled.div`
@@ -56,28 +38,13 @@ const ContainerIntro = styled.div`
   }
 `;
 
-const ContainerExtra = styled.div`
-  height: 120vh;
-  overflow: hidden;
-  position: relative;
-`;
-
-const Shape = css`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-`;
-
 const IntroShape = styled.div`
   ${Shape}
   clip-path: polygon(67% 0, 100% 0%, 100% 100%, 55% 100%);
   background-color: crimson;
   z-index: 2;
+
   @media ${theme.mediaQueries.tablet} {
-    // clip-path: polygon(100% 59%, 100% 100%, 0% 100%);
     clip-path: polygon(100% 59%, 100% 100%, 37% 100%);
   }
   @media ${theme.mediaQueries.tabletWide} {
@@ -93,6 +60,30 @@ const IntroShape = styled.div`
   }
 `;
 
+const ContainerFeature = styled.div`
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+
+  @media ${theme.mediaQueries.tabletWide} {
+    height: auto;
+    min-height: 120vh;
+  }
+
+  @media ${theme.mediaQueries.tablet} {
+    height: fit-content;
+    min-height: auto;
+  }
+
+  @media ${theme.mediaQueries.mobileWide} {
+    min-height: 100vh;
+  }
+
+  @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.smallMobile} {
+    height: fit-content;
+  }
+`;
+
 const FeatureShape = styled.div`
   ${Shape}
   clip-path: polygon(0 0, 55% 0%, 43% 100%, 0 100%);
@@ -100,10 +91,8 @@ const FeatureShape = styled.div`
 
   @media ${theme.mediaQueries.tablet} {
     clip-path: polygon(0 0, 37% 0%, 37% 100%, 0 100%);
-    // clip-path: polygon(0 0, 30% 0%, 43% 100%, 0 100%);
   }
   @media ${theme.mediaQueries.mobile} {
-    // display: none;
     clip-path: polygon(0 80%, 100% 55%, 100% 100%, 0% 100%);
   }
 `;
@@ -154,6 +143,12 @@ const DotGrid = styled.div`
   }
 `;
 
+const ContainerExtra = styled.div`
+  height: 120vh;
+  overflow: hidden;
+  position: relative;
+`;
+
 const dots = (count) =>
   Array.from({ length: count }).map((_, i) => <span key={i} />);
 
@@ -176,10 +171,10 @@ function App() {
         )}
       </ContainerIntro>
 
-      <Container id="feature">
+      <ContainerFeature id="feature">
         <Feature />
         <FeatureShape />
-      </Container>
+      </ContainerFeature>
 
       <ContainerExtra>
         <Service />

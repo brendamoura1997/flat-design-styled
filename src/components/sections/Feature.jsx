@@ -1,3 +1,4 @@
+//Feature.jsx
 import styled, { keyframes } from "styled-components";
 import App from "../../assets/images/app.png";
 import StarIcon from "../icons/StarIcon";
@@ -14,6 +15,14 @@ const Wrapper = styled.div`
   position: relative;
   overflow: hidden;
   height: 100%;
+
+  @media ${theme.mediaQueries.tabletWide},
+    ${theme.mediaQueries.mobile},
+    ${theme.mediaQueries.mobileWide} {
+    display: flex;
+    flex-direction: column;
+    min-height: inherit;
+  }
 `;
 
 const DotGrid = styled.div`
@@ -43,7 +52,6 @@ const DotGrid = styled.div`
     }
   }
   @media ${theme.mediaQueries.mobile} {
-    // gap: 20px;
     gap: 60%;
     grid-template-columns: repeat(${({ $cols }) => $cols || 5}, 20%);
     ${({ $pos }) => $pos === "tl" && `bottom: 13%; left: 26%; top: auto;`}
@@ -179,20 +187,6 @@ const CurvedPath = styled.svg`
   }
 `;
 
-const ArchBackground = styled.svg`
-  display: none;
-  // @media ${theme.mediaQueries.mobile} {
-  //   display: block;
-  //   position: absolute;
-  //   width: 80%;
-  //   height: 47%;
-  //   bottom: 0%;
-  //   left: 50%;
-  //   transform: translateX(-50%);
-  //   z-index: 0;
-  // }
-`;
-
 const Container = styled.div`
   display: flex;
   justify-content: start;
@@ -206,10 +200,17 @@ const Container = styled.div`
     gap: 2%;
     padding: 20% 0 30%;
   }
+  @media ${theme.mediaQueries.tabletWide} {
+    flex: 1 1 auto;
+  }
+
   @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.mobileWide} {
     flex-direction: column;
     gap: 0;
     padding: 0% 0 0%;
+    height: auto;
+    flex: 1 1 auto;
+    min-height: 0;
   }
 `;
 
@@ -219,24 +220,18 @@ const PhantomDiv = styled.div`
     display: block;
     width: 100%;
     height: 44vh;
-    // margin-top: 10%;
-    // border: 1px solid black;
     order: 2;
   }
   @media ${theme.mediaQueries.tabletWide}б {
     display: block;
     width: 100%;
     height: 46vh;
-    // margin-top: 10%;
-    // border: 1px solid black;
     order: 2;
   }
   @media ${theme.mediaQueries.smallMobile}, ${theme.mediaQueries.mobileWide} {
     display: block;
     width: 100%;
-    // height: 70vh;
     height: 70vh;
-    // border: 1px solid green;
     order: 2;
   }
 `;
@@ -245,7 +240,6 @@ const Left = styled.div`
   width: 43%;
   height: 113%;
   z-index: 0;
-  border: 5px solid yellow;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -257,6 +251,12 @@ const Left = styled.div`
     left: -5%;
     height: auto;
   }
+
+  @media ${theme.mediaQueries.tabletWide} {
+    height: auto;
+    align-self: stretch;
+  }
+
   @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.mobileWide} {
     width: 60%;
     position: absolute;
@@ -264,32 +264,30 @@ const Left = styled.div`
     left: 0;
     height: auto;
     padding: 0 0%;
-    border: 1px solid blue;
   }
 `;
 const Image = styled.img`
-  // max-width: 90%;
   width: 75vh;
-  // width: auto;
   height: auto;
   object-fit: cover;
   z-index: 3;
-  // position: absolute;
   display: block;
   bottom: 0;
   left: 0;
-  border: 1px solid red;
 
   @media ${theme.mediaQueries.desktopWide} {
     width: 100%;
-    border: 5px solid purple;
   }
   @media ${theme.mediaQueries.tablet} {
     width: 100%;
   }
   @media ${theme.mediaQueries.mobile} {
     width: 100%;
-    // margin: 0 auto;
+  }
+  @media only screen and (max-width: 699px) and (min-aspect-ratio: 0.8) and (max-aspect-ratio: 1.25) {
+    align-self: flex-start;
+    width: auto;
+    height: 45vh;
   }
 `;
 
@@ -298,12 +296,12 @@ const Right = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid red;
 
   @media ${theme.mediaQueries.tablet} {
     width: 55%;
     margin-left: 42%;
   }
+
   @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.mobileWide} {
     width: 100%;
     margin-left: 0;
@@ -475,12 +473,6 @@ const Feature = () => {
       <PurpleSquare />
       <PinkRect />
       <PurpleCircle />
-      <ArchBackground viewBox="0 0 300 420" preserveAspectRatio="none">
-        <path
-          d="M0 420 L0 150 C0 67, 67 0, 150 0 C233 0, 300 67, 300 150 L300 420 Z"
-          fill="pink"
-        />
-      </ArchBackground>
       <CurvedPath width="160" height="320" viewBox="0 0 160 320" fill="none">
         <path
           d="M5 0 C 70 0, 150 90, 130 190 C 115 250, 80 290, 60 300"

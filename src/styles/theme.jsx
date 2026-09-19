@@ -8,7 +8,7 @@ export const theme = {
     desktopWide: 1.7,
   },
   mediaQueries: {
-    smallMobile: `only screen and (max-width: 399px)`,
+    smallMobile: `only screen and (max-width: 320px)`,
     mobile: `only screen and (max-aspect-ratio: 9/16), only screen and (max-width: 699px)`,
     // Mobile (ou largura < 700px) com proporção MAIOR que 0.56 (ex: 0.59, 0.60, 0.62, 0.66)
     mobileWide: `only screen and (max-width: 699px) and (min-aspect-ratio: 0.5)`,
