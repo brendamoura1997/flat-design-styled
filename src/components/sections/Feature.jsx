@@ -55,7 +55,7 @@ const DotGrid = styled.div`
     gap: 60%;
     grid-template-columns: repeat(${({ $cols }) => $cols || 5}, 20%);
     ${({ $pos }) => $pos === "tl" && `bottom: 13%; left: 26%; top: auto;`}
-    ${({ $pos }) => $pos === "tr" && `bottom: 45%; right: 25%; top: auto;`}
+    ${({ $pos }) => $pos === "tr" && `bottom: 42%; right: 25%; top: auto;`}
     opacity: 1;
     span {
       width: 6px;
@@ -167,13 +167,7 @@ const CurvedPath = styled.svg`
   top: 38%;
   left: 35%;
   z-index: 2;
-  @media ${theme.mediaQueries.tablet} {
-    width: 20%;
-    height: auto;
-    top: auto;
-    bottom: 3%;
-    left: 23%;
-  }
+
   @media ${theme.mediaQueries.mobile} {
     width: 20%;
     top: auto;
@@ -181,9 +175,22 @@ const CurvedPath = styled.svg`
     left: 53%;
   }
 
+  @media ${theme.mediaQueries.tablet} {
+    width: 20%;
+    height: auto;
+    top: auto;
+    bottom: 3%;
+    left: 23%;
+  }
+
   @media ${theme.mediaQueries.mobileWide} {
     bottom: 0%;
     left: 48%;
+  }
+
+  @media only screen and (max-width: 699px) and (min-aspect-ratio: 0.8) and (max-aspect-ratio: 1.25) {
+    left: 33%;
+    bottom: -7%;
   }
 `;
 
@@ -244,14 +251,6 @@ const Left = styled.div`
   flex-direction: column;
   justify-content: flex-end;
 
-  @media ${theme.mediaQueries.tablet} {
-    width: 43%;
-    position: absolute;
-    bottom: 0;
-    left: -5%;
-    height: auto;
-  }
-
   @media ${theme.mediaQueries.tabletWide} {
     height: auto;
     align-self: stretch;
@@ -265,6 +264,14 @@ const Left = styled.div`
     height: auto;
     padding: 0 0%;
   }
+
+  @media ${theme.mediaQueries.tablet} {
+    width: 43%;
+    position: absolute;
+    bottom: 0;
+    left: -5%;
+    height: auto;
+  }
 `;
 const Image = styled.img`
   width: 75vh;
@@ -275,19 +282,16 @@ const Image = styled.img`
   bottom: 0;
   left: 0;
 
-  @media ${theme.mediaQueries.desktopWide} {
+  @media ${theme.mediaQueries.desktopWide},
+    ${theme.mediaQueries.tablet},
+    ${theme.mediaQueries.mobile} {
     width: 100%;
   }
-  @media ${theme.mediaQueries.tablet} {
-    width: 100%;
-  }
-  @media ${theme.mediaQueries.mobile} {
-    width: 100%;
-  }
+
   @media only screen and (max-width: 699px) and (min-aspect-ratio: 0.8) and (max-aspect-ratio: 1.25) {
     align-self: flex-start;
     width: auto;
-    height: 45vh;
+    height: 70vh;
   }
 `;
 
