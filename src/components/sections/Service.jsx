@@ -1,3 +1,4 @@
+//Service.jsx
 import { useState, useEffect } from "react";
 import styled, { keyframes, createGlobalStyle } from "styled-components";
 import How from "../../assets/images/how.png";
@@ -6,6 +7,11 @@ import CodeIcon from "../icons/CodeIcon";
 import PurseIcon from "../icons/PurseIcon";
 import StarIcon from "../icons/StarIcon";
 import PlayIcon from "../icons/PlayIcon";
+import { theme } from "../../styles/theme";
+
+const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
+const compactQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile}`;
+
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -32,16 +38,16 @@ const Container = styled.div`
   justify-content: center;
   gap: 20px;
   height: 100%;
-  @media only screen and (max-width: 480px) {
-    flex-direction: column;
+  @media ${tabletQueries} {
+    justify-content: flex-start;
+    gap: 0;
   }
-`;
-const Left = styled.div`
-  width: 40%;
-  position: relative;
-  overflow: hidden;
-  @media only screen and (max-width: 480px) {
-    display: none;
+  @media ${theme.mediaQueries.mobile} {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0;
+    position: relative;
+    height: auto;
   }
 `;
 const SemiCircle = styled.div`
@@ -52,6 +58,21 @@ const SemiCircle = styled.div`
   left: 1%;
   border: 2px solid #ffdce0;
   border-radius: 100px 100px 0 0;
+  @media ${tabletQueries} {
+    height: auto;
+    aspect-ratio: 2 / 1;
+    bottom: 6%;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    width: 25%;
+    height: auto;
+    aspect-ratio: 2 / 1;
+    left: auto;
+    right: 20%;
+    bottom: 11vw;
+    border-width: 1.5px;
+    z-index: 1;
+  }
 `;
 const DecorSquareBlue = styled.div`
   position: absolute;
@@ -63,6 +84,25 @@ const DecorSquareBlue = styled.div`
   rotate: 45deg;
   border-radius: 6px;
   z-index: 0;
+  @media ${tabletQueries} {
+    top: 19.1vw;
+    left: 32.7%;
+    width: 7.2%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    top: auto;
+    bottom: 15%;
+    left: auto;
+    right: 15%;
+    width: 20%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-width: 1.5px;
+    border-radius: 4px;
+    z-index: 1;
+  }
 `;
 const DotsGrid = styled.div`
   position: absolute;
@@ -79,17 +119,78 @@ const DotsGrid = styled.div`
     background: #fdc4cb;
     display: block;
   }
+  @media ${tabletQueries} {
+    top: 3vw;
+    left: 3%;
+    grid-template-columns: repeat(5, 10px);
+    gap: 9px;
+    span {
+      width: 6px;
+      height: 6px;
+    }
+  }
+  @media ${theme.mediaQueries.mobile} {
+    top: auto;
+    bottom: calc(53vw - 56px);
+    left: 4.6vw;
+    left: 4.6vw;
+    grid-template-columns: repeat(5, 4px);
+    gap: 9px;
+    z-index: 1;
+    span {
+      width: 4px;
+      height: 4px;
+    }
+  }
 `;
+
+const Left = styled.div`
+  width: 40%;
+  position: relative;
+  overflow: hidden;
+  @media ${tabletQueries} {
+    width: 41%;
+    margin-left: 4%;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    width: 100%;
+    margin-left: 0;
+    flex-shrink: 0;
+    order: 1;
+    aspect-ratio: 1.2;
+    // border: 1px solid blue;
+  }
+`;
+
 const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
+  @media ${tabletQueries} {
+    display: block;
+    height: auto;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    position: absolute;
+    top: 0;
+    left: auto;
+    // right: 15%;
+    width: 62%;
+    height: auto;
+    object-fit: contain;
+    // border: 1px solid yellow;
+  }
 `;
 const Right = styled.div`
   width: 50%;
-  @media only screen and (max-width: 480px) {
+  @media ${tabletQueries} {
+    width: 49%;
+    margin-left: 2.5%;
+  }
+  @media ${theme.mediaQueries.mobile} {
     width: 100%;
+    margin-left: 0;
   }
 `;
 const Wrapper = styled.div`
@@ -97,8 +198,11 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   animation: ${fadeIn} 0.6s ease both;
-  @media only screen and (max-width: 480px) {
-    padding: 28px 20px;
+  @media ${tabletQueries} {
+    padding: 48px 0;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    padding: 4% 6% 10%;
   }
 `;
 const Badge = styled.div`
@@ -113,11 +217,30 @@ const Badge = styled.div`
   border-radius: 999px;
   margin-bottom: 10px;
   width: fit-content;
+  @media ${tabletQueries} {
+    font-size: clamp(0.75rem, 0.5rem + 0.6vw, 0.875rem);
+    padding: 7px 14px;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: clamp(0.6875rem, 0.55rem + 0.6vw, 0.8125rem);
+    padding: 6px 12px;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  @media ${theme.mediaQueries.smallMobile} {
+    font-size: 0.625rem;
+  }
 `;
 const Title = styled.h1`
   font-size: 60px;
   line-height: 1.15;
   color: #111;
+  @media ${tabletQueries} {
+    font-size: clamp(2rem, 0.9rem + 3vw, 3rem);
+  }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.5rem);
+  }
 `;
 const Highlight = styled.span`
   color: #e91e63;
@@ -128,14 +251,32 @@ const Desc = styled.p`
   margin-top: 20px;
   color: #666;
   max-width: 520px;
+  @media ${tabletQueries} {
+    font-size: clamp(0.875rem, 0.45rem + 0.95vw, 1.0625rem);
+    margin-top: 16px;
+    max-width: 92%;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: clamp(0.875rem, 0.75rem + 0.55vw, 1rem);
+    margin-top: 12px;
+    max-width: 100%;
+  }
 `;
 const CardContainer = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 16px;
   margin-top: 40px;
-  @media only screen and (max-width: 480px) {
+  @media ${compactQueries} {
     flex-direction: column;
+  }
+  @media ${tabletQueries} {
+    gap: 14px;
+    margin-top: 28px;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    gap: 12px;
+    margin-top: 20px;
   }
 `;
 const Card = styled.div`
@@ -149,6 +290,23 @@ const Card = styled.div`
   border-radius: 14px;
   background: #fff;
   gap: 0;
+  @media ${compactQueries} {
+    flex: none;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto auto;
+    align-items: start;
+    text-align: left;
+  }
+  @media ${tabletQueries} {
+    column-gap: 20px;
+    padding: 18px 22px;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    column-gap: 16px;
+    padding: 14px 16px;
+    border-radius: 12px;
+  }
 `;
 const CardIconWrapper = styled.div`
   width: 64px;
@@ -159,12 +317,41 @@ const CardIconWrapper = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 18px;
+  @media ${compactQueries} {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    align-self: center;
+    margin-bottom: 0;
+    svg {
+      width: 48%;
+      height: 48%;
+    }
+  }
+  @media ${tabletQueries} {
+    width: clamp(48px, 6vw, 64px);
+    height: clamp(48px, 6vw, 64px);
+  }
+  @media ${theme.mediaQueries.mobile} {
+    width: clamp(46px, 13.5vw, 56px);
+    height: clamp(46px, 13.5vw, 56px);
+  }
 `;
 const CardTitle = styled.h3`
   font-size: 15px;
   font-weight: 700;
   color: #111;
   margin: 0 0 7px 0;
+  @media ${compactQueries} {
+    grid-column: 2;
+    grid-row: 1;
+    margin-bottom: 6px;
+  }
+  @media ${tabletQueries} {
+    font-size: clamp(0.9375rem, 0.6rem + 1vw, 1.125rem);
+  }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: clamp(0.9375rem, 0.85rem + 0.5vw, 1.0625rem);
+  }
 `;
 const CardDivider = styled.div`
   width: 32px;
@@ -172,12 +359,27 @@ const CardDivider = styled.div`
   background-color: #e91e63;
   border-radius: 2px;
   margin-bottom: 14px;
+  @media ${compactQueries} {
+    grid-column: 2;
+    grid-row: 2;
+    margin-bottom: 10px;
+  }
 `;
 const CardDesc = styled.p`
   font-size: 13px;
   line-height: 1.65;
   color: #777;
   margin: 0;
+  @media ${compactQueries} {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  @media ${tabletQueries} {
+    font-size: clamp(0.8125rem, 0.45rem + 0.85vw, 0.9rem);
+  }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: clamp(0.8125rem, 0.75rem + 0.3vw, 0.875rem);
+  }
 `;
 const Button = styled.button`
   display: flex;
@@ -228,6 +430,21 @@ const Button = styled.button`
   &:active {
     background: #3131de;
     transform: scale(0.98);
+  }
+  @media ${tabletQueries} {
+    font-size: clamp(0.9375rem, 0.6rem + 0.8vw, 1.125rem);
+    padding: 14px 22px;
+    margin-top: 24px;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: clamp(0.9375rem, 0.8rem + 0.4vw, 1.0625rem);
+    padding: 13px 20px;
+    margin-top: 16px;
+    border-radius: 8px;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 `;
 const Backdrop = styled.div`
@@ -394,7 +611,7 @@ const Service = () => {
     <>
       <GlobalStyle locked={open} />
       <Container>
-        <DotsGrid id="service">
+        <DotsGrid>
           {Array.from({ length: 25 }).map((_, i) => (
             <span key={i} />
           ))}
@@ -404,7 +621,7 @@ const Service = () => {
         <Left>
           <Image src={How} alt="Como funciona" />
         </Left>
-        <Right>
+        <Right id="service">
           <Wrapper>
             <Badge>
               <StarIcon
