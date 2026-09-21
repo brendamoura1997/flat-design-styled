@@ -97,10 +97,50 @@ const FeatureShape = styled.div`
   }
 `;
 
+const ContainerExtra = styled.div`
+  height: 120vh;
+  overflow: hidden;
+  position: relative;
+`;
+
+const ContainerService = styled.div`
+  // height: 120vh;
+  height: fit-content;
+  overflow: hidden;
+  position: relative;
+
+  @media ${theme.mediaQueries.tabletWide} {
+    height: auto;
+    min-height: 120vh;
+  }
+
+  @media ${theme.mediaQueries.tablet} {
+    height: fit-content;
+    min-height: auto;
+    // border: 2px solid red;
+  }
+
+  @media ${theme.mediaQueries.mobileWide} {
+    min-height: 100vh;
+  }
+
+  @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.smallMobile} {
+    height: fit-content;
+  }
+`;
+
 const ServiceShape = styled.div`
   ${Shape}
   clip-path: polygon(0 0, 43% 0%, 43% 100%, 0 100%);
   background-color: #f88497;
+
+  @media ${theme.mediaQueries.tablet} {
+    clip-path: polygon(0 0, 37% 0%, 37% 100%, 0 100%);
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    clip-path: polygon(0 95%, 100% 75%, 100% 100%, 0% 100%);
+  }
 `;
 
 const DotGrid = styled.div`
@@ -143,17 +183,11 @@ const DotGrid = styled.div`
   }
 `;
 
-const ContainerExtra = styled.div`
-  height: 120vh;
-  overflow: hidden;
-  position: relative;
-`;
-
 const dots = (count) =>
   Array.from({ length: count }).map((_, i) => <span key={i} />);
 
 function App() {
-  const { isMobile, isDesktop, isTablet } = useScreenSize();
+  const { isDesktop, isTablet } = useScreenSize();
 
   return (
     <ThemeProvider theme={theme}>
@@ -176,10 +210,10 @@ function App() {
         <FeatureShape />
       </ContainerFeature>
 
-      <ContainerExtra>
+      <ContainerService>
         <Service />
-        {!isMobile && <ServiceShape />}
-      </ContainerExtra>
+        {<ServiceShape />}
+      </ContainerService>
 
       <ContainerExtra>
         <Price />

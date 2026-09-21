@@ -96,7 +96,7 @@ const Logo = styled.h1`
 const LogoDown = styled.h1`
   font-weight: 900;
   font-size: clamp(0.625rem, 0.5382rem + 0.434vw, 0.75rem);
-  top: -9px;
+  top: -4px;
   left: 3%;
   position: relative;
   letter-spacing: 15px;

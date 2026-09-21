@@ -1,3 +1,4 @@
+//Service.jsx
 import { useState, useEffect } from "react";
 import styled, { keyframes, createGlobalStyle } from "styled-components";
 import How from "../../assets/images/how.png";
@@ -6,6 +7,11 @@ import CodeIcon from "../icons/CodeIcon";
 import PurseIcon from "../icons/PurseIcon";
 import StarIcon from "../icons/StarIcon";
 import PlayIcon from "../icons/PlayIcon";
+import { theme } from "../../styles/theme";
+
+const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
+const compactQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile}`;
+
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -30,18 +36,18 @@ const GlobalStyle = createGlobalStyle`
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 0px;
   height: 100%;
-  @media only screen and (max-width: 480px) {
-    flex-direction: column;
+  @media ${tabletQueries} {
+    justify-content: flex-start;
+    gap: 0;
   }
-`;
-const Left = styled.div`
-  width: 40%;
-  position: relative;
-  overflow: hidden;
-  @media only screen and (max-width: 480px) {
-    display: none;
+  @media ${theme.mediaQueries.mobile} {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0;
+    position: relative;
+    height: auto;
   }
 `;
 const SemiCircle = styled.div`
@@ -52,53 +58,319 @@ const SemiCircle = styled.div`
   left: 1%;
   border: 2px solid #ffdce0;
   border-radius: 100px 100px 0 0;
+  @media ${tabletQueries} {
+    width: 25%;
+    height: auto;
+    aspect-ratio: 2 / 1;
+    bottom: 6%;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    display: none;
+  }
 `;
 const DecorSquareBlue = styled.div`
   position: absolute;
-  top: 32%;
-  left: 31%;
-  width: 9%;
-  height: 16%;
+  top: 13.7%;
+  left: 32.8%;
+  width: 7.6%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   border: 2px solid #ffdce0;
   rotate: 45deg;
   border-radius: 6px;
   z-index: 0;
+
+  @media ${tabletQueries} {
+    top: 8.6vw;
+    left: 25.2%;
+    width: 8.4%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    top: auto;
+    bottom: 18%;
+    left: auto;
+    right: 18%;
+    width: 18%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 4px;
+    z-index: 1;
+  }
 `;
+
+const DecorSquareBlueTablet = styled.div`
+  @media ${tabletQueries} {
+    position: absolute;
+    top: 18%;
+    left: 5.5%;
+    width: 9.6%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border: 2px solid rgba(246, 66, 103, 1);
+    background: rgba(246, 66, 103, 1);
+    rotate: 45deg;
+    border-radius: 6px;
+    z-index: 0;
+  }
+`;
+const DecorCircle = styled.div`
+  position: absolute;
+  top: 28%;
+  left: -3%;
+  width: 40%;
+  height: 47%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 0;
+
+  @media ${tabletQueries} {
+    top: 25%;
+    left: -7.7%;
+    width: 49%;
+    height: 57%;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    top: auto;
+    bottom: 0;
+    left: -8.6%;
+    width: 76%;
+    height: 39vw;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  }
+`;
+
+const Sparkles = styled.div`
+  position: absolute;
+  top: 48.9%;
+  left: 36.3%;
+  z-index: 0;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    border-radius: 4px;
+    background: #fff;
+  }
+  &::before {
+    width: 47px;
+    left: -24px;
+    top: -22px;
+    rotate: -56deg;
+  }
+  &::after {
+    width: 45px;
+    left: 4px;
+    top: 7px;
+    rotate: -26deg;
+  }
+  @media ${tabletQueries} {
+    top: 59.2%;
+    left: 29.4%;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    top: auto;
+    bottom: 37vw;
+    left: 49%;
+
+    &::before {
+      width: 37px;
+      left: 6px;
+      top: -3px;
+      rotate: -56deg;
+    }
+    &::after {
+      width: 35px;
+      left: 25px;
+      top: 16px;
+      rotate: -26deg;
+    }
+  }
+`;
+
+const DecorSquarePink = styled.div`
+  position: absolute;
+  top: 83.5%;
+  left: 33.8%;
+  width: 3.8%;
+  aspect-ratio: 1 / 1;
+  background: #f8306f;
+  rotate: 45deg;
+  border-radius: 8px;
+  z-index: 0;
+  @media ${tabletQueries} {
+    bottom: 5%;
+    top: auto;
+    left: 29%;
+    width: 5.2%;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    top: auto;
+    bottom: 5vw;
+    left: auto;
+    right: 30.1%;
+    width: 9.7%;
+    border-radius: 4px;
+  }
+`;
+
 const DotsGrid = styled.div`
   position: absolute;
   top: 4%;
   left: 2%;
   display: grid;
-  grid-template-columns: repeat(5, 15px);
-  gap: 13px;
+  grid-template-columns: repeat(5, 9px);
+  gap: 18px 21px;
   z-index: 0;
   span {
-    width: 7px;
-    height: 7px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
     background: #fdc4cb;
     display: block;
   }
+  span:nth-child(n + 21) {
+    display: none;
+  }
+
+  @media ${tabletQueries} {
+    top: 3vw;
+    left: 3%;
+    grid-template-columns: repeat(5, 16px);
+    gap: 18px;
+    span {
+      width: 8px;
+      height: 8px;
+    }
+    span:nth-child(n + 21) {
+      display: none;
+    }
+  }
+  @media ${theme.mediaQueries.mobile} {
+    top: auto;
+    bottom: calc(69vw - 56px);
+    left: 4.6vw;
+    grid-template-columns: repeat(5, 6px);
+    gap: 9px;
+    z-index: 1;
+    span {
+      width: 5px;
+      height: 5px;
+    }
+    span:nth-child(n + 21) {
+      display: block;
+    }
+  }
 `;
+
+const DotsGridMobile = styled.div`
+  display: none;
+
+  @media ${tabletQueries} {
+    position: absolute;
+    bottom: 55.5vw;
+    left: 25%;
+    display: grid;
+    grid-template-columns: repeat(4, 7px);
+    gap: 15px;
+    z-index: 0;
+    span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #ffdce0;
+      display: block;
+    }
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    position: absolute;
+    bottom: 25vw;
+    left: auto;
+    right: 7%;
+    display: grid;
+    grid-template-columns: repeat(4, 7px);
+    gap: 10px;
+    z-index: 1;
+    span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #ffdce0;
+      display: block;
+    }
+  }
+`;
+
+const Left = styled.div`
+  width: 37%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-left: 3%;
+
+  @media ${tabletQueries} {
+    width: 41%;
+    margin-left: 1%;
+    align-self: flex-end;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    width: 100%;
+    margin-left: 0;
+    flex-shrink: 0;
+    order: 1;
+    aspect-ratio: 1.2;
+  }
+`;
+
 const Image = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
+  object-position: bottom center;
+
+  align-self: stretch;
+  @media ${tabletQueries} {
+    display: block;
+    height: auto;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    position: absolute;
+    top: 10%;
+    left: auto;
+    z-index: 3;
+    width: 62%;
+    height: auto;
+    object-fit: contain;
+  }
 `;
 const Right = styled.div`
   width: 50%;
-  @media only screen and (max-width: 480px) {
+  @media ${tabletQueries} {
+    width: 49%;
+    margin-left: 2.5%;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
     width: 100%;
+    margin-left: 0;
   }
 `;
 const Wrapper = styled.div`
-  padding: 60px 56px;
+  padding: 60px 3vw;
   display: flex;
   flex-direction: column;
   animation: ${fadeIn} 0.6s ease both;
-  @media only screen and (max-width: 480px) {
-    padding: 28px 20px;
+  @media ${tabletQueries} {
+    padding: 48px 0;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    padding: 10% 6% 0%;
   }
 `;
 const Badge = styled.div`
@@ -113,11 +385,37 @@ const Badge = styled.div`
   border-radius: 999px;
   margin-bottom: 10px;
   width: fit-content;
+  @media ${tabletQueries} {
+    font-size: clamp(0.75rem, 0.5rem + 0.6vw, 0.875rem);
+    padding: 7px 14px;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: clamp(0.6875rem, 0.55rem + 0.6vw, 0.8125rem);
+    padding: 6px 12px;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  @media ${theme.mediaQueries.smallMobile} {
+    font-size: 0.625rem;
+  }
 `;
 const Title = styled.h1`
-  font-size: 60px;
+  font-size: clamp(50px, 4.88vw, 60px);
   line-height: 1.15;
   color: #111;
+  hyphens: none;
+  word-break: normal;
+  overflow-wrap: normal;
+
+  @media ${tabletQueries} {
+    font-size: clamp(45px, 4.88vw, 50px);
+    line-height: 1.15;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: clamp(38px, 4.2vw, 45px);
+    line-height: 1.1;
+  }
 `;
 const Highlight = styled.span`
   color: #e91e63;
@@ -128,14 +426,33 @@ const Desc = styled.p`
   margin-top: 20px;
   color: #666;
   max-width: 520px;
+  @media ${tabletQueries} {
+    font-size: clamp(0.875rem, 0.45rem + 0.95vw, 1.0625rem);
+    margin-top: 16px;
+    max-width: 92%;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: clamp(0.875rem, 0.75rem + 0.55vw, 1rem);
+    margin-top: 12px;
+    max-width: 100%;
+  }
 `;
 const CardContainer = styled.div`
   display: flex;
   justify-content: space-between;
+
   gap: 16px;
-  margin-top: 40px;
-  @media only screen and (max-width: 480px) {
+  margin-top: 2vw;
+  @media ${compactQueries} {
     flex-direction: column;
+  }
+  @media ${tabletQueries} {
+    gap: 14px;
+    margin-top: 28px;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    gap: 12px;
+    margin-top: 20px;
   }
 `;
 const Card = styled.div`
@@ -144,11 +461,28 @@ const Card = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 28px 16px;
+  padding: 1.8vw 1vw;
   border: 1px solid #ebebeb;
   border-radius: 14px;
   background: #fff;
   gap: 0;
+  @media ${compactQueries} {
+    flex: none;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto auto;
+    align-items: start;
+    text-align: left;
+  }
+  @media ${tabletQueries} {
+    column-gap: 20px;
+    padding: 18px 22px;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    column-gap: 16px;
+    padding: 14px 16px;
+    border-radius: 12px;
+  }
 `;
 const CardIconWrapper = styled.div`
   width: 64px;
@@ -159,12 +493,41 @@ const CardIconWrapper = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 18px;
+  @media ${compactQueries} {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    align-self: center;
+    margin-bottom: 0;
+    svg {
+      width: 48%;
+      height: 48%;
+    }
+  }
+  @media ${tabletQueries} {
+    width: clamp(48px, 6vw, 64px);
+    height: clamp(48px, 6vw, 64px);
+  }
+  @media ${theme.mediaQueries.mobile} {
+    width: clamp(46px, 13.5vw, 56px);
+    height: clamp(46px, 13.5vw, 56px);
+  }
 `;
 const CardTitle = styled.h3`
   font-size: 15px;
   font-weight: 700;
   color: #111;
   margin: 0 0 7px 0;
+  @media ${compactQueries} {
+    grid-column: 2;
+    grid-row: 1;
+    margin-bottom: 6px;
+  }
+  @media ${tabletQueries} {
+    font-size: clamp(0.9375rem, 0.6rem + 1vw, 1.125rem);
+  }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: clamp(0.9375rem, 0.85rem + 0.5vw, 1.0625rem);
+  }
 `;
 const CardDivider = styled.div`
   width: 32px;
@@ -172,12 +535,27 @@ const CardDivider = styled.div`
   background-color: #e91e63;
   border-radius: 2px;
   margin-bottom: 14px;
+  @media ${compactQueries} {
+    grid-column: 2;
+    grid-row: 2;
+    margin-bottom: 10px;
+  }
 `;
 const CardDesc = styled.p`
   font-size: 13px;
   line-height: 1.65;
   color: #777;
   margin: 0;
+  @media ${compactQueries} {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  @media ${tabletQueries} {
+    font-size: clamp(0.8125rem, 0.45rem + 0.85vw, 0.9rem);
+  }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: clamp(0.8125rem, 0.75rem + 0.3vw, 0.875rem);
+  }
 `;
 const Button = styled.button`
   display: flex;
@@ -228,6 +606,21 @@ const Button = styled.button`
   &:active {
     background: #3131de;
     transform: scale(0.98);
+  }
+  @media ${tabletQueries} {
+    font-size: clamp(0.9375rem, 0.6rem + 0.8vw, 1.125rem);
+    padding: 14px 22px;
+    margin-top: 24px;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: clamp(0.9375rem, 0.8rem + 0.4vw, 1.0625rem);
+    padding: 13px 20px;
+    margin-top: 16px;
+    border-radius: 8px;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 `;
 const Backdrop = styled.div`
@@ -394,17 +787,26 @@ const Service = () => {
     <>
       <GlobalStyle locked={open} />
       <Container>
-        <DotsGrid id="service">
+        <DotsGrid>
           {Array.from({ length: 25 }).map((_, i) => (
             <span key={i} />
           ))}
         </DotsGrid>
         <DecorSquareBlue />
+        <DecorSquareBlueTablet />
+        <DecorCircle />
+        <Sparkles />
+        <DecorSquarePink />
+        <DotsGridMobile>
+          {Array.from({ length: 16 }).map((_, i) => (
+            <span key={i} />
+          ))}
+        </DotsGridMobile>
         <SemiCircle />
         <Left>
           <Image src={How} alt="Como funciona" />
         </Left>
-        <Right>
+        <Right id="service">
           <Wrapper>
             <Badge>
               <StarIcon
@@ -474,7 +876,7 @@ const Service = () => {
             </ModalHeader>
             <VideoWrapper>
               <VideoFrame
-                src="https://www.youtube.com/embed/kAUiuF1Vcu0?si=HIFLCWzU199QK-nA&autoplay=1"
+                src="https://www.youtube.com/embed/9_s_Essow6s"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
