@@ -65,13 +65,6 @@ const SemiCircle = styled.div`
     bottom: 6%;
   }
   @media ${theme.mediaQueries.mobile} {
-    // width: 53%;
-    // height: auto;
-    // aspect-ratio: 2 / 1;
-    // left: 15%;
-    // right: auto;
-    // bottom: 1%;
-    // z-index: 1;
     display: none;
   }
 `;
@@ -101,13 +94,10 @@ const DecorSquareBlue = styled.div`
     left: auto;
     right: 18%;
     width: 18%;
-    // right: 12.7%;
-    // width: 14.9%;
     height: auto;
     aspect-ratio: 1 / 1;
     border-radius: 4px;
     z-index: 1;
-    // display: none;
   }
 `;
 
@@ -215,8 +205,6 @@ const DecorSquarePink = styled.div`
     bottom: 5%;
     top: auto;
     left: 29%;
-    // top: 33.7%;
-    // left: 24%;
     width: 5.2%;
   }
   @media ${theme.mediaQueries.mobile} {
@@ -283,8 +271,6 @@ const DotsGridMobile = styled.div`
 
   @media ${tabletQueries} {
     position: absolute;
-    // bottom: 3.5vw;
-    // left: 26%;
     bottom: 55.5vw;
     left: 25%;
     display: grid;
@@ -320,14 +306,13 @@ const DotsGridMobile = styled.div`
 `;
 
 const Left = styled.div`
-  width: 40%;
+  width: 37%;
   position: relative;
   overflow: hidden;
-  // border: 1px solid yellow;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  margin-left: 2%;
+  margin-left: 3%;
 
   @media ${tabletQueries} {
     width: 41%;
@@ -340,14 +325,12 @@ const Left = styled.div`
     flex-shrink: 0;
     order: 1;
     aspect-ratio: 1.2;
-    // border: 1px solid blue;
   }
 `;
 
 const Image = styled.img`
   width: 100%;
   height: 100%;
-  // object-fit: cover;
   object-fit: contain;
   object-position: bottom center;
 
@@ -360,17 +343,14 @@ const Image = styled.img`
     position: absolute;
     top: 10%;
     left: auto;
-    // right: 15%;
     z-index: 3;
     width: 62%;
     height: auto;
     object-fit: contain;
-    // border: 1px solid yellow;
   }
 `;
 const Right = styled.div`
   width: 50%;
-  // border: 1px solid blue;
   @media ${tabletQueries} {
     width: 49%;
     margin-left: 2.5%;
@@ -379,11 +359,9 @@ const Right = styled.div`
   @media ${theme.mediaQueries.mobile} {
     width: 100%;
     margin-left: 0;
-    // border: 1px solid red;
   }
 `;
 const Wrapper = styled.div`
-  // padding: 60px 56px;
   padding: 60px 3vw;
   display: flex;
   flex-direction: column;
@@ -422,7 +400,7 @@ const Badge = styled.div`
   }
 `;
 const Title = styled.h1`
-  font-size: 60px;
+  font-size: clamp(50px, 4.88vw, 60px);
   line-height: 1.15;
   color: #111;
   hyphens: none;
@@ -430,13 +408,12 @@ const Title = styled.h1`
   overflow-wrap: normal;
 
   @media ${tabletQueries} {
-    // font-size: clamp(2rem, 0.9rem + 3vw, 3rem);
-    font-size: 45px;
+    font-size: clamp(45px, 4.88vw, 50px);
     line-height: 1.15;
   }
+
   @media ${theme.mediaQueries.mobile} {
-    // font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.5rem);
-    font-size: 38px;
+    font-size: clamp(38px, 4.2vw, 45px);
     line-height: 1.1;
   }
 `;
@@ -463,8 +440,9 @@ const Desc = styled.p`
 const CardContainer = styled.div`
   display: flex;
   justify-content: space-between;
+
   gap: 16px;
-  margin-top: 40px;
+  margin-top: 2vw;
   @media ${compactQueries} {
     flex-direction: column;
   }
@@ -483,7 +461,7 @@ const Card = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 28px 16px;
+  padding: 1.8vw 1vw;
   border: 1px solid #ebebeb;
   border-radius: 14px;
   background: #fff;

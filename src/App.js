@@ -104,7 +104,8 @@ const ContainerExtra = styled.div`
 `;
 
 const ContainerService = styled.div`
-  height: 120vh;
+  // height: 120vh;
+  height: fit-content;
   overflow: hidden;
   position: relative;
 
@@ -186,7 +187,7 @@ const dots = (count) =>
   Array.from({ length: count }).map((_, i) => <span key={i} />);
 
 function App() {
-  const { isMobile, isDesktop, isTablet } = useScreenSize();
+  const { isDesktop, isTablet } = useScreenSize();
 
   return (
     <ThemeProvider theme={theme}>
