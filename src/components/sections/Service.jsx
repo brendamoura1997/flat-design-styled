@@ -36,7 +36,7 @@ const GlobalStyle = createGlobalStyle`
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 0px;
   height: 100%;
   @media ${tabletQueries} {
     justify-content: flex-start;
@@ -59,87 +59,262 @@ const SemiCircle = styled.div`
   border: 2px solid #ffdce0;
   border-radius: 100px 100px 0 0;
   @media ${tabletQueries} {
+    width: 25%;
     height: auto;
     aspect-ratio: 2 / 1;
     bottom: 6%;
   }
   @media ${theme.mediaQueries.mobile} {
-    width: 25%;
-    height: auto;
-    aspect-ratio: 2 / 1;
-    left: auto;
-    right: 20%;
-    bottom: 11vw;
-    border-width: 1.5px;
-    z-index: 1;
+    // width: 53%;
+    // height: auto;
+    // aspect-ratio: 2 / 1;
+    // left: 15%;
+    // right: auto;
+    // bottom: 1%;
+    // z-index: 1;
+    display: none;
   }
 `;
 const DecorSquareBlue = styled.div`
   position: absolute;
-  top: 32%;
-  left: 31%;
-  width: 9%;
-  height: 16%;
+  top: 13.7%;
+  left: 32.8%;
+  width: 7.6%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   border: 2px solid #ffdce0;
   rotate: 45deg;
   border-radius: 6px;
   z-index: 0;
+
   @media ${tabletQueries} {
-    top: 19.1vw;
-    left: 32.7%;
-    width: 7.2%;
+    top: 8.6vw;
+    left: 25.2%;
+    width: 8.4%;
     height: auto;
     aspect-ratio: 1 / 1;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    top: auto;
+    bottom: 18%;
+    left: auto;
+    right: 18%;
+    width: 18%;
+    // right: 12.7%;
+    // width: 14.9%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 4px;
+    z-index: 1;
+    // display: none;
+  }
+`;
+
+const DecorSquareBlueTablet = styled.div`
+  @media ${tabletQueries} {
+    position: absolute;
+    top: 18%;
+    left: 5.5%;
+    width: 9.6%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border: 2px solid rgba(246, 66, 103, 1);
+    background: rgba(246, 66, 103, 1);
+    rotate: 45deg;
+    border-radius: 6px;
+    z-index: 0;
+  }
+`;
+const DecorCircle = styled.div`
+  position: absolute;
+  top: 28%;
+  left: -3%;
+  width: 40%;
+  height: 47%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 0;
+
+  @media ${tabletQueries} {
+    top: 25%;
+    left: -7.7%;
+    width: 49%;
+    height: 57%;
   }
   @media ${theme.mediaQueries.mobile} {
     top: auto;
-    bottom: 15%;
-    left: auto;
-    right: 15%;
-    width: 20%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    border-width: 1.5px;
-    border-radius: 4px;
-    z-index: 1;
+    bottom: 0;
+    left: -8.6%;
+    width: 76%;
+    height: 39vw;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
   }
 `;
+
+const Sparkles = styled.div`
+  position: absolute;
+  top: 48.9%;
+  left: 36.3%;
+  z-index: 0;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    border-radius: 4px;
+    background: #fff;
+  }
+  &::before {
+    width: 47px;
+    left: -24px;
+    top: -22px;
+    rotate: -56deg;
+  }
+  &::after {
+    width: 45px;
+    left: 4px;
+    top: 7px;
+    rotate: -26deg;
+  }
+  @media ${tabletQueries} {
+    top: 59.2%;
+    left: 29.4%;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    top: auto;
+    bottom: 37vw;
+    left: 49%;
+
+    &::before {
+      width: 37px;
+      left: 6px;
+      top: -3px;
+      rotate: -56deg;
+    }
+    &::after {
+      width: 35px;
+      left: 25px;
+      top: 16px;
+      rotate: -26deg;
+    }
+  }
+`;
+
+const DecorSquarePink = styled.div`
+  position: absolute;
+  top: 83.5%;
+  left: 33.8%;
+  width: 3.8%;
+  aspect-ratio: 1 / 1;
+  background: #f8306f;
+  rotate: 45deg;
+  border-radius: 8px;
+  z-index: 0;
+  @media ${tabletQueries} {
+    bottom: 5%;
+    top: auto;
+    left: 29%;
+    // top: 33.7%;
+    // left: 24%;
+    width: 5.2%;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    top: auto;
+    bottom: 5vw;
+    left: auto;
+    right: 30.1%;
+    width: 9.7%;
+    border-radius: 4px;
+  }
+`;
+
 const DotsGrid = styled.div`
   position: absolute;
   top: 4%;
   left: 2%;
   display: grid;
-  grid-template-columns: repeat(5, 15px);
-  gap: 13px;
+  grid-template-columns: repeat(5, 9px);
+  gap: 18px 21px;
   z-index: 0;
   span {
-    width: 7px;
-    height: 7px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
     background: #fdc4cb;
     display: block;
   }
+  span:nth-child(n + 21) {
+    display: none;
+  }
+
   @media ${tabletQueries} {
     top: 3vw;
     left: 3%;
-    grid-template-columns: repeat(5, 10px);
-    gap: 9px;
+    grid-template-columns: repeat(5, 16px);
+    gap: 18px;
     span {
-      width: 6px;
-      height: 6px;
+      width: 8px;
+      height: 8px;
+    }
+    span:nth-child(n + 21) {
+      display: none;
     }
   }
   @media ${theme.mediaQueries.mobile} {
     top: auto;
-    bottom: calc(53vw - 56px);
+    bottom: calc(69vw - 56px);
     left: 4.6vw;
-    left: 4.6vw;
-    grid-template-columns: repeat(5, 4px);
+    grid-template-columns: repeat(5, 6px);
     gap: 9px;
     z-index: 1;
     span {
-      width: 4px;
-      height: 4px;
+      width: 5px;
+      height: 5px;
+    }
+    span:nth-child(n + 21) {
+      display: block;
+    }
+  }
+`;
+
+const DotsGridMobile = styled.div`
+  display: none;
+
+  @media ${tabletQueries} {
+    position: absolute;
+    // bottom: 3.5vw;
+    // left: 26%;
+    bottom: 55.5vw;
+    left: 25%;
+    display: grid;
+    grid-template-columns: repeat(4, 7px);
+    gap: 15px;
+    z-index: 0;
+    span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #ffdce0;
+      display: block;
+    }
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    position: absolute;
+    bottom: 25vw;
+    left: auto;
+    right: 7%;
+    display: grid;
+    grid-template-columns: repeat(4, 7px);
+    gap: 10px;
+    z-index: 1;
+    span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #ffdce0;
+      display: block;
     }
   }
 `;
@@ -148,9 +323,16 @@ const Left = styled.div`
   width: 40%;
   position: relative;
   overflow: hidden;
+  // border: 1px solid yellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-left: 2%;
+
   @media ${tabletQueries} {
     width: 41%;
-    margin-left: 4%;
+    margin-left: 1%;
+    align-self: flex-end;
   }
   @media ${theme.mediaQueries.mobile} {
     width: 100%;
@@ -165,17 +347,21 @@ const Left = styled.div`
 const Image = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  // object-fit: cover;
+  object-fit: contain;
+  object-position: bottom center;
+
+  align-self: stretch;
   @media ${tabletQueries} {
     display: block;
     height: auto;
   }
   @media ${theme.mediaQueries.mobile} {
     position: absolute;
-    top: 0;
+    top: 10%;
     left: auto;
     // right: 15%;
+    z-index: 3;
     width: 62%;
     height: auto;
     object-fit: contain;
@@ -184,17 +370,21 @@ const Image = styled.img`
 `;
 const Right = styled.div`
   width: 50%;
+  // border: 1px solid blue;
   @media ${tabletQueries} {
     width: 49%;
     margin-left: 2.5%;
   }
+
   @media ${theme.mediaQueries.mobile} {
     width: 100%;
     margin-left: 0;
+    // border: 1px solid red;
   }
 `;
 const Wrapper = styled.div`
-  padding: 60px 56px;
+  // padding: 60px 56px;
+  padding: 60px 3vw;
   display: flex;
   flex-direction: column;
   animation: ${fadeIn} 0.6s ease both;
@@ -202,7 +392,7 @@ const Wrapper = styled.div`
     padding: 48px 0;
   }
   @media ${theme.mediaQueries.mobile} {
-    padding: 4% 6% 10%;
+    padding: 10% 6% 0%;
   }
 `;
 const Badge = styled.div`
@@ -235,11 +425,19 @@ const Title = styled.h1`
   font-size: 60px;
   line-height: 1.15;
   color: #111;
+  hyphens: none;
+  word-break: normal;
+  overflow-wrap: normal;
+
   @media ${tabletQueries} {
-    font-size: clamp(2rem, 0.9rem + 3vw, 3rem);
+    // font-size: clamp(2rem, 0.9rem + 3vw, 3rem);
+    font-size: 45px;
+    line-height: 1.15;
   }
   @media ${theme.mediaQueries.mobile} {
-    font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.5rem);
+    // font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.5rem);
+    font-size: 38px;
+    line-height: 1.1;
   }
 `;
 const Highlight = styled.span`
@@ -617,6 +815,15 @@ const Service = () => {
           ))}
         </DotsGrid>
         <DecorSquareBlue />
+        <DecorSquareBlueTablet />
+        <DecorCircle />
+        <Sparkles />
+        <DecorSquarePink />
+        <DotsGridMobile>
+          {Array.from({ length: 16 }).map((_, i) => (
+            <span key={i} />
+          ))}
+        </DotsGridMobile>
         <SemiCircle />
         <Left>
           <Image src={How} alt="Como funciona" />
@@ -691,7 +898,7 @@ const Service = () => {
             </ModalHeader>
             <VideoWrapper>
               <VideoFrame
-                src="https://www.youtube.com/embed/kAUiuF1Vcu0?si=HIFLCWzU199QK-nA&autoplay=1"
+                src="https://www.youtube.com/embed/9_s_Essow6s"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"

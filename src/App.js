@@ -116,7 +116,7 @@ const ContainerService = styled.div`
   @media ${theme.mediaQueries.tablet} {
     height: fit-content;
     min-height: auto;
-    border: 2px solid red;
+    // border: 2px solid red;
   }
 
   @media ${theme.mediaQueries.mobileWide} {
@@ -133,8 +133,12 @@ const ServiceShape = styled.div`
   clip-path: polygon(0 0, 43% 0%, 43% 100%, 0 100%);
   background-color: #f88497;
 
+  @media ${theme.mediaQueries.tablet} {
+    clip-path: polygon(0 0, 37% 0%, 37% 100%, 0 100%);
+  }
+
   @media ${theme.mediaQueries.mobile} {
-    clip-path: polygon(0 90%, 100% 70%, 100% 100%, 0% 100%);
+    clip-path: polygon(0 95%, 100% 75%, 100% 100%, 0% 100%);
   }
 `;
 
