@@ -115,6 +115,9 @@ const DecorSquareBlueTablet = styled.div`
     border-radius: 6px;
     z-index: 0;
   }
+  @media ${theme.mediaQueries.mobile} {
+    display: none;
+  }
 `;
 const DecorCircle = styled.div`
   position: absolute;
