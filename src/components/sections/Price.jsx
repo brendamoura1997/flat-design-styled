@@ -1,3 +1,4 @@
+//Price.jsx
 import styled, { keyframes, css } from "styled-components";
 import SendIcon from "../icons/SendIcon";
 import StarIcon from "../icons/StarIcon";
@@ -31,7 +32,8 @@ const Section = styled.section`
   font-family: "Nunito", "Segoe UI", sans-serif;
   background: url("https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png");
   @media ${tabletQuery} {
-    padding: 48px 0;
+    min-height: auto;
+    padding: 64px 0;
   }
   @media ${theme.mediaQueries.mobile} {
     min-height: auto;
@@ -101,9 +103,9 @@ const Badge = styled.div`
     flex-shrink: 0;
   }
   @media ${tabletQuery} {
-    font-size: clamp(11px, 1.6vw, 13px);
-    padding: 7px 16px;
-    margin-bottom: 20px;
+    font-size: 13px;
+    padding: 8px 18px;
+    margin-bottom: 24px;
   }
   @media ${theme.mediaQueries.mobile} {
     font-size: clamp(11px, 3.2vw, 13px);
@@ -130,8 +132,8 @@ const Sub = styled.p`
   color: #777;
   margin: 0 0 56px;
   @media ${tabletQuery} {
-    font-size: clamp(13px, 1.9vw, 16px);
-    margin-bottom: clamp(32px, 5vw, 56px);
+    font-size: 16px;
+    margin-bottom: 48px;
   }
   @media ${theme.mediaQueries.mobile} {
     font-size: clamp(12px, 3.6vw, 14px);
@@ -145,7 +147,9 @@ const Cards = styled.div`
   justify-content: center;
   gap: 22px;
   @media ${tabletQuery} {
-    gap: clamp(12px, 2vw, 22px);
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
   }
   @media ${theme.mediaQueries.mobile} {
     flex-direction: column;
@@ -173,7 +177,7 @@ const Card = styled.div`
   background: #fff;
   border: 1.5px solid ${({ featured }) => (featured ? "#c7b8f7" : "#ebebeb")};
   border-radius: 18px;
-  padding: 24px 26px 22px;
+  padding: 29px 26px 22px;
   width: 30%;
   flex-shrink: 0;
   display: flex;
@@ -188,12 +192,17 @@ const Card = styled.div`
   animation: ${fadeUp} 0.5s ease both;
   animation-delay: ${({ delay }) => delay || "0s"};
   @media ${tabletQuery} {
-    width: auto;
-    flex: 1 1 0;
-    min-width: 0;
+    width: 100%;
+    max-width: 800px;
+    flex: none;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    grid-template-rows: auto auto;
+    column-gap: 40px;
+    row-gap: 24px;
     border-radius: 16px;
-    padding: clamp(16px, 2.4vw, 24px) clamp(14px, 2.4vw, 26px)
-      clamp(14px, 2.2vw, 22px);
+    padding: 40px;
+    align-items: start;
   }
   @media ${theme.mediaQueries.mobile} {
     width: 100%;
@@ -217,6 +226,10 @@ const FeaturedBadge = styled.div`
   padding: 7px 18px;
   border-radius: 6px;
   white-space: nowrap;
+  @media ${tabletQuery} {
+    left: 40px;
+    transform: none;
+  }
 `;
 const CardHeader = styled.div`
   display: flex;
@@ -226,8 +239,10 @@ const CardHeader = styled.div`
   width: 100%;
   margin-bottom: 22px;
   @media ${tabletQuery} {
-    gap: clamp(10px, 1.6vw, 14px);
-    margin-bottom: clamp(16px, 2.6vw, 22px);
+    grid-column: 1;
+    grid-row: 1;
+    margin-bottom: 0;
+    gap: 20px;
   }
 `;
 const HeaderText = styled.div`
@@ -248,8 +263,8 @@ const IconWrap = styled.div`
   justify-content: center;
   flex-shrink: 0;
   @media ${tabletQuery} {
-    width: clamp(46px, 6vw, 60px);
-    height: clamp(46px, 6vw, 60px);
+    width: 70px;
+    height: 70px;
   }
 `;
 const PlanName = styled.h3`
@@ -258,8 +273,8 @@ const PlanName = styled.h3`
   color: ${({ color }) => color};
   margin: 0 0 6px;
   @media ${tabletQuery} {
-    font-size: clamp(15px, 2.3vw, 20px);
-    margin-bottom: 5px;
+    font-size: 22px;
+    margin-bottom: 8px;
   }
 `;
 const PriceRow = styled.div`
@@ -275,8 +290,8 @@ const Currency = styled.span`
   color: #0f1230;
   margin-bottom: 7px;
   @media ${tabletQuery} {
-    font-size: clamp(11px, 1.6vw, 13px);
-    margin-bottom: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
   }
 `;
 const Amount = styled.span`
@@ -285,7 +300,7 @@ const Amount = styled.span`
   color: #0f1230;
   line-height: 1;
   @media ${tabletQuery} {
-    font-size: clamp(30px, 4.8vw, 44px);
+    font-size: 48px;
   }
 `;
 const Period = styled.span`
@@ -293,8 +308,8 @@ const Period = styled.span`
   color: #888;
   margin-bottom: 7px;
   @media ${tabletQuery} {
-    font-size: clamp(11px, 1.6vw, 13px);
-    margin-bottom: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -305,7 +320,7 @@ const Divider = styled.div`
   background: ${({ color }) => color};
   margin: 8px 0 0px 26px;
   @media ${tabletQuery} {
-    margin: 6px 0 14px 26px;
+    margin: 12px 0 0 0;
   }
 `;
 const FeatureList = styled.ul`
@@ -317,8 +332,11 @@ const FeatureList = styled.ul`
   flex-direction: column;
   gap: 9px;
   @media ${tabletQuery} {
-    gap: 7px;
-    margin-bottom: 16px;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin-bottom: 0;
+    margin-top: 4px;
+    gap: 12px;
   }
 `;
 const Feature = styled.li`
@@ -329,8 +347,8 @@ const Feature = styled.li`
   // font-weight: 600;
   color: #525f92;
   @media ${tabletQuery} {
-    font-size: clamp(12px, 1.7vw, 15px);
-    gap: 8px;
+    font-size: 16px;
+    gap: 12px;
   }
 `;
 const CheckBadge = styled.div`
@@ -344,9 +362,9 @@ const CheckBadge = styled.div`
   justify-content: center;
   flex-shrink: 0;
   @media ${tabletQuery} {
-    width: clamp(22px, 3vw, 28px);
-    height: clamp(22px, 3vw, 28px);
-    min-width: clamp(22px, 3vw, 28px);
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
   }
 `;
 const Btn = styled.button`
@@ -401,8 +419,11 @@ const Btn = styled.button`
     transform: scale(0.98);
   }
   @media ${tabletQuery} {
-    font-size: clamp(12px, 1.7vw, 14px);
-    padding: clamp(9px, 1.4vw, 11px);
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 0;
+    font-size: 16px;
+    padding: 14px;
   }
 `;
 const Footer = styled.div`
@@ -425,9 +446,9 @@ const Footer = styled.div`
     background: #ccc;
   }
   @media ${tabletQuery} {
-    gap: clamp(14px, 2.6vw, 24px);
-    margin-top: clamp(28px, 5vw, 48px);
-    font-size: clamp(11px, 1.7vw, 13.5px);
+    gap: 24px;
+    margin-top: 48px;
+    font-size: 13.5px;
   }
   @media ${theme.mediaQueries.mobile} {
     flex-wrap: wrap;
