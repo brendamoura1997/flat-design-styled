@@ -173,6 +173,43 @@ const Bubble = styled.span`
     left: ${({ $mLeft }) => $mLeft}%;
   }
 `;
+const CardDecor = styled.div`
+  display: none;
+  @media ${tabletQuery} {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 250px;
+    height: 250px;
+    pointer-events: none;
+    z-index: 0;
+  }
+`;
+const DecorWave = styled.svg`
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+`;
+const DecorDots = styled.div`
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  display: grid;
+  grid-template-columns: repeat(6, 4px);
+  gap: 6px;
+  span {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: ${({ color }) => color};
+    opacity: 0.3;
+    display: block;
+  }
+`;
 const Card = styled.div`
   background: #fff;
   border: 1.5px solid ${({ featured }) => (featured ? "#c7b8f7" : "#ebebeb")};
@@ -198,11 +235,12 @@ const Card = styled.div`
     display: grid;
     grid-template-columns: 1fr 1.2fr;
     grid-template-rows: auto auto;
-    column-gap: 40px;
-    row-gap: 24px;
+    column-gap: 24px;
+    row-gap: 20px;
     border-radius: 16px;
-    padding: 40px;
+    padding: 32px 40px;
     align-items: start;
+    overflow: visible;
   }
   @media ${theme.mediaQueries.mobile} {
     width: 100%;
@@ -229,6 +267,7 @@ const FeaturedBadge = styled.div`
   @media ${tabletQuery} {
     left: 40px;
     transform: none;
+    z-index: 10;
   }
 `;
 const CardHeader = styled.div`
@@ -242,7 +281,9 @@ const CardHeader = styled.div`
     grid-column: 1;
     grid-row: 1;
     margin-bottom: 0;
-    gap: 20px;
+    gap: 16px;
+    z-index: 1;
+    align-self: start;
   }
 `;
 const HeaderText = styled.div`
@@ -335,8 +376,10 @@ const FeatureList = styled.ul`
     grid-column: 2;
     grid-row: 1 / span 2;
     margin-bottom: 0;
-    margin-top: 4px;
-    gap: 12px;
+    margin-top: 0;
+    gap: 14px;
+    z-index: 1;
+    align-self: center;
   }
 `;
 const Feature = styled.li`
@@ -424,6 +467,8 @@ const Btn = styled.button`
     margin-top: 0;
     font-size: 16px;
     padding: 14px;
+    z-index: 1;
+    align-self: start;
   }
 `;
 const Footer = styled.div`
@@ -596,6 +641,23 @@ const Price = () => {
           {plans.map((plan) => (
             <Card key={plan.type} featured={plan.featured} delay={plan.delay}>
               {plan.featured && <FeaturedBadge>Mais Escolhido</FeaturedBadge>}
+              <CardDecor>
+                <DecorWave
+                  viewBox="0 0 500 500"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M43.9,-73.6C56.4,-65.8,65.4,-52.7,71.6,-38.7C77.8,-24.7,81.2,-9.9,79.2,4.2C77.2,18.3,69.9,31.6,60.1,42.5C50.3,53.4,38,61.9,24.4,67.1C10.8,72.3,-4.1,74.2,-18.2,71.3C-32.3,68.4,-45.6,60.7,-55.9,50.2C-66.2,39.7,-73.5,26.4,-76.5,12.1C-79.5,-2.2,-78.2,-17.5,-71.9,-30.7C-65.6,-43.9,-54.3,-55,-41.8,-62.8C-29.3,-70.6,-14.7,-75.1,0.8,-76.5C16.3,-77.9,31.4,-81.4,43.9,-73.6Z"
+                    transform="translate(250 250)"
+                    fill={plan.iconBg}
+                  />
+                </DecorWave>
+                <DecorDots color={plan.color}>
+                  {Array.from({ length: 18 }).map((_, i) => (
+                    <span key={i} />
+                  ))}
+                </DecorDots>
+              </CardDecor>
               <CardHeader>
                 <IconWrap bg={plan.iconBg}>{plan.icon}</IconWrap>
                 <HeaderText>
@@ -631,7 +693,7 @@ const Price = () => {
                   </Feature>
                 ))}
               </FeatureList>
-              <Btn featured={plan.featured}>Assine Agora</Btn>
+              <Btn featured={plan.featured}>Assinar Agora</Btn>
             </Card>
           ))}
         </Cards>
