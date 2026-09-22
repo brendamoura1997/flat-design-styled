@@ -1,9 +1,7 @@
-//Price.jsx
 import styled, { keyframes, css } from "styled-components";
 import SendIcon from "../icons/SendIcon";
 import StarIcon from "../icons/StarIcon";
 import RocketIcon from "../icons/RocketIcon";
-import CheckCircleIcon from "../icons/CheckCircleIcon";
 import HeartIcon from "../icons/HeartIcon";
 import ShieldHollowIcon from "../icons/ShieldHollowIcon";
 import { theme } from "../../styles/theme";
@@ -176,11 +174,11 @@ const Card = styled.div`
   border: 1.5px solid ${({ featured }) => (featured ? "#c7b8f7" : "#ebebeb")};
   border-radius: 18px;
   padding: 24px 26px 22px;
-  width: 32%;
+  width: 30%;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
   z-index: 1;
   box-shadow: ${({ featured }) =>
@@ -220,28 +218,48 @@ const FeaturedBadge = styled.div`
   border-radius: 6px;
   white-space: nowrap;
 `;
+const CardHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin-bottom: 22px;
+  @media ${tabletQuery} {
+    gap: clamp(10px, 1.6vw, 14px);
+    margin-bottom: clamp(16px, 2.6vw, 22px);
+  }
+`;
+const HeaderText = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+`;
 const IconWrap = styled.div`
-  width: 52px;
-  height: 52px;
+  width: 70px;
+  // height: 100%;
+  height: 70px;
   border-radius: 50%;
+  // border-radius: 5%;
   background: ${({ bg }) => bg};
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
+  flex-shrink: 0;
   @media ${tabletQuery} {
-    width: clamp(40px, 5.4vw, 52px);
-    height: clamp(40px, 5.4vw, 52px);
-    margin-bottom: 8px;
+    width: clamp(46px, 6vw, 60px);
+    height: clamp(46px, 6vw, 60px);
   }
 `;
 const PlanName = styled.h3`
-  font-size: 17px;
+  font-size: 20px;
+  font-weight: 700;
   color: ${({ color }) => color};
-  margin: 0 0 10px;
+  margin: 0 0 6px;
   @media ${tabletQuery} {
-    font-size: clamp(14px, 2vw, 17px);
-    margin-bottom: 8px;
+    font-size: clamp(15px, 2.3vw, 20px);
+    margin-bottom: 5px;
   }
 `;
 const PriceRow = styled.div`
@@ -249,11 +267,12 @@ const PriceRow = styled.div`
   align-items: flex-end;
   gap: 3px;
   margin-bottom: 2px;
+  // border: 1px solid red;
 `;
 const Currency = styled.span`
   font-size: 13px;
   font-weight: 700;
-  color: #333;
+  color: #0f1230;
   margin-bottom: 7px;
   @media ${tabletQuery} {
     font-size: clamp(11px, 1.6vw, 13px);
@@ -261,12 +280,12 @@ const Currency = styled.span`
   }
 `;
 const Amount = styled.span`
-  font-size: 42px;
+  font-size: 44px;
   font-weight: 700;
-  color: #0d0d0d;
+  color: #0f1230;
   line-height: 1;
   @media ${tabletQuery} {
-    font-size: clamp(30px, 4.6vw, 42px);
+    font-size: clamp(30px, 4.8vw, 44px);
   }
 `;
 const Period = styled.span`
@@ -278,14 +297,15 @@ const Period = styled.span`
     margin-bottom: 5px;
   }
 `;
+
 const Divider = styled.div`
   width: 40px;
   height: 3px;
   border-radius: 2px;
   background: ${({ color }) => color};
-  margin: 8px 0 16px;
+  margin: 8px 0 0px 26px;
   @media ${tabletQuery} {
-    margin: 6px 0 14px;
+    margin: 6px 0 14px 26px;
   }
 `;
 const FeatureList = styled.ul`
@@ -304,17 +324,29 @@ const FeatureList = styled.ul`
 const Feature = styled.li`
   display: flex;
   align-items: center;
-  gap: 9px;
-  // font-size: 13px;
-  color: #333;
+  gap: 10px;
+  font-size: 13px;
+  // font-weight: 600;
+  color: #525f92;
   @media ${tabletQuery} {
-    font-size: clamp(11px, 1.55vw, 13px);
-    gap: 7px;
-    svg {
-      width: clamp(18px, 2.4vw, 24px);
-      height: clamp(18px, 2.4vw, 24px);
-      flex-shrink: 0;
-    }
+    font-size: clamp(12px, 1.7vw, 15px);
+    gap: 8px;
+  }
+`;
+const CheckBadge = styled.div`
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  border-radius: 50%;
+  background: ${({ bg }) => bg};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  @media ${tabletQuery} {
+    width: clamp(22px, 3vw, 28px);
+    height: clamp(22px, 3vw, 28px);
+    min-width: clamp(22px, 3vw, 28px);
   }
 `;
 const Btn = styled.button`
@@ -402,9 +434,6 @@ const Footer = styled.div`
     gap: 10px 18px;
     margin-top: 36px;
     font-size: 12px;
-    .dot {
-      display: none;
-    }
   }
 `;
 const plans = [
@@ -424,8 +453,8 @@ const plans = [
     ],
     icon: (
       <SendIcon
-        width={24}
-        height={24}
+        width={34}
+        height={34}
         viewBox="0 0 24 24"
         color="none"
         stroke="#E11D48"
@@ -437,7 +466,7 @@ const plans = [
   {
     type: "Premium",
     price: "20",
-    color: "#7c5cbf",
+    color: "#5230e0",
     iconBg: "#f0ebff",
     divider: "#7c5cbf",
     featured: true,
@@ -450,11 +479,11 @@ const plans = [
     ],
     icon: (
       <StarIcon
-        width={24}
-        height={24}
+        width={34}
+        height={34}
         viewBox="0 0 24 24"
         color="none"
-        stroke="#7C6FCD"
+        stroke="#5230e0"
       />
     ),
   },
@@ -474,8 +503,8 @@ const plans = [
     ],
     icon: (
       <RocketIcon
-        width={24}
-        height={24}
+        width={34}
+        height={34}
         viewBox="0 0 24 24"
         color="none"
         stroke="#3DAA72"
@@ -546,24 +575,37 @@ const Price = () => {
           {plans.map((plan) => (
             <Card key={plan.type} featured={plan.featured} delay={plan.delay}>
               {plan.featured && <FeaturedBadge>Mais Escolhido</FeaturedBadge>}
-              <IconWrap bg={plan.iconBg}>{plan.icon}</IconWrap>
-              <PlanName color={plan.color}>Plano {plan.type}</PlanName>
-              <PriceRow>
-                <Currency>R$</Currency>
-                <Amount>{plan.price}</Amount>
-                <Period>/mês</Period>
-              </PriceRow>
-              <Divider color={plan.divider} />
+              <CardHeader>
+                <IconWrap bg={plan.iconBg}>{plan.icon}</IconWrap>
+                <HeaderText>
+                  <PlanName color={plan.color}>Plano {plan.type}</PlanName>
+                  <PriceRow>
+                    <Currency>R$</Currency>
+                    <Amount>{plan.price}</Amount>
+                    <Period>/mês</Period>
+                  </PriceRow>
+                  <Divider color={plan.divider} />
+                </HeaderText>
+              </CardHeader>
               <FeatureList>
                 {plan.features.map((f) => (
                   <Feature key={f}>
-                    <CheckCircleIcon
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      color={plan.color}
-                      stroke={plan.color}
-                    />
+                    <CheckBadge bg={plan.iconBg}>
+                      <svg
+                        width="28"
+                        height="28"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M8.5 12L11 14.5L15.5 10"
+                          stroke={plan.color}
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </CheckBadge>
                     {f}
                   </Feature>
                 ))}
@@ -584,9 +626,38 @@ const Price = () => {
             Pagamento seguro
           </span>
           <span className="dot" />
-          <span>Cancele quando quiser</span>
+          <span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <circle
+                cx="12"
+                cy="12"
+                r="9"
+                stroke="#2BAF8E"
+                strokeWidth="1.5"
+              />
+              <line
+                x1="6.5"
+                y1="17.5"
+                x2="17.5"
+                y2="6.5"
+                stroke="#2BAF8E"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
+            Cancele quando quiser
+          </span>
           <span className="dot" />
-          <span>Sem taxas ocultas</span>
+          <span>
+            <ShieldHollowIcon
+              width={18}
+              height={18}
+              viewBox="0 0 24 24"
+              color="none"
+              stroke="#2BAF8E"
+            />
+            Sem taxas ocultas
+          </span>
         </Footer>
       </Inner>
     </Section>
