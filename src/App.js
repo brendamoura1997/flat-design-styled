@@ -143,6 +143,30 @@ const ServiceShape = styled.div`
   }
 `;
 
+const ContainerPrice = styled.div`
+  height: fit-content;
+  overflow: hidden;
+  position: relative;
+
+  // @media ${theme.mediaQueries.tabletWide} {
+  //   height: auto;
+  //   min-height: 120vh;
+  // }
+
+  // @media ${theme.mediaQueries.tablet} {
+  //   height: fit-content;
+  //   min-height: auto;
+  // }
+
+  @media ${theme.mediaQueries.mobileWide} {
+    min-height: 100vh;
+  }
+
+  @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.smallMobile} {
+    height: fit-content;
+  }
+`;
+
 const DotGrid = styled.div`
   position: absolute;
   display: grid;
@@ -215,9 +239,9 @@ function App() {
         {<ServiceShape />}
       </ContainerService>
 
-      <ContainerExtra>
+      <ContainerPrice>
         <Price />
-      </ContainerExtra>
+      </ContainerPrice>
 
       <ContainerExtra>
         <Contact />
