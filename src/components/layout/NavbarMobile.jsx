@@ -782,6 +782,7 @@ const menuItems = [
         viewBox="0 0 24 24"
         color="none"
         stroke="#6955d8"
+        strokeWidth="2"
       />
     ),
     bg: "#e3e0fc",

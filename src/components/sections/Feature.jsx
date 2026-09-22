@@ -498,6 +498,7 @@ const Feature = () => {
               viewBox="0 0 24 24"
               color="none"
               stroke="#3DAA72"
+              strokeWidth="2"
             />
             Funcionalidades que fazem a diferença
           </Badge>

@@ -818,6 +818,7 @@ const Service = () => {
                 viewBox="0 0 24 24"
                 color="none"
                 stroke="#3DAA72"
+                strokeWidth="2"
               />
               Soluções pensadas para impulsionar seu negócio
             </Badge>

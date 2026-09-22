@@ -186,6 +186,25 @@ const CardDecor = styled.div`
     z-index: 0;
   }
 `;
+
+const MobileCornerDecor = styled.div`
+  display: none;
+
+  @media ${theme.mediaQueries.mobile} {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 48px;
+    height: 48px;
+    background: ${({ color }) => color};
+    border-radius: 0 18px 0 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.8;
+  }
+`;
+
 const DecorWave = styled.svg`
   position: absolute;
   bottom: 0;
@@ -294,10 +313,10 @@ const HeaderText = styled.div`
 `;
 const IconWrap = styled.div`
   width: 70px;
-  // height: 100%;
   height: 70px;
-  border-radius: 50%;
-  // border-radius: 5%;
+  // height: 70px;
+  // border-radius: 50%;
+  border-radius: 10px;
   background: ${({ bg }) => bg};
   display: flex;
   align-items: center;
@@ -312,7 +331,7 @@ const PlanName = styled.h3`
   font-size: 20px;
   font-weight: 700;
   color: ${({ color }) => color};
-  margin: 0 0 6px;
+  margin: 0 0 4px;
   @media ${tabletQuery} {
     font-size: 22px;
     margin-bottom: 8px;
@@ -355,11 +374,11 @@ const Period = styled.span`
 `;
 
 const Divider = styled.div`
-  width: 40px;
+  width: 70px;
   height: 3px;
   border-radius: 2px;
   background: ${({ color }) => color};
-  margin: 8px 0 0px 26px;
+  margin: 8px 0 0px;
   @media ${tabletQuery} {
     margin: 12px 0 0 0;
   }
@@ -524,7 +543,7 @@ const plans = [
         viewBox="0 0 24 24"
         color="none"
         stroke="#E11D48"
-        strokeWidthOutside="2.2"
+        strokeWidthOutside="1.8"
         strokeWidthInside="1.5"
       />
     ),
@@ -550,6 +569,7 @@ const plans = [
         viewBox="0 0 24 24"
         color="none"
         stroke="#5230e0"
+        strokeWidth="1.8"
       />
     ),
   },
@@ -574,7 +594,7 @@ const plans = [
         viewBox="0 0 24 24"
         color="none"
         stroke="#3DAA72"
-        strokeWidth="2"
+        strokeWidth="1.8"
       />
     ),
   },
@@ -641,6 +661,7 @@ const Price = () => {
           {plans.map((plan) => (
             <Card key={plan.type} featured={plan.featured} delay={plan.delay}>
               {plan.featured && <FeaturedBadge>Mais Escolhido</FeaturedBadge>}
+              <MobileCornerDecor color={plan.iconBg} />
               <CardDecor>
                 <DecorWave
                   viewBox="0 0 500 500"
