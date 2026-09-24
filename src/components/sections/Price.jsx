@@ -1,4 +1,3 @@
-//Price.jsx
 import styled, { keyframes, css } from "styled-components";
 import SendIcon from "../icons/SendIcon";
 import StarIcon from "../icons/StarIcon";
@@ -187,24 +186,6 @@ const CardDecor = styled.div`
   }
 `;
 
-const MobileCornerDecor = styled.div`
-  display: none;
-
-  @media ${theme.mediaQueries.mobile} {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 48px;
-    height: 48px;
-    background: ${({ color }) => color};
-    border-radius: 0 18px 0 100%;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.8;
-  }
-`;
-
 const DecorWave = styled.svg`
   position: absolute;
   bottom: 0;
@@ -229,11 +210,30 @@ const DecorDots = styled.div`
     display: block;
   }
 `;
+const CardWave = styled.div`
+  position: absolute;
+  top: -1.5px;
+  left: -1.5px;
+  width: 50%;
+  height: 60px;
+  border-top-left-radius: 18px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  @media ${tabletQuery} {
+    display: none;
+  }
+`;
 const Card = styled.div`
   background: #fff;
   border: 1.5px solid ${({ featured }) => (featured ? "#c7b8f7" : "#ebebeb")};
   border-radius: 18px;
-  padding: 29px 26px 22px;
+  padding: 16px 26px 22px;
   width: 30%;
   flex-shrink: 0;
   display: flex;
@@ -243,8 +243,8 @@ const Card = styled.div`
   z-index: 1;
   box-shadow: ${({ featured }) =>
     featured
-      ? "0 8px 32px rgba(138,99,255,0.10)"
-      : "0 4px 16px rgba(0,0,0,0.05)"};
+      ? "0 8px 12px rgba(31, 0, 123, 0.2)"
+      : "0 4px 16px rgba(21, 0, 159, 0.2)"};
   animation: ${fadeUp} 0.5s ease both;
   animation-delay: ${({ delay }) => delay || "0s"};
   @media ${tabletQuery} {
@@ -266,7 +266,7 @@ const Card = styled.div`
     max-width: 360px;
     flex: none;
     border-radius: 18px;
-    padding: 24px 26px 22px;
+    padding: 16px 26px 22px;
   }
 `;
 const FeaturedBadge = styled.div`
@@ -274,7 +274,7 @@ const FeaturedBadge = styled.div`
   top: -13px;
   left: 50%;
   transform: translateX(-50%);
-  background: #e43d5d;
+  background: #5230e0;
   color: #fff;
   font-size: 10px;
   font-weight: 800;
@@ -287,48 +287,70 @@ const FeaturedBadge = styled.div`
     left: 40px;
     transform: none;
     z-index: 10;
+    // background: #e43d5d;
   }
 `;
 const CardHeader = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   width: 100%;
-  margin-bottom: 22px;
+  margin: 0 0 22px;
+  padding: 10px 0 0;
   @media ${tabletQuery} {
+    flex-direction: row;
     grid-column: 1;
     grid-row: 1;
-    margin-bottom: 0;
+    width: 100%;
+    margin: 0;
+    border: none;
+    padding: 14px 16px 18px;
+    // border-radius: 16px;
+    // background: ${({ $panelBg }) => $panelBg};
     gap: 16px;
     z-index: 1;
     align-self: start;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    flex-direction: column;
+    gap: 10px;
   }
 `;
 const HeaderText = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  // align-items: flex-start;
+  align-items: center;
   width: 100%;
 `;
 const IconWrap = styled.div`
-  width: 70px;
-  height: 70px;
-  // height: 70px;
-  // border-radius: 50%;
-  border-radius: 10px;
-  background: ${({ bg }) => bg};
+  width: 56px;
+  height: 56px;
+  // width: 90px;
+  // height: 50px;
+  border-radius: 50%;
+  // border-radius: 10px;
+  background: ${({ $decor }) => $decor};
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  svg {
+    filter: brightness(0) invert(1);
+  }
   @media ${tabletQuery} {
     width: 70px;
     height: 70px;
+    // background: ${({ bg }) => bg};
+    // svg {
+    //   filter: none;
+    // }
   }
 `;
 const PlanName = styled.h3`
-  font-size: 20px;
+  font-size: 23px;
   font-weight: 700;
   color: ${({ color }) => color};
   margin: 0 0 4px;
@@ -398,7 +420,7 @@ const FeatureList = styled.ul`
     margin-top: 0;
     gap: 14px;
     z-index: 1;
-    align-self: center;
+    align-self: start;
   }
 `;
 const Feature = styled.li`
@@ -527,6 +549,9 @@ const plans = [
     price: "10",
     color: "#e8002d",
     iconBg: "#ffeaed",
+    panelBg: "rgb(255, 200, 218)",
+    decor: "#f8305a",
+    wave: "#ff9fac",
     divider: "#e8002d",
     featured: false,
     delay: "0.1s",
@@ -538,8 +563,8 @@ const plans = [
     ],
     icon: (
       <SendIcon
-        width={34}
-        height={34}
+        width={24}
+        height={24}
         viewBox="0 0 24 24"
         color="none"
         stroke="#E11D48"
@@ -553,6 +578,9 @@ const plans = [
     price: "20",
     color: "#5230e0",
     iconBg: "#f0ebff",
+    panelBg: "rgb(216, 208, 255)",
+    decor: "#6446dc",
+    wave: "#a79ef7",
     divider: "#7c5cbf",
     featured: true,
     delay: "0.2s",
@@ -564,8 +592,8 @@ const plans = [
     ],
     icon: (
       <StarIcon
-        width={34}
-        height={34}
+        width={24}
+        height={24}
         viewBox="0 0 24 24"
         color="none"
         stroke="#5230e0"
@@ -578,6 +606,9 @@ const plans = [
     price: "30",
     color: "#2eaa7a",
     iconBg: "#def6ee",
+    panelBg: "rgb(174, 232, 205)",
+    decor: "#1fa971",
+    wave: "#4fd1a8",
     divider: "#2eaa7a",
     featured: false,
     delay: "0.3s",
@@ -589,8 +620,8 @@ const plans = [
     ],
     icon: (
       <RocketIcon
-        width={34}
-        height={34}
+        width={24}
+        height={24}
         viewBox="0 0 24 24"
         color="none"
         stroke="#3DAA72"
@@ -600,12 +631,54 @@ const plans = [
   },
 ];
 const bubbles = [
-  { color: "#fde3e8", size: 13.6, top: 11, left: -5.6, mTop: -3, mLeft: -8 },
-  { color: "#fde3e8", size: 7.2, top: 44, left: -6.9, mTop: 29, mLeft: 93 },
-  { color: "#e9e3fb", size: 9.4, top: 18, left: 30.7, mTop: 31, mLeft: -7 },
-  { color: "#e9e3fb", size: 7.9, top: 67, left: 60, mTop: 62, mLeft: 92 },
-  { color: "#d9f2e7", size: 11.3, top: 11, left: 94, mTop: 64, mLeft: -8 },
-  { color: "#d9f2e7", size: 6.7, top: 36, left: 100, mTop: 94, mLeft: 90 },
+  {
+    color: "rgba(253, 227, 232, 0.7)",
+    size: 13.6,
+    top: 11,
+    left: -5.6,
+    mTop: -3,
+    mLeft: -8,
+  },
+  {
+    color: "rgba(253, 227, 232, 0.7)",
+    size: 7.2,
+    top: 44,
+    left: -6.9,
+    mTop: 29,
+    mLeft: 93,
+  },
+  {
+    color: "rgba(233, 227, 251, 0.7)",
+    size: 9.4,
+    top: 18,
+    left: 30.7,
+    mTop: 31,
+    mLeft: -7,
+  },
+  {
+    color: "rgba(233, 227, 251, 0.7)",
+    size: 7.9,
+    top: 67,
+    left: 60,
+    mTop: 62,
+    mLeft: 92,
+  },
+  {
+    color: "rgba(217, 242, 231, 0.7)",
+    size: 11.3,
+    top: 11,
+    left: 94,
+    mTop: 64,
+    mLeft: -8,
+  },
+  {
+    color: "rgba(217, 242, 231, 0.7)",
+    size: 6.7,
+    top: 36,
+    left: 100,
+    mTop: 94,
+    mLeft: 90,
+  },
 ];
 const Price = () => {
   const { isMobile } = useScreenSize();
@@ -660,8 +733,19 @@ const Price = () => {
           ))}
           {plans.map((plan) => (
             <Card key={plan.type} featured={plan.featured} delay={plan.delay}>
+              <CardWave>
+                <svg
+                  viewBox="0 0 200 60"
+                  preserveAspectRatio="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 0H200C186 20 148 26 110 36C72 46 36 50 0 60Z"
+                    fill={plan.wave}
+                  />
+                </svg>
+              </CardWave>
               {plan.featured && <FeaturedBadge>Mais Escolhido</FeaturedBadge>}
-              <MobileCornerDecor color={plan.iconBg} />
               <CardDecor>
                 <DecorWave
                   viewBox="0 0 500 500"
@@ -669,7 +753,7 @@ const Price = () => {
                 >
                   <path
                     d="M120 500C145 445 190 410 250 392C325 370 340 318 390 278C430 246 467 226 500 220V500H120Z"
-                    fill={plan.iconBg}
+                    fill={plan.panelBg}
                   />
                 </DecorWave>
                 <DecorDots color={plan.color}>
@@ -678,8 +762,10 @@ const Price = () => {
                   ))}
                 </DecorDots>
               </CardDecor>
-              <CardHeader>
-                <IconWrap bg={plan.iconBg}>{plan.icon}</IconWrap>
+              <CardHeader $panelBg={plan.panelBg}>
+                <IconWrap bg={plan.iconBg} $decor={plan.decor}>
+                  {plan.icon}
+                </IconWrap>
                 <HeaderText>
                   <PlanName color={plan.color}>Plano {plan.type}</PlanName>
                   <PriceRow>
