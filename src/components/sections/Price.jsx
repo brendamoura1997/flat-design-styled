@@ -36,7 +36,7 @@ const Section = styled.section`
   }
   @media ${theme.mediaQueries.mobile} {
     min-height: auto;
-    padding: 72px 0 64px;
+    padding: 40px 0 64px;
   }
 `;
 const DotsGrid = styled.div`
@@ -226,7 +226,8 @@ const CardWave = styled.div`
     height: 100%;
   }
   @media ${tabletQuery} {
-    display: none;
+    width: 160px;
+    border-top-left-radius: 16px;
   }
 `;
 const Card = styled.div`
@@ -252,7 +253,7 @@ const Card = styled.div`
     max-width: 800px;
     flex: none;
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.06fr);
     grid-template-rows: auto auto;
     column-gap: 24px;
     row-gap: 20px;
@@ -305,10 +306,10 @@ const CardHeader = styled.div`
     width: 100%;
     margin: 0;
     border: none;
-    padding: 14px 16px 18px;
+    padding: 12px 16px 8px 6px;
     // border-radius: 16px;
     // background: ${({ $panelBg }) => $panelBg};
-    gap: 16px;
+    gap: 30px;
     z-index: 1;
     align-self: start;
   }
@@ -324,8 +325,58 @@ const HeaderText = styled.div`
   // align-items: flex-start;
   align-items: center;
   width: 100%;
+  @media ${tabletQuery} {
+    align-items: flex-start;
+  }
+`;
+const IconCluster = styled.div`
+  position: relative;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  @media ${tabletQuery} {
+    width: 80px;
+    height: 80px;
+  }
+`;
+const IconBubble = styled.span`
+  position: absolute;
+  border-radius: 50%;
+  background: ${({ bg }) => bg};
+  z-index: 0;
+  width: 40px;
+  height: 40px;
+  top: 0px;
+  right: -17px;
+  @media ${tabletQuery} {
+    width: 56px;
+    height: 56px;
+    top: -8px;
+    right: -20px;
+  }
+`;
+const IconBubbleSmall = styled.span`
+  position: absolute;
+  border-radius: 50%;
+  background: ${({ bg }) => bg};
+  z-index: 0;
+  width: 45px;
+  height: 45px;
+  bottom: -4px;
+  left: -20px;
+  @media ${tabletQuery} {
+    width: 60px;
+    height: 60px;
+    bottom: -4px;
+    left: -28px;
+  }
 `;
 const IconWrap = styled.div`
+  position: relative;
+  z-index: 1;
   width: 56px;
   height: 56px;
   // width: 90px;
@@ -341,8 +392,8 @@ const IconWrap = styled.div`
     filter: brightness(0) invert(1);
   }
   @media ${tabletQuery} {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     // background: ${({ bg }) => bg};
     // svg {
     //   filter: none;
@@ -355,8 +406,11 @@ const PlanName = styled.h3`
   color: ${({ color }) => color};
   margin: 0 0 4px;
   @media ${tabletQuery} {
-    font-size: 22px;
-    margin-bottom: 8px;
+    font-size: clamp(26px, 3.5vw, 28px);
+    font-weight: 800;
+    line-height: 1.2;
+    white-space: nowrap;
+    margin-bottom: 6px;
   }
 `;
 const PriceRow = styled.div`
@@ -365,6 +419,9 @@ const PriceRow = styled.div`
   gap: 3px;
   margin-bottom: 2px;
   // border: 1px solid red;
+  @media ${tabletQuery} {
+    margin-left: 11px;
+  }
 `;
 const Currency = styled.span`
   font-size: 13px;
@@ -372,8 +429,8 @@ const Currency = styled.span`
   color: #0f1230;
   margin-bottom: 7px;
   @media ${tabletQuery} {
-    font-size: 14px;
-    margin-bottom: 10px;
+    font-size: 17px;
+    margin-bottom: 14px;
   }
 `;
 const Amount = styled.span`
@@ -382,7 +439,8 @@ const Amount = styled.span`
   color: #0f1230;
   line-height: 1;
   @media ${tabletQuery} {
-    font-size: 48px;
+    font-size: 60px;
+    // font-weight: 800;
   }
 `;
 const Period = styled.span`
@@ -390,8 +448,8 @@ const Period = styled.span`
   color: #888;
   margin-bottom: 7px;
   @media ${tabletQuery} {
-    font-size: 14px;
-    margin-bottom: 10px;
+    font-size: 17px;
+    margin-bottom: 14px;
   }
 `;
 
@@ -402,7 +460,7 @@ const Divider = styled.div`
   background: ${({ color }) => color};
   margin: 8px 0 0px;
   @media ${tabletQuery} {
-    margin: 12px 0 0 0;
+    margin: 2px 0 0 36px;
   }
 `;
 const FeatureList = styled.ul`
@@ -416,8 +474,7 @@ const FeatureList = styled.ul`
   @media ${tabletQuery} {
     grid-column: 2;
     grid-row: 1 / span 2;
-    margin-bottom: 0;
-    margin-top: 0;
+    margin: 16px 0 0 15px;
     gap: 14px;
     z-index: 1;
     align-self: start;
@@ -685,11 +742,16 @@ const Price = () => {
 
   return (
     <Section>
-      <DotsGrid id="price">
-        {Array.from({ length: 35 }).map((_, i) => (
-          <span key={i} />
-        ))}
-      </DotsGrid>
+      {isMobile ? (
+        <> </>
+      ) : (
+        <DotsGrid id="price">
+          {Array.from({ length: 35 }).map((_, i) => (
+            <span key={i} />
+          ))}
+        </DotsGrid>
+      )}
+
       <Inner>
         <div style={{ textAlign: "center" }}>
           <Badge>
@@ -740,7 +802,15 @@ const Price = () => {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M0 0H200C186 20 148 26 110 36C72 46 36 50 0 60Z"
+                    d="
+      M 10 0
+      C 65 0, 145 1, 200 0
+      C 187 12, 163 18, 135 23
+      C 98 29, 53 34, 0 60
+      V 10
+      Q 0 0 10 0
+      Z
+    "
                     fill={plan.wave}
                   />
                 </svg>
@@ -763,9 +833,13 @@ const Price = () => {
                 </DecorDots>
               </CardDecor>
               <CardHeader $panelBg={plan.panelBg}>
-                <IconWrap bg={plan.iconBg} $decor={plan.decor}>
-                  {plan.icon}
-                </IconWrap>
+                <IconCluster>
+                  <IconBubble bg={plan.iconBg} />
+                  <IconBubbleSmall bg={plan.iconBg} />
+                  <IconWrap bg={plan.iconBg} $decor={plan.decor}>
+                    {plan.icon}
+                  </IconWrap>
+                </IconCluster>
                 <HeaderText>
                   <PlanName color={plan.color}>Plano {plan.type}</PlanName>
                   <PriceRow>
