@@ -175,6 +175,11 @@ const CurvedPath = styled.svg`
     left: 53%;
   }
 
+  @media only screen and (max-width: 800px) and (min-aspect-ratio: 0.5) {
+    left: 33%;
+    top: 60%;
+  }
+
   @media ${theme.mediaQueries.tablet} {
     width: 20%;
     height: auto;
@@ -209,6 +214,7 @@ const Container = styled.div`
   }
   @media ${theme.mediaQueries.tabletWide} {
     flex: 1 1 auto;
+    gap: 2%;
   }
 
   @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.mobileWide} {
@@ -252,8 +258,13 @@ const Left = styled.div`
   justify-content: flex-end;
 
   @media ${theme.mediaQueries.tabletWide} {
+    min-width: 400px;
     height: auto;
     align-self: stretch;
+  }
+
+  @media only screen and (max-width: 800px) and (min-aspect-ratio: 0.5) {
+    max-width: 360px;
   }
 
   @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.mobileWide} {
@@ -266,7 +277,6 @@ const Left = styled.div`
   }
 
   @media ${theme.mediaQueries.tablet} {
-    width: 43%;
     position: absolute;
     bottom: 0;
     left: -5%;
@@ -301,10 +311,20 @@ const Right = styled.div`
   flex-direction: column;
   justify-content: center;
 
+  @media ${theme.mediaQueries.tabletWide} {
+    width: 50%;
+    margin-left: 8%;
+    border: 1px solid yellow;
+  }
+
   @media ${theme.mediaQueries.tablet} {
     width: 55%;
     margin-left: 42%;
   }
+
+  // @media only screen and (max-width: 800px) and (min-aspect-ratio: 0.5) {
+  //   margin-left: 0%;
+  // }
 
   @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.mobileWide} {
     width: 100%;

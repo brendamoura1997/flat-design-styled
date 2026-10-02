@@ -6,6 +6,10 @@ import HeartIcon from "../icons/HeartIcon";
 import ShieldHollowIcon from "../icons/ShieldHollowIcon";
 import { theme } from "../../styles/theme";
 import { useScreenSize } from "../../hooks/useDevice";
+import WaveIcon from "../icons/WaveIcon";
+import WaveTabletIcon from "../icons/WaveTabletIcon";
+import CheckBadgeIcon from "../icons/CheckBadgeIcon";
+import NotAllowedIcon from "../icons/NotAllowedIcon";
 
 const tabletQuery = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
 
@@ -120,6 +124,11 @@ const Headline = styled.h2`
   span {
     color: #e8002d;
   }
+
+  @media ${tabletQuery} {
+    font-size: clamp(45px, 4.88vw, 50px);
+    line-height: 1.15;
+  }
   @media ${theme.mediaQueries.mobile} {
     font-size: clamp(33px, 4.2vw, 45px);
     line-height: 1.1;
@@ -145,6 +154,7 @@ const Cards = styled.div`
   align-items: stretch;
   justify-content: center;
   gap: 22px;
+
   @media ${tabletQuery} {
     flex-direction: column;
     align-items: center;
@@ -186,7 +196,7 @@ const CardDecor = styled.div`
   }
 `;
 
-const DecorWave = styled.svg`
+const DecorWave = styled(WaveTabletIcon)`
   position: absolute;
   bottom: 0;
   right: 0;
@@ -248,12 +258,13 @@ const Card = styled.div`
       : "0 4px 16px rgba(21, 0, 159, 0.2)"};
   animation: ${fadeUp} 0.5s ease both;
   animation-delay: ${({ delay }) => delay || "0s"};
+
   @media ${tabletQuery} {
     width: 100%;
     max-width: 800px;
     flex: none;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.06fr);
+    grid-template-columns: minmax(max-content, 1fr) minmax(0, 1.06fr);
     grid-template-rows: auto auto;
     column-gap: 24px;
     row-gap: 20px;
@@ -262,9 +273,15 @@ const Card = styled.div`
     align-items: start;
     overflow: visible;
   }
+
+  // @media only screen and (max-width: 800px) and (min-aspect-ratio: 0.5) {
+  //   // max-width: 60%;
+  //   max-width: 80vw;
+  // }
+
   @media ${theme.mediaQueries.mobile} {
     width: 100%;
-    max-width: 360px;
+    // max-width: 360px;
     flex: none;
     border-radius: 18px;
     padding: 16px 26px 22px;
@@ -299,6 +316,13 @@ const CardHeader = styled.div`
   width: 100%;
   margin: 0 0 22px;
   padding: 10px 0 0;
+
+  @media ${theme.mediaQueries.mobile} {
+    border: none;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   @media ${tabletQuery} {
     flex-direction: row;
     grid-column: 1;
@@ -312,11 +336,6 @@ const CardHeader = styled.div`
     gap: 30px;
     z-index: 1;
     align-self: start;
-  }
-
-  @media ${theme.mediaQueries.mobile} {
-    flex-direction: column;
-    gap: 10px;
   }
 `;
 const HeaderText = styled.div`
@@ -594,99 +613,58 @@ const Footer = styled.div`
     font-size: 13.5px;
   }
   @media ${theme.mediaQueries.mobile} {
-    flex-wrap: wrap;
-    gap: 10px 18px;
-    margin-top: 36px;
-    font-size: 12px;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 0;
+    max-width: 360px;
+    margin: 20px auto 0;
+    padding: 14px 6px;
+    font-size: 11px;
+    background: #fff;
+    border: 1px solid rgba(222, 246, 238, 0.9);
+    border-radius: 16px;
+    span {
+      flex: 1;
+      flex-direction: column;
+      justify-content: flex-start;
+      text-align: center;
+      gap: 6px;
+    }
+    svg {
+      box-sizing: content-box;
+      padding: 6px;
+      background: #e4f6f0;
+      border-radius: 50%;
+    }
+    .dot {
+      flex: none;
+      align-self: center;
+      width: 1px;
+      height: 40px;
+      border-radius: 0;
+      margin: 0 7px;
+      background: #cfe8de;
+    }
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    font-size: 11px;
+    flex-direction: column;
+    align-items: start;
+    padding: 10px 0 10px 10px;
+
+    span {
+      flex: 1;
+      flex-direction: row;
+      margin: 3px 0;
+    }
+    .dot {
+      display: none;
+    }
   }
 `;
-const plans = [
-  {
-    type: "Basic",
-    price: "10",
-    color: "#e8002d",
-    iconBg: "#ffeaed",
-    panelBg: "rgb(255, 200, 218)",
-    decor: "#f8305a",
-    wave: "#ff9fac",
-    divider: "#e8002d",
-    featured: false,
-    delay: "0.1s",
-    features: [
-      "20 Modelos Feitos à Mão",
-      "Suporte Exclusivo",
-      "5+ Sites Pré-Construídos",
-      "Plugins Básicos",
-    ],
-    icon: (
-      <SendIcon
-        width={24}
-        height={24}
-        viewBox="0 0 24 24"
-        color="none"
-        stroke="#E11D48"
-        strokeWidthOutside="1.8"
-        strokeWidthInside="1.5"
-      />
-    ),
-  },
-  {
-    type: "Premium",
-    price: "20",
-    color: "#5230e0",
-    iconBg: "#f0ebff",
-    panelBg: "rgb(216, 208, 255)",
-    decor: "#6446dc",
-    wave: "#a79ef7",
-    divider: "#7c5cbf",
-    featured: true,
-    delay: "0.2s",
-    features: [
-      "50 Modelos Feitos à Mão",
-      "Suporte Exclusivo",
-      "10+ Sites Pré-Construídos",
-      "Plugins Premium",
-    ],
-    icon: (
-      <StarIcon
-        width={24}
-        height={24}
-        viewBox="0 0 24 24"
-        color="none"
-        stroke="#5230e0"
-        strokeWidth="1.8"
-      />
-    ),
-  },
-  {
-    type: "Advanced",
-    price: "30",
-    color: "#2eaa7a",
-    iconBg: "#def6ee",
-    panelBg: "rgb(174, 232, 205)",
-    decor: "#1fa971",
-    wave: "#4fd1a8",
-    divider: "#2eaa7a",
-    featured: false,
-    delay: "0.3s",
-    features: [
-      "70 Modelos Feitos à Mão",
-      "Suporte Exclusivo",
-      "20+ Sites Pré-Construídos",
-      "Plugins Advanced",
-    ],
-    icon: (
-      <RocketIcon
-        width={24}
-        height={24}
-        viewBox="0 0 24 24"
-        color="none"
-        stroke="#3DAA72"
-        strokeWidth="1.8"
-      />
-    ),
-  },
-];
+
 const bubbles = [
   {
     color: "rgba(253, 227, 232, 0.7)",
@@ -738,7 +716,95 @@ const bubbles = [
   },
 ];
 const Price = () => {
-  const { isMobile } = useScreenSize();
+  const { isMobile, isTablet } = useScreenSize();
+
+  const plans = [
+    {
+      type: "Basic",
+      price: "10",
+      color: "#e8002d",
+      iconBg: "#ffeaed",
+      panelBg: "rgb(255, 200, 218)",
+      decor: "#f8305a",
+      wave: "#ff9fac",
+      divider: "#e8002d",
+      featured: false,
+      delay: "0.1s",
+      features: [
+        "20 Modelos Feitos à Mão",
+        "Suporte Exclusivo",
+        "5+ Sites Pré-Construídos",
+        "Plugins Básicos",
+      ],
+      icon: (
+        <SendIcon
+          width={isTablet ? 30 : 24}
+          height={isTablet ? 30 : 24}
+          viewBox="0 0 24 24"
+          color="none"
+          stroke="#E11D48"
+          strokeWidthOutside="1.8"
+          strokeWidthInside="1.5"
+        />
+      ),
+    },
+    {
+      type: "Premium",
+      price: "20",
+      color: "#5230e0",
+      iconBg: "#f0ebff",
+      panelBg: "rgb(216, 208, 255)",
+      decor: "#6446dc",
+      wave: "#a79ef7",
+      divider: "#7c5cbf",
+      featured: true,
+      delay: "0.2s",
+      features: [
+        "50 Modelos Feitos à Mão",
+        "Suporte Exclusivo",
+        "10+ Sites Pré-Construídos",
+        "Plugins Premium",
+      ],
+      icon: (
+        <StarIcon
+          width={isTablet ? 30 : 24}
+          height={isTablet ? 30 : 24}
+          viewBox="0 0 24 24"
+          color="none"
+          stroke="#5230e0"
+          strokeWidth="1.8"
+        />
+      ),
+    },
+    {
+      type: "Advanced",
+      price: "30",
+      color: "#2eaa7a",
+      iconBg: "#def6ee",
+      panelBg: "rgb(174, 232, 205)",
+      decor: "#1fa971",
+      wave: "#4fd1a8",
+      divider: "#2eaa7a",
+      featured: false,
+      delay: "0.3s",
+      features: [
+        "70 Modelos Feitos à Mão",
+        "Suporte Exclusivo",
+        "20+ Sites Pré-Construídos",
+        "Plugins Advanced",
+      ],
+      icon: (
+        <RocketIcon
+          width={isTablet ? 30 : 24}
+          height={isTablet ? 30 : 24}
+          viewBox="0 0 24 24"
+          color="none"
+          stroke="#3DAA72"
+          strokeWidth="1.8"
+        />
+      ),
+    },
+  ];
 
   return (
     <Section>
@@ -796,36 +862,15 @@ const Price = () => {
           {plans.map((plan) => (
             <Card key={plan.type} featured={plan.featured} delay={plan.delay}>
               <CardWave>
-                <svg
+                <WaveIcon
                   viewBox="0 0 200 60"
                   preserveAspectRatio="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="
-      M 10 0
-      C 65 0, 145 1, 200 0
-      C 187 12, 163 18, 135 23
-      C 98 29, 53 34, 0 60
-      V 10
-      Q 0 0 10 0
-      Z
-    "
-                    fill={plan.wave}
-                  />
-                </svg>
+                  color={plan.wave}
+                />
               </CardWave>
               {plan.featured && <FeaturedBadge>Mais Escolhido</FeaturedBadge>}
               <CardDecor>
-                <DecorWave
-                  viewBox="0 0 500 500"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M120 500C145 445 190 410 250 392C325 370 340 318 390 278C430 246 467 226 500 220V500H120Z"
-                    fill={plan.panelBg}
-                  />
-                </DecorWave>
+                <DecorWave viewBox="0 0 500 500" color={plan.panelBg} />
                 <DecorDots color={plan.color}>
                   {Array.from({ length: 18 }).map((_, i) => (
                     <span key={i} />
@@ -854,20 +899,13 @@ const Price = () => {
                 {plan.features.map((f) => (
                   <Feature key={f}>
                     <CheckBadge bg={plan.iconBg}>
-                      <svg
-                        width="28"
-                        height="28"
+                      <CheckBadgeIcon
+                        width={28}
+                        height={28}
                         viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <path
-                          d="M8.5 12L11 14.5L15.5 10"
-                          stroke={plan.color}
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
+                        color="none"
+                        stroke={plan.color}
+                      />
                     </CheckBadge>
                     {f}
                   </Feature>
@@ -890,24 +928,13 @@ const Price = () => {
           </span>
           <span className="dot" />
           <span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <circle
-                cx="12"
-                cy="12"
-                r="9"
-                stroke="#2BAF8E"
-                strokeWidth="1.5"
-              />
-              <line
-                x1="6.5"
-                y1="17.5"
-                x2="17.5"
-                y2="6.5"
-                stroke="#2BAF8E"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </svg>
+            <NotAllowedIcon
+              width={18}
+              height={18}
+              viewBox="0 0 24 24"
+              color="none"
+              stroke="#2BAF8E"
+            />
             Cancele quando quiser
           </span>
           <span className="dot" />
