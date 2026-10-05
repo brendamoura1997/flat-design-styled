@@ -6,6 +6,8 @@ import PlusIcon from "../icons/PlusIcon";
 import { theme } from "../../styles/theme";
 import { useScreenSize } from "../../hooks/useDevice";
 
+const tabletLandscape = `${theme.mediaQueries.tabletWide} and (aspect-ratio > 1)`;
+
 const shine = keyframes`
   0%   { left: -100%; }
   100% { left: 150%;  }
@@ -16,9 +18,7 @@ const Wrapper = styled.div`
   overflow: hidden;
   height: 100%;
 
-  @media ${theme.mediaQueries.tabletWide},
-    ${theme.mediaQueries.mobile},
-    ${theme.mediaQueries.mobileWide} {
+  @media ${tabletLandscape}, ${theme.mediaQueries.mobile} {
     display: flex;
     flex-direction: column;
     min-height: inherit;
@@ -30,7 +30,7 @@ const DotGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(${({ $cols }) => $cols || 5}, 5px);
   gap: 18px;
-  z-index: 3;
+  z-index: -1;
   opacity: 0.55;
   ${({ $pos }) => $pos === "tl" && `top: 6%; left: 2%;`}
   ${({ $pos }) => $pos === "tr" && `top: 6%; right: 2%;`}
@@ -52,26 +52,18 @@ const DotGrid = styled.div`
     }
   }
   @media ${theme.mediaQueries.mobile} {
-    gap: 60%;
-    grid-template-columns: repeat(${({ $cols }) => $cols || 5}, 20%);
-    ${({ $pos }) => $pos === "tl" && `bottom: 13%; left: 26%; top: auto;`}
-    ${({ $pos }) => $pos === "tr" && `bottom: 42%; right: 25%; top: auto;`}
+    width: 31%;
+    aspect-ratio: 1 / 1;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    place-items: center;
+    gap: 0;
     opacity: 1;
+    ${({ $pos }) => $pos === "tl" && `bottom: 4%; left: 23.4%; top: auto;`}
+    ${({ $pos }) => $pos === "tr" && `top: -5.3%; right: 3.4%;`}
     span {
       width: 6px;
       height: 6px;
-    }
-  }
-
-  @media ${theme.mediaQueries.smallMobile} {
-    gap: 55%;
-    grid-template-columns: repeat(${({ $cols }) => $cols || 5}, 30%);
-    ${({ $pos }) => $pos === "tl" && `bottom: 10%; left: 33%; top: auto;`}
-    ${({ $pos }) => $pos === "tr" && `bottom: 43%; right: 28vw; top: auto;`}
-    opacity: 1;
-    span {
-      width: 5px;
-      height: 5px;
     }
   }
 `;
@@ -85,16 +77,14 @@ const PinkBlob = styled.div`
   opacity: 0.55;
   top: 32%;
   left: 5%;
-  z-index: 2;
+  z-index: -1;
   @media ${theme.mediaQueries.tablet} {
-    width: 15%;
     top: 18%;
     left: 13%;
-    z-index: 2;
   }
   @media ${theme.mediaQueries.mobile} {
     width: 14%;
-    top: 63%;
+    top: 17.8%;
     background: #fb8da5;
     left: 4%;
     opacity: 1;
@@ -109,7 +99,7 @@ const PurpleSquare = styled.div`
   border-radius: 8px;
   bottom: 22%;
   left: 5%;
-  z-index: 2;
+  z-index: -1;
   @media ${theme.mediaQueries.tablet} {
     width: 78px;
     height: 78px;
@@ -117,11 +107,12 @@ const PurpleSquare = styled.div`
     left: 8%;
   }
   @media ${theme.mediaQueries.mobile} {
-    width: 68px;
-    height: 68px;
-    bottom: 12%;
+    width: 17.4%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    bottom: 25%;
     left: auto;
-    right: 20%;
+    right: 19.2%;
   }
 `;
 
@@ -166,16 +157,9 @@ const CurvedPath = styled.svg`
   position: absolute;
   top: 38%;
   left: 30%;
-  z-index: 2;
+  z-index: -1;
 
-  @media ${theme.mediaQueries.mobile} {
-    width: 20%;
-    top: auto;
-    bottom: -7%;
-    left: 53%;
-  }
-
-  @media only screen and (max-width: 800px) and (min-aspect-ratio: 0.5) {
+  @media ${tabletLandscape} and (max-width: 800px) {
     left: 33%;
     top: 60%;
   }
@@ -188,14 +172,11 @@ const CurvedPath = styled.svg`
     left: 23%;
   }
 
-  @media ${theme.mediaQueries.mobileWide} {
-    bottom: 0%;
-    left: 48%;
-  }
-
-  @media only screen and (max-width: 699px) and (min-aspect-ratio: 0.8) and (max-aspect-ratio: 1.25) {
-    left: 33%;
-    bottom: -7%;
+  @media ${theme.mediaQueries.mobile} {
+    width: 20%;
+    height: auto;
+    top: 51.3%;
+    left: 53.2%;
   }
 `;
 
@@ -212,40 +193,41 @@ const Container = styled.div`
     gap: 2%;
     padding: 20% 0 30%;
   }
-  @media ${theme.mediaQueries.tabletWide} {
+  @media ${tabletLandscape} {
     flex: 1 1 auto;
     gap: 2%;
   }
 
-  @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.mobileWide} {
+  @media ${theme.mediaQueries.mobile} {
     flex-direction: column;
     gap: 0;
-    padding: 0% 0 0%;
     height: auto;
     flex: 1 1 auto;
     min-height: 0;
   }
 `;
 
-const PhantomDiv = styled.div`
-  display: none;
-  @media ${theme.mediaQueries.mobile}б {
-    display: block;
-    width: 100%;
-    height: 44vh;
+const Stage = styled.div`
+  display: contents;
+
+  @media ${theme.mediaQueries.mobile} {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
     order: 2;
-  }
-  @media ${theme.mediaQueries.tabletWide}б {
-    display: block;
     width: 100%;
-    height: 46vh;
-    order: 2;
-  }
-  @media ${theme.mediaQueries.smallMobile}, ${theme.mediaQueries.mobileWide} {
-    display: block;
-    width: 100%;
-    height: 70vh;
-    order: 2;
+    margin-top: auto;
+    aspect-ratio: 354 / 320;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: pink;
+      clip-path: polygon(0 56.5%, 100% 0, 100% 100%, 0 100%);
+      z-index: -1;
+    }
   }
 `;
 
@@ -257,23 +239,15 @@ const Left = styled.div`
   flex-direction: column;
   justify-content: flex-end;
 
-  @media ${theme.mediaQueries.tabletWide} {
-    min-width: 400px;
+  @media ${tabletLandscape} {
+    min-width: min(400px, 48%);
     height: auto;
     align-self: stretch;
   }
 
-  @media only screen and (max-width: 800px) and (min-aspect-ratio: 0.5) {
-    max-width: 360px;
-  }
-
-  @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.mobileWide} {
+  @media ${theme.mediaQueries.mobile} {
     width: 60%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
     height: auto;
-    padding: 0 0%;
   }
 
   @media ${theme.mediaQueries.tablet} {
@@ -283,25 +257,18 @@ const Left = styled.div`
     height: auto;
   }
 `;
+
 const Image = styled.img`
-  width: 75vh;
+  width: min(75vh, 100%);
   height: auto;
   object-fit: cover;
   z-index: 3;
   display: block;
-  bottom: 0;
-  left: 0;
 
   @media ${theme.mediaQueries.desktopWide},
     ${theme.mediaQueries.tablet},
     ${theme.mediaQueries.mobile} {
     width: 100%;
-  }
-
-  @media only screen and (max-width: 699px) and (min-aspect-ratio: 0.8) and (max-aspect-ratio: 1.25) {
-    align-self: flex-start;
-    width: auto;
-    height: 70vh;
   }
 `;
 
@@ -311,10 +278,10 @@ const Right = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  @media ${theme.mediaQueries.tabletWide} {
-    width: 50%;
+  @media ${tabletLandscape} {
+    width: 60%;
     margin-left: 8%;
-    border: 1px solid yellow;
+    padding-right: 4%;
   }
 
   @media ${theme.mediaQueries.tablet} {
@@ -326,10 +293,14 @@ const Right = styled.div`
   //   margin-left: 0%;
   // }
 
-  @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.mobileWide} {
+  // @media only screen and (width > 550px) and (width < 702px) {
+  //   margin-left: 8%;
+  // }
+
+  @media ${theme.mediaQueries.mobile} {
     width: 100%;
     margin-left: 0;
-    padding: 8% 5% 0;
+    padding: 8% 5% 4%;
     order: 1;
   }
 `;
@@ -361,9 +332,8 @@ const Badge = styled.div`
 const Title = styled.span`
   font-size: 60px;
   line-height: 1.15;
-  @media ${theme.mediaQueries.tablet} {
-    font-size: 60px;
-    line-height: 1.15;
+  @media ${tabletLandscape} {
+    font-size: clamp(36px, 6vw, 60px);
   }
   @media ${theme.mediaQueries.mobile} {
     font-size: 42px;
@@ -382,7 +352,6 @@ const SubTitle = styled.span`
   color: #333;
   margin-top: 4%;
   @media ${theme.mediaQueries.tablet} {
-    font-size: 20px;
     margin-top: 5%;
   }
   @media ${theme.mediaQueries.mobile} {
@@ -474,42 +443,49 @@ const Feature = () => {
   const { isMobile } = useScreenSize();
   return (
     <Wrapper>
-      {isMobile ? (
-        <>
-          <DotGrid $pos="tl" $cols={5} $color="#ffffff">
-            {dots(25)}
-          </DotGrid>
-          <DotGrid $pos="tr" $cols={5} $color="#f58699">
-            {dots(25)}
-          </DotGrid>
-        </>
-      ) : (
-        <>
-          <DotGrid $pos="tl" $cols={4} $color="#f53b5a">
-            {dots(16)}
-          </DotGrid>
-          <DotGrid $pos="tr" $cols={4} $color="#b2aee6">
-            {dots(16)}
-          </DotGrid>
-        </>
-      )}
-      <PinkBlob />
-      <PurpleSquare />
       <PinkRect />
       <PurpleCircle />
-      <CurvedPath width="160" height="320" viewBox="0 0 160 320" fill="none">
-        <path
-          d="M5 0 C 70 0, 150 90, 130 190 C 115 250, 80 290, 60 300"
-          stroke="#e8325a"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <circle cx="60" cy="300" r="7" fill="#e8325a" />
-      </CurvedPath>
       <Container>
-        <Left>
-          <Image src={App} />
-        </Left>
+        <Stage>
+          {isMobile ? (
+            <>
+              <DotGrid $pos="tl" $cols={5} $color="#ffffff">
+                {dots(25)}
+              </DotGrid>
+              <DotGrid $pos="tr" $cols={5} $color="#f58699">
+                {dots(25)}
+              </DotGrid>
+            </>
+          ) : (
+            <>
+              <DotGrid $pos="tl" $cols={4} $color="#f53b5a">
+                {dots(16)}
+              </DotGrid>
+              <DotGrid $pos="tr" $cols={4} $color="#b2aee6">
+                {dots(16)}
+              </DotGrid>
+            </>
+          )}
+          <PinkBlob />
+          <PurpleSquare />
+          <CurvedPath
+            width="160"
+            height="320"
+            viewBox="0 0 160 320"
+            fill="none"
+          >
+            <path
+              d="M5 0 C 70 0, 150 90, 130 190 C 115 250, 80 290, 60 300"
+              stroke="#e8325a"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+            <circle cx="60" cy="300" r="7" fill="#e8325a" />
+          </CurvedPath>
+          <Left>
+            <Image src={App} />
+          </Left>
+        </Stage>
         <Right>
           <Badge>
             <StarIcon
@@ -550,7 +526,6 @@ const Feature = () => {
             Saiba Mais
           </Button>
         </Right>
-        <PhantomDiv />
       </Container>
     </Wrapper>
   );

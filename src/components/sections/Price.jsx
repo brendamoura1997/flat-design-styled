@@ -1,3 +1,4 @@
+//Price.jsx
 import styled, { keyframes, css } from "styled-components";
 import SendIcon from "../icons/SendIcon";
 import StarIcon from "../icons/StarIcon";
@@ -133,6 +134,7 @@ const Headline = styled.h2`
     font-size: clamp(33px, 4.2vw, 45px);
     line-height: 1.1;
     margin-bottom: 12px;
+    hyphens: none;
   }
 `;
 const Sub = styled.p`
@@ -160,7 +162,7 @@ const Cards = styled.div`
     align-items: center;
     gap: 40px;
   }
-  @media ${theme.mediaQueries.mobile} {
+  @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.mobileWide} {
     flex-direction: column;
     align-items: center;
     gap: 32px;
@@ -274,12 +276,11 @@ const Card = styled.div`
     overflow: visible;
   }
 
-  // @media only screen and (max-width: 800px) and (min-aspect-ratio: 0.5) {
-  //   // max-width: 60%;
-  //   max-width: 80vw;
-  // }
+  @media only screen and (width > 550px) and (width < 700px) {
+    max-width: 60%;
+  }
 
-  @media ${theme.mediaQueries.mobile} {
+  @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.smallMobile} {
     width: 100%;
     // max-width: 360px;
     flex: none;
