@@ -122,6 +122,8 @@ const Headline = styled.h2`
   color: #0d0d0d;
   line-height: 1.15;
   margin: 0 0 16px;
+  font-weight: 700;
+
   span {
     color: #e8002d;
   }
@@ -491,6 +493,10 @@ const PlanName = styled.h3`
     font-weight: 700;
     color: ${({ color }) => color};
     margin: 0 0 4px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    font-weight: 800;
   }
 `;
 const PriceRow = styled.div`
