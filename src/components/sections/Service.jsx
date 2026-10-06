@@ -97,7 +97,6 @@ const DecorSquareBlue = styled.div`
     height: auto;
     aspect-ratio: 1 / 1;
     border-radius: 4px;
-    z-index: 1;
   }
 `;
 
@@ -620,6 +619,7 @@ const Button = styled.button`
     padding: 13px 20px;
     margin-top: 16px;
     border-radius: 8px;
+    z-index: 1;
     svg {
       width: 20px;
       height: 20px;
@@ -818,6 +818,7 @@ const Service = () => {
                 viewBox="0 0 24 24"
                 color="none"
                 stroke="#3DAA72"
+                strokeWidth="2"
               />
               Soluções pensadas para impulsionar seu negócio
             </Badge>

@@ -104,7 +104,6 @@ const ContainerExtra = styled.div`
 `;
 
 const ContainerService = styled.div`
-  // height: 120vh;
   height: fit-content;
   overflow: hidden;
   position: relative;
@@ -117,7 +116,6 @@ const ContainerService = styled.div`
   @media ${theme.mediaQueries.tablet} {
     height: fit-content;
     min-height: auto;
-    // border: 2px solid red;
   }
 
   @media ${theme.mediaQueries.mobileWide} {
@@ -140,6 +138,20 @@ const ServiceShape = styled.div`
 
   @media ${theme.mediaQueries.mobile} {
     clip-path: polygon(0 95%, 100% 75%, 100% 100%, 0% 100%);
+  }
+`;
+
+const ContainerPrice = styled.div`
+  height: fit-content;
+  overflow: hidden;
+  position: relative;
+
+  @media ${theme.mediaQueries.mobileWide} {
+    min-height: 100vh;
+  }
+
+  @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.smallMobile} {
+    height: fit-content;
   }
 `;
 
@@ -215,9 +227,9 @@ function App() {
         {<ServiceShape />}
       </ContainerService>
 
-      <ContainerExtra>
+      <ContainerPrice>
         <Price />
-      </ContainerExtra>
+      </ContainerPrice>
 
       <ContainerExtra>
         <Contact />
