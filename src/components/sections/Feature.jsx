@@ -184,7 +184,6 @@ const Container = styled.div`
   display: flex;
   justify-content: start;
   gap: 12%;
-  // gap: 5vh;
   height: 100%;
   position: relative;
   z-index: 3;
@@ -288,14 +287,6 @@ const Right = styled.div`
     width: 55%;
     margin-left: 42%;
   }
-
-  // @media only screen and (max-width: 800px) and (min-aspect-ratio: 0.5) {
-  //   margin-left: 0%;
-  // }
-
-  // @media only screen and (width > 550px) and (width < 702px) {
-  //   margin-left: 8%;
-  // }
 
   @media ${theme.mediaQueries.mobile} {
     width: 100%;

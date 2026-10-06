@@ -196,6 +196,10 @@ const CardDecor = styled.div`
     pointer-events: none;
     z-index: 0;
   }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    display: none;
+  }
 `;
 
 const DecorWave = styled(WaveTabletIcon)`
@@ -241,6 +245,11 @@ const CardWave = styled.div`
     width: 160px;
     border-top-left-radius: 16px;
   }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    width: 50%;
+    border-top-left-radius: 18px;
+  }
 `;
 const Card = styled.div`
   background: #fff;
@@ -276,13 +285,24 @@ const Card = styled.div`
     overflow: visible;
   }
 
-  @media only screen and (width > 550px) and (width < 700px) {
+  @media only screen and (width > 550px) and (width < 780px) {
     max-width: 60%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+    box-shadow: ${({ featured }) =>
+      featured
+        ? "0 8px 12px rgba(31, 0, 123, 0.2)"
+        : "0 4px 16px rgba(21, 0, 159, 0.2)"};
+    animation: ${fadeUp} 0.5s ease both;
+    animation-delay: ${({ delay }) => delay || "0s"};
   }
 
   @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.smallMobile} {
     width: 100%;
-    // max-width: 360px;
     flex: none;
     border-radius: 18px;
     padding: 16px 26px 22px;
@@ -306,7 +326,6 @@ const FeaturedBadge = styled.div`
     left: 40px;
     transform: none;
     z-index: 10;
-    // background: #e43d5d;
   }
 `;
 const CardHeader = styled.div`
@@ -318,12 +337,6 @@ const CardHeader = styled.div`
   margin: 0 0 22px;
   padding: 10px 0 0;
 
-  @media ${theme.mediaQueries.mobile} {
-    border: none;
-    flex-direction: column;
-    gap: 10px;
-  }
-
   @media ${tabletQuery} {
     flex-direction: row;
     grid-column: 1;
@@ -332,21 +345,33 @@ const CardHeader = styled.div`
     margin: 0;
     border: none;
     padding: 12px 16px 8px 6px;
-    // border-radius: 16px;
-    // background: ${({ $panelBg }) => $panelBg};
     gap: 30px;
     z-index: 1;
     align-self: start;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    border: none;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    border: none;
+    flex-direction: column;
+    gap: 10px;
   }
 `;
 const HeaderText = styled.div`
   display: flex;
   flex-direction: column;
-  // align-items: flex-start;
   align-items: center;
   width: 100%;
   @media ${tabletQuery} {
     align-items: flex-start;
+  }
+  @media only screen and (width > 550px) and (width < 780px) {
+    align-items: center;
   }
 `;
 const IconCluster = styled.div`
@@ -360,6 +385,15 @@ const IconCluster = styled.div`
   @media ${tabletQuery} {
     width: 80px;
     height: 80px;
+  }
+  @media only screen and (width > 550px) and (width < 780px) {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
 `;
 const IconBubble = styled.span`
@@ -377,6 +411,17 @@ const IconBubble = styled.span`
     top: -8px;
     right: -20px;
   }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    position: absolute;
+    border-radius: 50%;
+    background: ${({ bg }) => bg};
+    z-index: 0;
+    width: 40px;
+    height: 40px;
+    top: 0px;
+    right: -17px;
+  }
 `;
 const IconBubbleSmall = styled.span`
   position: absolute;
@@ -393,16 +438,24 @@ const IconBubbleSmall = styled.span`
     bottom: -4px;
     left: -28px;
   }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    position: absolute;
+    border-radius: 50%;
+    background: ${({ bg }) => bg};
+    z-index: 0;
+    width: 45px;
+    height: 45px;
+    bottom: -4px;
+    left: -20px;
+  }
 `;
 const IconWrap = styled.div`
   position: relative;
   z-index: 1;
   width: 56px;
   height: 56px;
-  // width: 90px;
-  // height: 50px;
   border-radius: 50%;
-  // border-radius: 10px;
   background: ${({ $decor }) => $decor};
   display: flex;
   align-items: center;
@@ -414,10 +467,10 @@ const IconWrap = styled.div`
   @media ${tabletQuery} {
     width: 80px;
     height: 80px;
-    // background: ${({ bg }) => bg};
-    // svg {
-    //   filter: none;
-    // }
+  }
+  @media only screen and (width > 550px) and (width < 780px) {
+    width: 56px;
+    height: 56px;
   }
 `;
 const PlanName = styled.h3`
@@ -432,15 +485,25 @@ const PlanName = styled.h3`
     white-space: nowrap;
     margin-bottom: 6px;
   }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    font-size: 23px;
+    font-weight: 700;
+    color: ${({ color }) => color};
+    margin: 0 0 4px;
+  }
 `;
 const PriceRow = styled.div`
   display: flex;
   align-items: flex-end;
   gap: 3px;
   margin-bottom: 2px;
-  // border: 1px solid red;
   @media ${tabletQuery} {
     margin-left: 11px;
+  }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    margin-left: 0px;
   }
 `;
 const Currency = styled.span`
@@ -460,7 +523,6 @@ const Amount = styled.span`
   line-height: 1;
   @media ${tabletQuery} {
     font-size: 60px;
-    // font-weight: 800;
   }
 `;
 const Period = styled.span`
@@ -499,13 +561,22 @@ const FeatureList = styled.ul`
     z-index: 1;
     align-self: start;
   }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
 `;
 const Feature = styled.li`
   display: flex;
   align-items: center;
   gap: 10px;
   font-size: 13px;
-  // font-weight: 600;
   color: #525f92;
   @media ${tabletQuery} {
     font-size: 16px;

@@ -104,7 +104,6 @@ const ContainerExtra = styled.div`
 `;
 
 const ContainerService = styled.div`
-  // height: 120vh;
   height: fit-content;
   overflow: hidden;
   position: relative;
@@ -117,7 +116,6 @@ const ContainerService = styled.div`
   @media ${theme.mediaQueries.tablet} {
     height: fit-content;
     min-height: auto;
-    // border: 2px solid red;
   }
 
   @media ${theme.mediaQueries.mobileWide} {
@@ -147,16 +145,6 @@ const ContainerPrice = styled.div`
   height: fit-content;
   overflow: hidden;
   position: relative;
-
-  // @media ${theme.mediaQueries.tabletWide} {
-  //   height: auto;
-  //   min-height: 120vh;
-  // }
-
-  // @media ${theme.mediaQueries.tablet} {
-  //   height: fit-content;
-  //   min-height: auto;
-  // }
 
   @media ${theme.mediaQueries.mobileWide} {
     min-height: 100vh;
