@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/prop-types
-const StarIcon = ({ width, height, color, viewBox, stroke, strokeWidth }) => {
+const CheckBadgeIcon = ({ width, height, color, viewBox, stroke }) => {
   return (
     <svg
       width={width}
@@ -9,9 +9,8 @@ const StarIcon = ({ width, height, color, viewBox, stroke, strokeWidth }) => {
       stroke={stroke}
     >
       <path
-        d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-        fill="none"
-        strokeWidth={strokeWidth}
+        d="M8.5 12L11 14.5L15.5 10"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -19,4 +18,4 @@ const StarIcon = ({ width, height, color, viewBox, stroke, strokeWidth }) => {
   );
 };
 
-export default StarIcon;
+export default CheckBadgeIcon;

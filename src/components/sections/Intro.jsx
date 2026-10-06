@@ -432,7 +432,6 @@ const MobileBottomCard = styled.div`
   position: absolute;
   bottom: 10%;
   left: 7%;
-  width: calc(56% - 8px);
   z-index: 3;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   width: fit-content;
@@ -584,7 +583,6 @@ const Right = styled.div`
 const Image = styled.img`
   position: absolute;
   z-index: 5;
-  width: fit-content;
   width: 100%;
   height: 100%;
   object-fit: contain;

@@ -1,10 +1,19 @@
+//Price.jsx
 import styled, { keyframes, css } from "styled-components";
 import SendIcon from "../icons/SendIcon";
 import StarIcon from "../icons/StarIcon";
 import RocketIcon from "../icons/RocketIcon";
-import CheckCircleIcon from "../icons/CheckCircleIcon";
 import HeartIcon from "../icons/HeartIcon";
 import ShieldHollowIcon from "../icons/ShieldHollowIcon";
+import { theme } from "../../styles/theme";
+import { useScreenSize } from "../../hooks/useDevice";
+import WaveIcon from "../icons/WaveIcon";
+import WaveTabletIcon from "../icons/WaveTabletIcon";
+import CheckBadgeIcon from "../icons/CheckBadgeIcon";
+import NotAllowedIcon from "../icons/NotAllowedIcon";
+
+const tabletQuery = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
+
 const fadeUp = keyframes`
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -20,12 +29,20 @@ const shine = keyframes`
 
 const Section = styled.section`
   position: relative;
-  height: 120vh;
+  min-height: 120vh;
   display: flex;
   align-items: center;
   overflow: hidden;
   font-family: "Nunito", "Segoe UI", sans-serif;
   background: url("https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png");
+  @media ${tabletQuery} {
+    min-height: auto;
+    padding: 64px 0;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    min-height: auto;
+    padding: 40px 0 64px;
+  }
 `;
 const DotsGrid = styled.div`
   position: absolute;
@@ -43,6 +60,26 @@ const DotsGrid = styled.div`
     opacity: 0.35;
     display: block;
   }
+  @media ${tabletQuery} {
+    top: 32px;
+    left: 28px;
+    gap: 7px;
+    grid-template-columns: repeat(7, 5px);
+    span {
+      width: 4px;
+      height: 4px;
+    }
+  }
+  @media ${theme.mediaQueries.mobile} {
+    top: 20px;
+    left: 16px;
+    gap: 6px;
+    grid-template-columns: repeat(7, 4px);
+    span {
+      width: 3px;
+      height: 3px;
+    }
+  }
 `;
 const Inner = styled.div`
   position: relative;
@@ -51,6 +88,9 @@ const Inner = styled.div`
   margin: 0 auto;
   width: 100%;
   padding: 0 24px;
+  @media ${theme.mediaQueries.mobile} {
+    padding: 0 16px;
+  }
 `;
 const Badge = styled.div`
   display: inline-flex;
@@ -66,6 +106,16 @@ const Badge = styled.div`
   svg {
     flex-shrink: 0;
   }
+  @media ${tabletQuery} {
+    font-size: 13px;
+    padding: 8px 18px;
+    margin-bottom: 24px;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: clamp(11px, 3.2vw, 13px);
+    padding: 7px 14px;
+    margin-bottom: 18px;
+  }
 `;
 const Headline = styled.h2`
   font-size: clamp(32px, 4vw, 52px);
@@ -75,46 +125,195 @@ const Headline = styled.h2`
   span {
     color: #e8002d;
   }
+
+  @media ${tabletQuery} {
+    font-size: clamp(45px, 4.88vw, 50px);
+    line-height: 1.15;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: clamp(33px, 4.2vw, 45px);
+    line-height: 1.1;
+    margin-bottom: 12px;
+    hyphens: none;
+  }
 `;
 const Sub = styled.p`
   font-size: 16px;
   color: #777;
   margin: 0 0 56px;
+  @media ${tabletQuery} {
+    font-size: 16px;
+    margin-bottom: 48px;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    font-size: clamp(12px, 3.6vw, 14px);
+    margin-bottom: 36px;
+  }
 `;
 const Cards = styled.div`
+  position: relative;
   display: flex;
   align-items: stretch;
   justify-content: center;
   gap: 22px;
-  @media (max-width: 900px) {
+
+  @media ${tabletQuery} {
     flex-direction: column;
     align-items: center;
+    gap: 40px;
+  }
+  @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.mobileWide} {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+`;
+const Bubble = styled.span`
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  background: ${({ $color }) => $color};
+  width: ${({ $size }) => $size}%;
+  top: ${({ $top }) => $top}%;
+  left: ${({ $left }) => $left}%;
+  @media ${theme.mediaQueries.mobile} {
+    width: ${({ $size }) => $size * 1.8}%;
+    top: ${({ $mTop }) => $mTop}%;
+    left: ${({ $mLeft }) => $mLeft}%;
+  }
+`;
+const CardDecor = styled.div`
+  display: none;
+  @media ${tabletQuery} {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 250px;
+    height: 250px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    display: none;
+  }
+`;
+
+const DecorWave = styled(WaveTabletIcon)`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+`;
+const DecorDots = styled.div`
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  display: grid;
+  grid-template-columns: repeat(6, 4px);
+  gap: 6px;
+  span {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: ${({ color }) => color};
+    opacity: 0.3;
+    display: block;
+  }
+`;
+const CardWave = styled.div`
+  position: absolute;
+  top: -1.5px;
+  left: -1.5px;
+  width: 50%;
+  height: 60px;
+  border-top-left-radius: 18px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  @media ${tabletQuery} {
+    width: 160px;
+    border-top-left-radius: 16px;
+  }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    width: 50%;
+    border-top-left-radius: 18px;
   }
 `;
 const Card = styled.div`
   background: #fff;
   border: 1.5px solid ${({ featured }) => (featured ? "#c7b8f7" : "#ebebeb")};
   border-radius: 18px;
-  padding: 24px 26px 22px;
-  width: 32%;
+  padding: 16px 26px 22px;
+  width: 30%;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
+  z-index: 1;
   box-shadow: ${({ featured }) =>
     featured
-      ? "0 8px 32px rgba(138,99,255,0.10)"
-      : "0 4px 16px rgba(0,0,0,0.05)"};
+      ? "0 8px 12px rgba(31, 0, 123, 0.2)"
+      : "0 4px 16px rgba(21, 0, 159, 0.2)"};
   animation: ${fadeUp} 0.5s ease both;
   animation-delay: ${({ delay }) => delay || "0s"};
+
+  @media ${tabletQuery} {
+    width: 100%;
+    max-width: 800px;
+    flex: none;
+    display: grid;
+    grid-template-columns: minmax(max-content, 1fr) minmax(0, 1.06fr);
+    grid-template-rows: auto auto;
+    column-gap: 24px;
+    row-gap: 20px;
+    border-radius: 16px;
+    padding: 32px 40px;
+    align-items: start;
+    overflow: visible;
+  }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    max-width: 60%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+    box-shadow: ${({ featured }) =>
+      featured
+        ? "0 8px 12px rgba(31, 0, 123, 0.2)"
+        : "0 4px 16px rgba(21, 0, 159, 0.2)"};
+    animation: ${fadeUp} 0.5s ease both;
+    animation-delay: ${({ delay }) => delay || "0s"};
+  }
+
+  @media ${theme.mediaQueries.mobile}, ${theme.mediaQueries.smallMobile} {
+    width: 100%;
+    flex: none;
+    border-radius: 18px;
+    padding: 16px 26px 22px;
+  }
 `;
 const FeaturedBadge = styled.div`
   position: absolute;
   top: -13px;
   left: 50%;
   transform: translateX(-50%);
-  background: #e43d5d;
+  background: #5230e0;
   color: #fff;
   font-size: 10px;
   font-weight: 800;
@@ -123,51 +322,228 @@ const FeaturedBadge = styled.div`
   padding: 7px 18px;
   border-radius: 6px;
   white-space: nowrap;
+  @media ${tabletQuery} {
+    left: 40px;
+    transform: none;
+    z-index: 10;
+  }
 `;
-const IconWrap = styled.div`
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: ${({ bg }) => bg};
+const CardHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 0 0 22px;
+  padding: 10px 0 0;
+
+  @media ${tabletQuery} {
+    flex-direction: row;
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    margin: 0;
+    border: none;
+    padding: 12px 16px 8px 6px;
+    gap: 30px;
+    z-index: 1;
+    align-self: start;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    border: none;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    border: none;
+    flex-direction: column;
+    gap: 10px;
+  }
+`;
+const HeaderText = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  @media ${tabletQuery} {
+    align-items: flex-start;
+  }
+  @media only screen and (width > 550px) and (width < 780px) {
+    align-items: center;
+  }
+`;
+const IconCluster = styled.div`
+  position: relative;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
+  flex-shrink: 0;
+  @media ${tabletQuery} {
+    width: 80px;
+    height: 80px;
+  }
+  @media only screen and (width > 550px) and (width < 780px) {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+`;
+const IconBubble = styled.span`
+  position: absolute;
+  border-radius: 50%;
+  background: ${({ bg }) => bg};
+  z-index: 0;
+  width: 40px;
+  height: 40px;
+  top: 0px;
+  right: -17px;
+  @media ${tabletQuery} {
+    width: 56px;
+    height: 56px;
+    top: -8px;
+    right: -20px;
+  }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    position: absolute;
+    border-radius: 50%;
+    background: ${({ bg }) => bg};
+    z-index: 0;
+    width: 40px;
+    height: 40px;
+    top: 0px;
+    right: -17px;
+  }
+`;
+const IconBubbleSmall = styled.span`
+  position: absolute;
+  border-radius: 50%;
+  background: ${({ bg }) => bg};
+  z-index: 0;
+  width: 45px;
+  height: 45px;
+  bottom: -4px;
+  left: -20px;
+  @media ${tabletQuery} {
+    width: 60px;
+    height: 60px;
+    bottom: -4px;
+    left: -28px;
+  }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    position: absolute;
+    border-radius: 50%;
+    background: ${({ bg }) => bg};
+    z-index: 0;
+    width: 45px;
+    height: 45px;
+    bottom: -4px;
+    left: -20px;
+  }
+`;
+const IconWrap = styled.div`
+  position: relative;
+  z-index: 1;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: ${({ $decor }) => $decor};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  svg {
+    filter: brightness(0) invert(1);
+  }
+  @media ${tabletQuery} {
+    width: 80px;
+    height: 80px;
+  }
+  @media only screen and (width > 550px) and (width < 780px) {
+    width: 56px;
+    height: 56px;
+  }
 `;
 const PlanName = styled.h3`
-  font-size: 17px;
+  font-size: 23px;
+  font-weight: 700;
   color: ${({ color }) => color};
-  margin: 0 0 10px;
+  margin: 0 0 4px;
+  @media ${tabletQuery} {
+    font-size: clamp(26px, 3.5vw, 28px);
+    font-weight: 800;
+    line-height: 1.2;
+    white-space: nowrap;
+    margin-bottom: 6px;
+  }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    font-size: 23px;
+    font-weight: 700;
+    color: ${({ color }) => color};
+    margin: 0 0 4px;
+  }
 `;
 const PriceRow = styled.div`
   display: flex;
   align-items: flex-end;
   gap: 3px;
   margin-bottom: 2px;
+  @media ${tabletQuery} {
+    margin-left: 11px;
+  }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    margin-left: 0px;
+  }
 `;
 const Currency = styled.span`
   font-size: 13px;
   font-weight: 700;
-  color: #333;
+  color: #0f1230;
   margin-bottom: 7px;
+  @media ${tabletQuery} {
+    font-size: 17px;
+    margin-bottom: 14px;
+  }
 `;
 const Amount = styled.span`
-  font-size: 42px;
+  font-size: 44px;
   font-weight: 700;
-  color: #0d0d0d;
+  color: #0f1230;
   line-height: 1;
+  @media ${tabletQuery} {
+    font-size: 60px;
+  }
 `;
 const Period = styled.span`
   font-size: 13px;
   color: #888;
   margin-bottom: 7px;
+  @media ${tabletQuery} {
+    font-size: 17px;
+    margin-bottom: 14px;
+  }
 `;
+
 const Divider = styled.div`
-  width: 40px;
+  width: 70px;
   height: 3px;
   border-radius: 2px;
   background: ${({ color }) => color};
-  margin: 8px 0 16px;
+  margin: 8px 0 0px;
+  @media ${tabletQuery} {
+    margin: 2px 0 0 36px;
+  }
 `;
 const FeatureList = styled.ul`
   list-style: none;
@@ -177,13 +553,51 @@ const FeatureList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 9px;
+  @media ${tabletQuery} {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin: 16px 0 0 15px;
+    gap: 14px;
+    z-index: 1;
+    align-self: start;
+  }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
 `;
 const Feature = styled.li`
   display: flex;
   align-items: center;
-  gap: 9px;
-  // font-size: 13px;
-  color: #333;
+  gap: 10px;
+  font-size: 13px;
+  color: #525f92;
+  @media ${tabletQuery} {
+    font-size: 16px;
+    gap: 12px;
+  }
+`;
+const CheckBadge = styled.div`
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  border-radius: 50%;
+  background: ${({ bg }) => bg};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  @media ${tabletQuery} {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+  }
 `;
 const Btn = styled.button`
   width: 100%;
@@ -236,6 +650,15 @@ const Btn = styled.button`
     background: #3131de;
     transform: scale(0.98);
   }
+  @media ${tabletQuery} {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 0;
+    font-size: 16px;
+    padding: 14px;
+    z-index: 1;
+    align-self: start;
+  }
 `;
 const Footer = styled.div`
   display: flex;
@@ -256,159 +679,350 @@ const Footer = styled.div`
     border-radius: 50%;
     background: #ccc;
   }
+  @media ${tabletQuery} {
+    gap: 24px;
+    margin-top: 48px;
+    font-size: 13.5px;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 0;
+    max-width: 360px;
+    margin: 20px auto 0;
+    padding: 14px 6px;
+    font-size: 11px;
+    background: #fff;
+    border: 1px solid rgba(222, 246, 238, 0.9);
+    border-radius: 16px;
+    span {
+      flex: 1;
+      flex-direction: column;
+      justify-content: flex-start;
+      text-align: center;
+      gap: 6px;
+    }
+    svg {
+      box-sizing: content-box;
+      padding: 6px;
+      background: #e4f6f0;
+      border-radius: 50%;
+    }
+    .dot {
+      flex: none;
+      align-self: center;
+      width: 1px;
+      height: 40px;
+      border-radius: 0;
+      margin: 0 7px;
+      background: #cfe8de;
+    }
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    font-size: 11px;
+    flex-direction: column;
+    align-items: start;
+    padding: 10px 0 10px 10px;
+
+    span {
+      flex: 1;
+      flex-direction: row;
+      margin: 3px 0;
+    }
+    .dot {
+      display: none;
+    }
+  }
 `;
-const plans = [
+
+const bubbles = [
   {
-    type: "Basic",
-    price: "10",
-    color: "#e8002d",
-    iconBg: "#ffeaed",
-    divider: "#e8002d",
-    featured: false,
-    delay: "0.1s",
-    features: [
-      "20 Modelos Feitos à Mão",
-      "Suporte Exclusivo",
-      "5+ Sites Pré-Construídos",
-      "Plugins Básicos",
-    ],
-    icon: (
-      <SendIcon
-        width={24}
-        height={24}
-        viewBox="0 0 24 24"
-        color="none"
-        stroke="#E11D48"
-        strokeWidthOutside="2.2"
-        strokeWidthInside="1.5"
-      />
-    ),
+    color: "rgba(253, 227, 232, 0.7)",
+    size: 13.6,
+    top: 11,
+    left: -5.6,
+    mTop: -3,
+    mLeft: -8,
   },
   {
-    type: "Premium",
-    price: "20",
-    color: "#7c5cbf",
-    iconBg: "#f0ebff",
-    divider: "#7c5cbf",
-    featured: true,
-    delay: "0.2s",
-    features: [
-      "50 Modelos Feitos à Mão",
-      "Suporte Exclusivo",
-      "10+ Sites Pré-Construídos",
-      "Plugins Premium",
-    ],
-    icon: (
-      <StarIcon
-        width={24}
-        height={24}
-        viewBox="0 0 24 24"
-        color="none"
-        stroke="#7C6FCD"
-      />
-    ),
+    color: "rgba(253, 227, 232, 0.7)",
+    size: 7.2,
+    top: 44,
+    left: -6.9,
+    mTop: 29,
+    mLeft: 93,
   },
   {
-    type: "Advanced",
-    price: "30",
-    color: "#2eaa7a",
-    iconBg: "#def6ee",
-    divider: "#2eaa7a",
-    featured: false,
-    delay: "0.3s",
-    features: [
-      "70 Modelos Feitos à Mão",
-      "Suporte Exclusivo",
-      "20+ Sites Pré-Construídos",
-      "Plugins Advanced",
-    ],
-    icon: (
-      <RocketIcon
-        width={24}
-        height={24}
-        viewBox="0 0 24 24"
-        color="none"
-        stroke="#3DAA72"
-        strokeWidth="2"
-      />
-    ),
+    color: "rgba(233, 227, 251, 0.7)",
+    size: 9.4,
+    top: 18,
+    left: 30.7,
+    mTop: 31,
+    mLeft: -7,
+  },
+  {
+    color: "rgba(233, 227, 251, 0.7)",
+    size: 7.9,
+    top: 67,
+    left: 60,
+    mTop: 62,
+    mLeft: 92,
+  },
+  {
+    color: "rgba(217, 242, 231, 0.7)",
+    size: 11.3,
+    top: 11,
+    left: 94,
+    mTop: 64,
+    mLeft: -8,
+  },
+  {
+    color: "rgba(217, 242, 231, 0.7)",
+    size: 6.7,
+    top: 36,
+    left: 100,
+    mTop: 94,
+    mLeft: 90,
   },
 ];
-const Price = () => (
-  <Section>
-    <DotsGrid id="price">
-      {Array.from({ length: 35 }).map((_, i) => (
-        <span key={i} />
-      ))}
-    </DotsGrid>
-    <Inner>
-      <div style={{ textAlign: "center" }}>
-        <Badge>
-          <HeartIcon
-            width={13}
-            height={13}
-            viewBox="0 0 24 24"
-            color="none"
-            stroke="#3DAA72"
-          />
-          Planos que se adaptam ao seu momento
-        </Badge>
-        <Headline>
-          Escolha o plano ideal
-          <br />
-          para o seu <span>projeto</span>
-        </Headline>
-        <Sub>
-          Soluções completas para transformar ideias em resultados reais.
-        </Sub>
-      </div>
-      <Cards>
-        {plans.map((plan) => (
-          <Card key={plan.type} featured={plan.featured} delay={plan.delay}>
-            {plan.featured && <FeaturedBadge>Mais Escolhido</FeaturedBadge>}
-            <IconWrap bg={plan.iconBg}>{plan.icon}</IconWrap>
-            <PlanName color={plan.color}>Plano {plan.type}</PlanName>
-            <PriceRow>
-              <Currency>R$</Currency>
-              <Amount>{plan.price}</Amount>
-              <Period>/mês</Period>
-            </PriceRow>
-            <Divider color={plan.divider} />
-            <FeatureList>
-              {plan.features.map((f) => (
-                <Feature key={f}>
-                  <CheckCircleIcon
-                    width={24}
-                    height={24}
-                    viewBox="0 0 24 24"
-                    color={plan.color}
-                    stroke={plan.color}
-                  />
-                  {f}
-                </Feature>
-              ))}
-            </FeatureList>
-            <Btn featured={plan.featured}>Assine Agora</Btn>
-          </Card>
-        ))}
-      </Cards>
-      <Footer>
-        <span>
-          <ShieldHollowIcon
-            width={18}
-            height={18}
-            viewBox="0 0 24 24"
-            color="none"
-            stroke="#2BAF8E"
-          />
-          Pagamento seguro
-        </span>
-        <span className="dot" />
-        <span>Cancele quando quiser</span>
-        <span className="dot" />
-        <span>Sem taxas ocultas</span>
-      </Footer>
-    </Inner>
-  </Section>
-);
+const Price = () => {
+  const { isMobile, isTablet } = useScreenSize();
+
+  const plans = [
+    {
+      type: "Basic",
+      price: "10",
+      color: "#e8002d",
+      iconBg: "#ffeaed",
+      panelBg: "rgb(255, 200, 218)",
+      decor: "#f8305a",
+      wave: "#ff9fac",
+      divider: "#e8002d",
+      featured: false,
+      delay: "0.1s",
+      features: [
+        "20 Modelos Feitos à Mão",
+        "Suporte Exclusivo",
+        "5+ Sites Pré-Construídos",
+        "Plugins Básicos",
+      ],
+      icon: (
+        <SendIcon
+          width={isTablet ? 30 : 24}
+          height={isTablet ? 30 : 24}
+          viewBox="0 0 24 24"
+          color="none"
+          stroke="#E11D48"
+          strokeWidthOutside="1.8"
+          strokeWidthInside="1.5"
+        />
+      ),
+    },
+    {
+      type: "Premium",
+      price: "20",
+      color: "#5230e0",
+      iconBg: "#f0ebff",
+      panelBg: "rgb(216, 208, 255)",
+      decor: "#6446dc",
+      wave: "#a79ef7",
+      divider: "#7c5cbf",
+      featured: true,
+      delay: "0.2s",
+      features: [
+        "50 Modelos Feitos à Mão",
+        "Suporte Exclusivo",
+        "10+ Sites Pré-Construídos",
+        "Plugins Premium",
+      ],
+      icon: (
+        <StarIcon
+          width={isTablet ? 30 : 24}
+          height={isTablet ? 30 : 24}
+          viewBox="0 0 24 24"
+          color="none"
+          stroke="#5230e0"
+          strokeWidth="1.8"
+        />
+      ),
+    },
+    {
+      type: "Advanced",
+      price: "30",
+      color: "#2eaa7a",
+      iconBg: "#def6ee",
+      panelBg: "rgb(174, 232, 205)",
+      decor: "#1fa971",
+      wave: "#4fd1a8",
+      divider: "#2eaa7a",
+      featured: false,
+      delay: "0.3s",
+      features: [
+        "70 Modelos Feitos à Mão",
+        "Suporte Exclusivo",
+        "20+ Sites Pré-Construídos",
+        "Plugins Advanced",
+      ],
+      icon: (
+        <RocketIcon
+          width={isTablet ? 30 : 24}
+          height={isTablet ? 30 : 24}
+          viewBox="0 0 24 24"
+          color="none"
+          stroke="#3DAA72"
+          strokeWidth="1.8"
+        />
+      ),
+    },
+  ];
+
+  return (
+    <Section>
+      {isMobile ? (
+        <> </>
+      ) : (
+        <DotsGrid id="price">
+          {Array.from({ length: 35 }).map((_, i) => (
+            <span key={i} />
+          ))}
+        </DotsGrid>
+      )}
+
+      <Inner>
+        <div style={{ textAlign: "center" }}>
+          <Badge>
+            <HeartIcon
+              width={13}
+              height={13}
+              viewBox="0 0 24 24"
+              color="none"
+              stroke="#3DAA72"
+            />
+            Planos que se adaptam ao seu momento
+          </Badge>
+          <Headline>
+            {isMobile ? (
+              <>
+                Escolha o plano ideal para o seu <span>projeto</span>
+              </>
+            ) : (
+              <>
+                Escolha o plano ideal
+                <br />
+                para o seu <span>projeto</span>
+              </>
+            )}
+          </Headline>
+          <Sub>
+            Soluções completas para transformar ideias em resultados reais.
+          </Sub>
+        </div>
+        <Cards>
+          {bubbles.map((b, i) => (
+            <Bubble
+              key={i}
+              $color={b.color}
+              $size={b.size}
+              $top={b.top}
+              $left={b.left}
+              $mTop={b.mTop}
+              $mLeft={b.mLeft}
+            />
+          ))}
+          {plans.map((plan) => (
+            <Card key={plan.type} featured={plan.featured} delay={plan.delay}>
+              <CardWave>
+                <WaveIcon
+                  viewBox="0 0 200 60"
+                  preserveAspectRatio="none"
+                  color={plan.wave}
+                />
+              </CardWave>
+              {plan.featured && <FeaturedBadge>Mais Escolhido</FeaturedBadge>}
+              <CardDecor>
+                <DecorWave viewBox="0 0 500 500" color={plan.panelBg} />
+                <DecorDots color={plan.color}>
+                  {Array.from({ length: 18 }).map((_, i) => (
+                    <span key={i} />
+                  ))}
+                </DecorDots>
+              </CardDecor>
+              <CardHeader $panelBg={plan.panelBg}>
+                <IconCluster>
+                  <IconBubble bg={plan.iconBg} />
+                  <IconBubbleSmall bg={plan.iconBg} />
+                  <IconWrap bg={plan.iconBg} $decor={plan.decor}>
+                    {plan.icon}
+                  </IconWrap>
+                </IconCluster>
+                <HeaderText>
+                  <PlanName color={plan.color}>Plano {plan.type}</PlanName>
+                  <PriceRow>
+                    <Currency>R$</Currency>
+                    <Amount>{plan.price}</Amount>
+                    <Period>/mês</Period>
+                  </PriceRow>
+                  <Divider color={plan.divider} />
+                </HeaderText>
+              </CardHeader>
+              <FeatureList>
+                {plan.features.map((f) => (
+                  <Feature key={f}>
+                    <CheckBadge bg={plan.iconBg}>
+                      <CheckBadgeIcon
+                        width={28}
+                        height={28}
+                        viewBox="0 0 24 24"
+                        color="none"
+                        stroke={plan.color}
+                      />
+                    </CheckBadge>
+                    {f}
+                  </Feature>
+                ))}
+              </FeatureList>
+              <Btn featured={plan.featured}>Assinar Agora</Btn>
+            </Card>
+          ))}
+        </Cards>
+        <Footer>
+          <span>
+            <ShieldHollowIcon
+              width={18}
+              height={18}
+              viewBox="0 0 24 24"
+              color="none"
+              stroke="#2BAF8E"
+            />
+            Pagamento seguro
+          </span>
+          <span className="dot" />
+          <span>
+            <NotAllowedIcon
+              width={18}
+              height={18}
+              viewBox="0 0 24 24"
+              color="none"
+              stroke="#2BAF8E"
+            />
+            Cancele quando quiser
+          </span>
+          <span className="dot" />
+          <span>
+            <ShieldHollowIcon
+              width={18}
+              height={18}
+              viewBox="0 0 24 24"
+              color="none"
+              stroke="#2BAF8E"
+            />
+            Sem taxas ocultas
+          </span>
+        </Footer>
+      </Inner>
+    </Section>
+  );
+};
 export default Price;
