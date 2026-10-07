@@ -6,23 +6,24 @@ import ClockIcon from "../icons/ClockIcon";
 import LightningIcon from "../icons/LightningIcon";
 import ChatIcon from "../icons/ChatIcon";
 import UserIcon from "../icons/UserIcon";
-import EmailIcon from "../icons/EmailIcon";
 import EmailFillIcon from "../icons/EmailFillIcon";
 import PencilIcon from "../icons/PencilIcon.jsx";
-import TagIcon from "../icons/TagIcon.jsx";
 import PhoneIcon from "../icons/PhoneIcon.jsx";
 import LocationIcon from "../icons/LocationIcon.jsx";
 import SendIcon from "../icons/SendIcon";
 const PINK = "#E8134A";
-const PINK_BG = "#fdf3f6";
-const ADDR_RED_BG = "#fadee6";
-const ADDR_BLUE_BG = "#e7e3f8";
-const ADDR_GREEN_BG = "#dfede4";
-const ADDR_ORANGE_BG = "#feecd8";
-const ADDR_RED = "#E8134A";
-const ADDR_BLUE = "#4B6BF5";
-const ADDR_GREEN = "#2BAF8E";
-const ADDR_ORANGE = "#F5A623";
+// const NAVY = "#0F1B3D";
+const NAVY = "#2C45AD";
+// const SLATE = "#5A6785";
+// const SLATE = "#7f8fb5";
+const SLATE = "#566DA8";
+const ADDR_RED_BG = "#ffe3ed";
+const ADDR_BLUE_BG = "#E1E7FD";
+const ADDR_GREEN_BG = "#D1F3E5";
+const ADDR_ORANGE_BG = "#FDE9CD";
+const ADDR_BLUE = "#336BFE";
+const ADDR_GREEN = "#1FBE92";
+const ADDR_RED = "#F9266A";
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
@@ -37,8 +38,10 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: center;
   gap: 80px;
-  background: white;
-  padding: 32px 150px 72px 150px;
+  // background: #f5f8fc;
+  // background: #fff;
+  background: #fdfdfd;
+  padding: 56px 150px 56px 150px;
   position: relative;
   overflow: hidden;
   height: 100%;
@@ -51,19 +54,20 @@ const Section = styled.section`
 `;
 const DecorSquareBlue = styled.div`
   position: absolute;
-  top: 12%;
+  top: 8%;
   left: 50%;
-  transform: translateX(-80px);
-  width: 52px;
-  height: 52px;
-  background: #6b82f5;
+  transform: translateX(35px);
+  width: 58px;
+  height: 58px;
+  background: #8397ff;
   border-radius: 6px;
   z-index: 0;
 `;
 const DotsGrid = styled.div`
   position: absolute;
-  top: 19%;
-  left: 46.5%;
+  top: 15%;
+  left: 54.5%;
+  // transform: translateX(90%);
   display: grid;
   grid-template-columns: repeat(5, 6px);
   gap: 9px;
@@ -79,11 +83,11 @@ const DotsGrid = styled.div`
 `;
 const DecorSquareGreen = styled.div`
   position: absolute;
-  top: 52%;
-  left: 3%;
+  top: 55%;
+  left: 4%;
   transform: translateY(-50%);
-  width: 3%;
-  height: 11%;
+  width: 3.5%;
+  height: 12%;
   background-color: #669966;
   opacity: 0.5;
   border-radius: 6px;
@@ -91,10 +95,10 @@ const DecorSquareGreen = styled.div`
 `;
 const DecorCurveRed = styled.div`
   position: absolute;
-  bottom: 0%;
-  right: -9%;
-  width: 20%;
-  height: 25%;
+  bottom: -3%;
+  right: -12%;
+  width: 25%;
+  height: 21%;
   background: ${PINK};
   border-radius: 100% 100% 0px 0px;
   z-index: 0;
@@ -103,7 +107,7 @@ const MainGrid = styled.div`
   display: flex;
   align-items: stretch;
   justify-content: center;
-  gap: 60px;
+  gap: 56px;
   position: relative;
   z-index: 1;
 
@@ -114,6 +118,8 @@ const MainGrid = styled.div`
 const LeftCol = styled.div`
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
 `;
 const Badge = styled.div`
   width: fit-content;
@@ -129,31 +135,44 @@ const Badge = styled.div`
   margin-bottom: 10px;
 `;
 const Headline = styled.h2`
+  // font-size: clamp(32px, 3.8vw, 54px);
   font-size: clamp(32px, 4vw, 48px);
-  line-height: 1.1;
-  color: #111;
-  margin: 0 0 14px;
+  // font-weight: 800;
+  line-height: 1.12;
+  color: #000;
+  margin: 0 0 16px;
   span {
     color: ${PINK};
   }
 `;
 const Subtitle = styled.p`
-  color: #666;
+  color: #4b5675;
   font-size: 14.5px;
-  max-width: 400px;
-  margin: 0 0 28px;
-  line-height: 1.65;
+  max-width: 470px;
+  margin: 0 0 22px 5px;
+  line-height: 1.55;
 `;
 const FormLayout = styled.div`
-  display: flex;
-  gap: 14px;
-  align-items: stretch;
-`;
-const FormInputsCol = styled.div`
-  flex: 1;
+  // flex: 1;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
+  background: #fff;
+  // border: 1px solid #dbe3ef;
+  border: 1px solid rgba(21, 0, 159, 0.18);
+  border-radius: 20px;
+  padding: 24px;
+  box-sizing: border-box;
+`;
+const FormInputsCol = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 18px;
+
+  & > :last-child {
+    grid-column: 1 / -1;
+  }
 `;
 const InputWrapper = styled.div`
   position: relative;
@@ -162,28 +181,38 @@ const InputWrapper = styled.div`
 `;
 const Input = styled.input`
   width: 100%;
-  padding: 13px 42px 13px 16px;
-  border: 1.5px solid #e4e4e4;
-  border-radius: 10px;
-  font-size: 13.5px;
-  color: #333;
-  background: #fff;
+  padding: 15px 16px 15px 58px;
+  border: 1.5px solid #d3dcec;
+  border-radius: 14px;
+  font-size: 15px;
+  color: ${NAVY};
+  // background: #fbfcfe;
+  // background: #f8fbff;
+  background: #f6fbff;
   box-sizing: border-box;
   outline: none;
   transition: border-color 0.2s;
   font-family: inherit;
   &::placeholder {
-    color: #bbb;
+    color: #66748f;
   }
   &:focus {
-    border-color: ${PINK};
+    // border-color: ${ADDR_BLUE};
+    border-color: #66748f;
   }
 `;
 const InputIcon = styled.span`
   position: absolute;
-  right: 14px;
-  color: #bbb;
-  font-size: 15px;
+  left: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  // background: #e8edf5;
+  background: #e5ecfb;
+  // background: #e8f1ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   pointer-events: none;
   line-height: 1;
 `;
@@ -198,43 +227,48 @@ const TextareaWrapper = styled.div`
 `;
 const Textarea = styled.textarea`
   width: 100%;
-  height: 100%;
-  min-height: 148px;
-  padding: 13px 42px 13px 16px;
-  border: 1.5px solid #e4e4e4;
-  border-radius: 10px;
-  font-size: 13.5px;
-  color: #333;
-  background: #fff;
+  // height: 80%;
+  min-height: 100px;
+  padding: 16px 16px 16px 58px;
+  border: 1.5px solid #d3dcec;
+  border-radius: 14px;
+  font-size: 15px;
+  color: ${NAVY};
+  background: #fbfcfe;
   box-sizing: border-box;
-  resize: none;
+  resize: vertical;
   outline: none;
   font-family: inherit;
   line-height: 1.5;
   &::placeholder {
-    color: #bbb;
+    color: #66748f;
   }
   &:focus {
-    border-color: ${PINK};
+    border-color: #66748f;
   }
 `;
 const TextareaIcon = styled.span`
   position: absolute;
-  right: 14px;
-  top: 14px;
-  color: #bbb;
-  font-size: 15px;
+  left: 12px;
+  top: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e8edf5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   pointer-events: none;
 `;
 const SubmitButton = styled.button`
-  margin-top: 14px;
   width: 100%;
-  padding: 15px 24px;
+  padding: 18px 24px;
   background: #1a1aad;
   color: #fff;
   border: none;
-  border-radius: 10px;
-  font-size: 15px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -278,44 +312,86 @@ const SubmitButton = styled.button`
   }
 `;
 const RightCol = styled.div`
-  width: 50%;
+  width: 40%;
   display: flex;
   flex-shrink: 0;
   position: relative;
   z-index: 1;
+  margin-top: 18px;
 
   @media (max-width: 900px) {
     width: 100%;
+    margin-top: 0;
   }
 `;
 const InfoCard = styled.div`
-  background: ${PINK_BG};
-  border-radius: 18px;
-  padding: 0px 24px 0px 44px;
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  // border: 1px solid #dfe6f1;
+  border: 1px solid rgba(21, 0, 159, 0.18);
+  border-radius: 20px;
+  padding: 20px;
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+  // box-shadow: 0 10px 15px rgba(21, 0, 159, 0.05);
+`;
+const MapBox = styled.div`
+  position: relative;
+  flex: 0 0 auto;
+  height: 240px;
+  // border: 1px solid black;
+`;
+const MapPlaceholder = styled.img`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+`;
+const AddressOverlay = styled.div`
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  display: flex;
   align-items: center;
+  gap: 14px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px 22px 14px 14px;
+  // box-shadow: 0 6px 20px rgba(20, 30, 60, 0.14);
+  box-shadow: 0 6px 10px rgba(21, 0, 159, 0.12);
+  border: 1px solid rgba(21, 0, 159, 0.2);
 `;
 const InfoList = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 20px;
+  // background: #f8f9fc;
+  // background: #f8fbff;
+  background: #f7fafd;
+  border: 1.5px solid #e1e7f1;
+  border-radius: 14px;
+  padding: 10px 0;
   hr {
-    border: 1px solid #ececec;
-    width: 80%;
+    border: none;
+    border-top: 1px solid #e1e7f1;
+    width: calc(100% - 40px);
+    margin: 0 auto;
   }
 `;
 const InfoItem = styled.div`
   display: flex;
-  align-items: flex-start;
-  gap: 14px;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 20px;
 `;
 const IconCircle = styled.div`
-  width: 42px;
-  height: 42px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: ${({ bg }) => bg};
   display: flex;
@@ -323,6 +399,10 @@ const IconCircle = styled.div`
   justify-content: center;
   font-size: 18px;
   flex-shrink: 0;
+`;
+const AddressCircle = styled(IconCircle)`
+  width: 50px;
+  height: 50px;
 `;
 const InfoContent = styled.div``;
 const InfoLabel = styled.div`
@@ -333,31 +413,17 @@ const InfoLabel = styled.div`
 `;
 const InfoText = styled.div`
   font-size: 13px;
-  color: #555;
-  line-height: 1.55;
-`;
-const MapPlaceholder = styled.img`
-  width: 50%;
-  height: 70%;
-  flex-shrink: 0;
-  min-height: 220px;
-  object-fit: cover;
-  border: 5px solid #fff;
-  border-radius: 14px;
-  z-index: 1;
-  @media (max-width: 1100px) {
-    width: 160px;
-    min-height: 180px;
-  }
+  color: ${SLATE};
+  line-height: 1.5;
 `;
 const FeatureRow = styled.div`
   display: flex;
   justify-content: space-between;
   height: 12%;
   gap: 0;
-  padding: 40px 0;
+  padding: 32px 0;
   position: relative;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #dde3ec;
   z-index: 1;
   @media (max-width: 700px) {
     flex-direction: column;
@@ -366,9 +432,9 @@ const FeatureRow = styled.div`
 `;
 const FeatureItem = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 18px;
   flex: 1;
   padding: 0 32px;
   &:first-child {
@@ -382,8 +448,8 @@ const FeatureItem = styled.div`
   }
 `;
 const FeatureIcon = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   background: ${({ bg }) => bg};
   display: flex;
@@ -395,19 +461,19 @@ const FeatureIcon = styled.div`
 const FeatureContent = styled.div``;
 const FeatureTitle = styled.div`
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
   color: ${({ color }) => color};
   margin-bottom: 5px;
 `;
 const FeatureDesc = styled.div`
-  font-size: 13px;
-  color: #666;
+  font-size: 14px;
+  color: #4b5675;
   line-height: 1.55;
 `;
 const VerticalDivider = styled.div`
   width: 1px;
-  height: 60px;
-  background-color: #d9d9d9;
+  height: 70px;
+  background-color: #d5dce8;
 `;
 const Contact = () => {
   return (
@@ -425,7 +491,7 @@ const Contact = () => {
             <ChatIcon
               width={13}
               height={13}
-              color="#def6ee"
+              color="#dff5ec"
               stroke="#3DAA72"
               viewBox="0 0 24 24"
             />
@@ -445,10 +511,10 @@ const Contact = () => {
                 <Input placeholder="Seu nome" />
                 <InputIcon>
                   <UserIcon
-                    width={20}
-                    height={20}
-                    color="#9CA3AF"
-                    stroke="#9CA3AF"
+                    width={18}
+                    height={18}
+                    color={SLATE}
+                    stroke={SLATE}
                     viewBox="0 0 24 24"
                   />
                 </InputIcon>
@@ -456,25 +522,24 @@ const Contact = () => {
               <InputWrapper>
                 <Input placeholder="Seu email" />
                 <InputIcon>
-                  <EmailIcon
-                    width={19}
-                    height={19}
+                  <EmailFillIcon
+                    width={18}
+                    height={18}
                     viewBox="0 0 24 24"
-                    color="none"
-                    stroke="#9CA3AF"
-                    strokeWidth="1.5"
+                    color={SLATE}
+                    stroke="white"
                   />
                 </InputIcon>
               </InputWrapper>
               <InputWrapper>
                 <Input placeholder="Assunto" />
                 <InputIcon>
-                  <TagIcon
-                    width={18}
-                    height={18}
+                  <PhoneIcon
+                    width={17}
+                    height={17}
                     viewBox="0 0 24 24"
-                    color="none"
-                    stroke="#9CA3AF"
+                    color={SLATE}
+                    stroke={SLATE}
                   />
                 </InputIcon>
               </InputWrapper>
@@ -484,64 +549,67 @@ const Contact = () => {
                 <Textarea placeholder="Sua mensagem" />
                 <TextareaIcon>
                   <PencilIcon
-                    width={20}
-                    height={20}
+                    width={17}
+                    height={17}
                     viewBox="0 0 24 24"
-                    color="none"
-                    stroke="#9CA3AF"
+                    color={SLATE}
+                    stroke={SLATE}
                   />
                 </TextareaIcon>
               </TextareaWrapper>
             </FormTextareaCol>
+            <SubmitButton>
+              Enviar mensagem
+              <SendIcon
+                width={18}
+                height={18}
+                viewBox="0 0 24 24"
+                color="none"
+                stroke="#FFF"
+                strokeWidthOutside="2.2"
+                strokeWidthInside="1.5"
+              />
+            </SubmitButton>
           </FormLayout>
-          <SubmitButton>
-            Enviar mensagem
-            <SendIcon
-              width={18}
-              height={18}
-              viewBox="0 0 24 24"
-              color="none"
-              stroke="#FFF"
-              strokeWidthOutside="2.2"
-              strokeWidthInside="1.5"
-            />
-          </SubmitButton>
         </LeftCol>
         <RightCol>
+          <DecorCurveRed />
           <InfoCard>
-            <InfoList>
-              <InfoItem>
-                <IconCircle bg={ADDR_RED_BG}>
+            <MapBox>
+              <MapPlaceholder src={Maps} alt="Localização" />
+              <AddressOverlay>
+                <AddressCircle bg={ADDR_RED_BG}>
                   <LocationIcon
-                    width={24}
-                    height={24}
+                    width={28}
+                    height={28}
                     viewBox="0 0 24 24"
                     color="#E11D48"
                     stroke="#E11D48"
                   />
-                </IconCircle>
+                </AddressCircle>
                 <InfoContent>
-                  <InfoLabel color={ADDR_RED}>Endereço</InfoLabel>
+                  <InfoLabel color={NAVY}>Endereço</InfoLabel>
                   <InfoText>
                     123 Avenida Florença,
                     <br />
                     São Paulo, BRA
                   </InfoText>
                 </InfoContent>
-              </InfoItem>
-              <hr />
+              </AddressOverlay>
+            </MapBox>
+            <InfoList>
               <InfoItem>
                 <IconCircle bg={ADDR_BLUE_BG}>
                   <PhoneIcon
-                    width={24}
-                    height={24}
+                    width={30}
+                    height={30}
                     viewBox="0 0 24 24"
-                    color="#6366F1"
-                    stroke="#6366F1"
+                    color={ADDR_BLUE}
+                    stroke={ADDR_BLUE}
                   />
                 </IconCircle>
                 <InfoContent>
-                  <InfoLabel color={ADDR_BLUE}>Telefone</InfoLabel>
+                  <InfoLabel color={NAVY}>Telefone</InfoLabel>
                   <InfoText>
                     +55 11 1234 5678
                     <br />
@@ -553,17 +621,17 @@ const Contact = () => {
               <InfoItem>
                 <IconCircle bg={ADDR_GREEN_BG}>
                   <EmailFillIcon
-                    width={24}
-                    height={24}
+                    width={30}
+                    height={30}
                     viewBox="0 0 24 24"
                     color="#5BB580"
                     stroke="white"
                   />
                 </IconCircle>
                 <InfoContent>
-                  <InfoLabel color={ADDR_GREEN}>Email</InfoLabel>
+                  <InfoLabel color={NAVY}>Email</InfoLabel>
                   <InfoText>
-                    ficafictional.dev
+                    faleconosco@example.com
                     <br />
                     example@example.com
                   </InfoText>
@@ -573,17 +641,15 @@ const Contact = () => {
               <InfoItem>
                 <IconCircle bg={ADDR_ORANGE_BG}>
                   <ClockIcon
-                    width={24}
-                    height={24}
+                    width={30}
+                    height={30}
                     viewBox="0 0 24 24"
                     color="none"
                     stroke="#F59E0B"
                   />
                 </IconCircle>
                 <InfoContent>
-                  <InfoLabel color={ADDR_ORANGE}>
-                    Horário de atendimento
-                  </InfoLabel>
+                  <InfoLabel color={NAVY}>Horário de atendimento</InfoLabel>
                   <InfoText>
                     Segunda a Sexta
                     <br />
@@ -592,8 +658,6 @@ const Contact = () => {
                 </InfoContent>
               </InfoItem>
             </InfoList>
-            <MapPlaceholder src={Maps} alt="Localização" />
-            <DecorCurveRed />
           </InfoCard>
         </RightCol>
       </MainGrid>
@@ -602,10 +666,10 @@ const Contact = () => {
         <FeatureItem>
           <FeatureIcon bg={ADDR_RED_BG}>
             <LightningIcon
-              width={24}
-              height={24}
+              width={32}
+              height={32}
               viewBox="0 0 24 24"
-              color="#E11D48"
+              color={ADDR_RED}
               stroke="none"
             />
           </FeatureIcon>
@@ -614,7 +678,7 @@ const Contact = () => {
             <FeatureDesc>
               Retornamos seu contato
               <br />
-              em até 24 horas úteis.
+              em até 1 dia útil.
             </FeatureDesc>
           </FeatureContent>
         </FeatureItem>
@@ -622,8 +686,8 @@ const Contact = () => {
         <FeatureItem>
           <FeatureIcon bg={ADDR_GREEN_BG}>
             <ShieldIcon
-              width={22}
-              height={22}
+              width={26}
+              height={26}
               color={ADDR_GREEN}
               viewBox="0 0 24 24"
               stroke="none"
@@ -644,8 +708,8 @@ const Contact = () => {
         <FeatureItem>
           <FeatureIcon bg={ADDR_BLUE_BG}>
             <LockIcon
-              width={22}
-              height={22}
+              width={26}
+              height={26}
               color={ADDR_BLUE}
               viewBox="0 0 24 24"
               stroke="none"

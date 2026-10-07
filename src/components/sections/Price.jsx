@@ -267,8 +267,8 @@ const Card = styled.div`
   z-index: 1;
   box-shadow: ${({ featured }) =>
     featured
-      ? "0 8px 12px rgba(31, 0, 123, 0.2)"
-      : "0 4px 16px rgba(21, 0, 159, 0.2)"};
+      ? "0 2px 12px rgba(31, 0, 123, 0.15)"
+      : "0 4px 14px rgba(21, 0, 159, 0.15)"};
   animation: ${fadeUp} 0.5s ease both;
   animation-delay: ${({ delay }) => delay || "0s"};
 

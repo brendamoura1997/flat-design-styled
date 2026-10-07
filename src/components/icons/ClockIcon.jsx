@@ -14,7 +14,7 @@ const ClockIcon = ({ width, height, color, viewBox, stroke }) => {
         cy="12"
         r="9"
         fill="none"
-        strokeWidth="2"
+        strokeWidth="3.5"
         strokeLinecap="round"
       />
       {/* Hour hand pointing to ~10 o'clock */}
