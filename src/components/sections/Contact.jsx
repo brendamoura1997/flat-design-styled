@@ -230,7 +230,7 @@ const SubmitButton = styled.button`
   margin-top: 14px;
   width: 100%;
   padding: 15px 24px;
-  background: #1a1aad;
+  background: #000;
   color: #fff;
   border: none;
   border-radius: 10px;
