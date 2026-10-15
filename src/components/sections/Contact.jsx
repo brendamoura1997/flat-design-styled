@@ -22,7 +22,6 @@ const SLATE = "#566DA8";
 const ADDR_RED_BG = "#ffe3ed";
 const ADDR_BLUE_BG = "#E1E7FD";
 const ADDR_GREEN_BG = "#D1F3E5";
-const ADDR_ORANGE_BG = "#FDE9CD";
 const ADDR_BLUE = "#336BFE";
 const ADDR_GREEN = "#1FBE92";
 const ADDR_RED = "#F9266A";
@@ -101,16 +100,7 @@ const DecorSquareGreen = styled.div`
   border-radius: 6px;
   z-index: 0;
 `;
-const DecorCurveRed = styled.div`
-  position: absolute;
-  bottom: -3%;
-  right: -12%;
-  width: 25%;
-  height: 21%;
-  background: ${PINK};
-  border-radius: 100% 100% 0px 0px;
-  z-index: 0;
-`;
+
 const MainGrid = styled.div`
   display: flex;
   align-items: stretch;
@@ -459,14 +449,14 @@ const PromoBanner = styled.div`
 `;
 const BannerPlane = styled.div`
   position: absolute;
-  top: 20%;
-  left: 42%;
+  top: 21%;
+  left: 52%;
   display: flex;
 `;
 const BannerPath = styled.svg`
   position: absolute;
-  top: 31.5%;
-  left: 8px;
+  top: calc(17% + 6px);
+  left: 4px;
 `;
 const BannerDot = styled.div`
   position: absolute;
@@ -669,7 +659,7 @@ const Contact = () => {
               <span key={i} />
             ))}
           </DotsGrid>
-          {/* <DecorCurveRed /> */}
+
           <InfoCard>
             <MapBox>
               <MapPlaceholder src={Maps} alt="Localização" />
@@ -756,9 +746,14 @@ const Contact = () => {
             </InfoList>
           </InfoCard>
           <PromoBanner>
-            <BannerPath width="56" height="40" viewBox="0 0 56 40" fill="none">
+            <BannerPath
+              width="92"
+              height="115"
+              viewBox="0 0 92 115"
+              fill="none"
+            >
               <path
-                d="M54 2 C 40 4, 36 18, 26 24 C 18 29, 8 28, 3 36"
+                d="M4 108 C 20 112, 36 108, 44 98 C 52 88, 60 70, 50 62 C 40 54, 32 66, 40 78 C 46 86, 60 84, 70 74 C 78 66, 84 58, 88 48"
                 stroke="#1EA7FF"
                 strokeWidth="2"
                 strokeLinecap="round"
@@ -772,8 +767,8 @@ const Contact = () => {
                 viewBox="0 0 24 24"
                 color="none"
                 stroke="#FFF"
-                strokeWidthOutside="1.1"
-                strokeWidthInside="0.8"
+                strokeWidthOutside="1.4"
+                strokeWidthInside="0.9"
               />
             </BannerPlane>
             <BannerDot />
