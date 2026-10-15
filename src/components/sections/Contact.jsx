@@ -7,6 +7,8 @@ import LightningIcon from "../icons/LightningIcon";
 import ChatIcon from "../icons/ChatIcon";
 import UserIcon from "../icons/UserIcon";
 import EmailFillIcon from "../icons/EmailFillIcon";
+import EmailIcon from "../icons/EmailIcon";
+import TagIcon from "../icons/TagIcon.jsx";
 import PencilIcon from "../icons/PencilIcon.jsx";
 import PhoneIcon from "../icons/PhoneIcon.jsx";
 import LocationIcon from "../icons/LocationIcon.jsx";
@@ -24,6 +26,12 @@ const ADDR_ORANGE_BG = "#FDE9CD";
 const ADDR_BLUE = "#336BFE";
 const ADDR_GREEN = "#1FBE92";
 const ADDR_RED = "#F9266A";
+const SOLID_BLUE = "#1F5BFF";
+const SOLID_GREEN = "#1BB566";
+const SOLID_ORANGE = "#FFB41F";
+const BANNER_NAVY = "#02298F";
+const BANNER_BLUE = "#1F4FE0";
+const BANNER_CYAN = "#12B5F0";
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
@@ -37,10 +45,11 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 80px;
+  gap: 50px;
   // background: #f5f8fc;
   // background: #fff;
-  background: #fdfdfd;
+  // background: #fdfdfd;
+  background: #fbfcfe;
   padding: 56px 150px 56px 150px;
   position: relative;
   overflow: hidden;
@@ -54,9 +63,8 @@ const Section = styled.section`
 `;
 const DecorSquareBlue = styled.div`
   position: absolute;
-  top: 8%;
-  left: 50%;
-  transform: translateX(35px);
+  top: 0px;
+  left: -82px;
   width: 58px;
   height: 58px;
   background: #8397ff;
@@ -65,8 +73,8 @@ const DecorSquareBlue = styled.div`
 `;
 const DotsGrid = styled.div`
   position: absolute;
-  top: 15%;
-  left: 54.5%;
+  top: 65px;
+  left: -49px;
   // transform: translateX(90%);
   display: grid;
   grid-template-columns: repeat(5, 6px);
@@ -107,7 +115,7 @@ const MainGrid = styled.div`
   display: flex;
   align-items: stretch;
   justify-content: center;
-  gap: 56px;
+  gap: 32px;
   position: relative;
   z-index: 1;
 
@@ -158,11 +166,11 @@ const FormLayout = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background: #fff;
+  // background: #fff;
   // border: 1px solid #dbe3ef;
-  border: 1px solid rgba(21, 0, 159, 0.18);
+  // border: 1px solid rgba(21, 0, 159, 0.18);
   border-radius: 20px;
-  padding: 24px;
+  // padding: 24px;
   box-sizing: border-box;
 `;
 const FormInputsCol = styled.div`
@@ -185,16 +193,18 @@ const Input = styled.input`
   border: 1.5px solid #d3dcec;
   border-radius: 14px;
   font-size: 15px;
-  color: ${NAVY};
+  color: #1b2a78;
   // background: #fbfcfe;
   // background: #f8fbff;
-  background: #f6fbff;
+  // background: #f6fbff;
+  background: #fff;
   box-sizing: border-box;
   outline: none;
   transition: border-color 0.2s;
   font-family: inherit;
   &::placeholder {
     color: #66748f;
+    font-size: 13px;
   }
   &:focus {
     // border-color: ${ADDR_BLUE};
@@ -233,7 +243,8 @@ const Textarea = styled.textarea`
   border: 1.5px solid #d3dcec;
   border-radius: 14px;
   font-size: 15px;
-  color: ${NAVY};
+  color: #1b2a78;
+  // background: #fbfcfe;
   background: #fbfcfe;
   box-sizing: border-box;
   resize: vertical;
@@ -242,6 +253,7 @@ const Textarea = styled.textarea`
   line-height: 1.5;
   &::placeholder {
     color: #66748f;
+    font-size: 13px;
   }
   &:focus {
     border-color: #66748f;
@@ -312,12 +324,13 @@ const SubmitButton = styled.button`
   }
 `;
 const RightCol = styled.div`
-  width: 40%;
+  width: 43%;
   display: flex;
+  gap: 8px;
   flex-shrink: 0;
   position: relative;
   z-index: 1;
-  margin-top: 18px;
+  margin-top: 36px;
 
   @media (max-width: 900px) {
     width: 100%;
@@ -326,59 +339,56 @@ const RightCol = styled.div`
 `;
 const InfoCard = styled.div`
   position: relative;
-  z-index: 1;
-  background: #fff;
-  // border: 1px solid #dfe6f1;
-  border: 1px solid rgba(21, 0, 159, 0.18);
-  border-radius: 20px;
-  padding: 20px;
-  width: 100%;
+  z-index: 2;
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
   box-sizing: border-box;
-  // box-shadow: 0 10px 15px rgba(21, 0, 159, 0.05);
+  // border: 1px solid red;
 `;
 const MapBox = styled.div`
   position: relative;
   flex: 0 0 auto;
-  height: 240px;
+  height: 192px;
   // border: 1px solid black;
 `;
 const MapPlaceholder = styled.img`
   position: absolute;
-  inset: 0;
+  // inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 14px;
+  border-radius: 12px 0 0 12px;
+  // border: 1.5px solid #d3dcec;
 `;
 const AddressOverlay = styled.div`
   position: absolute;
-  top: 12px;
-  right: 10px;
+  top: 20px;
+  right: -44px;
   display: flex;
   align-items: center;
   gap: 14px;
   background: #fff;
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 14px 22px 14px 14px;
   // box-shadow: 0 6px 20px rgba(20, 30, 60, 0.14);
-  box-shadow: 0 6px 10px rgba(21, 0, 159, 0.12);
+  box-shadow: 0 2px 5px rgba(21, 0, 159, 0.12);
   border: 1px solid rgba(21, 0, 159, 0.2);
 `;
 const InfoList = styled.div`
   display: flex;
   flex-direction: column;
-  // background: #f8f9fc;
-  // background: #f8fbff;
-  background: #f7fafd;
-  border: 1.5px solid #e1e7f1;
-  border-radius: 14px;
+  background: #fff;
+  // border: 1.5px solid #e1e7f1;
+  border: 1.5px solid #d3dcec;
+  border-radius: 12px 0 0 12px;
   padding: 10px 0;
+  // box-shadow: 0 6px 18px rgba(21, 0, 159, 0.06);
   hr {
     border: none;
-    border-top: 1px solid #e1e7f1;
+    border-top: 1px solid #dbe4f5;
     width: calc(100% - 40px);
     margin: 0 auto;
   }
@@ -386,12 +396,12 @@ const InfoList = styled.div`
 const InfoItem = styled.div`
   display: flex;
   align-items: center;
-  gap: 18px;
-  padding: 14px 20px;
+  gap: 20px;
+  padding: 18px 20px;
 `;
 const IconCircle = styled.div`
-  width: 56px;
-  height: 56px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: ${({ bg }) => bg};
   display: flex;
@@ -406,15 +416,101 @@ const AddressCircle = styled(IconCircle)`
 `;
 const InfoContent = styled.div``;
 const InfoLabel = styled.div`
-  font-weight: 700;
   font-size: 14px;
-  color: ${({ color }) => color};
+  font-weight: 700;
+  color: #1b2a78;
   margin-bottom: 3px;
 `;
 const InfoText = styled.div`
   font-size: 13px;
-  color: ${SLATE};
+  color: #697ca8;
   line-height: 1.5;
+`;
+const ListLabel = styled(InfoLabel)`
+  font-size: 15px;
+  font-weight: 700;
+  color: #1b2a78;
+`;
+const ListText = styled(InfoText)`
+  // font-size: 14.5px;
+  font-size: 13px;
+  // color: ${SLATE};
+  color: #697ca8;
+`;
+const PromoBanner = styled.div`
+  position: relative;
+  z-index: 1;
+  flex: 0 0 28.5%;
+  overflow: hidden;
+  border-radius: 0px 12px 12px 0;
+  background: ${BANNER_NAVY};
+  box-sizing: border-box;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 22%;
+    background: ${BANNER_BLUE};
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  }
+`;
+const BannerPlane = styled.div`
+  position: absolute;
+  top: 20%;
+  left: 42%;
+  display: flex;
+`;
+const BannerPath = styled.svg`
+  position: absolute;
+  top: 31.5%;
+  left: 8px;
+`;
+const BannerDot = styled.div`
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: ${ADDR_GREEN};
+`;
+const BannerTriangle = styled.div`
+  position: absolute;
+  top: 43.5%;
+  left: 20px;
+  width: 44px;
+  height: 44px;
+  background: ${PINK};
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+`;
+const BannerText = styled.p`
+  position: absolute;
+  top: 55%;
+  left: 20px;
+  margin: 0;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.3;
+  white-space: nowrap;
+  z-index: 1;
+
+  strong {
+    font-weight: 700;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 44px;
+    height: 3px;
+    margin-top: 12px;
+    border-radius: 2px;
+    background: ${BANNER_CYAN};
+  }
 `;
 const FeatureRow = styled.div`
   display: flex;
@@ -478,12 +574,6 @@ const VerticalDivider = styled.div`
 const Contact = () => {
   return (
     <Section id="contact">
-      <DecorSquareBlue />
-      <DotsGrid>
-        {Array.from({ length: 25 }).map((_, i) => (
-          <span key={i} />
-        ))}
-      </DotsGrid>
       <DecorSquareGreen />
       <MainGrid>
         <LeftCol>
@@ -522,19 +612,19 @@ const Contact = () => {
               <InputWrapper>
                 <Input placeholder="Seu email" />
                 <InputIcon>
-                  <EmailFillIcon
+                  <EmailIcon
                     width={18}
                     height={18}
                     viewBox="0 0 24 24"
                     color={SLATE}
-                    stroke="white"
+                    stroke={SLATE}
                   />
                 </InputIcon>
               </InputWrapper>
               <InputWrapper>
                 <Input placeholder="Assunto" />
                 <InputIcon>
-                  <PhoneIcon
+                  <TagIcon
                     width={17}
                     height={17}
                     viewBox="0 0 24 24"
@@ -573,7 +663,13 @@ const Contact = () => {
           </FormLayout>
         </LeftCol>
         <RightCol>
-          <DecorCurveRed />
+          <DecorSquareBlue />
+          <DotsGrid>
+            {Array.from({ length: 25 }).map((_, i) => (
+              <span key={i} />
+            ))}
+          </DotsGrid>
+          {/* <DecorCurveRed /> */}
           <InfoCard>
             <MapBox>
               <MapPlaceholder src={Maps} alt="Localização" />
@@ -599,66 +695,99 @@ const Contact = () => {
             </MapBox>
             <InfoList>
               <InfoItem>
-                <IconCircle bg={ADDR_BLUE_BG}>
+                <IconCircle bg={SOLID_BLUE}>
                   <PhoneIcon
-                    width={30}
-                    height={30}
+                    width={25}
+                    height={25}
                     viewBox="0 0 24 24"
-                    color={ADDR_BLUE}
-                    stroke={ADDR_BLUE}
+                    color="#FFF"
+                    stroke="#FFF"
                   />
                 </IconCircle>
                 <InfoContent>
-                  <InfoLabel color={NAVY}>Telefone</InfoLabel>
-                  <InfoText>
+                  <ListLabel color={NAVY}>Telefone</ListLabel>
+                  <ListText>
                     +55 11 1234 5678
                     <br />
                     +55 11 95326 5678
-                  </InfoText>
+                  </ListText>
                 </InfoContent>
               </InfoItem>
               <hr />
               <InfoItem>
-                <IconCircle bg={ADDR_GREEN_BG}>
+                <IconCircle bg={SOLID_GREEN}>
                   <EmailFillIcon
-                    width={30}
-                    height={30}
+                    width={25}
+                    height={25}
                     viewBox="0 0 24 24"
-                    color="#5BB580"
-                    stroke="white"
+                    color="#FFF"
+                    stroke={SOLID_GREEN}
                   />
                 </IconCircle>
                 <InfoContent>
-                  <InfoLabel color={NAVY}>Email</InfoLabel>
-                  <InfoText>
+                  <ListLabel color={NAVY}>Email</ListLabel>
+                  <ListText>
                     faleconosco@example.com
                     <br />
                     example@example.com
-                  </InfoText>
+                  </ListText>
                 </InfoContent>
               </InfoItem>
               <hr />
               <InfoItem>
-                <IconCircle bg={ADDR_ORANGE_BG}>
+                <IconCircle bg={SOLID_ORANGE}>
                   <ClockIcon
-                    width={30}
-                    height={30}
+                    width={25}
+                    height={25}
                     viewBox="0 0 24 24"
-                    color="none"
-                    stroke="#F59E0B"
+                    color="#FFF"
+                    stroke={SOLID_ORANGE}
                   />
                 </IconCircle>
                 <InfoContent>
-                  <InfoLabel color={NAVY}>Horário de atendimento</InfoLabel>
-                  <InfoText>
+                  <ListLabel color={NAVY}>Horário de atendimento</ListLabel>
+                  <ListText>
                     Segunda a Sexta
                     <br />
                     9h às 18h
-                  </InfoText>
+                  </ListText>
                 </InfoContent>
               </InfoItem>
             </InfoList>
           </InfoCard>
+          <PromoBanner>
+            <BannerPath width="56" height="40" viewBox="0 0 56 40" fill="none">
+              <path
+                d="M54 2 C 40 4, 36 18, 26 24 C 18 29, 8 28, 3 36"
+                stroke="#1EA7FF"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeDasharray="4 5"
+              />
+            </BannerPath>
+            <BannerPlane>
+              <SendIcon
+                width={44}
+                height={44}
+                viewBox="0 0 24 24"
+                color="none"
+                stroke="#FFF"
+                strokeWidthOutside="1.1"
+                strokeWidthInside="0.8"
+              />
+            </BannerPlane>
+            <BannerDot />
+            <BannerTriangle />
+            <BannerText>
+              Será um
+              <br />
+              prazer
+              <br />
+              falar com
+              <br />
+              <strong>você!</strong>
+            </BannerText>
+          </PromoBanner>
         </RightCol>
       </MainGrid>
 
