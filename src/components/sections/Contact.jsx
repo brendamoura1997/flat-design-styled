@@ -1,9 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import Maps from "../../assets/images/maps.png";
-import LockIcon from "../icons/LockIcon";
-import ShieldIcon from "../icons/ShieldIcon";
 import ClockIcon from "../icons/ClockIcon";
-import LightningIcon from "../icons/LightningIcon";
 import ChatIcon from "../icons/ChatIcon";
 import UserIcon from "../icons/UserIcon";
 import EmailFillIcon from "../icons/EmailFillIcon";
@@ -20,11 +17,8 @@ const NAVY = "#2C45AD";
 // const SLATE = "#7f8fb5";
 const SLATE = "#566DA8";
 const ADDR_RED_BG = "#ffe3ed";
-const ADDR_BLUE_BG = "#E1E7FD";
-const ADDR_GREEN_BG = "#D1F3E5";
 const ADDR_BLUE = "#336BFE";
 const ADDR_GREEN = "#1FBE92";
-const ADDR_RED = "#F9266A";
 const SOLID_BLUE = "#1F5BFF";
 const SOLID_GREEN = "#1BB566";
 const SOLID_ORANGE = "#FFB41F";
@@ -502,65 +496,7 @@ const BannerText = styled.p`
     background: ${BANNER_CYAN};
   }
 `;
-const FeatureRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  height: 12%;
-  gap: 0;
-  padding: 32px 0;
-  position: relative;
-  border-top: 1px solid #dde3ec;
-  z-index: 1;
-  @media (max-width: 700px) {
-    flex-direction: column;
-    gap: 24px;
-  }
-`;
-const FeatureItem = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  flex: 1;
-  padding: 0 32px;
-  &:first-child {
-    padding-left: 40px;
-  }
-  &:last-child {
-    padding-right: 40px;
-  }
-  @media (max-width: 700px) {
-    padding: 0 16px;
-  }
-`;
-const FeatureIcon = styled.div`
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: ${({ bg }) => bg};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  flex-shrink: 0;
-`;
-const FeatureContent = styled.div``;
-const FeatureTitle = styled.div`
-  font-weight: 700;
-  font-size: 16px;
-  color: ${({ color }) => color};
-  margin-bottom: 5px;
-`;
-const FeatureDesc = styled.div`
-  font-size: 14px;
-  color: #4b5675;
-  line-height: 1.55;
-`;
-const VerticalDivider = styled.div`
-  width: 1px;
-  height: 70px;
-  background-color: #d5dce8;
-`;
+
 const Contact = () => {
   return (
     <Section id="contact">
@@ -785,70 +721,6 @@ const Contact = () => {
           </PromoBanner>
         </RightCol>
       </MainGrid>
-
-      <FeatureRow>
-        <FeatureItem>
-          <FeatureIcon bg={ADDR_RED_BG}>
-            <LightningIcon
-              width={32}
-              height={32}
-              viewBox="0 0 24 24"
-              color={ADDR_RED}
-              stroke="none"
-            />
-          </FeatureIcon>
-          <FeatureContent>
-            <FeatureTitle color={ADDR_RED}>Resposta rápida</FeatureTitle>
-            <FeatureDesc>
-              Retornamos seu contato
-              <br />
-              em até 1 dia útil.
-            </FeatureDesc>
-          </FeatureContent>
-        </FeatureItem>
-        <VerticalDivider />
-        <FeatureItem>
-          <FeatureIcon bg={ADDR_GREEN_BG}>
-            <ShieldIcon
-              width={26}
-              height={26}
-              color={ADDR_GREEN}
-              viewBox="0 0 24 24"
-              stroke="none"
-            />
-          </FeatureIcon>
-          <FeatureContent>
-            <FeatureTitle color={ADDR_GREEN}>
-              Atendimento personalizado
-            </FeatureTitle>
-            <FeatureDesc>
-              Soluções sob medida
-              <br />
-              para seu negócio.
-            </FeatureDesc>
-          </FeatureContent>
-        </FeatureItem>
-        <VerticalDivider />
-        <FeatureItem>
-          <FeatureIcon bg={ADDR_BLUE_BG}>
-            <LockIcon
-              width={26}
-              height={26}
-              color={ADDR_BLUE}
-              viewBox="0 0 24 24"
-              stroke="none"
-            />
-          </FeatureIcon>
-          <FeatureContent>
-            <FeatureTitle color={ADDR_BLUE}>Seus dados protegidos</FeatureTitle>
-            <FeatureDesc>
-              Utilizamos suas informações
-              <br />
-              apenas para contato.
-            </FeatureDesc>
-          </FeatureContent>
-        </FeatureItem>
-      </FeatureRow>
     </Section>
   );
 };
