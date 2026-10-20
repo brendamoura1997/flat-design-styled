@@ -11,14 +11,12 @@ import PhoneIcon from "../icons/PhoneIcon.jsx";
 import LocationIcon from "../icons/LocationIcon.jsx";
 import SendIcon from "../icons/SendIcon";
 import { theme } from "../../styles/theme";
+import { useScreenSize } from "../../hooks/useDevice";
+
 const PINK = "#E8134A";
-// const NAVY = "#0F1B3D";
 const NAVY = "#2C45AD";
-// const SLATE = "#5A6785";
-// const SLATE = "#7f8fb5";
 const SLATE = "#566DA8";
 const ADDR_RED_BG = "#ffe3ed";
-const ADDR_BLUE = "#336BFE";
 const ADDR_GREEN = "#1FBE92";
 const SOLID_BLUE = "#1F5BFF";
 const SOLID_GREEN = "#1BB566";
@@ -31,6 +29,7 @@ const fadeIn = keyframes`
   to { opacity: 1; transform: translateY(0); }
 `;
 const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
+const mobileLargeQueries = `only screen and (aspect-ratio < 9/16) and (width > 550px), only screen and (width > 400px) and (width < 700px)`;
 
 const shine = keyframes`
   0%   { left: -100%; }
@@ -41,9 +40,6 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: center;
   gap: 50px;
-  // background: #f5f8fc;
-  // background: #fff;
-  // background: #fdfdfd;
   background: #fbfcfe;
   padding: 56px 150px 86px 150px;
   position: relative;
@@ -52,7 +48,7 @@ const Section = styled.section`
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   animation: ${fadeIn} 0.6s ease both;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1200px) {
     padding: 48px 32px;
   }
 
@@ -61,7 +57,7 @@ const Section = styled.section`
   }
 
   @media ${theme.mediaQueries.mobile} {
-    padding: 22px 16px 34px;
+    padding: 36px 16px 34px;
   }
 `;
 const DecorSquareBlue = styled.div`
@@ -72,25 +68,39 @@ const DecorSquareBlue = styled.div`
   height: 58px;
   background: #8397ff;
   border-radius: 6px;
-  z-index: 0;
+  z-index: 1;
 
-  @media ${tabletQueries} {
-    top: 60px;
-    left: auto;
-    right: 16%;
-    width: 56px;
-    height: 56px;
+  @media ${theme.mediaQueries.desktopWide} {
+    width: 50px;
+    height: 50px;
     background: #5b84f5;
     border-radius: 8px;
   }
 
-  @media ${theme.mediaQueries.mobile} {
-    top: -4px;
+  @media ${tabletQueries} {
+    top: 4%;
     left: auto;
-    right: 15%;
-    width: 30px;
-    height: 30px;
-    background: #5b84f5;
+    right: 12.2%;
+    width: 68px;
+    height: 68px;
+    border-radius: 8px;
+  }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    top: 44px;
+    left: auto;
+    right: 11%;
+    width: 63px;
+    height: 63px;
+    border-radius: 8px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    top: 10px;
+    left: auto;
+    right: 12.5%;
+    width: 38px;
+    height: 38px;
     border-radius: 5px;
   }
 `;
@@ -98,10 +108,9 @@ const DotsGrid = styled.div`
   position: absolute;
   top: 65px;
   left: -49px;
-  // transform: translateX(90%);
   display: grid;
-  grid-template-columns: repeat(5, 6px);
-  gap: 9px;
+  grid-template-columns: repeat(5, 4px);
+  gap: 10px;
   z-index: 0;
   span {
     width: 5px;
@@ -112,15 +121,34 @@ const DotsGrid = styled.div`
     display: block;
   }
 
+  @media ${theme.mediaQueries.desktopWide} {
+    top: 55px;
+    gap: 9px;
+  }
+
   @media ${tabletQueries} {
-    top: 120px;
+    top: 113px;
     left: auto;
-    right: calc(16% - 65px);
-    grid-template-columns: repeat(5, 8px);
-    gap: 11px;
+    right: calc(10% - 45px);
+    grid-template-columns: repeat(4, 8px);
+    gap: 13px;
     span {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
+    }
+    span:nth-child(n + 21) {
+      display: none;
+    }
+  }
+  @media only screen and (width > 550px) and (width < 780px) {
+    top: 95px;
+    left: auto;
+    right: calc(10% - 45px);
+    grid-template-columns: repeat(4, 8px);
+    gap: 10px;
+    span {
+      width: 7px;
+      height: 7px;
     }
     span:nth-child(n + 21) {
       display: none;
@@ -128,10 +156,10 @@ const DotsGrid = styled.div`
   }
 
   @media ${theme.mediaQueries.mobile} {
-    top: 29px;
+    top: 41px;
     left: auto;
     right: calc(15% - 36px);
-    grid-template-columns: repeat(5, 4px);
+    grid-template-columns: repeat(4, 4px);
     gap: 6px;
     span {
       width: 4px;
@@ -147,14 +175,14 @@ const DecorSquareGreen = styled.div`
   top: 55%;
   left: 4%;
   transform: translateY(-50%);
-  width: 3.5%;
+  width: 45px;
   height: 12%;
   background-color: #669966;
   opacity: 0.5;
   border-radius: 6px;
   z-index: 0;
 
-  @media ${tabletQueries} {
+  @media (max-width: 1200px) {
     display: none;
   }
 `;
@@ -211,16 +239,16 @@ const Badge = styled.div`
     font-size: 12px;
     font-weight: 600;
     padding: 6px 12px;
-    margin-bottom: 8px;
+    margin-bottom: 14px;
   }
 `;
 const Headline = styled.h2`
-  // font-size: clamp(32px, 3.8vw, 54px);
   font-size: clamp(32px, 4vw, 48px);
-  // font-weight: 800;
   line-height: 1.12;
   color: #000;
   margin: 0 0 16px;
+  hyphens: none;
+
   span {
     color: ${PINK};
   }
@@ -232,13 +260,12 @@ const Headline = styled.h2`
 
   @media ${theme.mediaQueries.mobile} {
     font-size: 32px;
-    // font-weight: 800;
     color: #0b1a45;
-    margin: 0 0 10px;
+    margin: 0 0 16px;
   }
 `;
 const Subtitle = styled.p`
-  color: #4b5675;
+  color: #777;
   font-size: 14.5px;
   max-width: 470px;
   margin: 0 0 22px 5px;
@@ -251,23 +278,17 @@ const Subtitle = styled.p`
   }
 
   @media ${theme.mediaQueries.mobile} {
-    color: #5a6a96;
-    font-size: 14px;
+    font-size: clamp(12px, 3.6vw, 14px);
     max-width: none;
-    margin: 0 0 14px 0;
+    margin: 0 0 14px 4px;
   }
 `;
 const FormLayout = styled.div`
-  // flex: 1;
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  // background: #fff;
-  // border: 1px solid #dbe3ef;
-  // border: 1px solid rgba(21, 0, 159, 0.18);
   border-radius: 20px;
-  // padding: 24px;
   box-sizing: border-box;
 
   @media ${tabletQueries} {
@@ -281,7 +302,6 @@ const FormLayout = styled.div`
     border-radius: 16px;
     padding: 12px;
     margin: 0 -4px;
-    box-shadow: 0 4px 14px rgba(21, 0, 159, 0.07);
   }
 `;
 const FormInputsCol = styled.div`
@@ -299,6 +319,7 @@ const FormInputsCol = styled.div`
 
   @media ${theme.mediaQueries.mobile} {
     gap: 10px 8px;
+    grid-template-columns: 1fr;
   }
 `;
 const InputWrapper = styled.div`
@@ -313,9 +334,6 @@ const Input = styled.input`
   border-radius: 14px;
   font-size: 15px;
   color: #1b2a78;
-  // background: #fbfcfe;
-  // background: #f8fbff;
-  // background: #f6fbff;
   background: #fff;
   box-sizing: border-box;
   outline: none;
@@ -326,8 +344,11 @@ const Input = styled.input`
     font-size: 13px;
   }
   &:focus {
-    // border-color: ${ADDR_BLUE};
     border-color: #66748f;
+  }
+
+  @media ${theme.mediaQueries.desktopWide} {
+    padding: 13px 16px 13px 58px;
   }
 
   @media ${tabletQueries} {
@@ -342,10 +363,9 @@ const Input = styled.input`
   @media ${theme.mediaQueries.mobile} {
     padding: 12px 10px 12px 50px;
     border-radius: 12px;
-    font-size: 14px;
+    font-size: clamp(12px, 3.6vw, 14px);
     &::placeholder {
-      color: ${SLATE};
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 500;
     }
   }
@@ -356,9 +376,7 @@ const InputIcon = styled.span`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  // background: #e8edf5;
   background: #e5ecfb;
-  // background: #e8f1ff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -396,14 +414,12 @@ const TextareaWrapper = styled.div`
 `;
 const Textarea = styled.textarea`
   width: 100%;
-  // height: 80%;
   min-height: 100px;
   padding: 16px 16px 16px 58px;
   border: 1.5px solid #d3dcec;
   border-radius: 14px;
   font-size: 15px;
   color: #1b2a78;
-  // background: #fbfcfe;
   background: #fbfcfe;
   box-sizing: border-box;
   resize: vertical;
@@ -429,14 +445,13 @@ const Textarea = styled.textarea`
   }
 
   @media ${theme.mediaQueries.mobile} {
-    min-height: 74px;
+    min-height: 94px;
     padding: 13px 12px 12px 50px;
     border-radius: 12px;
     font-size: 14px;
     background: #fff;
     &::placeholder {
-      color: ${SLATE};
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 500;
     }
   }
@@ -582,7 +597,6 @@ const InfoCard = styled.div`
   flex-direction: column;
   gap: 8px;
   box-sizing: border-box;
-  // border: 1px solid red;
 
   @media ${tabletQueries} {
     gap: 12px;
@@ -597,7 +611,6 @@ const MapBox = styled.div`
   position: relative;
   flex: 0 0 auto;
   height: 192px;
-  // border: 1px solid black;
 
   @media ${tabletQueries} {
     height: 280px;
@@ -609,12 +622,10 @@ const MapBox = styled.div`
 `;
 const MapPlaceholder = styled.img`
   position: absolute;
-  // inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 12px 0 0 12px;
-  // border: 1.5px solid #d3dcec;
 
   @media ${tabletQueries} {
     border-radius: 16px 0 0 16px;
@@ -636,7 +647,6 @@ const AddressOverlay = styled.div`
   background: #fff;
   border-radius: 12px;
   padding: 14px 22px 14px 14px;
-  // box-shadow: 0 6px 20px rgba(20, 30, 60, 0.14);
   box-shadow: 0 2px 5px rgba(21, 0, 159, 0.12);
   border: 1px solid rgba(21, 0, 159, 0.2);
 
@@ -654,19 +664,18 @@ const AddressOverlay = styled.div`
     gap: 10px;
     border-radius: 10px;
     padding: 10px 16px 10px 10px;
-    box-shadow: 0 4px 14px rgba(21, 0, 159, 0.12);
-    border: 1px solid #d7e3f8;
+    box-shadow: 0 2px 5px rgba(21, 0, 159, 0.12);
+    border: 1px solid rgba(21, 0, 159, 0.2);
   }
 `;
 const InfoList = styled.div`
   display: flex;
   flex-direction: column;
   background: #fff;
-  // border: 1.5px solid #e1e7f1;
   border: 1.5px solid #d3dcec;
   border-radius: 12px 0 0 12px;
   padding: 10px 0;
-  // box-shadow: 0 6px 18px rgba(21, 0, 159, 0.06);
+
   hr {
     border: none;
     border-top: 1px solid #dbe4f5;
@@ -696,6 +705,14 @@ const InfoItem = styled.div`
   align-items: center;
   gap: 20px;
   padding: 18px 20px;
+
+  @media only screen and (max-width: 1200px) {
+    padding: 15px 16px;
+  }
+
+  @media ${theme.mediaQueries.desktopWide} {
+    padding: 14px 16px;
+  }
 
   @media ${tabletQueries} {
     gap: 24px;
@@ -777,7 +794,7 @@ const InfoLabel = styled.div`
 `;
 const InfoText = styled.div`
   font-size: 13px;
-  color: #697ca8;
+  color: #7d89a5;
   line-height: 1.5;
 
   @media ${tabletQueries} {
@@ -802,10 +819,8 @@ const ListLabel = styled(InfoLabel)`
   }
 `;
 const ListText = styled(InfoText)`
-  // font-size: 14.5px;
   font-size: 13px;
-  // color: ${SLATE};
-  color: #697ca8;
+  color: #7d89a5;
 
   @media ${tabletQueries} {
     font-size: 16px;
@@ -813,6 +828,7 @@ const ListText = styled(InfoText)`
 
   @media ${theme.mediaQueries.mobile} {
     font-size: 12px;
+    line-height: 1.6;
   }
 `;
 const PromoBanner = styled.div`
@@ -850,12 +866,23 @@ const PromoBanner = styled.div`
       clip-path: polygon(100% 0, 100% 0, 100% 100%, 63% 100%);
     }
   }
+
+  @media ${mobileLargeQueries} {
+    &::after {
+      clip-path: polygon(100% 0, 100% 0, 100% 100%, calc(100% - 127px) 100%);
+    }
+  }
 `;
 const BannerPlane = styled.div`
   position: absolute;
   top: 21%;
   left: 52%;
   display: flex;
+
+  @media ${theme.mediaQueries.desktopWide} {
+    top: 23%;
+    left: 55%;
+  }
 
   @media ${tabletQueries} {
     left: 73px;
@@ -873,11 +900,24 @@ const BannerPlane = styled.div`
       height: 33px;
     }
   }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    left: 67%;
+  }
+
+  @media ${mobileLargeQueries} {
+    left: auto;
+    right: 87px;
+  }
 `;
 const BannerPath = styled.svg`
   position: absolute;
   top: calc(17% + 6px);
   left: 4px;
+
+  @media ${theme.mediaQueries.desktopWide} {
+    width: 85px;
+  }
 
   @media ${tabletQueries} {
     width: 100px;
@@ -890,19 +930,24 @@ const BannerPath = styled.svg`
     width: 70px;
     height: auto;
   }
+
+  @media ${mobileLargeQueries} {
+    left: auto;
+    right: 101.5px;
+  }
 `;
 const BannerDot = styled.div`
   position: absolute;
-  top: 40%;
-  left: 50%;
-  width: 18px;
-  height: 18px;
+  top: 210px;
+  left: 75px;
+  width: 10%;
+  aspect-ratio: 1;
   border-radius: 50%;
   background: ${ADDR_GREEN};
 
   @media ${tabletQueries} {
-    width: 24px;
-    height: 24px;
+    top: 290px;
+    left: 99px;
   }
 
   @media ${theme.mediaQueries.mobile} {
@@ -911,6 +956,12 @@ const BannerDot = styled.div`
     right: 20px;
     width: 20px;
     height: 20px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    right: 13px;
+    width: 15px;
+    height: 15px;
   }
 `;
 const BannerTriangle = styled.div`
@@ -933,6 +984,11 @@ const BannerTriangle = styled.div`
     left: 73%;
     width: 41px;
     height: 41px;
+  }
+
+  @media ${mobileLargeQueries} {
+    left: auto;
+    right: 51.6px;
   }
 `;
 const BannerText = styled.p`
@@ -991,6 +1047,10 @@ const DesktopBreak = styled.br`
 `;
 
 const Contact = () => {
+  const { isDesktop } = useScreenSize();
+
+  const dotsQuantity = isDesktop ? 20 : 16;
+
   return (
     <Section id="contact">
       <DecorSquareGreen />
@@ -1083,8 +1143,9 @@ const Contact = () => {
         </LeftCol>
         <RightCol>
           <DecorSquareBlue />
+
           <DotsGrid>
-            {Array.from({ length: 25 }).map((_, i) => (
+            {Array.from({ length: dotsQuantity }).map((_, i) => (
               <span key={i} />
             ))}
           </DotsGrid>

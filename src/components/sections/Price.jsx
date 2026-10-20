@@ -35,6 +35,11 @@ const Section = styled.section`
   overflow: hidden;
   font-family: "Nunito", "Segoe UI", sans-serif;
   background: url("https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png");
+
+  @media ${theme.mediaQueries.desktopWide} {
+    padding: 64px 0;
+  }
+
   @media ${tabletQuery} {
     min-height: auto;
     padding: 64px 0;
