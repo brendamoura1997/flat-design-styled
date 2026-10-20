@@ -10,6 +10,7 @@ import PencilIcon from "../icons/PencilIcon.jsx";
 import PhoneIcon from "../icons/PhoneIcon.jsx";
 import LocationIcon from "../icons/LocationIcon.jsx";
 import SendIcon from "../icons/SendIcon";
+import { theme } from "../../styles/theme";
 const PINK = "#E8134A";
 // const NAVY = "#0F1B3D";
 const NAVY = "#2C45AD";
@@ -29,6 +30,7 @@ const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 `;
+const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
 
 const shine = keyframes`
   0%   { left: -100%; }
@@ -43,7 +45,7 @@ const Section = styled.section`
   // background: #fff;
   // background: #fdfdfd;
   background: #fbfcfe;
-  padding: 56px 150px 56px 150px;
+  padding: 56px 150px 86px 150px;
   position: relative;
   overflow: hidden;
   height: 100%;
@@ -52,6 +54,14 @@ const Section = styled.section`
 
   @media (max-width: 1024px) {
     padding: 48px 32px;
+  }
+
+  @media ${tabletQueries} {
+    padding: 56px 48px 72px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    padding: 22px 16px 34px;
   }
 `;
 const DecorSquareBlue = styled.div`
@@ -63,6 +73,26 @@ const DecorSquareBlue = styled.div`
   background: #8397ff;
   border-radius: 6px;
   z-index: 0;
+
+  @media ${tabletQueries} {
+    top: 60px;
+    left: auto;
+    right: 16%;
+    width: 56px;
+    height: 56px;
+    background: #5b84f5;
+    border-radius: 8px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    top: -4px;
+    left: auto;
+    right: 15%;
+    width: 30px;
+    height: 30px;
+    background: #5b84f5;
+    border-radius: 5px;
+  }
 `;
 const DotsGrid = styled.div`
   position: absolute;
@@ -81,6 +111,36 @@ const DotsGrid = styled.div`
     opacity: 0.35;
     display: block;
   }
+
+  @media ${tabletQueries} {
+    top: 120px;
+    left: auto;
+    right: calc(16% - 65px);
+    grid-template-columns: repeat(5, 8px);
+    gap: 11px;
+    span {
+      width: 8px;
+      height: 8px;
+    }
+    span:nth-child(n + 21) {
+      display: none;
+    }
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    top: 29px;
+    left: auto;
+    right: calc(15% - 36px);
+    grid-template-columns: repeat(5, 4px);
+    gap: 6px;
+    span {
+      width: 4px;
+      height: 4px;
+    }
+    span:nth-child(n + 21) {
+      display: none;
+    }
+  }
 `;
 const DecorSquareGreen = styled.div`
   position: absolute;
@@ -93,6 +153,10 @@ const DecorSquareGreen = styled.div`
   opacity: 0.5;
   border-radius: 6px;
   z-index: 0;
+
+  @media ${tabletQueries} {
+    display: none;
+  }
 `;
 
 const MainGrid = styled.div`
@@ -103,7 +167,13 @@ const MainGrid = styled.div`
   position: relative;
   z-index: 1;
 
-  @media (max-width: 900px) {
+  @media ${tabletQueries} {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    gap: 0px;
     flex-direction: column;
   }
 `;
@@ -125,6 +195,24 @@ const Badge = styled.div`
   padding: 8px 16px;
   border-radius: 999px;
   margin-bottom: 10px;
+
+  @media ${tabletQueries} {
+    gap: 8px;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-bottom: 14px;
+    svg {
+      width: 17px;
+      height: 17px;
+    }
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    margin-bottom: 8px;
+  }
 `;
 const Headline = styled.h2`
   // font-size: clamp(32px, 3.8vw, 54px);
@@ -136,6 +224,18 @@ const Headline = styled.h2`
   span {
     color: ${PINK};
   }
+
+  @media ${tabletQueries} {
+    font-size: clamp(44px, 6.2vw, 58px);
+    margin: 0 0 20px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 32px;
+    // font-weight: 800;
+    color: #0b1a45;
+    margin: 0 0 10px;
+  }
 `;
 const Subtitle = styled.p`
   color: #4b5675;
@@ -143,6 +243,19 @@ const Subtitle = styled.p`
   max-width: 470px;
   margin: 0 0 22px 5px;
   line-height: 1.55;
+
+  @media ${tabletQueries} {
+    font-size: 18px;
+    max-width: 640px;
+    margin: 0 0 28px 5px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    color: #5a6a96;
+    font-size: 14px;
+    max-width: none;
+    margin: 0 0 14px 0;
+  }
 `;
 const FormLayout = styled.div`
   // flex: 1;
@@ -156,6 +269,20 @@ const FormLayout = styled.div`
   border-radius: 20px;
   // padding: 24px;
   box-sizing: border-box;
+
+  @media ${tabletQueries} {
+    gap: 20px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    gap: 10px;
+    background: #fff;
+    border: 1px solid #dbe5f7;
+    border-radius: 16px;
+    padding: 12px;
+    margin: 0 -4px;
+    box-shadow: 0 4px 14px rgba(21, 0, 159, 0.07);
+  }
 `;
 const FormInputsCol = styled.div`
   display: grid;
@@ -164,6 +291,14 @@ const FormInputsCol = styled.div`
 
   & > :last-child {
     grid-column: 1 / -1;
+  }
+
+  @media ${tabletQueries} {
+    gap: 20px 24px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    gap: 10px 8px;
   }
 `;
 const InputWrapper = styled.div`
@@ -194,6 +329,26 @@ const Input = styled.input`
     // border-color: ${ADDR_BLUE};
     border-color: #66748f;
   }
+
+  @media ${tabletQueries} {
+    padding: 19px 16px 19px 70px;
+    border-radius: 16px;
+    font-size: 17px;
+    &::placeholder {
+      font-size: 16px;
+    }
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    padding: 12px 10px 12px 50px;
+    border-radius: 12px;
+    font-size: 14px;
+    &::placeholder {
+      color: ${SLATE};
+      font-size: 13px;
+      font-weight: 500;
+    }
+  }
 `;
 const InputIcon = styled.span`
   position: absolute;
@@ -209,6 +364,26 @@ const InputIcon = styled.span`
   justify-content: center;
   pointer-events: none;
   line-height: 1;
+
+  @media ${tabletQueries} {
+    left: 16px;
+    width: 42px;
+    height: 42px;
+    svg {
+      width: 23px;
+      height: 23px;
+    }
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    left: 6px;
+    width: 32px;
+    height: 32px;
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
 `;
 const FormTextareaCol = styled.div`
   flex: 1;
@@ -242,6 +417,29 @@ const Textarea = styled.textarea`
   &:focus {
     border-color: #66748f;
   }
+
+  @media ${tabletQueries} {
+    min-height: 150px;
+    padding: 22px 16px 16px 70px;
+    border-radius: 16px;
+    font-size: 17px;
+    &::placeholder {
+      font-size: 16px;
+    }
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    min-height: 74px;
+    padding: 13px 12px 12px 50px;
+    border-radius: 12px;
+    font-size: 14px;
+    background: #fff;
+    &::placeholder {
+      color: ${SLATE};
+      font-size: 13px;
+      font-weight: 500;
+    }
+  }
 `;
 const TextareaIcon = styled.span`
   position: absolute;
@@ -255,6 +453,29 @@ const TextareaIcon = styled.span`
   align-items: center;
   justify-content: center;
   pointer-events: none;
+
+  @media ${tabletQueries} {
+    left: 16px;
+    top: 16px;
+    width: 42px;
+    height: 42px;
+    svg {
+      width: 23px;
+      height: 23px;
+    }
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    left: 6px;
+    top: 6px;
+    width: 32px;
+    height: 32px;
+    background: #e5ecfb;
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
 `;
 const SubmitButton = styled.button`
   width: 100%;
@@ -306,6 +527,28 @@ const SubmitButton = styled.button`
     background: #3131de;
     transform: scale(0.98);
   }
+
+  @media ${tabletQueries} {
+    padding: 23px 28px;
+    border-radius: 14px;
+    font-size: 20px;
+    gap: 12px;
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    padding: 13px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    gap: 10px;
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
 `;
 const RightCol = styled.div`
   width: 43%;
@@ -316,9 +559,18 @@ const RightCol = styled.div`
   z-index: 1;
   margin-top: 36px;
 
-  @media (max-width: 900px) {
+  @media ${tabletQueries} {
     width: 100%;
     margin-top: 0;
+    gap: 12px;
+    position: static;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    position: static;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
   }
 `;
 const InfoCard = styled.div`
@@ -331,12 +583,29 @@ const InfoCard = styled.div`
   gap: 8px;
   box-sizing: border-box;
   // border: 1px solid red;
+
+  @media ${tabletQueries} {
+    gap: 12px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    flex: 0 0 auto;
+    gap: 10px;
+  }
 `;
 const MapBox = styled.div`
   position: relative;
   flex: 0 0 auto;
   height: 192px;
   // border: 1px solid black;
+
+  @media ${tabletQueries} {
+    height: 280px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    height: 120px;
+  }
 `;
 const MapPlaceholder = styled.img`
   position: absolute;
@@ -346,6 +615,16 @@ const MapPlaceholder = styled.img`
   object-fit: cover;
   border-radius: 12px 0 0 12px;
   // border: 1.5px solid #d3dcec;
+
+  @media ${tabletQueries} {
+    border-radius: 16px 0 0 16px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid #d7e3f8;
+  }
 `;
 const AddressOverlay = styled.div`
   position: absolute;
@@ -360,6 +639,24 @@ const AddressOverlay = styled.div`
   // box-shadow: 0 6px 20px rgba(20, 30, 60, 0.14);
   box-shadow: 0 2px 5px rgba(21, 0, 159, 0.12);
   border: 1px solid rgba(21, 0, 159, 0.2);
+
+  @media ${tabletQueries} {
+    top: 30px;
+    right: -56px;
+    gap: 18px;
+    border-radius: 16px;
+    padding: 18px 30px 18px 18px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    top: 14px;
+    right: 10px;
+    gap: 10px;
+    border-radius: 10px;
+    padding: 10px 16px 10px 10px;
+    box-shadow: 0 4px 14px rgba(21, 0, 159, 0.12);
+    border: 1px solid #d7e3f8;
+  }
 `;
 const InfoList = styled.div`
   display: flex;
@@ -376,12 +673,39 @@ const InfoList = styled.div`
     width: calc(100% - 40px);
     margin: 0 auto;
   }
+
+  @media ${tabletQueries} {
+    border-radius: 16px 0 0 16px;
+    padding: 14px 0;
+    hr {
+      width: calc(100% - 56px);
+    }
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    border: 1px solid #d7e3f8;
+    border-radius: 12px;
+    padding: 6px 0;
+    hr {
+      width: calc(100% - 28px);
+    }
+  }
 `;
 const InfoItem = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
   padding: 18px 20px;
+
+  @media ${tabletQueries} {
+    gap: 24px;
+    padding: 24px 28px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    gap: 14px;
+    padding: 8px 14px;
+  }
 `;
 const IconCircle = styled.div`
   width: 50px;
@@ -393,10 +717,46 @@ const IconCircle = styled.div`
   justify-content: center;
   font-size: 18px;
   flex-shrink: 0;
+
+  @media ${tabletQueries} {
+    width: 64px;
+    height: 64px;
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    width: 40px;
+    height: 40px;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
 `;
 const AddressCircle = styled(IconCircle)`
   width: 50px;
   height: 50px;
+
+  @media ${tabletQueries} {
+    width: 62px;
+    height: 62px;
+    svg {
+      width: 34px;
+      height: 34px;
+    }
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    width: 38px;
+    height: 38px;
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
 `;
 const InfoContent = styled.div``;
 const InfoLabel = styled.div`
@@ -404,22 +764,56 @@ const InfoLabel = styled.div`
   font-weight: 700;
   color: #1b2a78;
   margin-bottom: 3px;
+
+  @media ${tabletQueries} {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 12.5px;
+    margin-bottom: 2px;
+  }
 `;
 const InfoText = styled.div`
   font-size: 13px;
   color: #697ca8;
   line-height: 1.5;
+
+  @media ${tabletQueries} {
+    font-size: 16px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 11px;
+  }
 `;
 const ListLabel = styled(InfoLabel)`
   font-size: 15px;
   font-weight: 700;
   color: #1b2a78;
+
+  @media ${tabletQueries} {
+    font-size: 20px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 12.5px;
+  }
 `;
 const ListText = styled(InfoText)`
   // font-size: 14.5px;
   font-size: 13px;
   // color: ${SLATE};
   color: #697ca8;
+
+  @media ${tabletQueries} {
+    font-size: 16px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 12px;
+  }
 `;
 const PromoBanner = styled.div`
   position: relative;
@@ -440,17 +834,62 @@ const PromoBanner = styled.div`
     background: ${BANNER_BLUE};
     clip-path: polygon(100% 0, 100% 100%, 0 100%);
   }
+
+  @media ${tabletQueries} {
+    border-radius: 0 16px 16px 0;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 96px;
+    border-radius: 10px;
+    &::after {
+      z-index: -1;
+      height: 100%;
+      clip-path: polygon(100% 0, 100% 0, 100% 100%, 63% 100%);
+    }
+  }
 `;
 const BannerPlane = styled.div`
   position: absolute;
   top: 21%;
   left: 52%;
   display: flex;
+
+  @media ${tabletQueries} {
+    left: 73px;
+    svg {
+      width: 56px;
+      height: 56px;
+    }
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    top: 15px;
+    left: 65%;
+    svg {
+      width: 33px;
+      height: 33px;
+    }
+  }
 `;
 const BannerPath = styled.svg`
   position: absolute;
   top: calc(17% + 6px);
   left: 4px;
+
+  @media ${tabletQueries} {
+    width: 100px;
+    height: auto;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    top: -7px;
+    left: 50%;
+    width: 70px;
+    height: auto;
+  }
 `;
 const BannerDot = styled.div`
   position: absolute;
@@ -460,6 +899,19 @@ const BannerDot = styled.div`
   height: 18px;
   border-radius: 50%;
   background: ${ADDR_GREEN};
+
+  @media ${tabletQueries} {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    top: 36px;
+    left: auto;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+  }
 `;
 const BannerTriangle = styled.div`
   position: absolute;
@@ -469,6 +921,19 @@ const BannerTriangle = styled.div`
   height: 44px;
   background: ${PINK};
   clip-path: polygon(100% 0, 100% 100%, 0 100%);
+
+  @media ${tabletQueries} {
+    left: 26px;
+    width: 58px;
+    height: 58px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    top: 46px;
+    left: 73%;
+    width: 41px;
+    height: 41px;
+  }
 `;
 const BannerText = styled.p`
   position: absolute;
@@ -494,6 +959,34 @@ const BannerText = styled.p`
     margin-top: 12px;
     border-radius: 2px;
     background: ${BANNER_CYAN};
+  }
+
+  @media ${tabletQueries} {
+    left: 26px;
+    font-size: 26px;
+    &::after {
+      width: 58px;
+      height: 4px;
+      margin-top: 16px;
+    }
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    top: 19px;
+    left: 22px;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.2;
+    &::after {
+      width: 41px;
+      height: 3px;
+      margin-top: 10px;
+    }
+  }
+`;
+const DesktopBreak = styled.br`
+  @media ${theme.mediaQueries.mobile} {
+    display: none;
   }
 `;
 
@@ -710,12 +1203,10 @@ const Contact = () => {
             <BannerDot />
             <BannerTriangle />
             <BannerText>
-              Será um
-              <br />
+              Será um <DesktopBreak />
               prazer
               <br />
-              falar com
-              <br />
+              falar com <DesktopBreak />
               <strong>você!</strong>
             </BannerText>
           </PromoBanner>
