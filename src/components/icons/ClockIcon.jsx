@@ -13,27 +13,20 @@ const ClockIcon = ({ width, height, color, viewBox, stroke }) => {
         cx="12"
         cy="12"
         r="9"
+        fill={color}
+        stroke={color}
+        strokeWidth="3.5"
+        strokeLinecap="round"
+      />
+
+      {/* Clock hands */}
+      <path
+        d="M12 7 V12 L14.8 14.8"
         fill="none"
+        stroke={stroke}
         strokeWidth="2"
         strokeLinecap="round"
-      />
-      {/* Hour hand pointing to ~10 o'clock */}
-      <line
-        x1="12"
-        y1="12"
-        x2="8.5"
-        y2="7.5"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      {/* Minute hand pointing to ~12 o'clock */}
-      <line
-        x1="12"
-        y1="12"
-        x2="12"
-        y2="7"
-        strokeWidth="2"
-        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

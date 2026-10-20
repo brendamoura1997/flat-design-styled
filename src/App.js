@@ -97,8 +97,8 @@ const FeatureShape = styled.div`
   }
 `;
 
-const ContainerExtra = styled.div`
-  height: 120vh;
+const ContainerContact = styled.div`
+  height: fit-content;
   overflow: hidden;
   position: relative;
 `;
@@ -231,9 +231,9 @@ function App() {
         <Price />
       </ContainerPrice>
 
-      <ContainerExtra>
+      <ContainerContact>
         <Contact />
-      </ContainerExtra>
+      </ContainerContact>
 
       <Footer />
     </ThemeProvider>
