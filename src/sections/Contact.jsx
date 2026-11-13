@@ -1,17 +1,18 @@
 import styled, { keyframes } from "styled-components";
-import Maps from "../../assets/images/maps.png";
-import ClockIcon from "../icons/ClockIcon";
-import ChatIcon from "../icons/ChatIcon";
-import UserIcon from "../icons/UserIcon";
-import EmailFillIcon from "../icons/EmailFillIcon";
-import EmailIcon from "../icons/EmailIcon";
+import Maps from "../assets/images/maps.png";
+import ClockIcon from "../icons/ClockIcon.jsx";
+import ChatIcon from "../icons/ChatIcon.jsx";
+import UserIcon from "../icons/UserIcon.jsx";
+import EmailFillIcon from "../icons/EmailFillIcon.jsx";
+import EmailIcon from "../icons/EmailIcon.jsx";
 import TagIcon from "../icons/TagIcon.jsx";
 import PencilIcon from "../icons/PencilIcon.jsx";
 import PhoneIcon from "../icons/PhoneIcon.jsx";
 import LocationIcon from "../icons/LocationIcon.jsx";
-import SendIcon from "../icons/SendIcon";
-import { theme } from "../../styles/theme";
-import { useScreenSize } from "../../hooks/useDevice";
+import SendIcon from "../icons/SendIcon.jsx";
+import { theme } from "../styles/theme.jsx";
+import { useScreenSize } from "../hooks/useDevice.jsx";
+import SectionBadge from "../components/SectionBadge.jsx";
 
 const PINK = "#E8134A";
 const NAVY = "#2C45AD";
@@ -211,37 +212,7 @@ const LeftCol = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const Badge = styled.div`
-  width: fit-content;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background: #def6ee;
-  color: #3daa72;
-  font-size: 13px;
-  font-weight: 500;
-  padding: 8px 16px;
-  border-radius: 999px;
-  margin-bottom: 10px;
 
-  @media ${tabletQueries} {
-    gap: 8px;
-    font-size: 16px;
-    padding: 10px 20px;
-    margin-bottom: 14px;
-    svg {
-      width: 17px;
-      height: 17px;
-    }
-  }
-
-  @media ${theme.mediaQueries.mobile} {
-    font-size: 12px;
-    font-weight: 600;
-    padding: 6px 12px;
-    margin-bottom: 14px;
-  }
-`;
 const Headline = styled.h2`
   font-size: clamp(32px, 4vw, 48px);
   line-height: 1.12;
@@ -1056,16 +1027,7 @@ const Contact = () => {
       <DecorSquareGreen />
       <MainGrid>
         <LeftCol>
-          <Badge>
-            <ChatIcon
-              width={13}
-              height={13}
-              color="#dff5ec"
-              stroke="#3DAA72"
-              viewBox="0 0 24 24"
-            />
-            Fale com a gente
-          </Badge>
+          <SectionBadge icon={ChatIcon}>Fale com a gente</SectionBadge>
           <Headline>
             Perguntas? <br />
             Vamos nos <span>conectar!</span>

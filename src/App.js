@@ -1,17 +1,17 @@
 //App.js
 import styled, { css, ThemeProvider } from "styled-components";
-import NavbarDesktop from "./components/layout/NavbarDesktop";
-import Intro from "./components/sections/Intro";
-import Feature from "./components/sections/Feature";
-import Service from "./components/sections/Service";
-import Price from "./components/sections/Price";
-import Contact from "./components/sections/Contact";
-import Footer from "./components/layout/Footer";
+import NavbarDesktop from "./layout/Navbar/NavbarDesktop";
+import Intro from "./sections/Intro";
+import Feature from "./sections/Feature";
+import Service from "./sections/Service";
+import Price from "./sections/Price";
+import Contact from "./sections/Contact";
+import Footer from "./layout/Footer";
 import { useScreenSize } from "./hooks/useDevice";
 import { theme } from "./styles/theme";
 import GlobalStyle from "./styles/globalStyle";
 import ResetStyle from "./styles/resetStyle";
-import NavbarMobile from "./components/layout/NavbarMobile";
+import NavbarMobile from "./layout/Navbar/NavbarMobile";
 
 const Shape = css`
   width: 100%;

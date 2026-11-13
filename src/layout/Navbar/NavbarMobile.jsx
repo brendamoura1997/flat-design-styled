@@ -2,13 +2,13 @@ import styled, { keyframes } from "styled-components";
 import { useState, useEffect, useRef } from "react";
 import { theme } from "../../styles/theme";
 import { useScreenSize } from "../../hooks/useDevice";
-import HomeIcon from "../icons/HomeIcon";
-import PurseIcon from "../icons/PurseIcon";
-import StarIcon from "../icons/StarIcon";
-import CoinIcon from "../icons/CoinIcon";
-import EmailIcon from "../icons/EmailIcon";
-import PhoneIcon from "../icons/PhoneIcon";
-import SendIcon from "../icons/SendIcon";
+import HomeIcon from "../../icons/HomeIcon";
+import PurseIcon from "../../icons/PurseIcon";
+import StarIcon from "../../icons/StarIcon";
+import CoinIcon from "../../icons/CoinIcon";
+import EmailIcon from "../../icons/EmailIcon";
+import PhoneIcon from "../../icons/PhoneIcon";
+import SendIcon from "../../icons/SendIcon";
 
 const shine = keyframes`
   0%   { left: -100%; }

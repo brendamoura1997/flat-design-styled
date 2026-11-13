@@ -1,13 +1,14 @@
 //Service.jsx
 import { useState, useEffect } from "react";
 import styled, { keyframes, createGlobalStyle } from "styled-components";
-import How from "../../assets/images/how.png";
+import How from "../assets/images/how.png";
 import MonitorIcon from "../icons/MonitorIcon";
 import CodeIcon from "../icons/CodeIcon";
 import PurseIcon from "../icons/PurseIcon";
 import StarIcon from "../icons/StarIcon";
 import PlayIcon from "../icons/PlayIcon";
-import { theme } from "../../styles/theme";
+import { theme } from "../styles/theme";
+import SectionBadge from "../components/SectionBadge";
 
 const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
 const compactQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile}`;
@@ -375,32 +376,7 @@ const Wrapper = styled.div`
     padding: 10% 6% 0%;
   }
 `;
-const Badge = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #def6ee;
-  color: #3daa72;
-  font-size: 13px;
-  font-weight: 500;
-  padding: 8px 16px;
-  border-radius: 999px;
-  margin-bottom: 10px;
-  width: fit-content;
-  @media ${tabletQueries} {
-    font-size: clamp(0.75rem, 0.5rem + 0.6vw, 0.875rem);
-    padding: 7px 14px;
-  }
-  @media ${theme.mediaQueries.mobile} {
-    font-size: clamp(0.6875rem, 0.55rem + 0.6vw, 0.8125rem);
-    padding: 6px 12px;
-    gap: 6px;
-    margin-bottom: 8px;
-  }
-  @media ${theme.mediaQueries.smallMobile} {
-    font-size: 0.625rem;
-  }
-`;
+
 const Title = styled.h1`
   font-size: clamp(50px, 4.88vw, 60px);
   line-height: 1.15;
@@ -811,17 +787,9 @@ const Service = () => {
         </Left>
         <Right id="service">
           <Wrapper>
-            <Badge>
-              <StarIcon
-                width={11}
-                height={11}
-                viewBox="0 0 24 24"
-                color="none"
-                stroke="#3DAA72"
-                strokeWidth="2"
-              />
+            <SectionBadge icon={StarIcon}>
               Soluções pensadas para impulsionar seu negócio
-            </Badge>
+            </SectionBadge>
             <Title>
               Processo simples <br />
               para <Highlight>começar</Highlight>
