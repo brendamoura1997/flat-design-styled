@@ -4,12 +4,11 @@ import Woman from "../assets/images/woman.png";
 import AnimatedShapes from "../components/decor/AnimatedShapes";
 import AnimatedShapesMobile from "../components/decor/AnimatedShapesMobile";
 import { useScreenSize } from "../hooks/useDevice";
-import RocketIcon from "../icons/RocketIcon";
 import PhoneIcon from "../icons/PhoneIcon";
-import ClientIcon from "../icons/ClientIcon";
-import DesignIcon from "../icons/DesignIcon";
 import ArrowIcon from "../icons/ArrowIcon";
 import { theme } from "../styles/theme";
+import IntroCards from "../components/IntroCards";
+import { introData } from "../utils/introData";
 
 const shine = keyframes`
   0%   { left: -100%; }
@@ -507,64 +506,7 @@ const Feature = styled.div`
   align-items: flex-start;
   gap: 14px;
 `;
-const FeatureIcon = styled.div`
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background-color: ${({ $bg }) => $bg || "#fde8ec"};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  @media only screen and (max-aspect-ratio: 1000/1000) {
-    width: 40px;
-    height: 40px;
-  }
-  @media ${theme.mediaQueries.desktopWide} {
-    width: 35px;
-    height: 35px;
-  }
-`;
-const FeatureText = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const FeatureTitle = styled.span`
-  font-weight: 700;
-  font-size: clamp(0.8075rem, 0.8075rem + 0.17vw, 0.95rem);
-  color: #1a1a2e;
-  @media ${theme.mediaQueries.tablet} {
-    font-size: clamp(1.0838rem, 1.0838rem + 0.23vw, 1.275rem);
-  }
-  @media ${theme.mediaQueries.mobile} {
-    font-size: clamp(0.8181rem, 0.8181rem + 0.17vw, 0.9625rem);
-  }
-  @media ${theme.mediaQueries.smallMobile} {
-    font-size: clamp(0.7438rem, 0.9438rem + 0.19vw, 0.875rem);
-  }
-`;
-const FeatureDesc = styled.span`
-  font-size: clamp(0.697rem, 0.697rem + 0.15vw, 0.82rem);
-  color: #888;
-  margin-top: 1%;
-  max-width: 130px;
-  line-height: 1.45;
-  @media ${theme.mediaQueries.desktopWide} {
-    line-height: 1.35;
-  }
-  @media ${theme.mediaQueries.tablet} {
-    font-size: clamp(1.0094rem, 1.0094rem + 0.21vw, 1.1875rem);
-    max-width: 100%;
-  }
-  @media ${theme.mediaQueries.mobile} {
-    font-size: clamp(0.7969rem, 0.7969rem + 0.17vw, 0.9375rem);
-    max-width: 100%;
-  }
-  @media ${theme.mediaQueries.smallMobile} {
-    font-size: clamp(0.6375rem, 0.9375rem + 0.19vw, 0.75rem);
-    line-height: 18px;
-  }
-`;
+
 const Right = styled.div`
   width: 40%;
   height: 115%;
@@ -679,52 +621,6 @@ const Contact = styled.a`
   }
 `;
 
-const FEATURES = [
-  {
-    bg: "#fde8ec",
-    icon: (size) => (
-      <ClientIcon
-        width={size}
-        height={size}
-        viewBox="0 0 24 24"
-        color="none"
-        stroke="#f53b5a"
-      />
-    ),
-    title: "Foco no cliente",
-    desc: "Soluções pensadas para o seu negócio",
-  },
-  {
-    bg: "#edeeff",
-    icon: (size) => (
-      <RocketIcon
-        width={size}
-        height={size}
-        viewBox="0 0 24 24"
-        color="none"
-        stroke="#5b5bd6"
-        strokeWidth="1.5"
-      />
-    ),
-    title: "Resultados reais",
-    desc: "Estratégias que geram impacto de verdade",
-  },
-  {
-    bg: "#def6ee",
-    icon: (size) => (
-      <DesignIcon
-        width={size}
-        height={size}
-        viewBox="0 0 24 24"
-        color="none"
-        stroke="#3DAA72"
-      />
-    ),
-    title: "Design criativo",
-    desc: "Ideias que conectam e transformam",
-  },
-];
-
 const TaglineBlock = () => (
   <Tagline>
     <TaglineDash />
@@ -812,14 +708,9 @@ const Intro = () => {
             <MobileContact>
               <PhoneBlock mobile />
             </MobileContact>
-
-            {FEATURES.slice(0, 2).map(({ bg, icon, title, desc }) => (
-              <MobileFeatureRow key={title}>
-                <FeatureIcon $bg={bg}>{icon(iconSize)}</FeatureIcon>
-                <FeatureText>
-                  <FeatureTitle>{title}</FeatureTitle>
-                  <FeatureDesc>{desc}</FeatureDesc>
-                </FeatureText>
+            {introData.slice(0, 2).map((feature) => (
+              <MobileFeatureRow key={feature.title}>
+                <IntroCards {...feature} size={iconSize} />
               </MobileFeatureRow>
             ))}
           </ActionSection>
@@ -829,13 +720,7 @@ const Intro = () => {
           <MobileImageSection>
             <WomanImage src={Woman} alt="Mulher com smartphone" />
             <MobileBottomCard>
-              <FeatureIcon $bg={FEATURES[2].bg}>
-                {FEATURES[2].icon(20)}
-              </FeatureIcon>
-              <FeatureText>
-                <FeatureTitle>{FEATURES[2].title}</FeatureTitle>
-                <FeatureDesc>{FEATURES[2].desc}</FeatureDesc>
-              </FeatureText>
+              <IntroCards {...introData[2]} size={20} />
             </MobileBottomCard>
           </MobileImageSection>
 
@@ -864,15 +749,13 @@ const Intro = () => {
               </Info>
 
               <Features>
-                {FEATURES.map(({ bg, icon, title, desc }) => (
-                  <Feature key={title}>
-                    <FeatureIcon $bg={bg}>{icon(desktopIconSize)}</FeatureIcon>
-                    <FeatureText>
-                      <FeatureTitle>{title}</FeatureTitle>
-                      <FeatureDesc>{desc}</FeatureDesc>
-                    </FeatureText>
-                  </Feature>
-                ))}
+                <Features>
+                  {introData.map((feature) => (
+                    <Feature key={feature.title}>
+                      <IntroCards {...feature} size={desktopIconSize} />
+                    </Feature>
+                  ))}
+                </Features>
               </Features>
             </LeftContent>
           </Left>
