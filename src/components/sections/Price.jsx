@@ -894,7 +894,7 @@ const Price = () => {
       {isMobile ? (
         <> </>
       ) : (
-        <DotsGrid id="price">
+        <DotsGrid>
           {Array.from({ length: 35 }).map((_, i) => (
             <span key={i} />
           ))}
@@ -913,7 +913,7 @@ const Price = () => {
             />
             Planos que se adaptam ao seu momento
           </Badge>
-          <Headline>
+          <Headline id="price">
             {isMobile ? (
               <>
                 Escolha o plano ideal para o seu <span>projeto</span>
