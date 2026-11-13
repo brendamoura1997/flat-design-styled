@@ -879,8 +879,9 @@ const NavbarMobile = () => {
     if (target) {
       const navbarHeight =
         document.querySelector("nav, [data-navbar]")?.offsetHeight || 60;
+      const lockedScroll = Number.parseInt(document.body.style.top || "0") * -1;
       scrollTargetRef.current =
-        target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+        target.getBoundingClientRect().top + lockedScroll - navbarHeight;
     }
 
     setIsOpen(false);
