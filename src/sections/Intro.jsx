@@ -1,15 +1,15 @@
 // Intro.jsx
 import styled, { keyframes } from "styled-components";
-import Woman from "../../assets/images/woman.png";
-import AnimatedShapes from "../layout/AnimatedShapes";
-import AnimatedShapesMobile from "../layout/AnimatedShapesMobile";
-import { useScreenSize } from "../../hooks/useDevice";
+import Woman from "../assets/images/woman.png";
+import AnimatedShapes from "../components/decor/AnimatedShapes";
+import AnimatedShapesMobile from "../components/decor/AnimatedShapesMobile";
+import { useScreenSize } from "../hooks/useDevice";
 import RocketIcon from "../icons/RocketIcon";
 import PhoneIcon from "../icons/PhoneIcon";
 import ClientIcon from "../icons/ClientIcon";
 import DesignIcon from "../icons/DesignIcon";
 import ArrowIcon from "../icons/ArrowIcon";
-import { theme } from "../../styles/theme";
+import { theme } from "../styles/theme";
 
 const shine = keyframes`
   0%   { left: -100%; }
