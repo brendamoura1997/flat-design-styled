@@ -5,12 +5,13 @@ import StarIcon from "../icons/StarIcon";
 import RocketIcon from "../icons/RocketIcon";
 import HeartIcon from "../icons/HeartIcon";
 import ShieldHollowIcon from "../icons/ShieldHollowIcon";
-import { theme } from "../../styles/theme";
-import { useScreenSize } from "../../hooks/useDevice";
+import { theme } from "../styles/theme";
+import { useScreenSize } from "../hooks/useDevice";
 import WaveIcon from "../icons/WaveIcon";
 import WaveTabletIcon from "../icons/WaveTabletIcon";
 import CheckBadgeIcon from "../icons/CheckBadgeIcon";
 import NotAllowedIcon from "../icons/NotAllowedIcon";
+import SectionBadge from "../components/SectionBadge";
 
 const tabletQuery = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
 
@@ -97,31 +98,7 @@ const Inner = styled.div`
     padding: 0 16px;
   }
 `;
-const Badge = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #def6ee;
-  color: #3daa72;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 8px 18px;
-  border-radius: 999px;
-  margin-bottom: 24px;
-  svg {
-    flex-shrink: 0;
-  }
-  @media ${tabletQuery} {
-    font-size: 13px;
-    padding: 8px 18px;
-    margin-bottom: 24px;
-  }
-  @media ${theme.mediaQueries.mobile} {
-    font-size: clamp(11px, 3.2vw, 13px);
-    padding: 7px 14px;
-    margin-bottom: 18px;
-  }
-`;
+
 const Headline = styled.h2`
   font-size: clamp(32px, 4vw, 52px);
   color: #0d0d0d;
@@ -903,16 +880,9 @@ const Price = () => {
 
       <Inner>
         <div style={{ textAlign: "center" }}>
-          <Badge>
-            <HeartIcon
-              width={13}
-              height={13}
-              viewBox="0 0 24 24"
-              color="none"
-              stroke="#3DAA72"
-            />
+          <SectionBadge icon={HeartIcon}>
             Planos que se adaptam ao seu momento
-          </Badge>
+          </SectionBadge>
           <Headline id="price">
             {isMobile ? (
               <>

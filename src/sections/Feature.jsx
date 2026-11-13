@@ -1,10 +1,11 @@
 //Feature.jsx
 import styled, { keyframes } from "styled-components";
-import App from "../../assets/images/app.png";
+import App from "../assets/images/app.png";
 import StarIcon from "../icons/StarIcon";
 import PlusIcon from "../icons/PlusIcon";
-import { theme } from "../../styles/theme";
-import { useScreenSize } from "../../hooks/useDevice";
+import { theme } from "../styles/theme";
+import { useScreenSize } from "../hooks/useDevice";
+import SectionBadge from "../components/SectionBadge";
 
 const tabletLandscape = `${theme.mediaQueries.tabletWide} and (aspect-ratio > 1)`;
 
@@ -296,33 +297,10 @@ const Right = styled.div`
   }
 `;
 
-const Badge = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #def6ee;
-  color: #3daa72;
-  font-size: 13px;
-  font-weight: 500;
-  padding: 8px 18px;
-  border-radius: 999px;
-  width: fit-content;
-  margin-bottom: 3%;
-  @media ${theme.mediaQueries.tablet} {
-    font-size: 17px;
-    padding: 7px 14px;
-    margin-bottom: 4%;
-  }
-  @media ${theme.mediaQueries.mobile} {
-    font-size: 12px;
-    padding: 5px 10px;
-    margin-bottom: 4%;
-  }
-`;
-
 const Title = styled.span`
   font-size: 60px;
   line-height: 1.15;
+  margin-top: 1%;
   @media ${tabletLandscape} {
     font-size: clamp(36px, 6vw, 60px);
   }
@@ -478,17 +456,9 @@ const Feature = () => {
           </Left>
         </Stage>
         <Right>
-          <Badge>
-            <StarIcon
-              width={11}
-              height={11}
-              viewBox="0 0 24 24"
-              color="none"
-              stroke="#3DAA72"
-              strokeWidth="2"
-            />
+          <SectionBadge icon={StarIcon}>
             Funcionalidades que fazem a diferença
-          </Badge>
+          </SectionBadge>
           <Title>
             <b>Ótimo</b> design
             <br />
