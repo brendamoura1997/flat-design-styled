@@ -6,7 +6,7 @@ import StarIcon from "../icons/StarIcon";
 import PlayIcon from "../icons/PlayIcon";
 import { theme } from "../styles/theme";
 import SectionBadge from "../components/SectionBadge";
-import ServiceCard from "../components/ServiceCard";
+import ServiceCard from "../components/ServiceCards";
 import { serviceData } from "../utils/serviceData";
 
 const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
