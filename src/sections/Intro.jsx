@@ -9,6 +9,7 @@ import ArrowIcon from "../icons/ArrowIcon";
 import { theme } from "../styles/theme";
 import IntroCards from "../components/IntroCards";
 import { introData } from "../utils/introData";
+import DotsGrid from "../components/decor/DotsGrid";
 
 const shine = keyframes`
   0%   { left: -100%; }
@@ -453,38 +454,20 @@ const MobileBottomCard = styled.div`
     left: 5%;
   }
 `;
-const MobileDotGrid = styled.div`
+const MobileDotGrid = styled(DotsGrid)`
   display: none;
   @media only screen and (max-aspect-ratio: 1000/1000) {
     display: grid;
-    grid-template-columns: repeat(4, 6px);
-    gap: 6px;
     position: absolute;
-    opacity: 0.55;
     ${({ $pos }) => $pos === "tr" && `bottom: 5%; right: 5%;`}
-    span {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background-color: ${({ $color }) => $color || "#f53b5a"};
-      display: block;
-    }
-    @media ${theme.mediaQueries.tablet} {
-      gap: 15px;
-      grid-template-columns: repeat(4, 9px);
-      span {
-        width: 6px;
-        height: 6px;
-      }
-    }
-    @media ${theme.mediaQueries.mobile} {
-      gap: 6px;
-      grid-template-columns: repeat(4, 6px);
-      span {
-        width: 4px;
-        height: 4px;
-      }
-    }
+  }
+  @media ${theme.mediaQueries.tablet} {
+    --dot-size: 6px;
+    --dot-gap: 18px;
+  }
+  @media ${theme.mediaQueries.mobile} {
+    --dot-size: 4px;
+    --dot-gap: 8px;
   }
 `;
 const Features = styled.div`
@@ -530,32 +513,17 @@ const Image = styled.img`
   object-fit: contain;
   object-position: bottom center;
 `;
-const DotGrid = styled.div`
+const DotGrid = styled(DotsGrid)`
   position: absolute;
-  display: grid;
-  grid-template-columns: repeat(${({ $cols }) => $cols || 5}, 6px);
-  gap: 6px;
   z-index: 3;
-  opacity: 0.55;
   ${({ $pos }) => $pos === "tl" && `top: 11%; left: 2%;`}
   ${({ $pos }) => $pos === "tr" && `top: 11%; right: 2%;`}
-  span {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background-color: ${({ $color }) => $color || "#f53b5a"};
-    display: block;
-  }
   @media only screen and (max-aspect-ratio: 1000/1000) {
     display: none;
   }
   @media ${theme.mediaQueries.desktopWide} {
-    gap: 3px;
-    grid-template-columns: repeat(${({ $cols }) => $cols || 5}, 5px);
-    span {
-      width: 4px;
-      height: 4px;
-    }
+    --dot-size: 4px;
+    --dot-gap: 4px;
   }
 `;
 const MobileFeatureRow = styled.div`
@@ -666,9 +634,6 @@ const PhoneBlock = ({ mobile, desktopWide }) => (
   </Contact>
 );
 
-const dots = (count) =>
-  Array.from({ length: count }).map((_, i) => <span key={i} />);
-
 const Intro = () => {
   const { isMobile, isDesktop, desktopWide } = useScreenSize();
   const iconSize = isMobile ? 15 : 22;
@@ -677,17 +642,37 @@ const Intro = () => {
 
   return (
     <Container>
-      <DotGrid $pos="tl" $cols={4} $color="#f53b5a">
-        {dots(16)}
-      </DotGrid>
-      <DotGrid $pos="tr" $cols={4} $color="#c0052b">
-        {dots(16)}
-      </DotGrid>
+      <DotGrid
+        $pos="tl"
+        columns={4}
+        rows={4}
+        color="#f53b5a"
+        size={5}
+        gap={7}
+        opacity={0.55}
+      />
+      <DotGrid
+        $pos="tr"
+        columns={4}
+        rows={4}
+        color="#c0052b"
+        size={5}
+        gap={7}
+        opacity={0.55}
+      />
 
       {!isDesktop ? (
         <>
           <TopSection>
-            <MobileDotGrid $pos="tr">{dots(16)}</MobileDotGrid>
+            <MobileDotGrid
+              $pos="tr"
+              columns={4}
+              rows={4}
+              color="#f53b5a"
+              size={5}
+              gap={7}
+              opacity={0.55}
+            />
             <TaglineBlock />
             <TitleBlock />
             <DescBlock />
