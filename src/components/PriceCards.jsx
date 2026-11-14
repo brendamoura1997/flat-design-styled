@@ -5,6 +5,7 @@ import CheckBadgeIcon from "../icons/CheckBadgeIcon";
 import { theme } from "../styles/theme";
 import { cardLabels } from "../utils/priceData";
 import PrimaryButton from "./PrimaryButton";
+import DotsGrid from "./decor/DotsGrid";
 
 const tabletQuery = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
 
@@ -42,22 +43,12 @@ const DecorWave = styled(WaveTabletIcon)`
   height: 100%;
   opacity: 0.4;
 `;
-const DecorDots = styled.div`
+const DecorDots = styled(DotsGrid)`
   position: absolute;
   bottom: 24px;
   right: 24px;
-  display: grid;
-  grid-template-columns: repeat(6, 4px);
-  gap: 6px;
-  span {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: ${({ color }) => color};
-    opacity: 0.3;
-    display: block;
-  }
 `;
+
 const CardWave = styled.div`
   position: absolute;
   top: -1.5px;
@@ -463,11 +454,14 @@ const PriceCards = ({ plan }) => (
     {plan.featured && <FeaturedBadge>{cardLabels.featuredBadge}</FeaturedBadge>}
     <CardDecor>
       <DecorWave viewBox="0 0 500 500" color={plan.panelBg} />
-      <DecorDots color={plan.color}>
-        {Array.from({ length: 18 }).map((_, i) => (
-          <span key={i} />
-        ))}
-      </DecorDots>
+      <DecorDots
+        columns={6}
+        rows={3}
+        color={plan.color}
+        size={4}
+        gap={6}
+        opacity={0.3}
+      />
     </CardDecor>
     <CardHeader $panelBg={plan.panelBg}>
       <IconCluster>
