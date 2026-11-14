@@ -12,6 +12,7 @@ import WaveTabletIcon from "../icons/WaveTabletIcon";
 import CheckBadgeIcon from "../icons/CheckBadgeIcon";
 import NotAllowedIcon from "../icons/NotAllowedIcon";
 import SectionBadge from "../components/SectionBadge";
+import PrimaryButton from "../components/PrimaryButton";
 
 const tabletQuery = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
 
@@ -22,10 +23,6 @@ const fadeUp = keyframes`
 const pulse = keyframes`
   0%, 100% { box-shadow: 0 0 0 0 rgba(233, 30, 99, 0.35); }
   50%       { box-shadow: 0 0 0 12px rgba(233, 30, 99, 0); }
-`;
-const shine = keyframes`
-  0%   { left: -100%; }
-  100% { left: 150%;  }
 `;
 
 const Section = styled.section`
@@ -587,63 +584,18 @@ const CheckBadge = styled.div`
     min-width: 28px;
   }
 `;
-const Btn = styled.button`
-  width: 100%;
-  padding: 11px;
-  background: #1a1aad;
-  color: #fff;
-  font-size: 14px;
-  border: none;
-  border-radius: 9px;
-  cursor: pointer;
-  letter-spacing: 0.3px;
-  transition:
-    background 0.2s,
-    transform 0.15s;
+const PriceButton = styled(PrimaryButton)`
   margin-top: auto;
-  ${({ featured }) =>
-    featured &&
+  ${({ $featured }) =>
+    $featured &&
     css`
       animation: ${pulse} 2.5s ease-in-out infinite;
     `}
-  overflow: hidden;
-  position: relative;
 
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(
-      120deg,
-      transparent 20%,
-      rgba(255, 255, 255, 0.25) 50%,
-      transparent 80%
-    );
-    transform: skewX(-15deg);
-    animation: none;
-    pointer-events: none;
-  }
-
-  &:hover::after {
-    animation: ${shine} 1.2s ease forwards;
-  }
-
-  &:hover {
-    background: #1212c2;
-  }
-  &:active {
-    background: #3131de;
-    transform: scale(0.98);
-  }
   @media ${tabletQuery} {
     grid-column: 1;
     grid-row: 2;
     margin-top: 0;
-    font-size: 16px;
-    padding: 14px;
     z-index: 1;
     align-self: start;
   }
@@ -964,7 +916,9 @@ const Price = () => {
                   </Feature>
                 ))}
               </FeatureList>
-              <Btn featured={plan.featured}>Assinar Agora</Btn>
+              <PriceButton size="small" fullWidth $featured={plan.featured}>
+                Assinar Agora
+              </PriceButton>
             </Card>
           ))}
         </Cards>
