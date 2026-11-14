@@ -7,6 +7,7 @@ import { theme } from "../styles/theme";
 import { useScreenSize } from "../hooks/useDevice";
 import SectionBadge from "../components/SectionBadge";
 import PrimaryButton from "../components/PrimaryButton";
+import DotsGrid from "../components/decor/DotsGrid";
 
 const tabletLandscape = `${theme.mediaQueries.tabletWide} and (aspect-ratio > 1)`;
 
@@ -22,46 +23,28 @@ const Wrapper = styled.div`
   }
 `;
 
-const DotGrid = styled.div`
+const DotGrid = styled(DotsGrid)`
   position: absolute;
-  display: grid;
-  grid-template-columns: repeat(${({ $cols }) => $cols || 5}, 5px);
-  gap: 18px;
   z-index: -1;
-  opacity: 0.55;
   ${({ $pos }) => $pos === "tl" && `top: 6%; left: 2%;`}
   ${({ $pos }) => $pos === "tr" && `top: 6%; right: 2%;`}
-  span {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background-color: ${({ $color }) => $color || "#f53b5a"};
-    display: block;
-  }
   @media ${theme.mediaQueries.tablet} {
-    gap: 12px;
-    grid-template-columns: repeat(${({ $cols }) => $cols || 5}, 4px);
+    --dot-size: 6px;
+    --dot-gap: 10px;
     ${({ $pos }) => $pos === "tl" && `top: 3%; left: 2%;`}
     ${({ $pos }) => $pos === "tr" && `top: 3%; right: 2%;`}
-    span {
-      width: 6px;
-      height: 6px;
-    }
   }
   @media ${theme.mediaQueries.mobile} {
+    --dot-size: 6px;
+    --dot-gap: 0;
     width: 31%;
     aspect-ratio: 1 / 1;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
     place-items: center;
-    gap: 0;
     opacity: 1;
     ${({ $pos }) => $pos === "tl" && `bottom: 4%; left: 23.4%; top: auto;`}
     ${({ $pos }) => $pos === "tr" && `top: -5.3%; right: 3.4%;`}
-    span {
-      width: 6px;
-      height: 6px;
-    }
   }
 `;
 
@@ -349,9 +332,6 @@ const FeatureButton = styled(PrimaryButton)`
   }
 `;
 
-const dots = (count) =>
-  Array.from({ length: count }).map((_, i) => <span key={i} />);
-
 const Feature = () => {
   const { isMobile } = useScreenSize();
   return (
@@ -362,21 +342,45 @@ const Feature = () => {
         <Stage>
           {isMobile ? (
             <>
-              <DotGrid $pos="tl" $cols={5} $color="#ffffff">
-                {dots(25)}
-              </DotGrid>
-              <DotGrid $pos="tr" $cols={5} $color="#f58699">
-                {dots(25)}
-              </DotGrid>
+              <DotGrid
+                $pos="tl"
+                columns={5}
+                rows={5}
+                color="#ffffff"
+                size={7}
+                gap={16}
+                opacity={0.55}
+              />
+              <DotGrid
+                $pos="tr"
+                columns={5}
+                rows={5}
+                color="#f58699"
+                size={7}
+                gap={16}
+                opacity={0.55}
+              />
             </>
           ) : (
             <>
-              <DotGrid $pos="tl" $cols={4} $color="#f53b5a">
-                {dots(16)}
-              </DotGrid>
-              <DotGrid $pos="tr" $cols={4} $color="#b2aee6">
-                {dots(16)}
-              </DotGrid>
+              <DotGrid
+                $pos="tl"
+                columns={4}
+                rows={4}
+                color="#f53b5a"
+                size={7}
+                gap={16}
+                opacity={0.55}
+              />
+              <DotGrid
+                $pos="tr"
+                columns={4}
+                rows={4}
+                color="#b2aee6"
+                size={7}
+                gap={16}
+                opacity={0.55}
+              />
             </>
           )}
           <PinkBlob />

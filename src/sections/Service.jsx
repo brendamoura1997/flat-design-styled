@@ -9,6 +9,7 @@ import SectionBadge from "../components/SectionBadge";
 import ServiceCard from "../components/ServiceCards";
 import { serviceData } from "../utils/serviceData";
 import PrimaryButton from "../components/PrimaryButton";
+import DotsGrid from "../components/decor/DotsGrid";
 
 const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
 
@@ -214,91 +215,48 @@ const DecorSquarePink = styled.div`
   }
 `;
 
-const DotsGrid = styled.div`
+const ServiceDots = styled(DotsGrid)`
   position: absolute;
   top: 4%;
   left: 2%;
-  display: grid;
-  grid-template-columns: repeat(5, 9px);
-  gap: 18px 21px;
   z-index: 0;
-  span {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #fdc4cb;
-    display: block;
-  }
   span:nth-child(n + 21) {
     display: none;
   }
-
   @media ${tabletQueries} {
     top: 3vw;
     left: 3%;
-    grid-template-columns: repeat(5, 16px);
-    gap: 18px;
-    span {
-      width: 8px;
-      height: 8px;
-    }
-    span:nth-child(n + 21) {
-      display: none;
-    }
+    --dot-size: 8px;
+    --dot-gap: 18px 26px;
   }
   @media ${theme.mediaQueries.mobile} {
     top: auto;
     bottom: calc(69vw - 56px);
     left: 4.6vw;
-    grid-template-columns: repeat(5, 6px);
-    gap: 9px;
     z-index: 1;
-    span {
-      width: 5px;
-      height: 5px;
-    }
+    --dot-size: 5px;
+    --dot-gap: 9px 10px;
     span:nth-child(n + 21) {
       display: block;
     }
   }
 `;
 
-const DotsGridMobile = styled.div`
+const ServiceDotsMobile = styled(DotsGrid)`
   display: none;
-
   @media ${tabletQueries} {
     position: absolute;
     bottom: 55.5vw;
     left: 25%;
     display: grid;
-    grid-template-columns: repeat(4, 7px);
-    gap: 15px;
     z-index: 0;
-    span {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: #ffdce0;
-      display: block;
-    }
   }
-
   @media ${theme.mediaQueries.mobile} {
-    position: absolute;
     bottom: 25vw;
     left: auto;
     right: 7%;
-    display: grid;
-    grid-template-columns: repeat(4, 7px);
-    gap: 10px;
     z-index: 1;
-    span {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: #ffdce0;
-      display: block;
-    }
+    --dot-gap: 10px 12px;
   }
 `;
 
@@ -543,21 +501,25 @@ const Service = () => {
     <>
       <GlobalStyle locked={open} />
       <Container>
-        <DotsGrid>
-          {Array.from({ length: 25 }).map((_, i) => (
-            <span key={i} />
-          ))}
-        </DotsGrid>
+        <ServiceDots
+          columns={5}
+          rows={5}
+          color="#fdc4cb"
+          size={9}
+          gap="18px 21px"
+        />
         <DecorSquareBlue />
         <DecorSquareBlueTablet />
         <DecorCircle />
         <Sparkles />
         <DecorSquarePink />
-        <DotsGridMobile>
-          {Array.from({ length: 16 }).map((_, i) => (
-            <span key={i} />
-          ))}
-        </DotsGridMobile>
+        <ServiceDotsMobile
+          columns={4}
+          rows={4}
+          color="#ffdce0"
+          size={5}
+          gap="15px 17px"
+        />
         <SemiCircle />
         <Left>
           <Image src={How} alt="Como funciona" />

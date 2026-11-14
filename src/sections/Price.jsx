@@ -12,6 +12,7 @@ import { useScreenSize } from "../hooks/useDevice";
 import SectionBadge from "../components/SectionBadge";
 import PriceCards from "../components/PriceCards";
 import { plansContent, priceFooter } from "../utils/priceData";
+import DotsGrid from "../components/decor/DotsGrid";
 
 const tabletQuery = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
 
@@ -37,43 +38,25 @@ const Section = styled.section`
     padding: 40px 0 64px;
   }
 `;
-const DotsGrid = styled.div`
+const PriceDots = styled(DotsGrid)`
   position: absolute;
   top: 48px;
   left: 40px;
-  display: grid;
-  grid-template-columns: repeat(7, 6px);
-  gap: 9px;
   z-index: 0;
-  span {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: #e8002d;
-    opacity: 0.35;
-    display: block;
-  }
   @media ${tabletQuery} {
     top: 32px;
     left: 28px;
-    gap: 7px;
-    grid-template-columns: repeat(7, 5px);
-    span {
-      width: 4px;
-      height: 4px;
-    }
+    --dot-size: 4px;
+    --dot-gap: 8px;
   }
   @media ${theme.mediaQueries.mobile} {
     top: 20px;
     left: 16px;
-    gap: 6px;
-    grid-template-columns: repeat(7, 4px);
-    span {
-      width: 3px;
-      height: 3px;
-    }
+    --dot-size: 3px;
+    --dot-gap: 7px;
   }
 `;
+
 const Inner = styled.div`
   position: relative;
   z-index: 1;
@@ -360,11 +343,14 @@ const Price = () => {
       {isMobile ? (
         <> </>
       ) : (
-        <DotsGrid>
-          {Array.from({ length: 35 }).map((_, i) => (
-            <span key={i} />
-          ))}
-        </DotsGrid>
+        <PriceDots
+          columns={7}
+          rows={5}
+          color="#e8002d"
+          size={5}
+          gap={10}
+          opacity={0.35}
+        />
       )}
 
       <Inner>

@@ -14,6 +14,7 @@ import { theme } from "../styles/theme.jsx";
 import { useScreenSize } from "../hooks/useDevice.jsx";
 import SectionBadge from "../components/SectionBadge.jsx";
 import PrimaryButton from "../components/PrimaryButton.jsx";
+import DotsGrid from "../components/decor/DotsGrid.jsx";
 
 const PINK = "#E8134A";
 const NAVY = "#2C45AD";
@@ -102,70 +103,39 @@ const DecorSquareBlue = styled.div`
     border-radius: 5px;
   }
 `;
-const DotsGrid = styled.div`
+const ContactDots = styled(DotsGrid)`
   position: absolute;
   top: 65px;
   left: -49px;
-  display: grid;
-  grid-template-columns: repeat(5, 4px);
-  gap: 10px;
   z-index: 0;
-  span {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: #e8002d;
-    opacity: 0.35;
-    display: block;
-  }
 
   @media ${theme.mediaQueries.desktopWide} {
     top: 55px;
-    gap: 9px;
+    --dot-gap: 8px;
   }
 
   @media ${tabletQueries} {
     top: 113px;
     left: auto;
     right: calc(10% - 45px);
-    grid-template-columns: repeat(4, 8px);
-    gap: 13px;
-    span {
-      width: 7px;
-      height: 7px;
-    }
-    span:nth-child(n + 21) {
-      display: none;
-    }
+    --dot-size: 7px;
+    --dot-gap: 14px;
   }
+
   @media only screen and (width > 550px) and (width < 780px) {
     top: 95px;
     left: auto;
     right: calc(10% - 45px);
-    grid-template-columns: repeat(4, 8px);
-    gap: 10px;
-    span {
-      width: 7px;
-      height: 7px;
-    }
-    span:nth-child(n + 21) {
-      display: none;
-    }
+    --dot-size: 7px;
+    --dot-gap: 11px;
   }
 
   @media ${theme.mediaQueries.mobile} {
     top: 41px;
     left: auto;
     right: calc(15% - 36px);
-    grid-template-columns: repeat(4, 4px);
-    gap: 6px;
-    span {
-      width: 4px;
-      height: 4px;
-    }
-    span:nth-child(n + 21) {
-      display: none;
-    }
+    --dot-size: 4px;
+    --dot-gap: 6px;
   }
 `;
 const DecorSquareGreen = styled.div`
@@ -945,8 +915,6 @@ const DesktopBreak = styled.br`
 const Contact = () => {
   const { isDesktop } = useScreenSize();
 
-  const dotsQuantity = isDesktop ? 20 : 16;
-
   return (
     <Section id="contact">
       <DecorSquareGreen />
@@ -1039,12 +1007,14 @@ const Contact = () => {
         <RightCol>
           <DecorSquareBlue />
 
-          <DotsGrid>
-            {Array.from({ length: dotsQuantity }).map((_, i) => (
-              <span key={i} />
-            ))}
-          </DotsGrid>
-
+          <ContactDots
+            columns={isDesktop ? 5 : 4}
+            rows={4}
+            color="#e8002d"
+            size={5}
+            gap={9}
+            opacity={0.35}
+          />
           <InfoCard>
             <MapBox>
               <MapPlaceholder src={Maps} alt="Localização" />

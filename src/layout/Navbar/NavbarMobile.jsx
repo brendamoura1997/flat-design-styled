@@ -9,6 +9,7 @@ import CoinIcon from "../../icons/CoinIcon";
 import EmailIcon from "../../icons/EmailIcon";
 import PhoneIcon from "../../icons/PhoneIcon";
 import SendIcon from "../../icons/SendIcon";
+import DotsGrid from "../../components/decor/DotsGrid";
 
 const shine = keyframes`
   0%   { left: -100%; }
@@ -634,41 +635,22 @@ const Footer = styled.p`
   }
 `;
 
-const MobileDotGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 10%);
-  gap: clamp(6px, 8px + 0.5vw, 15px);
+const MobileDotGrid = styled(DotsGrid)`
   position: absolute;
-  opacity: 0.55;
+  grid-template-columns: repeat(var(--dot-columns), 10%);
   ${({ $pos }) => $pos === "tr" && `top: 12%; right: 13%;`}
-  span {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: ${({ $color }) => $color || "#f53b5a"};
-    display: block;
-  }
   @media ${theme.mediaQueries.tabletWide} {
-    gap: 6px;
-    grid-template-columns: repeat(4, 6px);
+    --dot-size: 4px;
+    --dot-gap: 8px;
+    grid-template-columns: repeat(var(--dot-columns), var(--dot-size));
     ${({ $pos }) => $pos === "tr" && `top: 13%; right: 11%;`}
-    span {
-      width: 4px;
-      height: 4px;
-    }
   }
   @media ${theme.mediaQueries.mobile} {
-    gap: 6px;
-    grid-template-columns: repeat(4, 5px);
+    --dot-gap: 7px;
     ${({ $pos }) => $pos === "tr" && `top: 10%; right: 11%;`}
-    span {
-      width: 4px;
-      height: 4px;
-    }
   }
   @media ${theme.mediaQueries.smallMobile} {
-    gap: 5px;
-    grid-template-columns: repeat(4, 4px);
+    --dot-gap: 5px;
     ${({ $pos }) => $pos === "tr" && `top: 11.5%; right: 11%;`}
   }
 `;
@@ -724,9 +706,6 @@ const Circle = styled.div`
     right: 20%;
   }
 `;
-
-const dots = (count) =>
-  Array.from({ length: count }).map((_, i) => <span key={i} />);
 
 const CloseIcon = () => (
   <svg
@@ -930,7 +909,15 @@ const NavbarMobile = () => {
                 <RightHeader>
                   <Circle />
                   <Rect />
-                  <MobileDotGrid $pos="tr">{dots(16)}</MobileDotGrid>
+                  <MobileDotGrid
+                    $pos="tr"
+                    columns={4}
+                    rows={4}
+                    color="#f53b5a"
+                    size={6}
+                    gap="clamp(6px, 8px + 0.5vw, 15px)"
+                    opacity={0.55}
+                  />
                 </RightHeader>
               </PanelHeader>
 
