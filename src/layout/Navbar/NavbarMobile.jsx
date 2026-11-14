@@ -641,16 +641,19 @@ const MobileDotGrid = styled(DotsGrid)`
   ${({ $pos }) => $pos === "tr" && `top: 12%; right: 13%;`}
   @media ${theme.mediaQueries.tabletWide} {
     --dot-size: 4px;
-    --dot-gap: 8px;
-    grid-template-columns: repeat(var(--dot-columns), var(--dot-size));
+    --dot-gap: 6px;
+    grid-template-columns: repeat(var(--dot-columns), 6px);
     ${({ $pos }) => $pos === "tr" && `top: 13%; right: 11%;`}
   }
   @media ${theme.mediaQueries.mobile} {
-    --dot-gap: 7px;
+    --dot-size: 4px;
+    --dot-gap: 6px;
+    grid-template-columns: repeat(var(--dot-columns), 5px);
     ${({ $pos }) => $pos === "tr" && `top: 10%; right: 11%;`}
   }
   @media ${theme.mediaQueries.smallMobile} {
     --dot-gap: 5px;
+    grid-template-columns: repeat(var(--dot-columns), 4px);
     ${({ $pos }) => $pos === "tr" && `top: 11.5%; right: 11%;`}
   }
 `;
@@ -694,9 +697,10 @@ const Circle = styled.div`
   }
 
   @media ${theme.mediaQueries.mobile} {
-    width: 35px;
-    height: 35px;
-    right: 21%;
+    width: 30px;
+    height: 30px;
+    right: 20%;
+    top: 5%;
   }
 
   @media ${theme.mediaQueries.smallMobile} {
@@ -913,7 +917,6 @@ const NavbarMobile = () => {
                     $pos="tr"
                     columns={4}
                     rows={4}
-                    color="#f53b5a"
                     size={6}
                     gap="clamp(6px, 8px + 0.5vw, 15px)"
                     opacity={0.55}
