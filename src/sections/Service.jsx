@@ -8,6 +8,7 @@ import { theme } from "../styles/theme";
 import SectionBadge from "../components/SectionBadge";
 import ServiceCard from "../components/ServiceCards";
 import { serviceData } from "../utils/serviceData";
+import PrimaryButton from "../components/PrimaryButton";
 
 const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
 
@@ -22,11 +23,6 @@ const backdropIn = keyframes`
 const modalSlideIn = keyframes`
   from { opacity: 0; transform: scale(0.88) translateY(24px); }
   to   { opacity: 1; transform: scale(1) translateY(0); }
-`;
-
-const shine = keyframes`
-  0%   { left: -100%; }
-  100% { left: 150%;  }
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -414,73 +410,19 @@ const Desc = styled.p`
   }
 `;
 
-const Button = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: fit-content;
-  border: none;
-  padding: 16px 24px;
-  background-color: #1a1aad;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 800;
-  border-radius: 9px;
+const ServiceButton = styled(PrimaryButton)`
   margin-top: 28px;
-  cursor: pointer;
-  letter-spacing: 0.3px;
-  transition:
-    background 0.2s,
-    transform 0.15s;
-  overflow: hidden;
-  position: relative;
 
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(
-      120deg,
-      transparent 20%,
-      rgba(255, 255, 255, 0.25) 50%,
-      transparent 80%
-    );
-    transform: skewX(-15deg);
-    animation: none;
-    pointer-events: none;
-  }
-
-  &:hover::after {
-    animation: ${shine} 1.2s ease forwards;
-  }
-
-  &:hover {
-    background: #1212c2;
-  }
-  &:active {
-    background: #3131de;
-    transform: scale(0.98);
-  }
   @media ${tabletQueries} {
-    font-size: clamp(0.9375rem, 0.6rem + 0.8vw, 1.125rem);
-    padding: 14px 22px;
     margin-top: 24px;
   }
+
   @media ${theme.mediaQueries.mobile} {
-    font-size: clamp(0.9375rem, 0.8rem + 0.4vw, 1.0625rem);
-    padding: 13px 20px;
     margin-top: 16px;
-    border-radius: 8px;
     z-index: 1;
-    svg {
-      width: 20px;
-      height: 20px;
-    }
   }
 `;
+
 const Backdrop = styled.div`
   position: fixed;
   inset: 0;
@@ -637,16 +579,20 @@ const Service = () => {
               ótimos recursos
             </Desc>
             <ServiceCard cards={serviceData} />
-            <Button onClick={() => setOpen(true)}>
-              <PlayIcon
-                width={24}
-                height={24}
-                viewBox="0 0 24 24"
-                color="none"
-                stroke="white"
-              />
+            <ServiceButton
+              onClick={() => setOpen(true)}
+              icon={
+                <PlayIcon
+                  width={24}
+                  height={24}
+                  viewBox="0 0 24 24"
+                  color="none"
+                  stroke="white"
+                />
+              }
+            >
               Como funciona
-            </Button>
+            </ServiceButton>
           </Wrapper>
         </Right>
       </Container>

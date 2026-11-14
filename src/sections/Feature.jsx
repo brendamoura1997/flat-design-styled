@@ -1,18 +1,14 @@
 //Feature.jsx
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import App from "../assets/images/app.png";
 import StarIcon from "../icons/StarIcon";
 import PlusIcon from "../icons/PlusIcon";
 import { theme } from "../styles/theme";
 import { useScreenSize } from "../hooks/useDevice";
 import SectionBadge from "../components/SectionBadge";
+import PrimaryButton from "../components/PrimaryButton";
 
 const tabletLandscape = `${theme.mediaQueries.tabletWide} and (aspect-ratio > 1)`;
-
-const shine = keyframes`
-  0%   { left: -100%; }
-  100% { left: 150%;  }
-`;
 
 const Wrapper = styled.div`
   position: relative;
@@ -346,61 +342,9 @@ const Desc = styled.p`
   }
 `;
 
-const Button = styled.button`
-  width: fit-content;
-  border: none;
-  padding: 16px 24px;
-  background-color: #1a1aad;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 800;
-  border-radius: 9px;
+const FeatureButton = styled(PrimaryButton)`
   margin-top: 4%;
-  cursor: pointer;
-  letter-spacing: 0.3px;
-  transition:
-    background 0.2s,
-    transform 0.15s;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  overflow: hidden;
-  position: relative;
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(
-      120deg,
-      transparent 20%,
-      rgba(255, 255, 255, 0.25) 50%,
-      transparent 80%
-    );
-    transform: skewX(-15deg);
-    animation: none;
-    pointer-events: none;
-  }
-  &:hover::after {
-    animation: ${shine} 1.2s ease forwards;
-  }
-  &:hover {
-    background: #1212c2;
-  }
-  &:active {
-    background: #3131de;
-    transform: scale(0.98);
-  }
   @media ${theme.mediaQueries.tablet} {
-    font-size: 16px;
-    padding: 12px 18px;
-    margin-top: 5%;
-  }
-  @media ${theme.mediaQueries.mobile} {
-    font-size: 15px;
-    padding: 10px 15px;
     margin-top: 5%;
   }
 `;
@@ -476,16 +420,19 @@ const Feature = () => {
             Cuidamos do seu negócio e garantimos que você alcance seus objetivos
             de marketing.
           </Desc>
-          <Button>
-            <PlusIcon
-              width={20}
-              height={20}
-              viewBox="0 0 24 24"
-              color="none"
-              stroke="white"
-            />{" "}
+          <FeatureButton
+            icon={
+              <PlusIcon
+                width={20}
+                height={20}
+                viewBox="0 0 24 24"
+                color="none"
+                stroke="white"
+              />
+            }
+          >
             Saiba Mais
-          </Button>
+          </FeatureButton>
         </Right>
       </Container>
     </Wrapper>
