@@ -13,6 +13,7 @@ import SendIcon from "../icons/SendIcon.jsx";
 import { theme } from "../styles/theme.jsx";
 import { useScreenSize } from "../hooks/useDevice.jsx";
 import SectionBadge from "../components/SectionBadge.jsx";
+import PrimaryButton from "../components/PrimaryButton.jsx";
 
 const PINK = "#E8134A";
 const NAVY = "#2C45AD";
@@ -32,10 +33,6 @@ const fadeIn = keyframes`
 const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
 const mobileLargeQueries = `only screen and (aspect-ratio < 9/16) and (width > 550px), only screen and (width > 400px) and (width < 700px)`;
 
-const shine = keyframes`
-  0%   { left: -100%; }
-  100% { left: 150%;  }
-`;
 const Section = styled.section`
   display: flex;
   flex-direction: column;
@@ -463,79 +460,7 @@ const TextareaIcon = styled.span`
     }
   }
 `;
-const SubmitButton = styled.button`
-  width: 100%;
-  padding: 18px 24px;
-  background: #1a1aad;
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  letter-spacing: 0.3px;
-  transition:
-    background 0.2s,
-    transform 0.15s;
-  overflow: hidden;
-  position: relative;
 
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(
-      120deg,
-      transparent 20%,
-      rgba(255, 255, 255, 0.25) 50%,
-      transparent 80%
-    );
-    transform: skewX(-15deg);
-    animation: none;
-    pointer-events: none;
-  }
-
-  &:hover::after {
-    animation: ${shine} 1.2s ease forwards;
-  }
-
-  &:hover {
-    background: #1212c2;
-  }
-  &:active {
-    background: #3131de;
-    transform: scale(0.98);
-  }
-
-  @media ${tabletQueries} {
-    padding: 23px 28px;
-    border-radius: 14px;
-    font-size: 20px;
-    gap: 12px;
-    svg {
-      width: 24px;
-      height: 24px;
-    }
-  }
-
-  @media ${theme.mediaQueries.mobile} {
-    padding: 13px 20px;
-    border-radius: 10px;
-    font-size: 15px;
-    gap: 10px;
-    svg {
-      width: 18px;
-      height: 18px;
-    }
-  }
-`;
 const RightCol = styled.div`
   width: 43%;
   display: flex;
@@ -1089,18 +1014,26 @@ const Contact = () => {
                 </TextareaIcon>
               </TextareaWrapper>
             </FormTextareaCol>
-            <SubmitButton>
+
+            <PrimaryButton
+              size="medium"
+              fullWidth
+              type="submit"
+              iconPosition="right"
+              icon={
+                <SendIcon
+                  width={18}
+                  height={18}
+                  viewBox="0 0 24 24"
+                  color="none"
+                  stroke="#FFF"
+                  strokeWidthOutside="2.2"
+                  strokeWidthInside="1.5"
+                />
+              }
+            >
               Enviar mensagem
-              <SendIcon
-                width={18}
-                height={18}
-                viewBox="0 0 24 24"
-                color="none"
-                stroke="#FFF"
-                strokeWidthOutside="2.2"
-                strokeWidthInside="1.5"
-              />
-            </SubmitButton>
+            </PrimaryButton>
           </FormLayout>
         </LeftCol>
         <RightCol>
