@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 import { useState, useEffect, useRef } from "react";
 import { theme } from "../../styles/theme";
 import { useScreenSize } from "../../hooks/useDevice";
+import CloseIcon from "../../icons/CloseIcon";
 import HomeIcon from "../../icons/HomeIcon";
 import PurseIcon from "../../icons/PurseIcon";
 import StarIcon from "../../icons/StarIcon";
@@ -9,6 +10,7 @@ import CoinIcon from "../../icons/CoinIcon";
 import EmailIcon from "../../icons/EmailIcon";
 import PhoneIcon from "../../icons/PhoneIcon";
 import SendIcon from "../../icons/SendIcon";
+import ChevronIcon from "../../icons/ChevronIcon";
 import DotsGrid from "../../components/decor/DotsGrid";
 
 const shine = keyframes`
@@ -414,12 +416,6 @@ const MenuItemLabel = styled.span`
   }
 `;
 
-const Chevron = styled.svg`
-  width: 18px;
-  height: 18px;
-  color: #b0b0b0;
-`;
-
 const ContainerContact = styled.div`
   width: 100%;
   bottom: 0;
@@ -711,35 +707,6 @@ const Circle = styled.div`
   }
 `;
 
-const CloseIcon = () => (
-  <svg
-    width="26"
-    height="26"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="#1a1a1a"
-    strokeWidth="2.3"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M6 6 18 18" />
-    <path d="M18 6 6 18" />
-  </svg>
-);
-
-const ChevronIcon = () => (
-  <Chevron
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="m9 6 6 6-6 6" />
-  </Chevron>
-);
-
 const menuItems = [
   {
     id: "intro",
@@ -895,7 +862,13 @@ const NavbarMobile = () => {
                 aria-label="Fechar menu"
                 onClick={() => setIsOpen(false)}
               >
-                <CloseIcon />
+                <CloseIcon
+                  width={26}
+                  height={26}
+                  viewBox="0 0 24 24"
+                  color="none"
+                  stroke="#1a1a1a"
+                />
               </CloseButton>
               <PanelHeader>
                 <LeftHeader>
