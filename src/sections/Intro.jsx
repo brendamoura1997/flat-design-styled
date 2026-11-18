@@ -122,7 +122,7 @@ const Title = styled.h1`
   font-size: clamp(3.825rem, 3.825rem + 0.81vw, 4.5rem);
   line-height: 75.2px;
   font-weight: 900;
-  color: #1a1a2e;
+  color: ${theme.colors.text.title};
   margin: 0 0 2% 0;
   span {
     color: #de113a;
@@ -154,8 +154,9 @@ const Desc = styled.p`
   width: 62%;
   font-size: clamp(0.935rem, 0.935rem + 0.2vw, 1.1rem);
   line-height: 1.65;
-  color: #444;
+  color: ${theme.colors.text.body};
   margin: 0 0 4%;
+
   @media ${theme.mediaQueries.desktopWide} {
     width: 62%;
     font-size: clamp(0.7756rem, 0.7756rem + 0.16vw, 0.9125rem);
@@ -236,10 +237,10 @@ const Button = styled.button`
     animation: ${shine} 1.2s ease forwards;
   }
   &:hover {
-    background: #1212c2;
+    background: ${theme.colors.primary.hover};
   }
   &:active {
-    background: #3131de;
+    background: ${theme.colors.primary.active};
     transform: scale(0.98);
   }
 
@@ -294,7 +295,7 @@ const PhoneIconWrap = styled.div`
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: ${theme.colors.white}
   border: 1px solid #fbd0d8;
   display: flex;
   align-items: center;

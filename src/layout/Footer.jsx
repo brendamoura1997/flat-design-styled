@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { theme } from "../styles/theme";
 
 const Container = styled.div`
   padding: 1%;
   text-align: right;
-  background-color: #111;
+  background-color: ${theme.colors.surface.dark};
   color: lightgray;
 `;
 

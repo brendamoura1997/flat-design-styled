@@ -5,7 +5,7 @@ const FeatureIcon = styled.div`
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background-color: ${({ $bg }) => $bg || "#fde8ec"};
+  background-color: ${({ $bg }) => $bg || theme.colors.pinkSoft};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,7 +26,8 @@ const FeatureText = styled.div`
 const FeatureTitle = styled.span`
   font-weight: 700;
   font-size: clamp(0.8075rem, 0.8075rem + 0.17vw, 0.95rem);
-  color: #1a1a2e;
+  color: ${theme.colors.text.title};
+
   @media ${theme.mediaQueries.tablet} {
     font-size: clamp(1.0838rem, 1.0838rem + 0.23vw, 1.275rem);
   }

@@ -93,7 +93,7 @@ const Headline = styled.h2`
 `;
 const Sub = styled.p`
   font-size: 16px;
-  color: #777;
+  color: ${theme.colors.text.muted};
   margin: 0 0 56px;
   @media ${tabletQuery} {
     font-size: 16px;
@@ -171,7 +171,7 @@ const Footer = styled.div`
     margin: 20px auto 0;
     padding: 14px 6px;
     font-size: 11px;
-    background: #fff;
+    background: ${theme.colors.surface.page};
     border: 1px solid rgba(222, 246, 238, 0.9);
     border-radius: 16px;
     span {
@@ -292,11 +292,11 @@ const Price = () => {
       ),
     },
     {
-      color: "#5230e0",
+      color: theme.colors.secondary,
       iconBg: "#f0ebff",
       panelBg: "rgb(216, 208, 255)",
       decor: "#6446dc",
-      wave: "#a79ef7",
+      wave: theme.colors.secondaryLight,
       divider: "#7c5cbf",
       featured: true,
       delay: "0.2s",
@@ -306,17 +306,17 @@ const Price = () => {
           height={isTablet ? 30 : 24}
           viewBox="0 0 24 24"
           color="none"
-          stroke="#5230e0"
+          stroke={theme.colors.secondary}
           strokeWidth="1.8"
         />
       ),
     },
     {
       color: "#2eaa7a",
-      iconBg: "#def6ee",
+      iconBg: theme.colors.successSoft,
       panelBg: "rgb(174, 232, 205)",
       decor: "#1fa971",
-      wave: "#4fd1a8",
+      wave: theme.colors.successLight,
       divider: "#2eaa7a",
       featured: false,
       delay: "0.3s",
@@ -326,7 +326,7 @@ const Price = () => {
           height={isTablet ? 30 : 24}
           viewBox="0 0 24 24"
           color="none"
-          stroke="#3DAA72"
+          stroke={theme.colors.success}
           strokeWidth="1.8"
         />
       ),

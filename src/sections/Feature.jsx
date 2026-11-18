@@ -346,7 +346,7 @@ const Feature = () => {
                 $pos="tl"
                 columns={5}
                 rows={5}
-                color="#ffffff"
+                color={theme.colors.white}
                 size={7}
                 gap={16}
                 opacity={0.55}

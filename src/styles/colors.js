@@ -10,10 +10,11 @@ export const colors = {
   white: "#ffffff",
   black: "#000000",
 
-  primary: "#dc143c",
-  primaryHover: "#e90c0c",
-  primaryActive: "#f81414",
-  accent: "#f53b5a",
+  brand: {
+    default: "#dc143c",
+    hover: "#e90c0c",
+    active: "#f81414",
+  },
 
   secondary: "#5230e0",
   secondaryLight: "#a79ef7",
@@ -27,13 +28,14 @@ export const colors = {
   warningSoft: "#fbeacb",
 
   pink: "#ff97af",
-  pinkLight: "#ffc0cb",
   pinkSoft: "#fde8ec",
 
-  blue: "#4e6bff",
-  moss: "#669966",
+  decor: {
+    square: "#4e6bff",
+    rect: "#669966",
+  },
 
-  action: {
+  primary: {
     default: "#1a1aad",
     hover: "#1212c2",
     active: "#3131de",
@@ -45,9 +47,7 @@ export const colors = {
     muted: "#777777",
     subtle: "#999999",
     slate: "#7d89a5",
-    navy: "#1b2a78",
-    inverse: "#ffffff",
-    onDark: "#d3d3d3",
+    form: "#1b2a78",
   },
 
   surface: {

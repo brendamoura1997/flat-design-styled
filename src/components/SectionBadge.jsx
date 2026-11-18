@@ -7,8 +7,8 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 8px;
   width: fit-content;
-  background: #def6ee;
-  color: #3daa72;
+  background: ${theme.colors.successSoft};
+  color: ${theme.colors.success};
   font-size: 13px;
   font-weight: 500;
   padding: 8px 16px;
@@ -44,7 +44,7 @@ const SectionBadge = ({ icon: Icon, iconProps, children, className }) => (
         height={13}
         viewBox="0 0 24 24"
         color="none"
-        stroke="#3DAA72"
+        stroke={theme.colors.success}
         strokeWidth="2"
         {...iconProps}
       />

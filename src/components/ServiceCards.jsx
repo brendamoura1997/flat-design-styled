@@ -31,7 +31,7 @@ const Card = styled.div`
   padding: 1.8vw 1vw;
   border: 1px solid #ebebeb;
   border-radius: 14px;
-  background: #fff;
+  background: ${theme.colors.white};
   gap: 0;
   @media ${compactQueries} {
     flex: none;
@@ -111,7 +111,7 @@ const CardDivider = styled.div`
 const CardDesc = styled.p`
   font-size: 13px;
   line-height: 1.65;
-  color: #777;
+  color: ${theme.colors.text.muted};
   margin: 0;
   @media ${compactQueries} {
     grid-column: 2;

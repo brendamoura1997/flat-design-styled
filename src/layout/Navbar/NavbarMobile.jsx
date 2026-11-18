@@ -95,7 +95,7 @@ const WrapperLogo = styled.a`
 
 const Logo = styled.h1`
   font-weight: bold;
-  text-decoration: underline crimson;
+  text-decoration: underline ${theme.colors.brand.default};
   text-decoration-thickness: 3px;
   white-space: nowrap;
   color: black;
@@ -117,7 +117,7 @@ const LogoDown = styled.h1`
   left: 3%;
   position: relative;
   letter-spacing: 14px;
-  color: crimson;
+  color: ${theme.colors.brand.default};
 
   @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     font-size: 10px;
@@ -182,7 +182,7 @@ const Panel = styled.div`
   right: 0;
   width: 65%;
   height: 100%;
-  background-color: #ffffff;
+  background: ${theme.colors.surface.page};
   z-index: 1001;
   overflow-y: auto;
   transform: translateX(100%);
@@ -264,7 +264,7 @@ const PanelLogoBlock = styled.div`
 
 const PanelLogo = styled.h1`
   font-weight: bold;
-  text-decoration: underline crimson;
+  text-decoration: underline ${theme.colors.brand.default};
   text-decoration-thickness: 4px;
   white-space: nowrap;
   color: black;
@@ -290,7 +290,7 @@ const PanelLogoDown = styled.h1`
   position: relative;
   letter-spacing: 21px;
   margin-left: 3%;
-  color: crimson;
+  color: ${theme.colors.brand.default};
 
   @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     font-size: 13px;
@@ -327,7 +327,7 @@ const Description = styled.p`
   line-height: 1.5;
 
   span {
-    color: crimson;
+    color: ${theme.colors.brand.default};
     font-weight: 900;
   }
 
@@ -405,7 +405,7 @@ const MenuItemLabel = styled.span`
   flex: 1;
   font-weight: bold;
   font-size: clamp(0.875rem, 0.6rem + 1.2vw, 1.375rem);
-  color: ${({ $active }) => ($active ? "crimson" : "#1a1a1a")};
+  color: ${({ $active }) => ($active ? theme.colors.brand.default : "#1a1a1a")};
 
   @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     font-size: 15px;
@@ -443,7 +443,7 @@ const ContactIconCircle = styled.div`
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background-color: #ffffff;
+  background-color: ${theme.colors.white};
   border: 1px solid #f5b4c0;
   display: flex;
   align-items: center;
@@ -481,7 +481,7 @@ const ContactPhone = styled.p`
   font-weight: 900;
   letter-spacing: 1px;
   font-size: clamp(0.9375rem, 0.75rem + 1.2vw, 1.5375rem);
-  color: crimson;
+  color: ${theme.colors.brand.default};
   margin-bottom: 2%;
 
   @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
@@ -513,7 +513,7 @@ const ContactNote = styled.p`
 
 const SubscribeButton = styled.a`
   margin-bottom: 5%;
-  background-color: crimson;
+  background-color: ${theme.colors.brand.default};
   color: white;
   border-radius: 8px;
   padding: 4%;
@@ -680,7 +680,7 @@ const Circle = styled.div`
   width: 11%;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background-color: #ff97af;
+  background-color: ${theme.colors.pink};
   position: absolute;
   top: 5%;
   right: 24%;
@@ -746,7 +746,7 @@ const menuItems = [
         height={size}
         viewBox="0 0 24 24"
         color="none"
-        stroke="#3DAA72"
+        stroke={theme.colors.success}
         strokeWidth="2"
       />
     ),
@@ -764,7 +764,7 @@ const menuItems = [
         stroke="#d19703"
       />
     ),
-    bg: "#fbeacb",
+    bg: theme.colors.warningSoft,
   },
   {
     id: "contact",
@@ -929,7 +929,7 @@ const NavbarMobile = () => {
                       height={iconSize}
                       viewBox="0 0 24 24"
                       color="none"
-                      stroke="#FFF"
+                      stroke={theme.colors.white}
                       strokeWidthOutside="2.2"
                       strokeWidthInside="1.5"
                     />

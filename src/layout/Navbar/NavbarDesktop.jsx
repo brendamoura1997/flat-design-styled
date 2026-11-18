@@ -77,7 +77,7 @@ const WrapperLogo = styled.a`
 
 const Logo = styled.h1`
   font-weight: bold;
-  text-decoration: underline crimson;
+  text-decoration: underline ${theme.colors.brand.default};
   text-decoration-thickness: 3px;
   white-space: nowrap;
   color: black;
@@ -100,7 +100,7 @@ const LogoDown = styled.h1`
   left: 3%;
   position: relative;
   letter-spacing: 15px;
-  color: crimson;
+  color: ${theme.colors.brand.default};
   transition: color 0.3s ease;
 
   ${WrapperLogo}:hover & {
@@ -159,7 +159,7 @@ const Button = styled.button`
   border: 2px solid white;
   padding: 10px 15px;
   font-size: clamp(0.75rem, 0.75rem + 0.15vw, 0.875rem);
-  background-color: crimson;
+  background-color: ${theme.colors.brand.default};
   color: white;
   font-weight: bold;
   border-radius: 10px;
@@ -193,11 +193,11 @@ const Button = styled.button`
   }
 
   &:hover {
-    background-color: #e90c0c;
+    background-color: ${theme.colors.brand.hover};
   }
 
   &:active {
-    background-color: rgb(248, 20, 20);
+    background-color: ${theme.colors.brand.active};
     transform: scale(0.97);
   }
 

@@ -41,7 +41,7 @@ const ContainerIntro = styled.div`
 const IntroShape = styled.div`
   ${Shape}
   clip-path: polygon(67% 0, 100% 0%, 100% 100%, 55% 100%);
-  background-color: crimson;
+  background-color: ${theme.colors.brand.default};
   z-index: 2;
 
   @media ${theme.mediaQueries.tablet} {
@@ -177,7 +177,7 @@ const DotGrid = styled.div`
   }
   @media ${theme.mediaQueries.tabletWide} {
     span {
-      background-color: #fff;
+      background-color: ${theme.colors.white};
     }
   }
   @media ${theme.mediaQueries.mobile} {

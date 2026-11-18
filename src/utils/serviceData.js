@@ -1,6 +1,7 @@
 import MonitorIcon from "../icons/MonitorIcon";
 import CodeIcon from "../icons/CodeIcon";
 import PurseIcon from "../icons/PurseIcon";
+import { theme } from "../styles/theme";
 
 export const serviceData = [
   {
@@ -32,14 +33,14 @@ export const serviceData = [
     desc: "Soluções digitais sob medida com performance, segurança e escalabilidade.",
   },
   {
-    bg: "#def6ee",
+    bg: theme.colors.successSoft,
     icon: (
       <PurseIcon
         width={28}
         height={28}
         viewBox="0 0 24 24"
         color="none"
-        stroke="#3DAA72"
+        stroke={theme.colors.success}
         strokeWidth="1.5"
       />
     ),

@@ -75,7 +75,7 @@ const CardWave = styled.div`
   }
 `;
 const Card = styled.div`
-  background: #fff;
+  background: ${theme.colors.white};
   border: 1.5px solid ${({ featured }) => (featured ? "#c7b8f7" : "#ebebeb")};
   border-radius: 18px;
   padding: 16px 26px 22px;
@@ -136,7 +136,7 @@ const FeaturedBadge = styled.div`
   top: -13px;
   left: 50%;
   transform: translateX(-50%);
-  background: #5230e0;
+  background: ${theme.colors.secondary};
   color: #fff;
   font-size: 10px;
   font-weight: 800;

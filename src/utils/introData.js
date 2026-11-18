@@ -1,10 +1,11 @@
 import ClientIcon from "../icons/ClientIcon";
 import DesignIcon from "../icons/DesignIcon";
 import RocketIcon from "../icons/RocketIcon";
+import { theme } from "../styles/theme";
 
 export const introData = [
   {
-    bg: "#fde8ec",
+    bg: theme.colors.pinkSoft,
     icon: (size) => (
       <ClientIcon
         width={size}
@@ -33,14 +34,14 @@ export const introData = [
     desc: "Estratégias que geram impacto de verdade",
   },
   {
-    bg: "#def6ee",
+    bg: theme.colors.successSoft,
     icon: (size) => (
       <DesignIcon
         width={size}
         height={size}
         viewBox="0 0 24 24"
         color="none"
-        stroke="#3DAA72"
+        stroke={theme.colors.success}
       />
     ),
     title: "Design criativo",

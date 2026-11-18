@@ -14,8 +14,8 @@ const Input = styled.input`
   border: 1.5px solid #d3dcec;
   border-radius: 14px;
   font-size: 15px;
-  color: #1b2a78;
-  background: #fff;
+  color: ${theme.colors.text.form};
+  background: ${theme.colors.white};
   box-sizing: border-box;
   outline: none;
   transition: border-color 0.2s;
@@ -95,7 +95,7 @@ const Textarea = styled.textarea`
   border: 1.5px solid #d3dcec;
   border-radius: 14px;
   font-size: 15px;
-  color: #1b2a78;
+  color: ${theme.colors.text.form};
   background: #fbfcfe;
   box-sizing: border-box;
   resize: vertical;
@@ -125,7 +125,7 @@ const Textarea = styled.textarea`
     padding: 13px 12px 12px 50px;
     border-radius: 12px;
     font-size: 14px;
-    background: #fff;
+    background: ${theme.colors.white};
     &::placeholder {
       font-size: 11px;
       font-weight: 500;

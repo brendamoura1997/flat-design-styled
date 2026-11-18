@@ -151,7 +151,7 @@ const Sparkles = styled.div`
     position: absolute;
     height: 4px;
     border-radius: 4px;
-    background: #fff;
+    background: ${theme.colors.white};
   }
   &::before {
     width: 47px;
@@ -452,7 +452,7 @@ const CloseBtn = styled.button`
   flex-shrink: 0;
   &:hover {
     background: rgba(231, 213, 219, 0.25);
-    color: #fff;
+    color: ${theme.colors.white};
     border-color: rgba(231, 213, 219, 0.4);
   }
 `;

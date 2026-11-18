@@ -1,5 +1,7 @@
 // theme.jsx
+import { colors } from "./colors";
 export const theme = {
+  colors,
   breakpoints: {
     mobile: 9 / 16, // 0.5625
     tabletMinWidth: 700,

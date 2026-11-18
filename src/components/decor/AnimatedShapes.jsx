@@ -4,7 +4,7 @@ import { theme } from "../../styles/theme";
 const Square = styled.div`
   width: 60px;
   height: 60px;
-  background-color: #4e6bff;
+  background-color: ${theme.colors.decor.square};
   border-radius: 6px;
   opacity: 0.7;
   position: absolute;
@@ -29,7 +29,7 @@ const Circle = styled.div`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: #ff97af;
+  background-color: ${theme.colors.pink};
   position: absolute;
   top: 150px;
   left: -150px;

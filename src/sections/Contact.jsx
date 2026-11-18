@@ -24,7 +24,6 @@ const ADDR_RED_BG = "#ffe3ed";
 const ADDR_GREEN = "#1FBE92";
 const SOLID_BLUE = "#1F5BFF";
 const SOLID_GREEN = "#1BB566";
-const SOLID_ORANGE = "#FFB41F";
 const BANNER_NAVY = "#02298F";
 const BANNER_BLUE = "#1F4FE0";
 const BANNER_CYAN = "#12B5F0";
@@ -204,7 +203,7 @@ const Headline = styled.h2`
   }
 `;
 const Subtitle = styled.p`
-  color: #777;
+  color: ${theme.colors.text.muted};
   font-size: 14.5px;
   max-width: 470px;
   margin: 0 0 22px 5px;
@@ -236,7 +235,7 @@ const FormLayout = styled.div`
 
   @media ${theme.mediaQueries.mobile} {
     gap: 10px;
-    background: #fff;
+    background: ${theme.colors.white};
     border: 1px solid #dbe5f7;
     border-radius: 16px;
     padding: 12px;
@@ -347,7 +346,7 @@ const AddressOverlay = styled.div`
   display: flex;
   align-items: center;
   gap: 14px;
-  background: #fff;
+  background: ${theme.colors.white};
   border-radius: 12px;
   padding: 14px 22px 14px 14px;
   box-shadow: 0 2px 5px rgba(21, 0, 159, 0.12);
@@ -374,7 +373,7 @@ const AddressOverlay = styled.div`
 const InfoList = styled.div`
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: ${theme.colors.white};
   border: 1.5px solid #d3dcec;
   border-radius: 12px 0 0 12px;
   padding: 10px 0;
@@ -482,7 +481,7 @@ const InfoContent = styled.div``;
 const InfoLabel = styled.div`
   font-size: 14px;
   font-weight: 700;
-  color: #1b2a78;
+  color: ${theme.colors.text.form};
   margin-bottom: 3px;
 
   @media ${tabletQueries} {
@@ -497,7 +496,7 @@ const InfoLabel = styled.div`
 `;
 const InfoText = styled.div`
   font-size: 13px;
-  color: #7d89a5;
+  color: ${theme.colors.text.slate};
   line-height: 1.5;
 
   @media ${tabletQueries} {
@@ -511,7 +510,7 @@ const InfoText = styled.div`
 const ListLabel = styled(InfoLabel)`
   font-size: 15px;
   font-weight: 700;
-  color: #1b2a78;
+  color: ${theme.colors.text.form};
 
   @media ${tabletQueries} {
     font-size: 20px;
@@ -523,7 +522,7 @@ const ListLabel = styled(InfoLabel)`
 `;
 const ListText = styled(InfoText)`
   font-size: 13px;
-  color: #7d89a5;
+  color: ${theme.colors.text.slate};
 
   @media ${tabletQueries} {
     font-size: 16px;
@@ -699,7 +698,7 @@ const BannerText = styled.p`
   top: 55%;
   left: 20px;
   margin: 0;
-  color: #fff;
+  color: ${theme.colors.white};
   font-size: 20px;
   font-weight: 500;
   line-height: 1.3;
@@ -832,7 +831,7 @@ const Contact = () => {
                   height={18}
                   viewBox="0 0 24 24"
                   color="none"
-                  stroke="#FFF"
+                  stroke={theme.colors.white}
                   strokeWidthOutside="2.2"
                   strokeWidthInside="1.5"
                 />
@@ -883,8 +882,8 @@ const Contact = () => {
                     width={25}
                     height={25}
                     viewBox="0 0 24 24"
-                    color="#FFF"
-                    stroke="#FFF"
+                    color={theme.colors.white}
+                    stroke={theme.colors.white}
                   />
                 </IconCircle>
                 <InfoContent>
@@ -903,7 +902,7 @@ const Contact = () => {
                     width={25}
                     height={25}
                     viewBox="0 0 24 24"
-                    color="#FFF"
+                    color={theme.colors.white}
                     stroke={SOLID_GREEN}
                   />
                 </IconCircle>
@@ -918,13 +917,13 @@ const Contact = () => {
               </InfoItem>
               <hr />
               <InfoItem>
-                <IconCircle bg={SOLID_ORANGE}>
+                <IconCircle bg={theme.colors.warning}>
                   <ClockIcon
                     width={25}
                     height={25}
                     viewBox="0 0 24 24"
-                    color="#FFF"
-                    stroke={SOLID_ORANGE}
+                    color={theme.colors.white}
+                    stroke={theme.colors.warning}
                   />
                 </IconCircle>
                 <InfoContent>
@@ -959,7 +958,7 @@ const Contact = () => {
                 height={44}
                 viewBox="0 0 24 24"
                 color="none"
-                stroke="#FFF"
+                stroke={theme.colors.white}
                 strokeWidthOutside="1.4"
                 strokeWidthInside="0.9"
               />
