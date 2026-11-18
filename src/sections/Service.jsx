@@ -524,12 +524,12 @@ const Service = () => {
         <Left>
           <Image src={How} alt="Como funciona" />
         </Left>
-        <Right id="service">
+        <Right>
           <Wrapper>
             <SectionBadge icon={StarIcon}>
               Soluções pensadas para impulsionar seu negócio
             </SectionBadge>
-            <Title>
+            <Title id="service">
               Processo simples <br />
               para <span>começar</span>
             </Title>

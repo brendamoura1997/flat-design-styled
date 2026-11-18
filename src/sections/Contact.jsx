@@ -1,3 +1,4 @@
+import { useCallback, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import Maps from "../assets/images/maps.png";
 import ClockIcon from "../icons/ClockIcon.jsx";
@@ -16,6 +17,13 @@ import SectionBadge from "../components/SectionBadge.jsx";
 import PrimaryButton from "../components/PrimaryButton.jsx";
 import DotsGrid from "../components/decor/DotsGrid.jsx";
 import FormField from "../components/FormField.jsx";
+import Toast from "../components/Toast.jsx";
+import useForm from "../hooks/useForm.jsx";
+import {
+  CONTACT_LIMITS,
+  contactInitialValues,
+  validateContactForm,
+} from "../utils/contactValidation.js";
 
 const NAVY = "#2C45AD";
 const ADDR_GREEN = "#1FBE92";
@@ -216,7 +224,7 @@ const Subtitle = styled.p`
     margin: 0 0 14px 4px;
   }
 `;
-const FormLayout = styled.div`
+const FormLayout = styled.form`
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
@@ -745,6 +753,13 @@ const DesktopBreak = styled.br`
 
 const Contact = () => {
   const { isDesktop } = useScreenSize();
+  const [isToastOpen, setIsToastOpen] = useState(false);
+  const closeToast = useCallback(() => setIsToastOpen(false), []);
+  const { handleSubmit, getFieldProps } = useForm({
+    initialValues: contactInitialValues,
+    validate: validateContactForm,
+    onSubmit: () => setIsToastOpen(true),
+  });
 
   return (
     <Section id="contact">
@@ -760,9 +775,14 @@ const Contact = () => {
             Preencha o formulário abaixo ou utilize nossos canais de
             atendimento. Responderemos o mais rápido possível.
           </Subtitle>
-          <FormLayout>
+          <FormLayout onSubmit={handleSubmit} noValidate>
             <FormInputsCol>
               <FormField
+                {...getFieldProps("name")}
+                type="text"
+                autoComplete="name"
+                maxLength={CONTACT_LIMITS.name}
+                aria-label="Seu nome"
                 placeholder="Seu nome"
                 icon={
                   <UserIcon
@@ -775,6 +795,11 @@ const Contact = () => {
                 }
               />
               <FormField
+                {...getFieldProps("email")}
+                type="email"
+                autoComplete="email"
+                maxLength={CONTACT_LIMITS.email}
+                aria-label="Seu email"
                 placeholder="Seu email"
                 icon={
                   <EmailIcon
@@ -787,6 +812,10 @@ const Contact = () => {
                 }
               />
               <FormField
+                {...getFieldProps("subject")}
+                type="text"
+                maxLength={CONTACT_LIMITS.subject}
+                aria-label="Assunto"
                 placeholder="Assunto"
                 icon={
                   <TagIcon
@@ -801,7 +830,10 @@ const Contact = () => {
             </FormInputsCol>
             <FormTextareaCol>
               <FormField
+                {...getFieldProps("message")}
                 multiline
+                maxLength={CONTACT_LIMITS.message}
+                aria-label="Sua mensagem"
                 placeholder="Sua mensagem"
                 icon={
                   <PencilIcon
@@ -970,6 +1002,11 @@ const Contact = () => {
           </PromoBanner>
         </RightCol>
       </MainGrid>
+      <Toast
+        open={isToastOpen}
+        message="Mensagem enviada com sucesso! Responderemos o mais rápido possível."
+        onClose={closeToast}
+      />
     </Section>
   );
 };

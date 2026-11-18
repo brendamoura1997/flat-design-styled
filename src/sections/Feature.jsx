@@ -4,6 +4,7 @@ import App from "../assets/images/app.png";
 import StarIcon from "../icons/StarIcon";
 import PlusIcon from "../icons/PlusIcon";
 import { theme } from "../styles/theme";
+import { scrollToSection } from "../utils/scrollToSection";
 import { useScreenSize } from "../hooks/useDevice";
 import SectionBadge from "../components/SectionBadge";
 import PrimaryButton from "../components/PrimaryButton";
@@ -432,6 +433,7 @@ const Feature = () => {
             de marketing.
           </Desc>
           <FeatureButton
+            onClick={() => scrollToSection("service")}
             icon={
               <PlusIcon
                 width={20}

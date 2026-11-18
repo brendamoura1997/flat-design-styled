@@ -919,8 +919,8 @@ const NavbarMobile = () => {
 
               <ContainerContact>
                 <SubscribeButton
-                  href="#contact"
-                  onClick={(e) => handleNavClick(e, "contact")}
+                  href="#price"
+                  onClick={(e) => handleNavClick(e, "price")}
                 >
                   <SubscribeIconCircle>
                     <SendIcon
