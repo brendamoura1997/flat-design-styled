@@ -83,8 +83,8 @@ const StyledButton = styled.button`
   justify-content: center;
   width: ${({ $fullWidth }) => ($fullWidth ? "100%" : "fit-content")};
   border: none;
-  background-color: #1a1aad;
-  color: #fff;
+  background-color: ${theme.colors.primary.default};
+  color: ${theme.colors.white};
   cursor: pointer;
   letter-spacing: 0.3px;
   transition:
@@ -117,11 +117,11 @@ const StyledButton = styled.button`
   }
 
   &:hover {
-    background: #1212c2;
+    background: ${theme.colors.primary.hover};
   }
 
   &:active {
-    background: #3131de;
+    background: ${theme.colors.primary.active};
     transform: scale(0.98);
   }
 `;

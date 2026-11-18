@@ -17,14 +17,8 @@ import PrimaryButton from "../components/PrimaryButton.jsx";
 import DotsGrid from "../components/decor/DotsGrid.jsx";
 import FormField from "../components/FormField.jsx";
 
-const PINK = "#E8134A";
 const NAVY = "#2C45AD";
-const SLATE = "#566DA8";
-const ADDR_RED_BG = "#ffe3ed";
 const ADDR_GREEN = "#1FBE92";
-const SOLID_BLUE = "#1F5BFF";
-const SOLID_GREEN = "#1BB566";
-const SOLID_ORANGE = "#FFB41F";
 const BANNER_NAVY = "#02298F";
 const BANNER_BLUE = "#1F4FE0";
 const BANNER_CYAN = "#12B5F0";
@@ -40,7 +34,7 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: center;
   gap: 50px;
-  background: #fbfcfe;
+  background: ${theme.colors.form.bg};
   padding: 56px 150px 86px 150px;
   position: relative;
   overflow: hidden;
@@ -146,7 +140,7 @@ const DecorSquareGreen = styled.div`
   transform: translateY(-50%);
   width: 45px;
   height: 12%;
-  background-color: #669966;
+  background-color: ${theme.colors.decor.rect};
   opacity: 0.5;
   border-radius: 6px;
   z-index: 0;
@@ -181,15 +175,16 @@ const LeftCol = styled.div`
   flex-direction: column;
 `;
 
-const Headline = styled.h2`
+const Title = styled.h1`
   font-size: clamp(32px, 4vw, 48px);
   line-height: 1.12;
-  color: #000;
+  color: ${theme.colors.text.title};
   margin: 0 0 16px;
   hyphens: none;
+  font-weight: 700;
 
   span {
-    color: ${PINK};
+    color: ${theme.colors.text.highlight};
   }
 
   @media ${tabletQueries} {
@@ -199,12 +194,11 @@ const Headline = styled.h2`
 
   @media ${theme.mediaQueries.mobile} {
     font-size: 32px;
-    color: #0b1a45;
     margin: 0 0 16px;
   }
 `;
 const Subtitle = styled.p`
-  color: #777;
+  color: ${theme.colors.text.body};
   font-size: 14.5px;
   max-width: 470px;
   margin: 0 0 22px 5px;
@@ -236,7 +230,7 @@ const FormLayout = styled.div`
 
   @media ${theme.mediaQueries.mobile} {
     gap: 10px;
-    background: #fff;
+    background: ${theme.colors.white};
     border: 1px solid #dbe5f7;
     border-radius: 16px;
     padding: 12px;
@@ -347,7 +341,7 @@ const AddressOverlay = styled.div`
   display: flex;
   align-items: center;
   gap: 14px;
-  background: #fff;
+  background: ${theme.colors.white};
   border-radius: 12px;
   padding: 14px 22px 14px 14px;
   box-shadow: 0 2px 5px rgba(21, 0, 159, 0.12);
@@ -374,8 +368,8 @@ const AddressOverlay = styled.div`
 const InfoList = styled.div`
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border: 1.5px solid #d3dcec;
+  background: ${theme.colors.white};
+  border: 1.5px solid ${theme.colors.border.input};
   border-radius: 12px 0 0 12px;
   padding: 10px 0;
 
@@ -482,7 +476,7 @@ const InfoContent = styled.div``;
 const InfoLabel = styled.div`
   font-size: 14px;
   font-weight: 700;
-  color: #1b2a78;
+  color: ${theme.colors.text.form};
   margin-bottom: 3px;
 
   @media ${tabletQueries} {
@@ -497,7 +491,7 @@ const InfoLabel = styled.div`
 `;
 const InfoText = styled.div`
   font-size: 13px;
-  color: #7d89a5;
+  color: ${theme.colors.text.slate};
   line-height: 1.5;
 
   @media ${tabletQueries} {
@@ -511,7 +505,7 @@ const InfoText = styled.div`
 const ListLabel = styled(InfoLabel)`
   font-size: 15px;
   font-weight: 700;
-  color: #1b2a78;
+  color: ${theme.colors.text.form};
 
   @media ${tabletQueries} {
     font-size: 20px;
@@ -523,7 +517,7 @@ const ListLabel = styled(InfoLabel)`
 `;
 const ListText = styled(InfoText)`
   font-size: 13px;
-  color: #7d89a5;
+  color: ${theme.colors.text.slate};
 
   @media ${tabletQueries} {
     font-size: 16px;
@@ -673,7 +667,7 @@ const BannerTriangle = styled.div`
   left: 20px;
   width: 44px;
   height: 44px;
-  background: ${PINK};
+  background: #e8134a;
   clip-path: polygon(100% 0, 100% 100%, 0 100%);
 
   @media ${tabletQueries} {
@@ -699,7 +693,7 @@ const BannerText = styled.p`
   top: 55%;
   left: 20px;
   margin: 0;
-  color: #fff;
+  color: ${theme.colors.white};
   font-size: 20px;
   font-weight: 500;
   line-height: 1.3;
@@ -758,10 +752,10 @@ const Contact = () => {
       <MainGrid>
         <LeftCol>
           <SectionBadge icon={ChatIcon}>Fale com a gente</SectionBadge>
-          <Headline>
+          <Title>
             Perguntas? <br />
             Vamos nos <span>conectar!</span>
-          </Headline>
+          </Title>
           <Subtitle>
             Preencha o formulário abaixo ou utilize nossos canais de
             atendimento. Responderemos o mais rápido possível.
@@ -774,8 +768,8 @@ const Contact = () => {
                   <UserIcon
                     width={18}
                     height={18}
-                    color={SLATE}
-                    stroke={SLATE}
+                    color={theme.colors.form.iconStroke}
+                    stroke={theme.colors.form.iconStroke}
                     viewBox="0 0 24 24"
                   />
                 }
@@ -787,8 +781,8 @@ const Contact = () => {
                     width={18}
                     height={18}
                     viewBox="0 0 24 24"
-                    color={SLATE}
-                    stroke={SLATE}
+                    color={theme.colors.form.iconStroke}
+                    stroke={theme.colors.form.iconStroke}
                   />
                 }
               />
@@ -799,8 +793,8 @@ const Contact = () => {
                     width={17}
                     height={17}
                     viewBox="0 0 24 24"
-                    color={SLATE}
-                    stroke={SLATE}
+                    color={theme.colors.form.iconStroke}
+                    stroke={theme.colors.form.iconStroke}
                   />
                 }
               />
@@ -814,8 +808,8 @@ const Contact = () => {
                     width={17}
                     height={17}
                     viewBox="0 0 24 24"
-                    color={SLATE}
-                    stroke={SLATE}
+                    color={theme.colors.form.iconStroke}
+                    stroke={theme.colors.form.iconStroke}
                   />
                 }
               />
@@ -832,7 +826,7 @@ const Contact = () => {
                   height={18}
                   viewBox="0 0 24 24"
                   color="none"
-                  stroke="#FFF"
+                  stroke={theme.colors.white}
                   strokeWidthOutside="2.2"
                   strokeWidthInside="1.5"
                 />
@@ -857,13 +851,13 @@ const Contact = () => {
             <MapBox>
               <MapPlaceholder src={Maps} alt="Localização" />
               <AddressOverlay>
-                <AddressCircle bg={ADDR_RED_BG}>
+                <AddressCircle bg={theme.colors.secondary.first.soft}>
                   <LocationIcon
                     width={28}
                     height={28}
                     viewBox="0 0 24 24"
-                    color="#E11D48"
-                    stroke="#E11D48"
+                    color={theme.colors.secondary.first.main}
+                    stroke={theme.colors.secondary.first.main}
                   />
                 </AddressCircle>
                 <InfoContent>
@@ -878,13 +872,13 @@ const Contact = () => {
             </MapBox>
             <InfoList>
               <InfoItem>
-                <IconCircle bg={SOLID_BLUE}>
+                <IconCircle bg={theme.colors.decor.square}>
                   <PhoneIcon
                     width={25}
                     height={25}
                     viewBox="0 0 24 24"
-                    color="#FFF"
-                    stroke="#FFF"
+                    color={theme.colors.white}
+                    stroke={theme.colors.white}
                   />
                 </IconCircle>
                 <InfoContent>
@@ -898,13 +892,13 @@ const Contact = () => {
               </InfoItem>
               <hr />
               <InfoItem>
-                <IconCircle bg={SOLID_GREEN}>
+                <IconCircle bg={theme.colors.secondary.third.main}>
                   <EmailFillIcon
                     width={25}
                     height={25}
                     viewBox="0 0 24 24"
-                    color="#FFF"
-                    stroke={SOLID_GREEN}
+                    color={theme.colors.white}
+                    stroke={theme.colors.secondary.third.main}
                   />
                 </IconCircle>
                 <InfoContent>
@@ -918,13 +912,13 @@ const Contact = () => {
               </InfoItem>
               <hr />
               <InfoItem>
-                <IconCircle bg={SOLID_ORANGE}>
+                <IconCircle bg={theme.colors.secondary.fourth.main}>
                   <ClockIcon
                     width={25}
                     height={25}
                     viewBox="0 0 24 24"
-                    color="#FFF"
-                    stroke={SOLID_ORANGE}
+                    color={theme.colors.white}
+                    stroke={theme.colors.secondary.fourth.main}
                   />
                 </IconCircle>
                 <InfoContent>
@@ -959,7 +953,7 @@ const Contact = () => {
                 height={44}
                 viewBox="0 0 24 24"
                 color="none"
-                stroke="#FFF"
+                stroke={theme.colors.white}
                 strokeWidthOutside="1.4"
                 strokeWidthInside="0.9"
               />

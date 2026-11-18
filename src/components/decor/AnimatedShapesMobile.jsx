@@ -4,7 +4,7 @@ import { theme } from "../../styles/theme";
 const Square = styled.div`
   width: 70px;
   height: 70px;
-  background-color: #4e6bff;
+  background-color: ${theme.colors.decor.square};
   border-radius: 6px;
   opacity: 0.7;
   position: absolute;
@@ -29,7 +29,7 @@ const Circle = styled.div`
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background-color: #ff97af;
+  background-color: ${theme.colors.decor.circle};
   position: absolute;
   top: 170px;
   left: -90px;
@@ -51,7 +51,7 @@ const Circle = styled.div`
 const Rect = styled.div`
   width: 60px;
   height: 100px;
-  background-color: #669966;
+  background-color: ${theme.colors.decor.rect};
   border-radius: 6px;
   opacity: 0.5;
   position: absolute;

@@ -151,7 +151,7 @@ const Sparkles = styled.div`
     position: absolute;
     height: 4px;
     border-radius: 4px;
-    background: #fff;
+    background: ${theme.colors.white};
   }
   &::before {
     width: 47px;
@@ -332,10 +332,15 @@ const Wrapper = styled.div`
 const Title = styled.h1`
   font-size: clamp(50px, 4.88vw, 60px);
   line-height: 1.15;
-  color: #111;
+  color: ${theme.colors.text.title};
   hyphens: none;
   word-break: normal;
   overflow-wrap: normal;
+  font-weight: 700;
+
+  span {
+    color: ${theme.colors.text.highlight};
+  }
 
   @media ${tabletQueries} {
     font-size: clamp(45px, 4.88vw, 50px);
@@ -347,15 +352,14 @@ const Title = styled.h1`
     line-height: 1.1;
   }
 `;
-const Highlight = styled.span`
-  color: #e91e63;
-`;
+
 const Desc = styled.p`
   font-size: 16px;
   line-height: 1.7;
   margin-top: 20px;
-  color: #666;
+  color: ${theme.colors.text.body};
   max-width: 520px;
+
   @media ${tabletQueries} {
     font-size: clamp(0.875rem, 0.45rem + 0.95vw, 1.0625rem);
     margin-top: 16px;
@@ -396,14 +400,11 @@ const Backdrop = styled.div`
 `;
 const ModalBox = styled.div`
   position: relative;
-  background: #0f0f1a;
+  background: #07070c;
   border-radius: 20px;
   overflow: hidden;
   width: 100%;
   max-width: 860px;
-  box-shadow:
-    0 32px 80px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(255, 255, 255, 0.07);
   animation: ${modalSlideIn} 0.35s cubic-bezier(0.34, 1.36, 0.64, 1) both;
 `;
 const ModalHeader = styled.div`
@@ -423,8 +424,7 @@ const ModalTitleDot = styled.div`
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #e91e63;
-  box-shadow: 0 0 8px #e91e6388;
+  background: ${theme.colors.text.highlight};
 `;
 const ModalTitleText = styled.span`
   font-size: 14px;
@@ -452,7 +452,7 @@ const CloseBtn = styled.button`
   flex-shrink: 0;
   &:hover {
     background: rgba(231, 213, 219, 0.25);
-    color: #fff;
+    color: ${theme.colors.white};
     border-color: rgba(231, 213, 219, 0.4);
   }
 `;
@@ -460,7 +460,7 @@ const VideoWrapper = styled.div`
   position: relative;
   width: 100%;
   padding-bottom: 56.25%;
-  background: #000;
+  background: ${theme.colors.black};
 `;
 const VideoFrame = styled.iframe`
   position: absolute;
@@ -531,7 +531,7 @@ const Service = () => {
             </SectionBadge>
             <Title>
               Processo simples <br />
-              para <Highlight>começar</Highlight>
+              para <span>começar</span>
             </Title>
             <Desc>
               Oferecemos serviços de experiência digital para startups e

@@ -11,11 +11,11 @@ const InputWrapper = styled.div`
 const Input = styled.input`
   width: 100%;
   padding: 15px 16px 15px 58px;
-  border: 1.5px solid #d3dcec;
+  border: 1.5px solid ${theme.colors.border.input};
   border-radius: 14px;
   font-size: 15px;
-  color: #1b2a78;
-  background: #fff;
+  color: ${theme.colors.text.form};
+  background: ${theme.colors.white};
   box-sizing: border-box;
   outline: none;
   transition: border-color 0.2s;
@@ -57,7 +57,7 @@ const InputIcon = styled.span`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #e5ecfb;
+  background: ${theme.colors.form.iconBg};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,18 +92,18 @@ const Textarea = styled.textarea`
   width: 100%;
   min-height: 100px;
   padding: 16px 16px 16px 58px;
-  border: 1.5px solid #d3dcec;
+  border: 1.5px solid ${theme.colors.border.input};
   border-radius: 14px;
   font-size: 15px;
-  color: #1b2a78;
-  background: #fbfcfe;
+  color: ${theme.colors.text.form};
+  background: ${theme.colors.form.bg};
   box-sizing: border-box;
   resize: vertical;
   outline: none;
   font-family: inherit;
   line-height: 1.5;
   &::placeholder {
-    color: #66748f;
+    color: ${theme.colors.form.placeholder};
     font-size: 13px;
   }
   &:focus {
@@ -125,7 +125,7 @@ const Textarea = styled.textarea`
     padding: 13px 12px 12px 50px;
     border-radius: 12px;
     font-size: 14px;
-    background: #fff;
+    background: ${theme.colors.white};
     &::placeholder {
       font-size: 11px;
       font-weight: 500;
@@ -139,7 +139,7 @@ const TextareaIcon = styled.span`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #e8edf5;
+  background: ${theme.colors.form.iconBg};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -161,7 +161,7 @@ const TextareaIcon = styled.span`
     top: 6px;
     width: 32px;
     height: 32px;
-    background: #e5ecfb;
+    background: ${theme.colors.form.iconBg};
     svg {
       width: 16px;
       height: 16px;

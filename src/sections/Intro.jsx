@@ -122,10 +122,11 @@ const Title = styled.h1`
   font-size: clamp(3.825rem, 3.825rem + 0.81vw, 4.5rem);
   line-height: 75.2px;
   font-weight: 900;
-  color: #1a1a2e;
+  color: ${theme.colors.text.title};
   margin: 0 0 2% 0;
+
   span {
-    color: #de113a;
+    color: ${theme.colors.brand.highlight};
   }
   @media ${theme.mediaQueries.desktopWide} {
     font-size: clamp(2.9325rem, 2.9325rem + 0.62vw, 3.45rem);
@@ -154,8 +155,9 @@ const Desc = styled.p`
   width: 62%;
   font-size: clamp(0.935rem, 0.935rem + 0.2vw, 1.1rem);
   line-height: 1.65;
-  color: #444;
+  color: ${theme.colors.text.body};
   margin: 0 0 4%;
+
   @media ${theme.mediaQueries.desktopWide} {
     width: 62%;
     font-size: clamp(0.7756rem, 0.7756rem + 0.16vw, 0.9125rem);
@@ -200,7 +202,7 @@ const Button = styled.button`
   gap: 12px;
   min-width: fit-content;
   padding: 16px 28px;
-  background-color: #1a1a6e;
+  background-color: ${theme.colors.primary.dark};
   color: white;
   border-radius: 8px;
   font-weight: 700;
@@ -236,10 +238,10 @@ const Button = styled.button`
     animation: ${shine} 1.2s ease forwards;
   }
   &:hover {
-    background: #1212c2;
+    background: ${theme.colors.primary.hover};
   }
   &:active {
-    background: #3131de;
+    background: ${theme.colors.primary.active};
     transform: scale(0.98);
   }
 
@@ -294,7 +296,7 @@ const PhoneIconWrap = styled.div`
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: ${theme.colors.white};
   border: 1px solid #fbd0d8;
   display: flex;
   align-items: center;
@@ -317,7 +319,7 @@ const ContactText = styled.div`
   flex-direction: column;
 `;
 const Phone = styled.span`
-  color: #de113a;
+  color: ${theme.colors.brand.default};
   font-weight: 700;
   font-size: clamp(0.8075rem, 0.8075rem + 0.17vw, 0.95rem);
   transition: color 0.18s ease;
@@ -619,8 +621,8 @@ const PhoneBlock = ({ mobile, desktopWide }) => (
         width={mobile ? 18 : desktopWide ? 20 : 22}
         height={mobile ? 18 : desktopWide ? 20 : 22}
         viewBox="0 0 24 24"
-        color="#f53b5a"
-        stroke="#f53b5a"
+        color={theme.colors.brand.default}
+        stroke={theme.colors.brand.default}
       />
     </PhoneIconWrap>
     <ContactText>
