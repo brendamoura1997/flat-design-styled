@@ -14,6 +14,7 @@ export const colors = {
     default: "#dc143c",
     hover: "#e90c0c",
     active: "#f81414",
+    highlight: "#de113a",
   },
 
   secondary: "#5230e0",
@@ -39,10 +40,12 @@ export const colors = {
     default: "#1a1aad",
     hover: "#1212c2",
     active: "#3131de",
+    dark: "#1a1a6e",
   },
 
   text: {
     title: "#1a1a2e",
+    highlight: "#e91e63",
     body: "#444444",
     muted: "#777777",
     subtle: "#999999",
@@ -54,7 +57,7 @@ export const colors = {
     page: "#ffffff",
     soft: "#fbfcfe",
     tint: "#e5ecfb",
-    dark: "#111111",
+    dark: "#1a1a2e",
   },
 
   border: {

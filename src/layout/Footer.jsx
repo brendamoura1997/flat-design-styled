@@ -6,6 +6,10 @@ const Container = styled.div`
   text-align: right;
   background-color: ${theme.colors.surface.dark};
   color: lightgray;
+
+  @media only screen and (max-width: 480px) {
+    padding: 1% 2%;
+  }
 `;
 
 const Copyright = styled.span`

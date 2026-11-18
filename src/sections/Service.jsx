@@ -332,10 +332,15 @@ const Wrapper = styled.div`
 const Title = styled.h1`
   font-size: clamp(50px, 4.88vw, 60px);
   line-height: 1.15;
-  color: #111;
+  color: ${theme.colors.text.title};
   hyphens: none;
   word-break: normal;
   overflow-wrap: normal;
+  font-weight: 700;
+
+  span {
+    color: ${theme.colors.text.highlight};
+  }
 
   @media ${tabletQueries} {
     font-size: clamp(45px, 4.88vw, 50px);
@@ -347,9 +352,7 @@ const Title = styled.h1`
     line-height: 1.1;
   }
 `;
-const Highlight = styled.span`
-  color: #e91e63;
-`;
+
 const Desc = styled.p`
   font-size: 16px;
   line-height: 1.7;
@@ -531,7 +534,7 @@ const Service = () => {
             </SectionBadge>
             <Title>
               Processo simples <br />
-              para <Highlight>começar</Highlight>
+              para <span>começar</span>
             </Title>
             <Desc>
               Oferecemos serviços de experiência digital para startups e

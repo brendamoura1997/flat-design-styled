@@ -124,8 +124,9 @@ const Title = styled.h1`
   font-weight: 900;
   color: ${theme.colors.text.title};
   margin: 0 0 2% 0;
+
   span {
-    color: #de113a;
+    color: ${theme.colors.brand.highlight};
   }
   @media ${theme.mediaQueries.desktopWide} {
     font-size: clamp(2.9325rem, 2.9325rem + 0.62vw, 3.45rem);
@@ -201,7 +202,7 @@ const Button = styled.button`
   gap: 12px;
   min-width: fit-content;
   padding: 16px 28px;
-  background-color: #1a1a6e;
+  background-color: ${theme.colors.primary.dark};
   color: white;
   border-radius: 8px;
   font-weight: 700;

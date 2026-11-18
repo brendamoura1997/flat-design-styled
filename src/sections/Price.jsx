@@ -69,15 +69,15 @@ const Inner = styled.div`
   }
 `;
 
-const Headline = styled.h2`
+const Title = styled.h1`
   font-size: clamp(32px, 4vw, 52px);
-  color: #0d0d0d;
+  color: ${theme.colors.text.title};
   line-height: 1.15;
   margin: 0 0 16px;
   font-weight: 700;
 
   span {
-    color: #e8002d;
+    color: ${theme.colors.brand.highlight};
   }
 
   @media ${tabletQuery} {
@@ -358,7 +358,7 @@ const Price = () => {
           <SectionBadge icon={HeartIcon}>
             Planos que se adaptam ao seu momento
           </SectionBadge>
-          <Headline id="price">
+          <Title id="price">
             {isMobile ? (
               <>
                 Escolha o plano ideal para o seu <span>projeto</span>
@@ -370,7 +370,7 @@ const Price = () => {
                 para o seu <span>projeto</span>
               </>
             )}
-          </Headline>
+          </Title>
           <Sub>
             Soluções completas para transformar ideias em resultados reais.
           </Sub>

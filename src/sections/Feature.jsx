@@ -280,6 +280,13 @@ const Title = styled.span`
   font-size: 60px;
   line-height: 1.15;
   margin-top: 1%;
+  color: ${theme.colors.text.title};
+
+  span {
+    color: #e8325a;
+    font-weight: 800;
+  }
+
   @media ${tabletLandscape} {
     font-size: clamp(36px, 6vw, 60px);
   }
@@ -287,11 +294,6 @@ const Title = styled.span`
     font-size: 42px;
     line-height: 1.2;
   }
-`;
-
-const Pink = styled.span`
-  color: #e8325a;
-  font-weight: 800;
 `;
 
 const SubTitle = styled.span`
@@ -410,7 +412,7 @@ const Feature = () => {
           <Title>
             <b>Ótimo</b> design
             <br />
-            <b>Ótimo</b> <Pink>negócio</Pink>
+            <b>Ótimo</b> <span>negócio</span>
           </Title>
           <SubTitle>
             Sabemos que um ótimo design significa ótimos negócios.

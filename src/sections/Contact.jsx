@@ -17,7 +17,6 @@ import PrimaryButton from "../components/PrimaryButton.jsx";
 import DotsGrid from "../components/decor/DotsGrid.jsx";
 import FormField from "../components/FormField.jsx";
 
-const PINK = "#E8134A";
 const NAVY = "#2C45AD";
 const SLATE = "#566DA8";
 const ADDR_RED_BG = "#ffe3ed";
@@ -180,15 +179,16 @@ const LeftCol = styled.div`
   flex-direction: column;
 `;
 
-const Headline = styled.h2`
+const Title = styled.h1`
   font-size: clamp(32px, 4vw, 48px);
   line-height: 1.12;
-  color: #000;
+  color: ${theme.colors.text.title};
   margin: 0 0 16px;
   hyphens: none;
+  font-weight: 700;
 
   span {
-    color: ${PINK};
+    color: ${theme.colors.text.highlight};
   }
 
   @media ${tabletQueries} {
@@ -672,7 +672,7 @@ const BannerTriangle = styled.div`
   left: 20px;
   width: 44px;
   height: 44px;
-  background: ${PINK};
+  background: ${theme.colors.brand.default};
   clip-path: polygon(100% 0, 100% 100%, 0 100%);
 
   @media ${tabletQueries} {
@@ -757,10 +757,10 @@ const Contact = () => {
       <MainGrid>
         <LeftCol>
           <SectionBadge icon={ChatIcon}>Fale com a gente</SectionBadge>
-          <Headline>
+          <Title>
             Perguntas? <br />
             Vamos nos <span>conectar!</span>
-          </Headline>
+          </Title>
           <Subtitle>
             Preencha o formulário abaixo ou utilize nossos canais de
             atendimento. Responderemos o mais rápido possível.
