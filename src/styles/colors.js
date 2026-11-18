@@ -17,16 +17,12 @@ export const colors = {
     highlight: "#de113a",
   },
 
-  secondary: "#5230e0",
-  secondaryLight: "#a79ef7",
-  secondarySoft: "#f0ebff",
-
-  success: "#3daa72",
-  successLight: "#4fd1a8",
-  successSoft: "#def6ee",
-
-  warning: "#ffb41f",
-  warningSoft: "#fbeacb",
+  secondary: {
+    first: { main: "#f53b5a", soft: "#fde8ec", light: "#ffc8da" },
+    second: { main: "#5230e0", soft: "#f0ebff", light: "#a79ef7" },
+    third: { main: "#3daa72", soft: "#def6ee", light: "#4fd1a8" },
+    fourth: { main: "#ffb41f", soft: "#fbeacb" },
+  },
 
   pink: "#ff97af",
   pinkSoft: "#fde8ec",

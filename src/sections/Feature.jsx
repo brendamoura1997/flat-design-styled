@@ -283,7 +283,7 @@ const Title = styled.span`
   color: ${theme.colors.text.title};
 
   span {
-    color: #e8325a;
+    color: ${theme.colors.text.highlight};
     font-weight: 800;
   }
 

@@ -11,7 +11,7 @@ const InputWrapper = styled.div`
 const Input = styled.input`
   width: 100%;
   padding: 15px 16px 15px 58px;
-  border: 1.5px solid #d3dcec;
+  border: 1.5px solid ${theme.colors.border.input};
   border-radius: 14px;
   font-size: 15px;
   color: ${theme.colors.text.form};
@@ -92,7 +92,7 @@ const Textarea = styled.textarea`
   width: 100%;
   min-height: 100px;
   padding: 16px 16px 16px 58px;
-  border: 1.5px solid #d3dcec;
+  border: 1.5px solid ${theme.colors.border.input};
   border-radius: 14px;
   font-size: 15px;
   color: ${theme.colors.text.form};

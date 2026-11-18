@@ -29,7 +29,7 @@ const Card = styled.div`
   align-items: center;
   text-align: center;
   padding: 1.8vw 1vw;
-  border: 1px solid #ebebeb;
+  border: 1px solid ${theme.colors.border.default};
   border-radius: 14px;
   background: ${theme.colors.white};
   gap: 0;

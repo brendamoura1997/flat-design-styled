@@ -5,7 +5,7 @@ const FeatureIcon = styled.div`
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background-color: ${({ $bg }) => $bg || theme.colors.pinkSoft};
+  background-color: ${({ $bg }) => $bg || theme.colors.secondary.first.soft};
   display: flex;
   align-items: center;
   justify-content: center;

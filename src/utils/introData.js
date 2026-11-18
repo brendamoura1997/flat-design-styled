@@ -5,14 +5,14 @@ import { theme } from "../styles/theme";
 
 export const introData = [
   {
-    bg: theme.colors.pinkSoft,
+    bg: theme.colors.secondary.first.soft,
     icon: (size) => (
       <ClientIcon
         width={size}
         height={size}
         viewBox="0 0 24 24"
         color="none"
-        stroke="#f53b5a"
+        stroke={theme.colors.secondary.first.main}
       />
     ),
     title: "Foco no cliente",
@@ -34,14 +34,14 @@ export const introData = [
     desc: "Estratégias que geram impacto de verdade",
   },
   {
-    bg: theme.colors.successSoft,
+    bg: theme.colors.secondary.third.soft,
     icon: (size) => (
       <DesignIcon
         width={size}
         height={size}
         viewBox="0 0 24 24"
         color="none"
-        stroke={theme.colors.success}
+        stroke={theme.colors.secondary.third.main}
       />
     ),
     title: "Design criativo",

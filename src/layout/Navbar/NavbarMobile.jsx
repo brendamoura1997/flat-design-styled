@@ -764,7 +764,7 @@ const menuItems = [
         stroke="#d19703"
       />
     ),
-    bg: theme.colors.warningSoft,
+    bg: theme.colors.secondary.fourth.soft,
   },
   {
     id: "contact",

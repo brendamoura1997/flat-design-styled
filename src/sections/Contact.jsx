@@ -22,7 +22,6 @@ const SLATE = "#566DA8";
 const ADDR_RED_BG = "#ffe3ed";
 const ADDR_GREEN = "#1FBE92";
 const SOLID_BLUE = "#1F5BFF";
-const SOLID_GREEN = "#1BB566";
 const BANNER_NAVY = "#02298F";
 const BANNER_BLUE = "#1F4FE0";
 const BANNER_CYAN = "#12B5F0";
@@ -374,7 +373,7 @@ const InfoList = styled.div`
   display: flex;
   flex-direction: column;
   background: ${theme.colors.white};
-  border: 1.5px solid #d3dcec;
+  border: 1.5px solid ${theme.colors.border.input};
   border-radius: 12px 0 0 12px;
   padding: 10px 0;
 
@@ -856,13 +855,13 @@ const Contact = () => {
             <MapBox>
               <MapPlaceholder src={Maps} alt="Localização" />
               <AddressOverlay>
-                <AddressCircle bg={ADDR_RED_BG}>
+                <AddressCircle bg={theme.colors.secondary.first.soft}>
                   <LocationIcon
                     width={28}
                     height={28}
                     viewBox="0 0 24 24"
-                    color="#E11D48"
-                    stroke="#E11D48"
+                    color={theme.colors.secondary.first.main}
+                    stroke={theme.colors.secondary.first.main}
                   />
                 </AddressCircle>
                 <InfoContent>
@@ -897,13 +896,13 @@ const Contact = () => {
               </InfoItem>
               <hr />
               <InfoItem>
-                <IconCircle bg={SOLID_GREEN}>
+                <IconCircle bg={theme.colors.secondary.third.main}>
                   <EmailFillIcon
                     width={25}
                     height={25}
                     viewBox="0 0 24 24"
                     color={theme.colors.white}
-                    stroke={SOLID_GREEN}
+                    stroke={theme.colors.secondary.third.main}
                   />
                 </IconCircle>
                 <InfoContent>
@@ -917,13 +916,13 @@ const Contact = () => {
               </InfoItem>
               <hr />
               <InfoItem>
-                <IconCircle bg={theme.colors.warning}>
+                <IconCircle bg={theme.colors.secondary.fourth.main}>
                   <ClockIcon
                     width={25}
                     height={25}
                     viewBox="0 0 24 24"
                     color={theme.colors.white}
-                    stroke={theme.colors.warning}
+                    stroke={theme.colors.secondary.fourth.main}
                   />
                 </IconCircle>
                 <InfoContent>

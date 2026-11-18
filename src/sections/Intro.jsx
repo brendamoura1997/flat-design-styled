@@ -296,7 +296,7 @@ const PhoneIconWrap = styled.div`
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background-color: ${theme.colors.white}
+  background-color: ${theme.colors.white};
   border: 1px solid #fbd0d8;
   display: flex;
   align-items: center;
@@ -319,7 +319,7 @@ const ContactText = styled.div`
   flex-direction: column;
 `;
 const Phone = styled.span`
-  color: #de113a;
+  color: ${theme.colors.brand.default};
   font-weight: 700;
   font-size: clamp(0.8075rem, 0.8075rem + 0.17vw, 0.95rem);
   transition: color 0.18s ease;
@@ -621,8 +621,8 @@ const PhoneBlock = ({ mobile, desktopWide }) => (
         width={mobile ? 18 : desktopWide ? 20 : 22}
         height={mobile ? 18 : desktopWide ? 20 : 22}
         viewBox="0 0 24 24"
-        color="#f53b5a"
-        stroke="#f53b5a"
+        color={theme.colors.brand.default}
+        stroke={theme.colors.brand.default}
       />
     </PhoneIconWrap>
     <ContactText>
