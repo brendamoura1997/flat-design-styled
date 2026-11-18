@@ -41,8 +41,8 @@ const Container = styled.div`
     box-shadow 0.3s ease;
   background-color: ${({ $scrolled }) =>
     $scrolled ? "rgba(255, 255, 255, 0.99)" : "none"};
-  box-shadow: ${({ $scrolled }) =>
-    $scrolled ? "0 2px 10px rgba(0,0,0,0.15)" : "none"};
+  box-shadow: ${({ scrolled }) =>
+    scrolled ? "0 2px 8px rgba(138, 53, 53, 0.15)" : "none"};
 
   @media ${theme.mediaQueries.mobile} {
     height: 7%;
