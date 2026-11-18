@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { theme } from "../styles/theme";
 
@@ -7,8 +6,8 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 8px;
   width: fit-content;
-  background: #def6ee;
-  color: #3daa72;
+  background: ${theme.colors.secondary.third.soft};
+  color: ${theme.colors.secondary.third.main};
   font-size: 13px;
   font-weight: 500;
   padding: 8px 16px;
@@ -44,7 +43,7 @@ const SectionBadge = ({ icon: Icon, iconProps, children, className }) => (
         height={13}
         viewBox="0 0 24 24"
         color="none"
-        stroke="#3DAA72"
+        stroke={theme.colors.secondary.third.main}
         strokeWidth="2"
         {...iconProps}
       />

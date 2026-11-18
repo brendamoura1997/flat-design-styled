@@ -69,15 +69,15 @@ const Inner = styled.div`
   }
 `;
 
-const Headline = styled.h2`
+const Title = styled.h1`
   font-size: clamp(32px, 4vw, 52px);
-  color: #0d0d0d;
+  color: ${theme.colors.text.title};
   line-height: 1.15;
   margin: 0 0 16px;
   font-weight: 700;
 
   span {
-    color: #e8002d;
+    color: ${theme.colors.brand.highlight};
   }
 
   @media ${tabletQuery} {
@@ -93,7 +93,7 @@ const Headline = styled.h2`
 `;
 const Sub = styled.p`
   font-size: 16px;
-  color: #777;
+  color: ${theme.colors.text.body};
   margin: 0 0 56px;
   @media ${tabletQuery} {
     font-size: 16px;
@@ -145,7 +145,8 @@ const Footer = styled.div`
   gap: 24px;
   margin-top: 48px;
   font-size: 13.5px;
-  color: #888;
+  color: ${theme.colors.text.body};
+
   span {
     display: flex;
     align-items: center;
@@ -171,8 +172,8 @@ const Footer = styled.div`
     margin: 20px auto 0;
     padding: 14px 6px;
     font-size: 11px;
-    background: #fff;
-    border: 1px solid rgba(222, 246, 238, 0.9);
+    background: ${theme.colors.surface.page};
+    border: 1px solid ${theme.colors.secondary.third.soft};
     border-radius: 16px;
     span {
       flex: 1;
@@ -217,7 +218,7 @@ const Footer = styled.div`
 
 const bubbles = [
   {
-    color: "rgba(253, 227, 232, 0.7)",
+    color: theme.colors.secondary.first.soft,
     size: 13.6,
     top: 11,
     left: -5.6,
@@ -225,7 +226,7 @@ const bubbles = [
     mLeft: -8,
   },
   {
-    color: "rgba(253, 227, 232, 0.7)",
+    color: theme.colors.secondary.first.soft,
     size: 7.2,
     top: 44,
     left: -6.9,
@@ -233,7 +234,7 @@ const bubbles = [
     mLeft: 93,
   },
   {
-    color: "rgba(233, 227, 251, 0.7)",
+    color: theme.colors.secondary.second.soft,
     size: 9.4,
     top: 18,
     left: 30.7,
@@ -241,7 +242,7 @@ const bubbles = [
     mLeft: -7,
   },
   {
-    color: "rgba(233, 227, 251, 0.7)",
+    color: theme.colors.secondary.second.soft,
     size: 7.9,
     top: 67,
     left: 60,
@@ -249,7 +250,7 @@ const bubbles = [
     mLeft: 92,
   },
   {
-    color: "rgba(217, 242, 231, 0.7)",
+    color: theme.colors.secondary.third.soft,
     size: 11.3,
     top: 11,
     left: 94,
@@ -257,7 +258,7 @@ const bubbles = [
     mLeft: -8,
   },
   {
-    color: "rgba(217, 242, 231, 0.7)",
+    color: theme.colors.secondary.third.soft,
     size: 6.7,
     top: 36,
     left: 100,
@@ -271,12 +272,12 @@ const Price = () => {
 
   const planStyles = [
     {
-      color: "#e8002d",
-      iconBg: "#ffeaed",
-      panelBg: "rgb(255, 200, 218)",
-      decor: "#f8305a",
-      wave: "#ff9fac",
-      divider: "#e8002d",
+      color: theme.colors.secondary.first.main,
+      iconBg: theme.colors.secondary.first.soft,
+      panelBg: theme.colors.secondary.first.light,
+      decor: theme.colors.secondary.first.main,
+      wave: theme.colors.decor.circle,
+      divider: theme.colors.brand.default,
       featured: false,
       delay: "0.1s",
       icon: (
@@ -285,18 +286,18 @@ const Price = () => {
           height={isTablet ? 30 : 24}
           viewBox="0 0 24 24"
           color="none"
-          stroke="#E11D48"
+          stroke={theme.colors.secondary.first.main}
           strokeWidthOutside="1.8"
           strokeWidthInside="1.5"
         />
       ),
     },
     {
-      color: "#5230e0",
-      iconBg: "#f0ebff",
-      panelBg: "rgb(216, 208, 255)",
-      decor: "#6446dc",
-      wave: "#a79ef7",
+      color: theme.colors.secondary.second.main,
+      iconBg: theme.colors.secondary.second.soft,
+      panelBg: theme.colors.secondary.second.light,
+      decor: theme.colors.secondary.second.main,
+      wave: theme.colors.secondary.second.light,
       divider: "#7c5cbf",
       featured: true,
       delay: "0.2s",
@@ -306,17 +307,17 @@ const Price = () => {
           height={isTablet ? 30 : 24}
           viewBox="0 0 24 24"
           color="none"
-          stroke="#5230e0"
+          stroke={theme.colors.secondary.second.main}
           strokeWidth="1.8"
         />
       ),
     },
     {
-      color: "#2eaa7a",
-      iconBg: "#def6ee",
-      panelBg: "rgb(174, 232, 205)",
-      decor: "#1fa971",
-      wave: "#4fd1a8",
+      color: theme.colors.secondary.third.main,
+      iconBg: theme.colors.secondary.third.soft,
+      panelBg: theme.colors.secondary.third.light,
+      decor: theme.colors.secondary.third.main,
+      wave: theme.colors.secondary.third.light,
       divider: "#2eaa7a",
       featured: false,
       delay: "0.3s",
@@ -326,7 +327,7 @@ const Price = () => {
           height={isTablet ? 30 : 24}
           viewBox="0 0 24 24"
           color="none"
-          stroke="#3DAA72"
+          stroke={theme.colors.secondary.third.main}
           strokeWidth="1.8"
         />
       ),
@@ -358,7 +359,7 @@ const Price = () => {
           <SectionBadge icon={HeartIcon}>
             Planos que se adaptam ao seu momento
           </SectionBadge>
-          <Headline id="price">
+          <Title id="price">
             {isMobile ? (
               <>
                 Escolha o plano ideal para o seu <span>projeto</span>
@@ -370,7 +371,7 @@ const Price = () => {
                 para o seu <span>projeto</span>
               </>
             )}
-          </Headline>
+          </Title>
           <Sub>
             Soluções completas para transformar ideias em resultados reais.
           </Sub>
@@ -403,7 +404,7 @@ const Price = () => {
                     height={18}
                     viewBox="0 0 24 24"
                     color="none"
-                    stroke="#2BAF8E"
+                    stroke={theme.colors.secondary.third.light}
                   />
                   {text}
                 </span>

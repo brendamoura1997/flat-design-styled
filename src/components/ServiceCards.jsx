@@ -7,9 +7,9 @@ const compactQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.table
 const CardContainer = styled.div`
   display: flex;
   justify-content: space-between;
-
   gap: 16px;
   margin-top: 2vw;
+
   @media ${compactQueries} {
     flex-direction: column;
   }
@@ -29,9 +29,9 @@ const Card = styled.div`
   align-items: center;
   text-align: center;
   padding: 1.8vw 1vw;
-  border: 1px solid #ebebeb;
+  border: 1px solid ${theme.colors.border.default};
   border-radius: 14px;
-  background: #fff;
+  background: ${theme.colors.white};
   gap: 0;
   @media ${compactQueries} {
     flex: none;
@@ -82,7 +82,7 @@ const CardIconWrapper = styled.div`
 const CardTitle = styled.h3`
   font-size: 15px;
   font-weight: 700;
-  color: #111;
+  color: ${theme.colors.text.subheading};
   margin: 0 0 7px 0;
   @media ${compactQueries} {
     grid-column: 2;
@@ -99,7 +99,7 @@ const CardTitle = styled.h3`
 const CardDivider = styled.div`
   width: 32px;
   height: 3px;
-  background-color: #e91e63;
+  background-color: ${theme.colors.brand.default};
   border-radius: 2px;
   margin-bottom: 14px;
   @media ${compactQueries} {
@@ -111,7 +111,7 @@ const CardDivider = styled.div`
 const CardDesc = styled.p`
   font-size: 13px;
   line-height: 1.65;
-  color: #777;
+  color: ${theme.colors.text.body};
   margin: 0;
   @media ${compactQueries} {
     grid-column: 2;

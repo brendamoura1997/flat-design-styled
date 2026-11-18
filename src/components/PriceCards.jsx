@@ -75,8 +75,9 @@ const CardWave = styled.div`
   }
 `;
 const Card = styled.div`
-  background: #fff;
-  border: 1.5px solid ${({ featured }) => (featured ? "#c7b8f7" : "#ebebeb")};
+  background: ${theme.colors.white};
+  border: 1.5px solid
+    ${({ featured }) => (featured ? "#c7b8f7" : theme.colors.border.default)};
   border-radius: 18px;
   padding: 16px 26px 22px;
   width: 30%;
@@ -136,7 +137,7 @@ const FeaturedBadge = styled.div`
   top: -13px;
   left: 50%;
   transform: translateX(-50%);
-  background: #5230e0;
+  background: ${theme.colors.secondary.second.main};
   color: #fff;
   font-size: 10px;
   font-weight: 800;
@@ -346,7 +347,7 @@ const Currency = styled.span`
 const Amount = styled.span`
   font-size: 44px;
   font-weight: 700;
-  color: #0f1230;
+  color: ${theme.colors.text.subheading};
   line-height: 1;
   @media ${tabletQuery} {
     font-size: 60px;
@@ -403,7 +404,7 @@ const Feature = styled.li`
   align-items: center;
   gap: 10px;
   font-size: 13px;
-  color: #525f92;
+  color: ${theme.colors.text.slate};
   @media ${tabletQuery} {
     font-size: 16px;
     gap: 12px;
