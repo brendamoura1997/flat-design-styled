@@ -323,7 +323,7 @@ const CloseButton = styled.button`
 const Description = styled.p`
   margin-top: 4%;
   font-size: clamp(0.8125rem, 0.4rem + 1.8vw, 1.45rem);
-  color: #333;
+  color: ${theme.colors.text.muted};
   line-height: 1.5;
 
   span {
@@ -405,7 +405,7 @@ const MenuItemLabel = styled.span`
   flex: 1;
   font-weight: bold;
   font-size: clamp(0.875rem, 0.6rem + 1.2vw, 1.375rem);
-  color: ${({ $active }) => ($active ? theme.colors.brand.default : "#1a1a1a")};
+  color: ${({ $active }) => ($active ? theme.colors.brand.default : "#1a1a2e")};
 
   @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     font-size: 15px;
@@ -422,7 +422,7 @@ const ContainerContact = styled.div`
 `;
 
 const ContactCard = styled.div`
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  border: 1px solid #f5b4c0;
   border-radius: 8px;
   padding: 4%;
   display: flex;
@@ -431,7 +431,6 @@ const ContactCard = styled.div`
 
   @media ${theme.mediaQueries.mobile} {
     padding: 4%;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
   }
 
   @media ${theme.mediaQueries.smallMobile} {
@@ -464,7 +463,7 @@ const ContactTitle = styled.p`
   font-weight: 600;
   letter-spacing: 1px;
   font-size: clamp(0.875rem, 0.65rem + 1vw, 1.375rem);
-  color: #1a1a1a;
+  color: ${theme.colors.text.title};
 
   @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     letter-spacing: 0.5px;
@@ -549,7 +548,7 @@ const SubscribeButton = styled.a`
     animation: ${shine} 1.2s ease forwards;
   }
   &:active {
-    background-color: rgb(248, 20, 20);
+    background-color: ${theme.colors.brand.active};
     transform: scale(0.98);
   }
 
@@ -620,7 +619,7 @@ const SubscribeSubtitle = styled.p`
 const Footer = styled.p`
   text-align: center;
   font-size: clamp(0.75rem, 0.6rem + 1vw, 1.25rem);
-  color: #999;
+  color: ${theme.colors.text.subtle};
 
   @media ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile} {
     font-size: 12px;
@@ -657,7 +656,7 @@ const MobileDotGrid = styled(DotsGrid)`
 const Rect = styled.div`
   width: 8%;
   height: 7%;
-  background-color: #669966;
+  background-color: ${theme.colors.decor.rect};
   border-radius: 4px;
   opacity: 0.5;
   position: absolute;
@@ -680,7 +679,7 @@ const Circle = styled.div`
   width: 11%;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background-color: ${theme.colors.pink};
+  background-color: ${theme.colors.decor.circle};
   position: absolute;
   top: 5%;
   right: 24%;
@@ -717,7 +716,7 @@ const menuItems = [
         height={size}
         viewBox="0 0 24 24"
         color="none"
-        stroke="#E8003D"
+        stroke={theme.colors.secondary.first.main}
       />
     ),
     bg: "#fdd9dd",
@@ -731,7 +730,7 @@ const menuItems = [
         height={size}
         viewBox="0 0 24 24"
         color="none"
-        stroke="#6955d8"
+        stroke={theme.colors.secondary.second.main}
         strokeWidth="2"
       />
     ),
@@ -746,7 +745,7 @@ const menuItems = [
         height={size}
         viewBox="0 0 24 24"
         color="none"
-        stroke={theme.colors.success}
+        stroke={theme.colors.secondary.third.main}
         strokeWidth="2"
       />
     ),
@@ -775,7 +774,7 @@ const menuItems = [
         height={size}
         viewBox="0 0 24 24"
         color="none"
-        stroke="#6955d8"
+        stroke={theme.colors.secondary.second.main}
         strokeWidth="2"
       />
     ),

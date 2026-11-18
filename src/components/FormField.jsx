@@ -103,7 +103,7 @@ const Textarea = styled.textarea`
   font-family: inherit;
   line-height: 1.5;
   &::placeholder {
-    color: #66748f;
+    color: ${theme.colors.text.slate};
     font-size: 13px;
   }
   &:focus {
@@ -139,7 +139,7 @@ const TextareaIcon = styled.span`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #e8edf5;
+  background: #e5ecfb;
   display: flex;
   align-items: center;
   justify-content: center;

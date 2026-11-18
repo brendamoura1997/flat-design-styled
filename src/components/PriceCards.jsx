@@ -404,7 +404,7 @@ const Feature = styled.li`
   align-items: center;
   gap: 10px;
   font-size: 13px;
-  color: #525f92;
+  color: ${theme.colors.text.slate};
   @media ${tabletQuery} {
     font-size: 16px;
     gap: 12px;

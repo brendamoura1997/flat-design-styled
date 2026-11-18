@@ -93,7 +93,7 @@ const Title = styled.h1`
 `;
 const Sub = styled.p`
   font-size: 16px;
-  color: ${theme.colors.text.muted};
+  color: ${theme.colors.text.body};
   margin: 0 0 56px;
   @media ${tabletQuery} {
     font-size: 16px;
@@ -145,7 +145,8 @@ const Footer = styled.div`
   gap: 24px;
   margin-top: 48px;
   font-size: 13.5px;
-  color: #888;
+  color: ${theme.colors.text.body};
+
   span {
     display: flex;
     align-items: center;
@@ -172,7 +173,7 @@ const Footer = styled.div`
     padding: 14px 6px;
     font-size: 11px;
     background: ${theme.colors.surface.page};
-    border: 1px solid rgba(222, 246, 238, 0.9);
+    border: 1px solid ${theme.colors.secondary.third.soft};
     border-radius: 16px;
     span {
       flex: 1;
@@ -275,7 +276,7 @@ const Price = () => {
       iconBg: theme.colors.secondary.first.soft,
       panelBg: theme.colors.secondary.first.light,
       decor: theme.colors.secondary.first.main,
-      wave: "#ff9fac",
+      wave: theme.colors.decor.circle,
       divider: "#e8002d",
       featured: false,
       delay: "0.1s",

@@ -29,7 +29,7 @@ const Circle = styled.div`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: ${theme.colors.pink};
+  background-color: ${theme.colors.decor.circle};
   position: absolute;
   top: 150px;
   left: -150px;

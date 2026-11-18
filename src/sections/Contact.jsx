@@ -19,9 +19,7 @@ import FormField from "../components/FormField.jsx";
 
 const NAVY = "#2C45AD";
 const SLATE = "#566DA8";
-const ADDR_RED_BG = "#ffe3ed";
 const ADDR_GREEN = "#1FBE92";
-const SOLID_BLUE = "#1F5BFF";
 const BANNER_NAVY = "#02298F";
 const BANNER_BLUE = "#1F4FE0";
 const BANNER_CYAN = "#12B5F0";
@@ -143,7 +141,7 @@ const DecorSquareGreen = styled.div`
   transform: translateY(-50%);
   width: 45px;
   height: 12%;
-  background-color: #669966;
+  background-color: ${theme.colors.decor.rect};
   opacity: 0.5;
   border-radius: 6px;
   z-index: 0;
@@ -202,7 +200,7 @@ const Title = styled.h1`
   }
 `;
 const Subtitle = styled.p`
-  color: ${theme.colors.text.muted};
+  color: ${theme.colors.text.body};
   font-size: 14.5px;
   max-width: 470px;
   margin: 0 0 22px 5px;
@@ -876,7 +874,7 @@ const Contact = () => {
             </MapBox>
             <InfoList>
               <InfoItem>
-                <IconCircle bg={SOLID_BLUE}>
+                <IconCircle bg={theme.colors.decor.square}>
                   <PhoneIcon
                     width={25}
                     height={25}

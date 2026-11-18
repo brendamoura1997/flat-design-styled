@@ -111,7 +111,7 @@ const CardDivider = styled.div`
 const CardDesc = styled.p`
   font-size: 13px;
   line-height: 1.65;
-  color: ${theme.colors.text.muted};
+  color: ${theme.colors.text.body};
   margin: 0;
   @media ${compactQueries} {
     grid-column: 2;

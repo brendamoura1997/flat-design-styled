@@ -30,6 +30,7 @@ export const colors = {
   decor: {
     square: "#4e6bff",
     rect: "#669966",
+    circle: "#ff97af",
   },
 
   primary: {
@@ -42,10 +43,10 @@ export const colors = {
   text: {
     title: "#1a1a2e",
     highlight: "#e91e63",
-    body: "#444444",
-    muted: "#777777",
+    body: "#777777",
+    muted: "#444444",
     subtle: "#999999",
-    slate: "#7d89a5",
+    slate: "#525f92",
     form: "#1b2a78",
   },
 
