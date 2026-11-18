@@ -18,7 +18,6 @@ import DotsGrid from "../components/decor/DotsGrid.jsx";
 import FormField from "../components/FormField.jsx";
 
 const NAVY = "#2C45AD";
-const SLATE = "#566DA8";
 const ADDR_GREEN = "#1FBE92";
 const BANNER_NAVY = "#02298F";
 const BANNER_BLUE = "#1F4FE0";
@@ -35,7 +34,7 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: center;
   gap: 50px;
-  background: #fbfcfe;
+  background: ${theme.colors.form.bg};
   padding: 56px 150px 86px 150px;
   position: relative;
   overflow: hidden;
@@ -195,7 +194,6 @@ const Title = styled.h1`
 
   @media ${theme.mediaQueries.mobile} {
     font-size: 32px;
-    color: #0b1a45;
     margin: 0 0 16px;
   }
 `;
@@ -669,7 +667,7 @@ const BannerTriangle = styled.div`
   left: 20px;
   width: 44px;
   height: 44px;
-  background: ${theme.colors.brand.default};
+  background: #e8134a;
   clip-path: polygon(100% 0, 100% 100%, 0 100%);
 
   @media ${tabletQueries} {
@@ -770,8 +768,8 @@ const Contact = () => {
                   <UserIcon
                     width={18}
                     height={18}
-                    color={SLATE}
-                    stroke={SLATE}
+                    color={theme.colors.form.iconStroke}
+                    stroke={theme.colors.form.iconStroke}
                     viewBox="0 0 24 24"
                   />
                 }
@@ -783,8 +781,8 @@ const Contact = () => {
                     width={18}
                     height={18}
                     viewBox="0 0 24 24"
-                    color={SLATE}
-                    stroke={SLATE}
+                    color={theme.colors.form.iconStroke}
+                    stroke={theme.colors.form.iconStroke}
                   />
                 }
               />
@@ -795,8 +793,8 @@ const Contact = () => {
                     width={17}
                     height={17}
                     viewBox="0 0 24 24"
-                    color={SLATE}
-                    stroke={SLATE}
+                    color={theme.colors.form.iconStroke}
+                    stroke={theme.colors.form.iconStroke}
                   />
                 }
               />
@@ -810,8 +808,8 @@ const Contact = () => {
                     width={17}
                     height={17}
                     viewBox="0 0 24 24"
-                    color={SLATE}
-                    stroke={SLATE}
+                    color={theme.colors.form.iconStroke}
+                    stroke={theme.colors.form.iconStroke}
                   />
                 }
               />

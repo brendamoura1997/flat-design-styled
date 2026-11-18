@@ -460,7 +460,7 @@ const VideoWrapper = styled.div`
   position: relative;
   width: 100%;
   padding-bottom: 56.25%;
-  background: #000;
+  background: ${theme.colors.black};
 `;
 const VideoFrame = styled.iframe`
   position: absolute;

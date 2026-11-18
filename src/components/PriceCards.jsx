@@ -347,7 +347,7 @@ const Currency = styled.span`
 const Amount = styled.span`
   font-size: 44px;
   font-weight: 700;
-  color: #0f1230;
+  color: ${theme.colors.text.subheading};
   line-height: 1;
   @media ${tabletQuery} {
     font-size: 60px;

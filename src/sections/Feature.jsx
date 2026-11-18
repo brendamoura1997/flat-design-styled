@@ -119,7 +119,7 @@ const PurpleCircle = styled.div`
   width: 20%;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background: #eaecfb;
+  background: ${theme.colors.secondary.second.soft};
   bottom: -29%;
   right: -5%;
   z-index: 0;
@@ -299,7 +299,7 @@ const Title = styled.span`
 const SubTitle = styled.span`
   font-size: 20px;
   font-style: italic;
-  color: #333;
+  color: ${theme.colors.text.muted};
   margin-top: 4%;
   @media ${theme.mediaQueries.tablet} {
     margin-top: 5%;
@@ -312,7 +312,7 @@ const SubTitle = styled.span`
 
 const Desc = styled.p`
   font-size: 17px;
-  color: #666;
+  color: ${theme.colors.text.body};
   margin-top: 3%;
   line-height: 1.6;
   @media ${theme.mediaQueries.tablet} {
@@ -369,7 +369,7 @@ const Feature = () => {
                 $pos="tl"
                 columns={4}
                 rows={4}
-                color="#f53b5a"
+                color={theme.colors.secondary.first.main}
                 size={7}
                 gap={16}
                 opacity={0.55}
@@ -395,11 +395,16 @@ const Feature = () => {
           >
             <path
               d="M5 0 C 70 0, 150 90, 130 190 C 115 250, 80 290, 60 300"
-              stroke="#e8325a"
+              stroke={theme.colors.secondary.first.main}
               strokeWidth="2"
               strokeLinecap="round"
             />
-            <circle cx="60" cy="300" r="7" fill="#e8325a" />
+            <circle
+              cx="60"
+              cy="300"
+              r="7"
+              fill={theme.colors.secondary.first.main}
+            />
           </CurvedPath>
           <Left>
             <Image src={App} />

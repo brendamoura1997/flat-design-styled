@@ -57,7 +57,7 @@ const InputIcon = styled.span`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #e5ecfb;
+  background: ${theme.colors.form.iconBg};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,14 +96,14 @@ const Textarea = styled.textarea`
   border-radius: 14px;
   font-size: 15px;
   color: ${theme.colors.text.form};
-  background: #fbfcfe;
+  background: ${theme.colors.form.bg};
   box-sizing: border-box;
   resize: vertical;
   outline: none;
   font-family: inherit;
   line-height: 1.5;
   &::placeholder {
-    color: ${theme.colors.text.slate};
+    color: ${theme.colors.form.placeholder};
     font-size: 13px;
   }
   &:focus {
@@ -139,7 +139,7 @@ const TextareaIcon = styled.span`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #e5ecfb;
+  background: ${theme.colors.form.iconBg};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -161,7 +161,7 @@ const TextareaIcon = styled.span`
     top: 6px;
     width: 32px;
     height: 32px;
-    background: #e5ecfb;
+    background: ${theme.colors.form.iconBg};
     svg {
       width: 16px;
       height: 16px;

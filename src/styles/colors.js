@@ -1,11 +1,3 @@
-export const withAlpha = (hex, opacity) => {
-  const value = hex.replace("#", "");
-  const r = Number.parseInt(value.slice(0, 2), 16);
-  const g = Number.parseInt(value.slice(2, 4), 16);
-  const b = Number.parseInt(value.slice(4, 6), 16);
-  return `rgba(${r}, ${g}, ${b}, ${opacity})`;
-};
-
 export const colors = {
   white: "#ffffff",
   black: "#000000",
@@ -39,6 +31,7 @@ export const colors = {
 
   text: {
     title: "#1a1a2e",
+    subheading: "#111111",
     highlight: "#e91e63",
     body: "#777777",
     muted: "#444444",
@@ -49,20 +42,18 @@ export const colors = {
 
   surface: {
     page: "#ffffff",
-    soft: "#fbfcfe",
-    tint: "#e5ecfb",
     dark: "#1a1a2e",
+  },
+
+  form: {
+    bg: "#fbfcfe",
+    iconBg: "#e5ecfb",
+    iconStroke: "#566DA8",
+    placeholder: "#525f92",
   },
 
   border: {
     default: "#ebebeb",
     input: "#d3dcec",
-  },
-
-  shadow: "#15009f",
-
-  overlay: {
-    modal: withAlpha("#080814", 0.78),
-    menu: withAlpha("#141414", 0.55),
   },
 };

@@ -12,7 +12,6 @@ export const serviceData = [
         height={28}
         viewBox="0 0 24 24"
         color="none"
-        // stroke="#E11D48"
         stroke={theme.colors.secondary.first.main}
       />
     ),

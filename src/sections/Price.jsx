@@ -277,7 +277,7 @@ const Price = () => {
       panelBg: theme.colors.secondary.first.light,
       decor: theme.colors.secondary.first.main,
       wave: theme.colors.decor.circle,
-      divider: "#e8002d",
+      divider: theme.colors.brand.default,
       featured: false,
       delay: "0.1s",
       icon: (
