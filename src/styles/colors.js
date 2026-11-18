@@ -24,9 +24,6 @@ export const colors = {
     fourth: { main: "#ffb41f", soft: "#fbeacb" },
   },
 
-  pink: "#ff97af",
-  pinkSoft: "#fde8ec",
-
   decor: {
     square: "#4e6bff",
     rect: "#669966",

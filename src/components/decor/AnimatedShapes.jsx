@@ -51,7 +51,7 @@ const Circle = styled.div`
 const Rect = styled.div`
   width: 50px;
   height: 100px;
-  background-color: #669966;
+  background-color: ${theme.colors.decor.rect};
   border-radius: 6px;
   opacity: 0.5;
   position: absolute;

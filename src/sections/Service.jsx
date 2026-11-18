@@ -357,8 +357,9 @@ const Desc = styled.p`
   font-size: 16px;
   line-height: 1.7;
   margin-top: 20px;
-  color: #666;
+  color: ${theme.colors.text.body};
   max-width: 520px;
+
   @media ${tabletQueries} {
     font-size: clamp(0.875rem, 0.45rem + 0.95vw, 1.0625rem);
     margin-top: 16px;
@@ -399,14 +400,11 @@ const Backdrop = styled.div`
 `;
 const ModalBox = styled.div`
   position: relative;
-  background: #0f0f1a;
+  background: #07070c;
   border-radius: 20px;
   overflow: hidden;
   width: 100%;
   max-width: 860px;
-  box-shadow:
-    0 32px 80px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(255, 255, 255, 0.07);
   animation: ${modalSlideIn} 0.35s cubic-bezier(0.34, 1.36, 0.64, 1) both;
 `;
 const ModalHeader = styled.div`
@@ -426,8 +424,7 @@ const ModalTitleDot = styled.div`
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #e91e63;
-  box-shadow: 0 0 8px #e91e6388;
+  background: ${theme.colors.text.highlight};
 `;
 const ModalTitleText = styled.span`
   font-size: 14px;

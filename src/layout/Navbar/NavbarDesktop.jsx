@@ -21,7 +21,7 @@ const Container = styled.div`
   background-color: ${({ scrolled }) =>
     scrolled ? "rgba(255, 255, 255, 0.99)" : "transparent"};
   box-shadow: ${({ scrolled }) =>
-    scrolled ? "0 2px 10px rgba(0,0,0,0.15)" : "none"};
+    scrolled ? "0 2px 10px rgba(138, 53, 53, 0.15)" : "none"};
 `;
 
 const Wrapper = styled.div`

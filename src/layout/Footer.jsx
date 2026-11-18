@@ -8,14 +8,14 @@ const Container = styled.div`
   color: lightgray;
 
   @media only screen and (max-width: 480px) {
-    padding: 1% 2%;
+    padding: 1% 4%;
   }
 `;
 
 const Copyright = styled.span`
   font-size: 12px;
   @media only screen and (max-width: 480px) {
-    font-size: 14px;
+    font-size: 12px;
   }
 `;
 
