@@ -23,19 +23,19 @@ const labels = checkoutLabels.data;
 const Main = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 14px;
   min-width: 0;
 `;
 const Section = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 `;
 const SectionTitle = styled.h3`
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 20px;
+  gap: 8px;
+  font-size: 17px;
   font-weight: 700;
   color: ${theme.colors.text.form};
 
@@ -46,7 +46,7 @@ const SectionTitle = styled.h3`
 const FieldGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px 16px;
+  gap: 10px 14px;
 
   @media ${theme.mediaQueries.mobile} {
     grid-template-columns: 1fr;
@@ -55,16 +55,16 @@ const FieldGrid = styled.div`
 const Payment = styled.fieldset`
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 
   & > legend {
-    margin-bottom: 14px;
+    margin-bottom: 10px;
   }
 `;
 const Methods = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 12px;
 
   @media ${theme.mediaQueries.mobile} {
     gap: 8px;
@@ -73,25 +73,25 @@ const Methods = styled.div`
 const CardFields = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px 18px;
+  gap: 10px 14px;
 
   & > :nth-child(-n + 2) {
     grid-column: 1 / -1;
   }
 `;
 const PixNotice = styled.p`
-  padding: 14px 16px;
-  border-radius: 14px;
+  padding: 10px 14px;
+  border-radius: 12px;
   background: ${theme.colors.secondary.second.soft};
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.5;
   color: ${theme.colors.text.form};
 `;
 const TermsLabel = styled.label`
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 15px;
+  gap: 10px;
+  font-size: 13px;
   color: ${theme.colors.text.form};
   cursor: pointer;
 
@@ -107,8 +107,8 @@ const TermsInput = styled.input`
   pointer-events: none;
 `;
 const TermsBox = styled.span`
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -116,7 +116,7 @@ const TermsBox = styled.span`
   border: 1.5px solid
     ${({ $checked }) =>
       $checked ? theme.colors.primary.default : theme.colors.border.input};
-  border-radius: 7px;
+  border-radius: 6px;
   background: ${({ $checked }) =>
     $checked ? theme.colors.primary.default : theme.colors.white};
   box-sizing: border-box;
@@ -136,8 +136,8 @@ const TermsLink = styled.a`
 const Security = styled.p`
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 14px;
+  gap: 8px;
+  font-size: 12px;
   color: ${theme.colors.text.slate};
 
   @media ${theme.mediaQueries.mobile} {
@@ -167,8 +167,8 @@ const DataStep = ({ plan, form, onNext }) => {
         <Section>
           <SectionTitle>
             <UserIcon
-              width={24}
-              height={24}
+              width={20}
+              height={20}
               viewBox="0 0 24 24"
               color="none"
               stroke={theme.colors.text.form}
@@ -190,8 +190,8 @@ const DataStep = ({ plan, form, onNext }) => {
         <Payment>
           <SectionTitle as="legend">
             <CardIcon
-              width={24}
-              height={24}
+              width={20}
+              height={20}
               viewBox="0 0 24 24"
               color="none"
               stroke={theme.colors.text.form}
@@ -229,8 +229,8 @@ const DataStep = ({ plan, form, onNext }) => {
           <TermsBox $checked={values.acceptedTerms} aria-hidden="true">
             {values.acceptedTerms && (
               <CheckBadgeIcon
-                width={22}
-                height={22}
+                width={18}
+                height={18}
                 viewBox="6 6 12 12"
                 color="none"
                 stroke={theme.colors.white}
@@ -252,8 +252,8 @@ const DataStep = ({ plan, form, onNext }) => {
 
         <Security>
           <LockIcon
-            width={20}
-            height={20}
+            width={16}
+            height={16}
             viewBox="0 0 24 24"
             color={theme.colors.primary.default}
           />
@@ -267,8 +267,8 @@ const DataStep = ({ plan, form, onNext }) => {
           iconPosition="right"
           icon={
             <ArrowIcon
-              width={20}
-              height={20}
+              width={18}
+              height={18}
               viewBox="0 0 24 24"
               color="none"
               stroke={theme.colors.white}

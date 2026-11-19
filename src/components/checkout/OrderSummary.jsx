@@ -13,8 +13,8 @@ const Panel = styled.aside`
   grid-row: span 2;
   position: relative;
   overflow: hidden;
-  border-radius: 24px;
-  padding: 66px 24px 28px;
+  border-radius: 18px;
+  padding: 48px 18px 20px;
   background: ${({ $bg }) => $bg};
   color: ${theme.colors.text.title};
 
@@ -28,13 +28,13 @@ const Panel = styled.aside`
 `;
 const Tag = styled.span`
   position: absolute;
-  top: 18px;
+  top: 14px;
   left: 0;
-  padding: 9px 22px 9px 20px;
+  padding: 7px 18px 7px 16px;
   border-radius: 0 999px 999px 0;
   background: ${theme.colors.secondary.second.main};
   color: ${theme.colors.white};
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.6px;
   text-transform: uppercase;
@@ -66,28 +66,28 @@ const Content = styled.div`
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 12px;
 `;
 const PlanRow = styled.div`
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
 `;
 const PlanInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
   min-width: 0;
 `;
 const PlanName = styled.h3`
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.2;
   color: ${theme.colors.text.title};
 `;
 const PlanFeature = styled.span`
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.3;
   color: ${theme.colors.text.slate};
 `;
@@ -97,34 +97,34 @@ const PriceBox = styled.div`
   align-items: flex-end;
   align-self: stretch;
   justify-content: center;
-  padding-left: 16px;
+  padding-left: 12px;
   border-left: 1px solid rgba(26, 26, 46, 0.2);
 `;
 const PriceAmount = styled.span`
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 1.1;
   color: ${theme.colors.text.title};
 `;
 const PriceNote = styled.span`
-  font-size: 14px;
+  font-size: 12px;
   color: ${theme.colors.text.slate};
 `;
 const FeatureList = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 `;
 const FeatureItem = styled.li`
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 16px;
+  gap: 10px;
+  font-size: 13px;
   color: ${theme.colors.text.title};
 `;
 const CheckBadge = styled.span`
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: ${MINT};
   display: flex;
@@ -143,15 +143,15 @@ const TotalRow = styled.div`
   gap: 12px;
 `;
 const TotalLabel = styled.span`
-  font-size: 22px;
+  font-size: 17px;
   font-weight: 700;
 `;
 const TotalValue = styled.span`
-  font-size: 28px;
+  font-size: 21px;
   font-weight: 700;
 `;
 const Note = styled.p`
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.4;
   color: ${theme.colors.text.title};
 `;
@@ -163,7 +163,7 @@ const OrderSummary = ({ plan, label }) => (
     <DecorSmall $color={plan.panelBg} aria-hidden="true" />
     <Content>
       <PlanRow>
-        <PlanIcon plan={plan} size={64} />
+        <PlanIcon plan={plan} size={48} />
         <PlanInfo>
           <PlanName>
             {cardLabels.planPrefix} {plan.type}
@@ -182,8 +182,8 @@ const OrderSummary = ({ plan, label }) => (
           <FeatureItem key={feature}>
             <CheckBadge>
               <CheckBadgeIcon
-                width={28}
-                height={28}
+                width={22}
+                height={22}
                 viewBox="0 0 24 24"
                 color="none"
                 stroke={theme.colors.secondary.third.main}

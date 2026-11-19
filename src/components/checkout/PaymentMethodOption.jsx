@@ -5,12 +5,12 @@ const Option = styled.label`
   position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
+  gap: 10px;
+  padding: 9px 14px;
   border: 1.5px solid
     ${({ $checked }) =>
       $checked ? theme.colors.primary.default : theme.colors.border.input};
-  border-radius: 14px;
+  border-radius: 12px;
   background: ${({ $checked }) =>
     $checked ? theme.colors.secondary.second.soft : theme.colors.white};
   cursor: pointer;
@@ -31,8 +31,8 @@ const RadioInput = styled.input`
   pointer-events: none;
 `;
 const Indicator = styled.span`
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
   border-radius: 50%;
   border: 2px solid
@@ -49,7 +49,7 @@ const Indicator = styled.span`
   }
 `;
 const OptionLabel = styled.span`
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   color: ${theme.colors.text.form};
 
