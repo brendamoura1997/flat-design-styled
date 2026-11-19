@@ -5,7 +5,10 @@ import PrimaryButton from "../PrimaryButton";
 const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
 
 const CheckoutButton = styled(PrimaryButton)`
-  min-width: 260px;
+  min-width: 200px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-size: 14px;
 
   @media ${tabletQueries} {
     padding: 14px 24px;
@@ -20,6 +23,9 @@ const CheckoutButton = styled(PrimaryButton)`
   @media ${theme.mediaQueries.mobile} {
     min-width: 0;
     flex: 1;
+    padding: 13px 20px;
+    border-radius: 10px;
+    font-size: 15px;
   }
 `;
 

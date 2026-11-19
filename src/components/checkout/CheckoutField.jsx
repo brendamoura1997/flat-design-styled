@@ -4,11 +4,11 @@ import { theme } from "../../styles/theme";
 const Field = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   min-width: 0;
 `;
 const Label = styled.label`
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 500;
   color: ${theme.colors.text.title};
   cursor: pointer;
@@ -20,19 +20,19 @@ const InputWrapper = styled.div`
 `;
 const Input = styled.input`
   width: 100%;
-  padding: 12px 14px 12px ${({ $hasIcon }) => ($hasIcon ? "46px" : "16px")};
+  padding: 10px 12px 10px ${({ $hasIcon }) => ($hasIcon ? "42px" : "14px")};
   border: 1.5px solid ${theme.colors.border.input};
-  border-radius: 14px;
+  border-radius: 12px;
   background: ${theme.colors.white};
   color: ${theme.colors.text.form};
-  font-size: 15px;
+  font-size: 14px;
   box-sizing: border-box;
   outline: none;
   transition: border-color 0.2s;
 
   &::placeholder {
     color: ${theme.colors.text.subtle};
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
   }
 
@@ -51,7 +51,7 @@ const Input = styled.input`
 `;
 const InputIcon = styled.span`
   position: absolute;
-  left: 14px;
+  left: 12px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -8,8 +8,8 @@ const Wrapper = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  width: 380px;
-  height: 230px;
+  width: 300px;
+  height: 180px;
   pointer-events: none;
   z-index: 0;
 
@@ -19,66 +19,66 @@ const Wrapper = styled.div`
 `;
 const Blob = styled.span`
   position: absolute;
-  top: -110px;
-  right: -90px;
-  width: 320px;
-  height: 320px;
+  top: -88px;
+  right: -72px;
+  width: 256px;
+  height: 256px;
   border-radius: 50%;
   background: ${theme.colors.secondary.second.light};
   opacity: 0.3;
 `;
 const BlobSmall = styled.span`
   position: absolute;
-  top: 70px;
-  right: 40px;
-  width: 150px;
-  height: 150px;
+  top: 56px;
+  right: 32px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   background: ${theme.colors.secondary.second.light};
   opacity: 0.35;
 `;
 const Rays = styled(SparkleRays)`
   position: absolute;
-  top: 40px;
-  left: 28px;
+  top: 32px;
+  left: 22px;
 `;
 const Card = styled.div`
   position: absolute;
-  top: 54px;
-  right: 118px;
-  width: 170px;
-  height: 108px;
-  border-radius: 14px;
+  top: 42px;
+  right: 92px;
+  width: 132px;
+  height: 84px;
+  border-radius: 11px;
   background: linear-gradient(
     135deg,
     ${theme.colors.secondary.second.main},
     ${theme.colors.primary.default}
   );
-  box-shadow: 0 12px 24px rgba(26, 26, 173, 0.25);
+  box-shadow: 0 9px 18px rgba(26, 26, 173, 0.25);
   transform: rotate(-10deg);
   overflow: hidden;
 `;
 const Stripe = styled.span`
   position: absolute;
-  top: 20px;
+  top: 16px;
   left: 0;
   width: 100%;
-  height: 22px;
+  height: 17px;
   background: rgba(10, 10, 60, 0.55);
 `;
 const Chip = styled.span`
   position: absolute;
-  top: 52px;
-  left: 16px;
-  width: 24px;
-  height: 18px;
-  border-radius: 4px;
+  top: 40px;
+  left: 12px;
+  width: 19px;
+  height: 14px;
+  border-radius: 3px;
   background: ${theme.colors.secondary.fourth.main};
 `;
 const Line = styled.span`
   position: absolute;
-  height: 5px;
-  border-radius: 3px;
+  height: 4px;
+  border-radius: 2px;
   background: ${({ $color }) => $color};
   top: ${({ $top }) => $top}px;
   left: ${({ $left }) => $left}px;
@@ -95,11 +95,11 @@ const CardIllustration = () => (
       <Chip />
       <Line
         $color="rgba(255, 255, 255, 0.45)"
-        $top={80}
-        $left={16}
-        $width={70}
+        $top={62}
+        $left={12}
+        $width={55}
       />
-      <Line $color={theme.colors.white} $top={64} $left={108} $width={40} />
+      <Line $color={theme.colors.white} $top={50} $left={84} $width={31} />
     </Card>
   </Wrapper>
 );

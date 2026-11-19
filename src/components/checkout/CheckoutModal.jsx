@@ -36,7 +36,7 @@ const Backdrop = styled.div`
   z-index: 1000;
   display: flex;
   overflow-y: auto;
-  padding: 20px;
+  padding: 16px;
   background: rgba(8, 8, 20, 0.6);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -53,11 +53,11 @@ const Backdrop = styled.div`
 const ModalBox = styled.div`
   position: relative;
   width: 100%;
-  max-width: 960px;
+  max-width: 900px;
   margin: auto;
-  padding: 36px 40px 40px;
+  padding: 28px 32px 30px;
   overflow: hidden;
-  border-radius: 28px;
+  border-radius: 22px;
   background: ${theme.colors.white};
   animation: ${modalSlideIn} 0.35s cubic-bezier(0.34, 1.36, 0.64, 1) both;
 
@@ -80,11 +80,11 @@ const ModalBox = styled.div`
 `;
 const CloseButton = styled.button`
   position: absolute;
-  top: 22px;
-  right: 24px;
+  top: 16px;
+  right: 18px;
   z-index: 2;
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,18 +106,18 @@ const Header = styled.header`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-right: 48px;
+  padding-right: 40px;
 `;
 const SecureBadge = styled(SectionBadge)`
-  margin-bottom: 12px;
-  font-size: 12px;
+  margin-bottom: 8px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.4px;
   text-transform: uppercase;
 `;
 const Title = styled.h2`
-  margin-bottom: 10px;
-  font-size: clamp(30px, 4vw, 46px);
+  margin-bottom: 6px;
+  font-size: clamp(26px, 3.2vw, 36px);
   font-weight: 800;
   line-height: 1.1;
   color: ${theme.colors.text.title};
@@ -132,7 +132,7 @@ const Title = styled.h2`
   }
 `;
 const Subtitle = styled.p`
-  font-size: clamp(15px, 1.6vw, 20px);
+  font-size: clamp(14px, 1.3vw, 16px);
   line-height: 1.4;
   color: ${theme.colors.text.title};
 
@@ -194,8 +194,8 @@ const CheckoutModal = ({ plan, onClose }) => {
           onClick={onClose}
         >
           <CloseIcon
-            width={26}
-            height={26}
+            width={22}
+            height={22}
             viewBox="0 0 24 24"
             color="none"
             stroke={theme.colors.text.title}

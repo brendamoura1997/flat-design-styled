@@ -8,7 +8,7 @@ const StepLayout = styled.div`
   z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 36fr) minmax(0, 60fr);
-  gap: 20px 28px;
+  gap: 14px 22px;
 
   @media ${tabletQueries}, ${theme.mediaQueries.mobile} {
     grid-template-columns: minmax(0, 1fr);
