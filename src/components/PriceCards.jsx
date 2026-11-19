@@ -443,7 +443,7 @@ const PriceButton = styled(PrimaryButton)`
   }
 `;
 
-const PriceCards = ({ plan }) => (
+const PriceCards = ({ plan, onSubscribe }) => (
   <Card featured={plan.featured} delay={plan.delay}>
     <CardWave>
       <WaveIcon
@@ -500,7 +500,12 @@ const PriceCards = ({ plan }) => (
         </Feature>
       ))}
     </FeatureList>
-    <PriceButton size="small" fullWidth $featured={plan.featured}>
+    <PriceButton
+      size="small"
+      fullWidth
+      $featured={plan.featured}
+      onClick={onSubscribe}
+    >
       {cardLabels.button}
     </PriceButton>
   </Card>
