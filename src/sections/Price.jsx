@@ -1,5 +1,5 @@
 //Price.jsx
-import { Fragment } from "react";
+import { Fragment, useCallback, useState } from "react";
 import styled from "styled-components";
 import SendIcon from "../icons/SendIcon";
 import StarIcon from "../icons/StarIcon";
@@ -11,6 +11,7 @@ import { theme } from "../styles/theme";
 import { useScreenSize } from "../hooks/useDevice";
 import SectionBadge from "../components/SectionBadge";
 import PriceCards from "../components/PriceCards";
+import CheckoutModal from "../components/checkout/CheckoutModal";
 import { plansContent, priceFooter } from "../utils/priceData";
 import DotsGrid from "../components/decor/DotsGrid";
 
@@ -269,6 +270,8 @@ const bubbles = [
 const footerIcons = [ShieldHollowIcon, NotAllowedIcon, ShieldHollowIcon];
 const Price = () => {
   const { isMobile, isTablet } = useScreenSize();
+  const [selectedPlan, setSelectedPlan] = useState(null);
+  const closeModal = useCallback(() => setSelectedPlan(null), []);
 
   const planStyles = [
     {
@@ -389,7 +392,11 @@ const Price = () => {
             />
           ))}
           {plans.map((plan) => (
-            <PriceCards key={plan.type} plan={plan} />
+            <PriceCards
+              key={plan.type}
+              plan={plan}
+              onSubscribe={() => setSelectedPlan(plan)}
+            />
           ))}
         </Cards>
         <Footer>
@@ -413,6 +420,9 @@ const Price = () => {
           })}
         </Footer>
       </Inner>
+      {selectedPlan && (
+        <CheckoutModal plan={selectedPlan} onClose={closeModal} />
+      )}
     </Section>
   );
 };
