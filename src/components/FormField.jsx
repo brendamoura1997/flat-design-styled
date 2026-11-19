@@ -3,6 +3,32 @@ import { theme } from "../styles/theme.jsx";
 
 const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
 
+const borderColor = ({ $hasError }) =>
+  $hasError ? theme.colors.brand.default : theme.colors.border.input;
+const focusBorderColor = ({ $hasError }) =>
+  $hasError ? theme.colors.brand.default : "#66748f";
+
+const Field = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  flex: ${({ $multiline }) => ($multiline ? 1 : "0 1 auto")};
+`;
+const ErrorMessage = styled.p`
+  margin: 0 0 0 6px;
+  font-size: 12px;
+  line-height: 1.3;
+  color: ${theme.colors.brand.default};
+
+  @media ${tabletQueries} {
+    font-size: 14px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 11px;
+  }
+`;
 const InputWrapper = styled.div`
   position: relative;
   display: flex;
@@ -11,7 +37,7 @@ const InputWrapper = styled.div`
 const Input = styled.input`
   width: 100%;
   padding: 15px 16px 15px 58px;
-  border: 1.5px solid ${theme.colors.border.input};
+  border: 1.5px solid ${borderColor};
   border-radius: 14px;
   font-size: 15px;
   color: ${theme.colors.text.form};
@@ -25,7 +51,7 @@ const Input = styled.input`
     font-size: 13px;
   }
   &:focus {
-    border-color: #66748f;
+    border-color: ${focusBorderColor};
   }
 
   @media ${theme.mediaQueries.desktopWide} {
@@ -92,7 +118,7 @@ const Textarea = styled.textarea`
   width: 100%;
   min-height: 100px;
   padding: 16px 16px 16px 58px;
-  border: 1.5px solid ${theme.colors.border.input};
+  border: 1.5px solid ${borderColor};
   border-radius: 14px;
   font-size: 15px;
   color: ${theme.colors.text.form};
@@ -107,7 +133,7 @@ const Textarea = styled.textarea`
     font-size: 13px;
   }
   &:focus {
-    border-color: #66748f;
+    border-color: ${focusBorderColor};
   }
 
   @media ${tabletQueries} {
@@ -169,21 +195,39 @@ const TextareaIcon = styled.span`
   }
 `;
 
-const FormField = ({ icon, multiline = false, ...rest }) => {
+const FormField = ({ icon, multiline = false, error, ...rest }) => {
+  const errorId = error ? `${rest.name}-error` : undefined;
+  const fieldProps = {
+    ...rest,
+    $hasError: Boolean(error),
+    "aria-invalid": Boolean(error),
+    "aria-describedby": errorId,
+  };
+
+  const errorMessage = error && (
+    <ErrorMessage id={errorId}>{error}</ErrorMessage>
+  );
+
   if (multiline) {
     return (
-      <TextareaWrapper>
-        <Textarea {...rest} />
-        <TextareaIcon>{icon}</TextareaIcon>
-      </TextareaWrapper>
+      <Field $multiline>
+        <TextareaWrapper>
+          <Textarea {...fieldProps} />
+          <TextareaIcon>{icon}</TextareaIcon>
+        </TextareaWrapper>
+        {errorMessage}
+      </Field>
     );
   }
 
   return (
-    <InputWrapper>
-      <Input {...rest} />
-      <InputIcon>{icon}</InputIcon>
-    </InputWrapper>
+    <Field>
+      <InputWrapper>
+        <Input {...fieldProps} />
+        <InputIcon>{icon}</InputIcon>
+      </InputWrapper>
+      {errorMessage}
+    </Field>
   );
 };
 

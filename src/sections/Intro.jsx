@@ -1,5 +1,6 @@
 // Intro.jsx
 import styled, { keyframes } from "styled-components";
+import { scrollToSection } from "../utils/scrollToSection";
 import Woman from "../assets/images/woman.png";
 import AnimatedShapes from "../components/decor/AnimatedShapes";
 import AnimatedShapesMobile from "../components/decor/AnimatedShapesMobile";
@@ -681,7 +682,7 @@ const Intro = () => {
           </TopSection>
 
           <ActionSection>
-            <Button>
+            <Button onClick={() => scrollToSection("service")}>
               COMECE UM PROJETO
               <ArrowIcon
                 width={20}
@@ -722,7 +723,7 @@ const Intro = () => {
               <DescBlock />
 
               <Info>
-                <Button>
+                <Button onClick={() => scrollToSection("service")}>
                   COMECE UM PROJETO
                   <ArrowIcon
                     width={20}
