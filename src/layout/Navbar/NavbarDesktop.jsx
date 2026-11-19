@@ -266,7 +266,9 @@ const NavbarDesktop = () => {
             </MenuItem>
           </Menu>
         </Left>
-        <Button>INSCREVA-SE JÁ</Button>
+        <Button href="#price" onClick={(e) => handleNavClick(e, "price")}>
+          INSCREVA-SE JÁ
+        </Button>
       </Wrapper>
     </Container>
   );

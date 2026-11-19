@@ -56,4 +56,8 @@ export const colors = {
     default: "#ebebeb",
     input: "#d3dcec",
   },
+
+  feedback: {
+    success: "#248055",
+  },
 };
