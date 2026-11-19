@@ -11,8 +11,8 @@ export const CHECKOUT_STEP = { DATA: 0, CONFIRM: 1, SUCCESS: 2 };
 export const PAYMENT_METHOD = { CARD: "card", PIX: "pix" };
 
 const fieldIconProps = {
-  width: 20,
-  height: 20,
+  width: 18,
+  height: 18,
   viewBox: "0 0 24 24",
   color: "none",
   stroke: theme.colors.form.iconStroke,
@@ -107,7 +107,7 @@ export const personalFields = [
     title: "Nome completo",
     type: "text",
     autoComplete: "name",
-    placeholder: "Comece preenchendo seu nome",
+    placeholder: "Nome Completo",
     icon: <UserIcon {...fieldIconProps} />,
   },
   {
@@ -115,7 +115,7 @@ export const personalFields = [
     title: "E-mail",
     type: "email",
     autoComplete: "email",
-    placeholder: "voce@email.com",
+    placeholder: "Email: voce@email.com",
     icon: <EmailIcon {...fieldIconProps} />,
   },
   {
@@ -123,7 +123,7 @@ export const personalFields = [
     title: "CPF",
     type: "text",
     inputMode: "numeric",
-    placeholder: "000.000.000-00",
+    placeholder: "CPF: 000.000.000-00",
     icon: <CardIcon {...fieldIconProps} />,
   },
   {
@@ -131,7 +131,7 @@ export const personalFields = [
     title: "Celular",
     type: "tel",
     autoComplete: "tel",
-    placeholder: "(11) 99999-9999",
+    placeholder: "Tel: (11) 99999-9999",
     icon: <PhoneIcon {...fieldIconProps} />,
   },
 ];
@@ -176,8 +176,8 @@ export const paymentMethods = [
     label: "Cartão de crédito",
     icon: (
       <CardIcon
-        width={28}
-        height={28}
+        width={24}
+        height={24}
         viewBox="0 0 24 24"
         color="none"
         stroke={theme.colors.primary.default}
@@ -188,7 +188,7 @@ export const paymentMethods = [
     value: PAYMENT_METHOD.PIX,
     label: "Pix",
     icon: (
-      <PixIcon width={28} height={28} viewBox="0 0 24 24" color="#32bcad" />
+      <PixIcon width={24} height={24} viewBox="0 0 24 24" color="#32bcad" />
     ),
   },
 ];

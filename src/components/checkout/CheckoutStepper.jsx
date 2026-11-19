@@ -8,13 +8,13 @@ const Steps = styled.ol`
   z-index: 1;
   display: flex;
   align-items: center;
-  margin: 22px 0 24px;
+  margin: 16px 0 18px;
   padding: 0;
 `;
 const Step = styled.li`
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex: 0 0 auto;
 
   &:not(:last-child) {
@@ -25,7 +25,7 @@ const Step = styled.li`
     content: "";
     flex: 1;
     height: 1px;
-    margin: 0 14px 0 2px;
+    margin: 0 12px 0 2px;
     background: ${theme.colors.secondary.second.light};
     opacity: 0.6;
   }
@@ -39,8 +39,8 @@ const Step = styled.li`
   }
 `;
 const Circle = styled.span`
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -51,7 +51,7 @@ const Circle = styled.span`
       ? theme.colors.secondary.second.light
       : theme.colors.primary.default};
   color: ${theme.colors.white};
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
 
   @media ${theme.mediaQueries.mobile} {
@@ -62,7 +62,7 @@ const Circle = styled.span`
 `;
 const Label = styled.span`
   white-space: pre-line;
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 700;
   line-height: 1.2;
   color: ${({ $pending }) =>
@@ -89,8 +89,8 @@ const CheckoutStepper = ({ steps, current }) => {
             <Circle $pending={isPending}>
               {isDone ? (
                 <CheckBadgeIcon
-                  width={22}
-                  height={22}
+                  width={18}
+                  height={18}
                   viewBox="6 6 12 12"
                   color="none"
                   stroke={theme.colors.white}

@@ -3,21 +3,21 @@ import styled from "styled-components";
 const Brands = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 `;
 const Mastercard = styled.span`
   position: relative;
   display: block;
-  width: 36px;
-  height: 22px;
+  width: 30px;
+  height: 18px;
 
   &::before,
   &::after {
     content: "";
     position: absolute;
     top: 0;
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
   }
 
@@ -33,14 +33,14 @@ const Mastercard = styled.span`
   }
 `;
 const Visa = styled.span`
-  font-size: 19px;
+  font-size: 16px;
   font-weight: 800;
   font-style: italic;
   letter-spacing: -0.5px;
   color: #1a1f71;
 `;
 const Elo = styled.span`
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 800;
   letter-spacing: -0.5px;
   color: #1b2a78;

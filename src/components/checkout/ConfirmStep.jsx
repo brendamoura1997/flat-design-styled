@@ -25,16 +25,16 @@ const personalRows = [personalFields.slice(0, 2), personalFields.slice(2)];
 const Main = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   min-width: 0;
 `;
 const Panel = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 16px 18px;
+  gap: 8px;
+  padding: 12px 14px;
   border: 1px solid ${PANEL_BORDER};
-  border-radius: 18px;
+  border-radius: 14px;
   background: ${theme.colors.secondary.second.soft};
 
   @media ${theme.mediaQueries.mobile} {
@@ -44,22 +44,22 @@ const Panel = styled.section`
 const PanelTitle = styled.h3`
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 18px;
+  gap: 8px;
+  font-size: 16px;
   font-weight: 700;
   color: ${theme.colors.text.form};
 `;
 const Rows = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 `;
 const Row = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  padding: 10px 14px;
-  border-radius: 14px;
+  padding: 8px 12px;
+  border-radius: 10px;
   background: ${theme.colors.white};
 
   @media ${theme.mediaQueries.mobile} {
@@ -73,11 +73,11 @@ const Item = styled.div`
   min-width: 0;
 `;
 const ItemLabel = styled.span`
-  font-size: 14px;
+  font-size: 12px;
   color: ${theme.colors.text.form};
 `;
 const ItemValue = styled.span`
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 500;
   color: ${theme.colors.text.title};
   overflow-wrap: anywhere;
@@ -89,14 +89,14 @@ const ItemValue = styled.span`
 const PaymentRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 4px 4px 4px 0;
+  gap: 12px;
+  padding: 2px 4px 2px 0;
   flex-wrap: wrap;
 `;
 const PaymentLogo = styled.div`
   display: flex;
   align-items: center;
-  padding-right: 16px;
+  padding-right: 12px;
   border-right: 1px solid ${PANEL_BORDER};
   align-self: stretch;
 `;
@@ -110,8 +110,8 @@ const PaymentInfo = styled.div`
 const EditButton = styled.button`
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 15px;
+  gap: 5px;
+  font-size: 13px;
   font-weight: 500;
   color: ${theme.colors.primary.default};
 
@@ -122,11 +122,11 @@ const EditButton = styled.button`
 const Notice = styled.p`
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
-  border-radius: 14px;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
   background: ${theme.colors.secondary.second.soft};
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.4;
   color: ${theme.colors.text.form};
 
@@ -156,7 +156,7 @@ const BackButton = styled(CheckoutButton)`
   }
 `;
 const ConfirmButton = styled(CheckoutButton)`
-  min-width: 240px;
+  min-width: 200px;
 `;
 
 const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
@@ -176,8 +176,8 @@ const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
         <Panel>
           <PanelTitle>
             <UserIcon
-              width={24}
-              height={24}
+              width={20}
+              height={20}
               viewBox="0 0 24 24"
               color="none"
               stroke={theme.colors.text.form}
@@ -203,8 +203,8 @@ const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
         <Panel>
           <PanelTitle>
             <CardIcon
-              width={24}
-              height={24}
+              width={20}
+              height={20}
               viewBox="0 0 24 24"
               color="none"
               stroke={theme.colors.text.form}
@@ -224,8 +224,8 @@ const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
             </PaymentInfo>
             <EditButton type="button" onClick={onBack}>
               <PencilIcon
-                width={18}
-                height={18}
+                width={16}
+                height={16}
                 viewBox="0 0 24 24"
                 color="none"
                 stroke={theme.colors.primary.default}
@@ -237,8 +237,8 @@ const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
 
         <Notice>
           <InfoIcon
-            width={28}
-            height={28}
+            width={22}
+            height={22}
             viewBox="0 0 24 24"
             color="none"
             stroke={theme.colors.primary.default}
@@ -253,8 +253,8 @@ const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
           onClick={onBack}
           icon={
             <ChevronLeftIcon
-              width={20}
-              height={20}
+              width={18}
+              height={18}
               viewBox="0 0 24 24"
               color="none"
               stroke={theme.colors.primary.default}
@@ -269,8 +269,8 @@ const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
           onClick={onConfirm}
           icon={
             <CheckBadgeIcon
-              width={26}
-              height={26}
+              width={22}
+              height={22}
               viewBox="0 0 24 24"
               color="none"
               stroke={theme.colors.white}

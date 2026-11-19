@@ -15,10 +15,10 @@ const labels = checkoutLabels.success;
 
 const DecorCircle = styled.span`
   position: absolute;
-  left: -70px;
-  bottom: -90px;
-  width: 230px;
-  height: 230px;
+  left: -56px;
+  bottom: -72px;
+  width: 184px;
+  height: 184px;
   border-radius: 50%;
   background: ${theme.colors.secondary.second.light};
   opacity: 0.35;
@@ -27,10 +27,10 @@ const DecorCircle = styled.span`
 `;
 const DecorDot = styled.span`
   position: absolute;
-  left: 150px;
-  bottom: 40px;
-  width: 36px;
-  height: 36px;
+  left: 120px;
+  bottom: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: ${MINT};
   z-index: 0;
@@ -42,8 +42,8 @@ const DecorDot = styled.span`
 `;
 const DecorDots = styled(DotsGrid)`
   position: absolute;
-  right: 36px;
-  bottom: 36px;
+  right: 28px;
+  bottom: 28px;
   z-index: 0;
 
   @media ${theme.mediaQueries.mobile} {
@@ -57,13 +57,13 @@ const Content = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 8px 0 4px;
+  padding: 4px 0 2px;
 `;
 const Hero = styled.div`
   position: relative;
-  width: 112px;
-  height: 112px;
-  margin-bottom: 16px;
+  width: 84px;
+  height: 84px;
+  margin-bottom: 10px;
 `;
 const HeroCircle = styled.div`
   width: 100%;
@@ -76,15 +76,15 @@ const HeroCircle = styled.div`
 `;
 const HeroRays = styled(SparkleRays)`
   position: absolute;
-  top: -10px;
-  left: -64px;
+  top: -8px;
+  left: -56px;
 `;
 const HeroStar = styled.span`
   position: absolute;
-  top: 6px;
-  right: -44px;
-  width: 30px;
-  height: 30px;
+  top: 4px;
+  right: -36px;
+  width: 24px;
+  height: 24px;
   background: ${theme.colors.secondary.fourth.main};
   clip-path: polygon(
     50% 0,
@@ -99,16 +99,16 @@ const HeroStar = styled.span`
 `;
 const HeroDot = styled.span`
   position: absolute;
-  bottom: 12px;
-  right: -34px;
-  width: 14px;
-  height: 14px;
+  bottom: 9px;
+  right: -28px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
   background: ${theme.colors.secondary.second.light};
 `;
 const Title = styled.h3`
-  margin-bottom: 8px;
-  font-size: 40px;
+  margin-bottom: 6px;
+  font-size: 32px;
   font-weight: 800;
   color: ${theme.colors.text.title};
 
@@ -117,9 +117,9 @@ const Title = styled.h3`
   }
 `;
 const Message = styled.p`
-  margin-bottom: 26px;
+  margin-bottom: 18px;
   white-space: pre-line;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 1.4;
   color: ${theme.colors.text.title};
 
@@ -129,13 +129,13 @@ const Message = styled.p`
 `;
 const Summary = styled.div`
   width: 100%;
-  max-width: 710px;
+  max-width: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 28px;
-  padding: 16px 28px;
-  border-radius: 14px;
+  gap: 22px;
+  padding: 12px 22px;
+  border-radius: 12px;
   background: ${theme.colors.secondary.second.soft};
 
   @media ${theme.mediaQueries.mobile} {
@@ -146,7 +146,7 @@ const Summary = styled.div`
 const PlanInfo = styled.div`
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   text-align: left;
 
   @media ${theme.mediaQueries.mobile} {
@@ -159,7 +159,7 @@ const PlanText = styled.div`
   gap: 2px;
 `;
 const PlanName = styled.span`
-  font-size: 19px;
+  font-size: 16px;
   font-weight: 700;
   color: ${theme.colors.text.title};
 
@@ -168,7 +168,7 @@ const PlanName = styled.span`
   }
 `;
 const PlanFeature = styled.span`
-  font-size: 14px;
+  font-size: 12px;
   color: ${theme.colors.text.slate};
 
   @media ${theme.mediaQueries.mobile} {
@@ -180,7 +180,7 @@ const PriceInfo = styled.div`
   align-items: center;
   gap: 6px;
   align-self: stretch;
-  padding-left: 28px;
+  padding-left: 22px;
   border-left: 1px solid rgba(26, 26, 46, 0.2);
   color: ${theme.colors.text.title};
 
@@ -189,7 +189,7 @@ const PriceInfo = styled.div`
   }
 `;
 const PriceAmount = styled.span`
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 700;
 
   @media ${theme.mediaQueries.mobile} {
@@ -197,7 +197,7 @@ const PriceAmount = styled.span`
   }
 `;
 const PriceNote = styled.span`
-  font-size: 16px;
+  font-size: 13px;
   color: ${theme.colors.text.slate};
 
   @media ${theme.mediaQueries.mobile} {
@@ -206,9 +206,9 @@ const PriceNote = styled.span`
 `;
 const Divider = styled.div`
   width: 100%;
-  max-width: 710px;
+  max-width: 600px;
   height: 1px;
-  margin: 24px 0 18px;
+  margin: 16px 0 12px;
   background: ${theme.colors.border.input};
 `;
 const EmailNotice = styled.div`
@@ -216,7 +216,7 @@ const EmailNotice = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  font-size: 16px;
+  font-size: 14px;
   color: ${theme.colors.text.form};
 
   @media ${theme.mediaQueries.mobile} {
@@ -226,7 +226,7 @@ const EmailNotice = styled.div`
 const EmailLine = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 `;
 const EmailAddress = styled.strong`
   font-weight: 700;
@@ -234,8 +234,8 @@ const EmailAddress = styled.strong`
   overflow-wrap: anywhere;
 `;
 const CloseButton = styled(CheckoutButton)`
-  min-width: 280px;
-  margin-top: 24px;
+  min-width: 220px;
+  margin-top: 16px;
 
   @media ${theme.mediaQueries.mobile} {
     min-width: 0;
@@ -253,7 +253,7 @@ const SuccessStep = ({ plan, email, onClose }) => (
       rows={4}
       color={theme.colors.secondary.second.light}
       size={4}
-      gap={14}
+      gap={12}
       opacity={0.6}
     />
     <Content>
@@ -261,8 +261,8 @@ const SuccessStep = ({ plan, email, onClose }) => (
         <HeroRays />
         <HeroCircle>
           <CheckBadgeIcon
-            width={64}
-            height={64}
+            width={48}
+            height={48}
             viewBox="7 7 10 10"
             color="none"
             stroke={theme.colors.secondary.third.main}
@@ -275,7 +275,7 @@ const SuccessStep = ({ plan, email, onClose }) => (
       <Message>{labels.message}</Message>
       <Summary>
         <PlanInfo>
-          <PlanIcon plan={plan} size={52} />
+          <PlanIcon plan={plan} size={42} />
           <PlanText>
             <PlanName>
               {cardLabels.planPrefix} {plan.type}
@@ -292,8 +292,8 @@ const SuccessStep = ({ plan, email, onClose }) => (
       <EmailNotice>
         <EmailLine>
           <EmailIcon
-            width={24}
-            height={24}
+            width={20}
+            height={20}
             viewBox="0 0 24 24"
             color="none"
             stroke={theme.colors.primary.default}
