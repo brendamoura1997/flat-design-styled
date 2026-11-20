@@ -22,19 +22,30 @@ import OrderSummary from "./OrderSummary";
 import PaymentMethodOption from "./PaymentMethodOption";
 import StepLayout from "./StepLayout";
 
+const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
+
 const labels = checkoutLabels.data;
 const pixLabels = checkoutLabels.pix;
 
+const Layout = styled(StepLayout)`
+  grid-template-columns: minmax(0, 38fr) minmax(0, 62fr);
+  gap: 14px 20px;
+
+  @media ${tabletQueries}, ${theme.mediaQueries.mobile} {
+    grid-template-columns: minmax(0, 1fr);
+  }
+`;
 const Main = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 5px;
   min-width: 0;
 `;
 const Section = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
+  margin-bottom: 10px;
 `;
 const SectionTitle = styled.h3`
   display: flex;
@@ -63,7 +74,7 @@ const Payment = styled.fieldset`
   gap: 10px;
 
   & > legend {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 `;
 const Methods = styled.div`
@@ -89,10 +100,10 @@ const PixPanel = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 16px 18px;
+  gap: 12px;
+  padding: 16px 18px 16px 38px;
   border-radius: 14px;
-  background: ${theme.colors.secondary.second.soft};
+  background: #f3eefe;
 
   @media ${theme.mediaQueries.mobile} {
     padding: 14px;
@@ -100,21 +111,32 @@ const PixPanel = styled.div`
 `;
 const PixDecor = styled.span`
   position: absolute;
-  right: -28px;
-  bottom: -44px;
-  width: 130px;
+  right: -8px;
+  bottom: -65px;
+  width: 140px;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: ${theme.colors.secondary.second.light};
-  opacity: 0.3;
+  background: #e5e0ff;
   pointer-events: none;
 `;
+
+const PixDecorTiny = styled.span`
+  position: absolute;
+  right: -28px;
+  bottom: -85px;
+  width: 120px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ded8ff;
+  pointer-events: none;
+`;
+
 const PixIntro = styled.div`
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
 
   @media ${theme.mediaQueries.mobile} {
     flex-direction: column;
@@ -126,8 +148,8 @@ const PixLogoBox = styled.div`
   display: flex;
   align-items: center;
   align-self: stretch;
-  padding-right: 20px;
-  border-right: 1px solid ${theme.colors.border.input};
+  padding-right: 15px;
+  border-right: 1px solid rgba(50, 188, 173, 0.45);
 
   @media ${theme.mediaQueries.mobile} {
     padding-right: 0;
@@ -137,7 +159,7 @@ const PixLogoBox = styled.div`
 const PixText = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   min-width: 0;
 `;
 const PixTitle = styled.h4`
@@ -146,22 +168,33 @@ const PixTitle = styled.h4`
   color: ${theme.colors.text.form};
 `;
 const PixDescription = styled.p`
+  max-width: 200px;
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.2;
   color: ${theme.colors.text.form};
+
+  @media ${theme.mediaQueries.mobile} {
+    max-width: none;
+    line-height: 1.4;
+  }
 `;
 const PixDetails = styled.ul`
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
+  margin-left: 4px;
+
+  @media ${theme.mediaQueries.mobile} {
+    margin-left: 0;
+  }
 `;
 const PixDetail = styled.li`
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 13px;
+  font-size: 12.5px;
   color: ${theme.colors.text.slate};
 
   svg {
@@ -173,6 +206,7 @@ const TermsLabel = styled.label`
   align-items: center;
   gap: 10px;
   font-size: 13px;
+  margin-top: 5px;
   color: ${theme.colors.text.form};
   cursor: pointer;
 
@@ -214,10 +248,23 @@ const TermsLink = styled.a`
   text-decoration: underline;
   text-underline-offset: 2px;
 `;
+const Footer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+
+  @media ${theme.mediaQueries.mobile} {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+`;
 const Security = styled.p`
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
   font-size: 12px;
   color: ${theme.colors.text.slate};
 
@@ -228,6 +275,12 @@ const Security = styled.p`
 const Actions = styled.div`
   display: flex;
   justify-content: flex-end;
+  flex-shrink: 0;
+  margin-top: 3px;
+
+  @media ${theme.mediaQueries.mobile} {
+    margin-top: 0;
+  }
 `;
 
 const keepInPlace = (event) => event.preventDefault();
@@ -242,8 +295,8 @@ const DataStep = ({ plan, form, onNext }) => {
   };
 
   return (
-    <StepLayout as="form" onSubmit={handleSubmit} noValidate>
-      <OrderSummary plan={plan} label={checkoutLabels.summary.order} />
+    <Layout as="form" onSubmit={handleSubmit} noValidate>
+      <OrderSummary plan={plan} label={checkoutLabels.summary.order} roomy />
       <Main>
         <Section>
           <SectionTitle>
@@ -267,7 +320,6 @@ const DataStep = ({ plan, form, onNext }) => {
             ))}
           </FieldGrid>
         </Section>
-
         <Payment>
           <SectionTitle as="legend">
             <CardIcon
@@ -298,9 +350,10 @@ const DataStep = ({ plan, form, onNext }) => {
           ) : (
             <PixPanel>
               <PixDecor aria-hidden="true" />
+              <PixDecorTiny aria-hidden="true" />
               <PixIntro>
                 <PixLogoBox>
-                  <PixLogoIcon width={120} height={58} />
+                  <PixLogoIcon width={140} height={56} large />
                 </PixLogoBox>
                 <PixText>
                   <PixTitle>{pixLabels.title}</PixTitle>
@@ -331,7 +384,6 @@ const DataStep = ({ plan, form, onNext }) => {
             </PixPanel>
           )}
         </Payment>
-
         <TermsLabel>
           <TermsInput
             type="checkbox"
@@ -362,7 +414,8 @@ const DataStep = ({ plan, form, onNext }) => {
             {labels.terms.suffix}
           </span>
         </TermsLabel>
-
+      </Main>
+      <Footer>
         <Security>
           <LockIcon
             width={16}
@@ -372,26 +425,26 @@ const DataStep = ({ plan, form, onNext }) => {
           />
           {labels.security}
         </Security>
-      </Main>
-      <Actions>
-        <CheckoutButton
-          size="medium"
-          type="submit"
-          iconPosition="right"
-          icon={
-            <ArrowIcon
-              width={18}
-              height={18}
-              viewBox="0 0 24 24"
-              color="none"
-              stroke={theme.colors.white}
-            />
-          }
-        >
-          {labels.next}
-        </CheckoutButton>
-      </Actions>
-    </StepLayout>
+        <Actions>
+          <CheckoutButton
+            size="medium"
+            type="submit"
+            iconPosition="right"
+            icon={
+              <ArrowIcon
+                width={18}
+                height={18}
+                viewBox="0 0 24 24"
+                color="none"
+                stroke={theme.colors.white}
+              />
+            }
+          >
+            {labels.next}
+          </CheckoutButton>
+        </Actions>
+      </Footer>
+    </Layout>
   );
 };
 

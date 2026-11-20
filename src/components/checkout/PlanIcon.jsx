@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const Circle = styled.div`
   width: ${({ $size }) => $size}px;
@@ -15,10 +15,21 @@ const Circle = styled.div`
     height: 50%;
     filter: brightness(0) invert(1);
   }
+  svg path {
+    fill: currentColor;
+  }
+
+  ${({ $filled }) =>
+    $filled &&
+    css`
+      svg path {
+        fill: currentColor;
+      }
+    `}
 `;
 
-const PlanIcon = ({ plan, size = 64 }) => (
-  <Circle $size={size} $bg={plan.decor}>
+const PlanIcon = ({ plan, size = 64, filled = false }) => (
+  <Circle $size={size} $bg={plan.decor} $filled={filled}>
     {plan.icon}
   </Circle>
 );

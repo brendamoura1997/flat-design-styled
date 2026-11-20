@@ -47,9 +47,7 @@ const Circle = styled.span`
   justify-content: center;
   flex-shrink: 0;
   background: ${({ $pending }) =>
-    $pending
-      ? theme.colors.secondary.second.light
-      : theme.colors.primary.default};
+    $pending ? "#b2bac8" : theme.colors.primary.default};
   color: ${theme.colors.white};
   font-size: 14px;
   font-weight: 700;
@@ -65,8 +63,7 @@ const Label = styled.span`
   font-size: 14px;
   font-weight: 700;
   line-height: 1.2;
-  color: ${({ $pending }) =>
-    $pending ? theme.colors.secondary.second.light : theme.colors.text.title};
+  color: ${({ $pending }) => ($pending ? "#b2bac8" : theme.colors.text.title)};
 
   @media ${theme.mediaQueries.mobile} {
     display: ${({ $active }) => ($active ? "block" : "none")};
