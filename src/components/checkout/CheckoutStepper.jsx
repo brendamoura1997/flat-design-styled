@@ -75,12 +75,10 @@ const Label = styled.span`
 `;
 
 const CheckoutStepper = ({ steps, current }) => {
-  const lastId = steps[steps.length - 1].id;
-
   return (
     <Steps aria-label={checkoutLabels.stepsAriaLabel}>
       {steps.map(({ id, label }, index) => {
-        const isDone = id < current || current === lastId;
+        const isDone = id < current;
         const isActive = id === current && !isDone;
         const isPending = !isDone && !isActive;
 

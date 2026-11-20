@@ -4,6 +4,7 @@ import CheckBadgeIcon from "../../icons/CheckBadgeIcon";
 import ChevronLeftIcon from "../../icons/ChevronLeftIcon";
 import InfoIcon from "../../icons/InfoIcon";
 import PencilIcon from "../../icons/PencilIcon";
+import PixLogoIcon from "../../icons/PixLogoIcon";
 import UserIcon from "../../icons/UserIcon";
 import { theme } from "../../styles/theme";
 import {
@@ -15,11 +16,13 @@ import {
 import CardBrands from "./CardBrands";
 import CheckoutButton from "./CheckoutButton";
 import OrderSummary from "./OrderSummary";
+import PixBadge from "./PixBadge";
 import StepLayout from "./StepLayout";
 
 const PANEL_BORDER = "#e3dcff";
 
 const labels = checkoutLabels.confirm;
+const pixLabels = checkoutLabels.pix;
 const personalRows = [personalFields.slice(0, 2), personalFields.slice(2)];
 
 const Main = styled.div`
@@ -85,6 +88,15 @@ const ItemValue = styled.span`
   @media ${theme.mediaQueries.mobile} {
     font-size: 15px;
   }
+`;
+const PixTitleRow = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+`;
+const PixTitle = styled(ItemValue)`
+  font-weight: 700;
 `;
 const PaymentRow = styled.div`
   display: flex;
@@ -212,14 +224,26 @@ const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
             {labels.paymentTitle}
           </PanelTitle>
           <PaymentRow>
-            <PaymentLogo>{isCard ? <CardBrands /> : method.icon}</PaymentLogo>
+            <PaymentLogo>
+              {isCard ? <CardBrands /> : <PixLogoIcon width={96} height={46} />}
+            </PaymentLogo>
             <PaymentInfo>
-              <ItemLabel>{method.label}</ItemLabel>
-              {isCard && (
-                <ItemValue>
-                  {labels.cardMask}
-                  {lastDigits}
-                </ItemValue>
+              {isCard ? (
+                <>
+                  <ItemLabel>{method.label}</ItemLabel>
+                  <ItemValue>
+                    {labels.cardMask}
+                    {lastDigits}
+                  </ItemValue>
+                </>
+              ) : (
+                <>
+                  <PixTitleRow>
+                    <PixTitle>{pixLabels.title}</PixTitle>
+                    <PixBadge>{pixLabels.badge}</PixBadge>
+                  </PixTitleRow>
+                  <ItemLabel>{pixLabels.description}</ItemLabel>
+                </>
               )}
             </PaymentInfo>
             <EditButton type="button" onClick={onBack}>
@@ -243,7 +267,7 @@ const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
             color="none"
             stroke={theme.colors.primary.default}
           />
-          {labels.notice}
+          {isCard ? labels.notice : labels.pixNotice}
         </Notice>
       </Main>
       <Actions>
@@ -277,7 +301,7 @@ const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
             />
           }
         >
-          {labels.confirm}
+          {isCard ? labels.confirm : labels.pixConfirm}
         </ConfirmButton>
       </Actions>
     </StepLayout>

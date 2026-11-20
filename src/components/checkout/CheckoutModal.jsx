@@ -7,6 +7,7 @@ import { theme } from "../../styles/theme";
 import useFormValues from "../../hooks/useFormValues";
 import {
   CHECKOUT_STEP,
+  PAYMENT_METHOD,
   checkoutHeaders,
   checkoutInitialValues,
   checkoutLabels,
@@ -17,6 +18,7 @@ import CardIllustration from "./CardIllustration";
 import CheckoutStepper from "./CheckoutStepper";
 import ConfirmStep from "./ConfirmStep";
 import DataStep from "./DataStep";
+import PixStep from "./PixStep";
 import SuccessStep from "./SuccessStep";
 
 const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
@@ -226,8 +228,17 @@ const CheckoutModal = ({ plan, onClose }) => {
             plan={plan}
             values={form.values}
             onBack={() => setStep(CHECKOUT_STEP.DATA)}
-            onConfirm={() => setStep(CHECKOUT_STEP.SUCCESS)}
+            onConfirm={() =>
+              setStep(
+                form.values.paymentMethod === PAYMENT_METHOD.PIX
+                  ? CHECKOUT_STEP.PIX
+                  : CHECKOUT_STEP.SUCCESS,
+              )
+            }
           />
+        )}
+        {step === CHECKOUT_STEP.PIX && (
+          <PixStep plan={plan} onPaid={() => setStep(CHECKOUT_STEP.SUCCESS)} />
         )}
         {step === CHECKOUT_STEP.SUCCESS && (
           <SuccessStep
