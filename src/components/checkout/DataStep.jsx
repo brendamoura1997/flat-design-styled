@@ -1,14 +1,18 @@
 import styled from "styled-components";
 import ArrowIcon from "../../icons/ArrowIcon";
+import CalendarIcon from "../../icons/CalendarIcon";
 import CardIcon from "../../icons/CardIcon";
 import CheckBadgeIcon from "../../icons/CheckBadgeIcon";
 import LockIcon from "../../icons/LockIcon";
+import PixLogoIcon from "../../icons/PixLogoIcon";
+import ShieldIcon from "../../icons/ShieldIcon";
 import UserIcon from "../../icons/UserIcon";
 import { theme } from "../../styles/theme";
 import {
   PAYMENT_METHOD,
   cardFields,
   checkoutLabels,
+  formatPlanTotal,
   paymentMethods,
   personalFields,
 } from "../../utils/checkoutData";
@@ -19,6 +23,7 @@ import PaymentMethodOption from "./PaymentMethodOption";
 import StepLayout from "./StepLayout";
 
 const labels = checkoutLabels.data;
+const pixLabels = checkoutLabels.pix;
 
 const Main = styled.div`
   display: flex;
@@ -79,13 +84,89 @@ const CardFields = styled.div`
     grid-column: 1 / -1;
   }
 `;
-const PixNotice = styled.p`
-  padding: 10px 14px;
-  border-radius: 12px;
+const PixPanel = styled.div`
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 14px;
   background: ${theme.colors.secondary.second.soft};
-  font-size: 13px;
-  line-height: 1.5;
+
+  @media ${theme.mediaQueries.mobile} {
+    padding: 14px;
+  }
+`;
+const PixDecor = styled.span`
+  position: absolute;
+  right: -28px;
+  bottom: -44px;
+  width: 130px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: ${theme.colors.secondary.second.light};
+  opacity: 0.3;
+  pointer-events: none;
+`;
+const PixIntro = styled.div`
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  @media ${theme.mediaQueries.mobile} {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+`;
+const PixLogoBox = styled.div`
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  padding-right: 20px;
+  border-right: 1px solid ${theme.colors.border.input};
+
+  @media ${theme.mediaQueries.mobile} {
+    padding-right: 0;
+    border-right: none;
+  }
+`;
+const PixText = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+`;
+const PixTitle = styled.h4`
+  font-size: 18px;
+  font-weight: 700;
   color: ${theme.colors.text.form};
+`;
+const PixDescription = styled.p`
+  font-size: 14px;
+  line-height: 1.4;
+  color: ${theme.colors.text.form};
+`;
+const PixDetails = styled.ul`
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+const PixDetail = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: ${theme.colors.text.slate};
+
+  svg {
+    flex-shrink: 0;
+  }
 `;
 const TermsLabel = styled.label`
   display: flex;
@@ -215,7 +296,39 @@ const DataStep = ({ plan, form, onNext }) => {
               ))}
             </CardFields>
           ) : (
-            <PixNotice>{labels.pixNotice}</PixNotice>
+            <PixPanel>
+              <PixDecor aria-hidden="true" />
+              <PixIntro>
+                <PixLogoBox>
+                  <PixLogoIcon width={120} height={58} />
+                </PixLogoBox>
+                <PixText>
+                  <PixTitle>{pixLabels.title}</PixTitle>
+                  <PixDescription>{pixLabels.description}</PixDescription>
+                </PixText>
+              </PixIntro>
+              <PixDetails>
+                <PixDetail>
+                  <CalendarIcon
+                    width={20}
+                    height={20}
+                    viewBox="0 0 24 24"
+                    color="none"
+                    stroke={theme.colors.primary.default}
+                  />
+                  {pixLabels.monthlyCharge} {formatPlanTotal(plan.price)}
+                </PixDetail>
+                <PixDetail>
+                  <ShieldIcon
+                    width={20}
+                    height={20}
+                    viewBox="0 0 24 24"
+                    color={theme.colors.primary.default}
+                  />
+                  {pixLabels.security}
+                </PixDetail>
+              </PixDetails>
+            </PixPanel>
           )}
         </Payment>
 

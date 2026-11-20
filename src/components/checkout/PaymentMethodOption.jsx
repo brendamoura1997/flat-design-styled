@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../styles/theme";
+import PixBadge from "./PixBadge";
 
 const Option = styled.label`
   position: relative;
@@ -19,6 +20,7 @@ const Option = styled.label`
     background 0.2s;
 
   @media ${theme.mediaQueries.mobile} {
+    flex-wrap: wrap;
     gap: 8px;
     padding: 10px 12px;
   }
@@ -57,6 +59,13 @@ const OptionLabel = styled.span`
     font-size: 13px;
   }
 `;
+const OptionBadge = styled(PixBadge)`
+  margin-left: auto;
+
+  @media ${theme.mediaQueries.mobile} {
+    margin-left: 28px;
+  }
+`;
 
 const PaymentMethodOption = ({ option, checked, onChange }) => (
   <Option $checked={checked}>
@@ -70,6 +79,7 @@ const PaymentMethodOption = ({ option, checked, onChange }) => (
     <Indicator $checked={checked} aria-hidden="true" />
     {option.icon}
     <OptionLabel>{option.label}</OptionLabel>
+    {option.badge && <OptionBadge>{option.badge}</OptionBadge>}
   </Option>
 );
 

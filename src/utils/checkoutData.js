@@ -6,9 +6,14 @@ import UserIcon from "../icons/UserIcon";
 import { theme } from "../styles/theme";
 import { cardLabels } from "./priceData";
 
-export const CHECKOUT_STEP = { DATA: 0, CONFIRM: 1, SUCCESS: 2 };
+export const CHECKOUT_STEP = { DATA: 0, CONFIRM: 1, PIX: 2, SUCCESS: 3 };
 
 export const PAYMENT_METHOD = { CARD: "card", PIX: "pix" };
+
+export const PIX_PAYMENT_DELAY = 10000;
+
+export const PIX_CODE =
+  "00020101021226900014br.gov.bcb.pix0136flatdesign-exemplo-0000-0000-000000000000520400005303986540520.005802BR5913FLAT DESIGN6009SAO PAULO62070503***6304EXMP";
 
 const fieldIconProps = {
   width: 18,
@@ -21,7 +26,7 @@ const fieldIconProps = {
 export const checkoutSteps = [
   { id: CHECKOUT_STEP.DATA, label: "Dados e pagamento" },
   { id: CHECKOUT_STEP.CONFIRM, label: "Confirmação\ndos dados" },
-  { id: CHECKOUT_STEP.SUCCESS, label: "Finalização" },
+  { id: CHECKOUT_STEP.PIX, label: "Finalização" },
 ];
 
 export const checkoutHeaders = {
@@ -34,6 +39,11 @@ export const checkoutHeaders = {
     title: "Confirme sua",
     highlight: "assinatura",
     subtitle: "Confira os dados abaixo antes de finalizar seu plano.",
+  },
+  [CHECKOUT_STEP.PIX]: {
+    title: "Confirme sua",
+    highlight: "assinatura",
+    subtitle: "Assinatura concluída! Aproveite os nossos serviços.",
   },
   [CHECKOUT_STEP.SUCCESS]: {
     title: "Confirme sua",
@@ -54,6 +64,14 @@ export const checkoutLabels = {
     billing: "Cobrança mensal recorrente",
     cancellation: "Você pode cancelar quando quiser.",
   },
+  pix: {
+    title: "PIX Automático",
+    badge: "Recorrente",
+    description:
+      "Autorize uma única vez e tenha suas mensalidades pagas automaticamente.",
+    monthlyCharge: "Cobrança mensal de",
+    security: "Autorização segura pelo app do seu banco",
+  },
   data: {
     personalTitle: "Seus dados",
     paymentTitle: "Forma de pagamento",
@@ -65,8 +83,6 @@ export const checkoutLabels = {
       suffix: ".",
     },
     security: "Seus dados são protegidos e criptografados.",
-    pixNotice:
-      "Ao confirmar, as instruções de pagamento via Pix serão enviadas para o seu e-mail.",
     next: "Confirmar dados",
   },
   confirm: {
@@ -76,8 +92,23 @@ export const checkoutLabels = {
     edit: "Editar",
     notice:
       "Você será cobrado mensalmente, podendo cancelar a qualquer momento.",
+    pixNotice:
+      "Após a confirmação, você verá o QR Code para realizar o pagamento.",
     back: "Voltar",
     confirm: "Confirmar assinatura",
+    pixConfirm: "Confirmar dados e gerar QR Code",
+  },
+  pixStep: {
+    title: "Pague com PIX",
+    message:
+      "Escaneie o QR Code abaixo ou copie o código para realizar o pagamento pelo app do seu banco.",
+    qrAlt: "QR Code PIX",
+    scanHint: "Aponte a câmera do seu banco para o QR Code",
+    copyTitle: "Ou copie o código PIX",
+    copy: "Copiar código PIX",
+    copied: "Código PIX copiado",
+    waiting: "Aguardando confirmação do pagamento...",
+    redirect: "Você será redirecionado automaticamente após a confirmação.",
   },
   success: {
     title: "Tudo certo!",
@@ -93,7 +124,7 @@ export const checkoutInitialValues = {
   email: "",
   cpf: "",
   phone: "",
-  paymentMethod: PAYMENT_METHOD.CARD,
+  paymentMethod: PAYMENT_METHOD.PIX,
   cardNumber: "",
   cardName: "",
   cardExpiry: "",
@@ -186,7 +217,8 @@ export const paymentMethods = [
   },
   {
     value: PAYMENT_METHOD.PIX,
-    label: "Pix",
+    label: "PIX",
+    badge: checkoutLabels.pix.badge,
     icon: (
       <PixIcon width={24} height={24} viewBox="0 0 24 24" color="#32bcad" />
     ),
