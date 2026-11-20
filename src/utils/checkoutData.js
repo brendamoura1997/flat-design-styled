@@ -107,7 +107,7 @@ export const checkoutLabels = {
     copyTitle: "Ou copie o código PIX",
     copy: "Copiar código PIX",
     copied: "Código PIX copiado",
-    waiting: "Aguardando confirmação do pagamento...",
+    waiting: "Aguardando confirmação do pagamento [SIMULAÇÃO]...",
     redirect: "Você será redirecionado automaticamente após a confirmação.",
   },
   success: {

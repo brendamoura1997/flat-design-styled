@@ -3,6 +3,7 @@ import CheckBadgeIcon from "../../icons/CheckBadgeIcon";
 import { theme } from "../../styles/theme";
 import { cardLabels } from "../../utils/priceData";
 import { checkoutLabels, formatPlanTotal } from "../../utils/checkoutData";
+import { getCheckoutPalette } from "../../utils/checkoutPalettes";
 import PlanIcon from "./PlanIcon";
 
 const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
@@ -16,7 +17,7 @@ const Panel = styled.aside`
   padding: 56px 14px 22px;
   background: ${({ $bg }) => $bg};
   color: ${theme.colors.text.title};
-  border: 1px solid #e3dcff;
+  border: 1px solid var(--ck-panel-border, #e3dcff);
 
   @media ${tabletQueries}, ${theme.mediaQueries.mobile} {
     grid-row: auto;
@@ -34,7 +35,7 @@ const Tag = styled.span`
   z-index: 2;
   padding: 10px 24px 10px 20px;
   border-radius: 0 26px 26px 0;
-  background: ${TAG_COLOR};
+  background: var(--ck-tag, ${TAG_COLOR});
   color: ${theme.colors.white};
   font-size: 13px;
   font-weight: 700;
@@ -163,11 +164,15 @@ const CheckBadge = styled.span`
   height: 22px;
   border-radius: 50%;
   background: white;
-  border-bottom: 2px solid #cfc8fb;
+  border-bottom: 2px solid var(--ck-check-border, #cfc8fb);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+
+  svg {
+    stroke: var(--ck-check-stroke, ${theme.colors.secondary.third.main});
+  }
 
   ${({ $roomy }) =>
     $roomy &&
@@ -184,7 +189,7 @@ const CheckBadge = styled.span`
 
 const Divider = styled.div`
   height: 1px;
-  background: rgba(82, 48, 224, 0.18);
+  background: var(--ck-divider, rgba(82, 48, 224, 0.18));
 
   ${({ $roomy }) =>
     $roomy &&
@@ -257,7 +262,7 @@ const Sparkle = styled.svg`
   pointer-events: none;
 `;
 
-const WaveDecor = ({ color }) => (
+const WaveDecor = ({ colors }) => (
   <Waves
     viewBox="0 0 400 160"
     preserveAspectRatio="none"
@@ -266,18 +271,15 @@ const WaveDecor = ({ color }) => (
   >
     <path
       d="M0 14C50 4 110 22 170 52C240 88 330 92 400 58V160H0Z"
-      fill={color}
-      opacity="0.3"
+      fill={colors[0]}
     />
     <path
       d="M0 66C60 56 120 80 190 100C260 120 340 116 400 92V160H0Z"
-      fill={color}
-      opacity="0.45"
+      fill={colors[1]}
     />
     <path
       d="M0 112C50 104 110 124 190 136C270 148 340 144 400 128V160H0Z"
-      fill={color}
-      opacity="0.65"
+      fill={colors[2]}
     />
   </Waves>
 );
@@ -296,9 +298,9 @@ const SparkleDecor = ({ left, bottom, size }) => (
 );
 
 const OrderSummary = ({ plan, label, roomy = false }) => (
-  <Panel $bg={plan.iconBg} $roomy={roomy}>
+  <Panel $bg={getCheckoutPalette(plan).summaryBg} $roomy={roomy}>
     <Tag $roomy={roomy}>{label}</Tag>
-    <WaveDecor color={plan.panelBg} />
+    <WaveDecor colors={getCheckoutPalette(plan).waves} />
     <SparkleDecor left={42} bottom={21} size={17} />
     <SparkleDecor left={60} bottom={38} size={11} />
 

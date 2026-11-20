@@ -24,8 +24,7 @@ const Blob = styled.span`
   width: 256px;
   height: 256px;
   border-radius: 50%;
-  background: ${theme.colors.secondary.second.light};
-  opacity: 0.3;
+  background: var(--ck-blob-large, #e3e0fc);
 `;
 const BlobSmall = styled.span`
   position: absolute;
@@ -34,8 +33,7 @@ const BlobSmall = styled.span`
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: ${theme.colors.secondary.second.light};
-  opacity: 0.35;
+  background: var(--ck-blob-small, #cec9fa);
 `;
 const Rays = styled(SparkleRays)`
   position: absolute;
@@ -51,10 +49,10 @@ const Card = styled.div`
   border-radius: 11px;
   background: linear-gradient(
     135deg,
-    ${theme.colors.secondary.second.main},
-    ${theme.colors.primary.default}
+    var(--ck-card-from, ${theme.colors.secondary.second.main}),
+    var(--ck-card-to, ${theme.colors.primary.default})
   );
-  box-shadow: 0 9px 18px rgba(26, 26, 173, 0.25);
+  box-shadow: 0 9px 18px var(--ck-card-shadow, rgba(26, 26, 173, 0.25));
   transform: rotate(-10deg);
   overflow: hidden;
 `;
