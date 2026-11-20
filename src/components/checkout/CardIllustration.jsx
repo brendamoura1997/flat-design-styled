@@ -29,20 +29,13 @@ const Blob = styled.span`
 `;
 const BlobSmall = styled.span`
   position: absolute;
-  top: 56px;
-  right: 32px;
+  top: 20px;
+  right: 25px;
   width: 120px;
   height: 120px;
   border-radius: 50%;
   background: ${theme.colors.secondary.second.light};
   opacity: 0.35;
-
-  ${({ $refined }) =>
-    $refined &&
-    css`
-      top: 20px;
-      right: 25px;
-    `}
 `;
 const Rays = styled(SparkleRays)`
   position: absolute;
