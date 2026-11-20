@@ -15,6 +15,10 @@ const Circle = styled.div`
     height: 50%;
     filter: brightness(0) invert(1);
   }
+
+  svg path {
+    fill: currentColor;
+  }
 `;
 
 const PlanIcon = ({ plan, size = 64 }) => (

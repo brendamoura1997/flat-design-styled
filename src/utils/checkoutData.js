@@ -204,7 +204,7 @@ export const cardFields = [
 export const paymentMethods = [
   {
     value: PAYMENT_METHOD.CARD,
-    label: "Cartão de crédito",
+    label: "Cartão de credito",
     icon: (
       <CardIcon
         width={24}

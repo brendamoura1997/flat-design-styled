@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../styles/theme";
 import SparkleRays from "./SparkleRays";
 
@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 `;
 const Blob = styled.span`
   position: absolute;
-  top: -88px;
+  top: -108px;
   right: -72px;
   width: 256px;
   height: 256px;
@@ -29,8 +29,8 @@ const Blob = styled.span`
 `;
 const BlobSmall = styled.span`
   position: absolute;
-  top: 56px;
-  right: 32px;
+  top: 20px;
+  right: 25px;
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -41,6 +41,13 @@ const Rays = styled(SparkleRays)`
   position: absolute;
   top: 32px;
   left: 22px;
+
+  ${({ $refined }) =>
+    $refined &&
+    css`
+      top: 30px;
+      left: 31px;
+    `}
 `;
 const Card = styled.div`
   position: absolute;
@@ -57,6 +64,13 @@ const Card = styled.div`
   box-shadow: 0 9px 18px rgba(26, 26, 173, 0.25);
   transform: rotate(-10deg);
   overflow: hidden;
+
+  ${({ $refined }) =>
+    $refined &&
+    css`
+      top: 38px;
+      right: 81px;
+    `}
 `;
 const Stripe = styled.span`
   position: absolute;
@@ -85,12 +99,12 @@ const Line = styled.span`
   width: ${({ $width }) => $width}px;
 `;
 
-const CardIllustration = () => (
+const CardIllustration = ({ refined = false }) => (
   <Wrapper aria-hidden="true">
     <Blob />
-    <BlobSmall />
-    <Rays />
-    <Card>
+    <BlobSmall $refined={refined} />
+    <Rays $refined={refined} />
+    <Card $refined={refined}>
       <Stripe />
       <Chip />
       <Line

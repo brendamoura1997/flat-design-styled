@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import CloseIcon from "../../icons/CloseIcon";
 import ShieldHollowIcon from "../../icons/ShieldHollowIcon";
 import { theme } from "../../styles/theme";
@@ -97,6 +97,20 @@ const CloseButton = styled.button`
     background: rgba(26, 26, 46, 0.08);
   }
 
+  ${({ $refined }) =>
+    $refined &&
+    css`
+      top: 10px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
+      background: ${theme.colors.white};
+
+      &:hover {
+        background: ${theme.colors.secondary.second.soft};
+      }
+    `}
+
   @media ${theme.mediaQueries.mobile} {
     top: 14px;
     right: 12px;
@@ -149,6 +163,7 @@ const CheckoutModal = ({ plan, onClose }) => {
   const backdropRef = useRef(null);
   const dialogRef = useRef(null);
   const header = checkoutHeaders[step];
+  const isDataStep = step === CHECKOUT_STEP.DATA;
 
   useEffect(() => {
     const onKey = (event) => {
@@ -189,10 +204,11 @@ const CheckoutModal = ({ plan, onClose }) => {
         aria-labelledby="checkout-title"
         tabIndex={-1}
       >
-        <CardIllustration />
+        <CardIllustration refined={isDataStep} />
         <CloseButton
           type="button"
           aria-label={checkoutLabels.close}
+          $refined={isDataStep}
           onClick={onClose}
         >
           <CloseIcon
