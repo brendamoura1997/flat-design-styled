@@ -21,16 +21,28 @@ const labels = checkoutLabels.pixStep;
 
 const DecorCircle = styled.span`
   position: absolute;
-  left: -56px;
-  bottom: -72px;
-  width: 184px;
-  height: 184px;
+  left: -86px;
+  bottom: -92px;
+  width: 204px;
+  height: 204px;
   border-radius: 50%;
-  background: ${theme.colors.secondary.second.light};
-  opacity: 0.35;
+  background: #e4e1fc;
   z-index: 0;
   pointer-events: none;
 `;
+
+const DecorCircleSmall = styled.span`
+  position: absolute;
+  left: -86px;
+  bottom: -112px;
+  width: 184px;
+  height: 184px;
+  border-radius: 50%;
+  background: #cec9fa;
+  z-index: 0;
+  pointer-events: none;
+`;
+
 const DecorDot = styled.span`
   position: absolute;
   left: 120px;
@@ -65,41 +77,7 @@ const Content = styled.div`
   text-align: center;
   padding: 0;
 `;
-const Hero = styled.div`
-  position: relative;
-  width: 60px;
-  height: 60px;
-  margin-bottom: 8px;
-`;
-const HeroCircle = styled.div`
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: ${MINT};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const Sparkle = ({ className, color, filled }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill={filled ? color : "none"}
-    stroke={color}
-    strokeWidth="1.6"
-    strokeLinejoin="round"
-    aria-hidden="true"
-  >
-    <path d="M12 2C12.8 7.5 16.5 11.2 22 12C16.5 12.8 12.8 16.5 12 22C11.2 16.5 7.5 12.8 2 12C7.5 11.2 11.2 7.5 12 2Z" />
-  </svg>
-);
-const HeroSparkle = styled(Sparkle)`
-  position: absolute;
-  top: ${({ $top }) => $top}px;
-  left: ${({ $left }) => $left}px;
-  width: ${({ $size }) => $size}px;
-  height: ${({ $size }) => $size}px;
-`;
+
 const Title = styled.h3`
   margin-bottom: 4px;
   font-size: 24px;
@@ -130,13 +108,14 @@ const Panel = styled.div`
   gap: 6px;
   padding: 8px;
   border-radius: 14px;
-  background: ${theme.colors.secondary.second.soft};
+  background: #f0ebff;
+  border: 1px solid #e3dcff;
 `;
 const PlanBar = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  padding: 2px 6px 0;
+  padding: 2px 10px 0;
 
   @media ${theme.mediaQueries.mobile} {
     padding: 2px 2px 0;
@@ -147,7 +126,11 @@ const PlanInfo = styled.div`
   align-items: center;
   gap: 10px;
   min-width: 0;
-  text-align: left;
+  // text-align: left;
+
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
 
   @media ${theme.mediaQueries.mobile} {
     gap: 8px;
@@ -192,7 +175,7 @@ const QrBox = styled.div`
   gap: 6px;
   padding: 10px 12px 10px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.55);
+  background: #f9f7ff;
 
   @media ${theme.mediaQueries.mobile} {
     padding: 10px 8px;
@@ -310,6 +293,7 @@ const PixStep = ({ plan, onPaid }) => {
   return (
     <>
       <DecorCircle aria-hidden="true" />
+      <DecorCircleSmall aria-hidden="true" />
       <DecorDot aria-hidden="true" />
       <DecorDots
         columns={4}
@@ -320,43 +304,6 @@ const PixStep = ({ plan, onPaid }) => {
         opacity={0.6}
       />
       <Content>
-        <Hero aria-hidden="true">
-          <HeroSparkle
-            $top={0}
-            $left={-42}
-            $size={20}
-            color={theme.colors.secondary.third.light}
-          />
-          <HeroSparkle
-            $top={48}
-            $left={-24}
-            $size={10}
-            color={theme.colors.secondary.third.light}
-            filled
-          />
-          <HeroSparkle
-            $top={2}
-            $left={84}
-            $size={18}
-            color={theme.colors.secondary.fourth.main}
-          />
-          <HeroSparkle
-            $top={52}
-            $left={76}
-            $size={10}
-            color={theme.colors.secondary.third.light}
-            filled
-          />
-          <HeroCircle>
-            <CheckBadgeIcon
-              width={36}
-              height={36}
-              viewBox="7 7 10 10"
-              color="none"
-              stroke={theme.colors.secondary.third.main}
-            />
-          </HeroCircle>
-        </Hero>
         <Title>{labels.title}</Title>
         <Message>{labels.message}</Message>
         <Panel>

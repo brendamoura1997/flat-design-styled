@@ -5,8 +5,6 @@ import { cardLabels } from "../../utils/priceData";
 import { checkoutLabels, formatPlanTotal } from "../../utils/checkoutData";
 import PlanIcon from "./PlanIcon";
 
-const MINT = "#b9f0d9";
-
 const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
 
 const Panel = styled.aside`
@@ -17,6 +15,7 @@ const Panel = styled.aside`
   padding: 56px 14px 22px;
   background: ${({ $bg }) => $bg};
   color: ${theme.colors.text.title};
+  border: 1px solid #e3dcff;
 
   @media ${tabletQueries}, ${theme.mediaQueries.mobile} {
     grid-row: auto;
@@ -206,7 +205,8 @@ const CheckBadge = styled.span`
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: ${MINT};
+  background: white;
+  border-bottom: 2px solid #cfc8fb;
   display: flex;
   align-items: center;
   justify-content: center;

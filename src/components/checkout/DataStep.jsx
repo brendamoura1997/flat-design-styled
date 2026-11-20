@@ -103,7 +103,8 @@ const PixPanel = styled.div`
   gap: 12px;
   padding: 16px 18px 16px 38px;
   border-radius: 14px;
-  background: #f3eefe;
+  background: #f5f2ff;
+  border: 1px solid #e3dcff;
 
   @media ${theme.mediaQueries.mobile} {
     padding: 14px;

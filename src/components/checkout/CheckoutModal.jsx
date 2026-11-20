@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 import CloseIcon from "../../icons/CloseIcon";
 import ShieldHollowIcon from "../../icons/ShieldHollowIcon";
 import { theme } from "../../styles/theme";
@@ -82,34 +82,20 @@ const ModalBox = styled.div`
 `;
 const CloseButton = styled.button`
   position: absolute;
-  top: 16px;
-  right: 18px;
+  top: 10px;
+  right: 14px;
   z-index: 2;
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   transition: background 0.2s;
-
+  background: rgba(255, 255, 255, 0.8);
   &:hover {
-    background: rgba(26, 26, 46, 0.08);
+    background: ${theme.colors.white};
   }
-
-  ${({ $refined }) =>
-    $refined &&
-    css`
-      top: 10px;
-      right: 14px;
-      width: 40px;
-      height: 40px;
-      background: ${theme.colors.white};
-
-      &:hover {
-        background: ${theme.colors.secondary.second.soft};
-      }
-    `}
 
   @media ${theme.mediaQueries.mobile} {
     top: 14px;
