@@ -75,7 +75,7 @@ export const checkoutPalettes = {
     successCheck: secondary.third.main,
     summaryBg: "#F0EBFF",
     planIcon: "#5230E0",
-    waves: ["#F0EBFF", "#F0EBFF", "#DAD4FD"],
+    waves: ["#DAD4FD", "#C3BBFA", "#B1A8F8"],
     blobLarge: "#E3E0FC",
     blobSmall: "#CEC9FA",
     confirmPanel: "#F5F2FF",
