@@ -11,6 +11,7 @@ import {
   checkoutLabels,
   formatPlanTotal,
 } from "../../utils/checkoutData";
+import { getCheckoutPalette } from "../../utils/checkoutPalettes";
 import DotsGrid from "../decor/DotsGrid";
 import PixQrCode from "./PixQrCode";
 import PlanIcon from "./PlanIcon";
@@ -26,7 +27,7 @@ const DecorCircle = styled.span`
   width: 204px;
   height: 204px;
   border-radius: 50%;
-  background: #e4e1fc;
+  background: var(--ck-pix-circle, #e4e1fc);
   z-index: 0;
   pointer-events: none;
 `;
@@ -38,7 +39,7 @@ const DecorCircleSmall = styled.span`
   width: 184px;
   height: 184px;
   border-radius: 50%;
-  background: #cec9fa;
+  background: var(--ck-pix-circle-small, #cec9fa);
   z-index: 0;
   pointer-events: none;
 `;
@@ -108,8 +109,8 @@ const Panel = styled.div`
   gap: 6px;
   padding: 8px;
   border-radius: 14px;
-  background: #f0ebff;
-  border: 1px solid #e3dcff;
+  background: var(--ck-pix-panel, #f0ebff);
+  border: 1px solid var(--ck-pix-border, #e3dcff);
 `;
 const PlanBar = styled.div`
   display: grid;
@@ -139,7 +140,7 @@ const PlanInfo = styled.div`
 const PlanName = styled.span`
   font-size: 14px;
   font-weight: 700;
-  color: ${theme.colors.text.title};
+  color: var(--ck-plan-name, ${theme.colors.text.title});
 
   @media ${theme.mediaQueries.mobile} {
     font-size: 13px;
@@ -175,7 +176,7 @@ const QrBox = styled.div`
   gap: 6px;
   padding: 10px 12px 10px;
   border-radius: 12px;
-  background: #f9f7ff;
+  background: var(--ck-pix-qr, #f9f7ff);
 
   @media ${theme.mediaQueries.mobile} {
     padding: 10px 8px;
@@ -195,7 +196,7 @@ const QrHint = styled.p`
 const QrDivider = styled.div`
   width: 100%;
   height: 1px;
-  background: ${theme.colors.border.input};
+  background: var(--ck-qr-divider, ${theme.colors.border.input});
 `;
 const CopyTitle = styled.p`
   font-size: 13px;
@@ -230,13 +231,13 @@ const CopyButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1.5px solid ${theme.colors.primary.default};
+  border: 1.5px solid var(--ck-accent, ${theme.colors.primary.default});
   border-radius: 50%;
   background: ${theme.colors.white};
   transition: background 0.2s;
 
   &:hover {
-    background: ${theme.colors.secondary.second.soft};
+    background: var(--ck-hover-bg, ${theme.colors.secondary.second.soft});
   }
 `;
 const Waiting = styled.div`
@@ -252,7 +253,7 @@ const WaitingLine = styled.p`
   gap: 6px;
   font-size: 13px;
   font-weight: 700;
-  color: ${theme.colors.text.form};
+  color: var(--ck-waiting, ${theme.colors.text.form});
 
   svg {
     flex-shrink: 0;
@@ -271,6 +272,7 @@ const PixStep = ({ plan, onPaid }) => {
   const [copied, setCopied] = useState(false);
   const onPaidRef = useRef(onPaid);
   const copyTimerRef = useRef(null);
+  const palette = getCheckoutPalette(plan);
 
   useEffect(() => {
     onPaidRef.current = onPaid;
@@ -298,7 +300,7 @@ const PixStep = ({ plan, onPaid }) => {
       <DecorDots
         columns={4}
         rows={4}
-        color={theme.colors.secondary.second.light}
+        color={palette.dots}
         size={4}
         gap={12}
         opacity={0.6}
@@ -347,7 +349,7 @@ const PixStep = ({ plan, onPaid }) => {
                     height={18}
                     viewBox="0 0 24 24"
                     color="none"
-                    stroke={theme.colors.primary.default}
+                    stroke={palette.accent}
                   />
                 )}
               </CopyButton>
@@ -361,7 +363,7 @@ const PixStep = ({ plan, onPaid }) => {
               height={18}
               viewBox="0 0 24 24"
               color="none"
-              stroke={theme.colors.primary.default}
+              stroke={palette.accent}
             />
             {labels.waiting}
           </WaitingLine>

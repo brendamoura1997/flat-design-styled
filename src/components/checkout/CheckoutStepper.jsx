@@ -26,7 +26,7 @@ const Step = styled.li`
     flex: 1;
     height: 1px;
     margin: 0 12px 0 2px;
-    background: ${theme.colors.secondary.second.light};
+    background: var(--ck-step-line, ${theme.colors.secondary.second.light});
     opacity: 0.6;
   }
 
@@ -47,7 +47,7 @@ const Circle = styled.span`
   justify-content: center;
   flex-shrink: 0;
   background: ${({ $pending }) =>
-    $pending ? "#b2bac8" : theme.colors.primary.default};
+    $pending ? "#b2bac8" : `var(--ck-accent, ${theme.colors.primary.default})`};
   color: ${theme.colors.white};
   font-size: 14px;
   font-weight: 700;

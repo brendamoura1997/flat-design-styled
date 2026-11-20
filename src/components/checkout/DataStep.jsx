@@ -16,6 +16,7 @@ import {
   paymentMethods,
   personalFields,
 } from "../../utils/checkoutData";
+import { getCheckoutPalette } from "../../utils/checkoutPalettes";
 import CheckoutButton from "./CheckoutButton";
 import CheckoutField from "./CheckoutField";
 import OrderSummary from "./OrderSummary";
@@ -103,8 +104,8 @@ const PixPanel = styled.div`
   gap: 12px;
   padding: 16px 18px 16px 38px;
   border-radius: 14px;
-  background: #f5f2ff;
-  border: 1px solid #e3dcff;
+  background: var(--ck-pix-bg, #f5f2ff);
+  border: 1px solid var(--ck-pix-border, #e3dcff);
 
   @media ${theme.mediaQueries.mobile} {
     padding: 14px;
@@ -117,7 +118,7 @@ const PixDecor = styled.span`
   width: 140px;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: #e5e0ff;
+  background: var(--ck-pix-decor, #e5e0ff);
   pointer-events: none;
 `;
 
@@ -128,7 +129,7 @@ const PixDecorTiny = styled.span`
   width: 120px;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: #ded8ff;
+  background: var(--ck-pix-decor-tiny, #ded8ff);
   pointer-events: none;
 `;
 
@@ -231,21 +232,25 @@ const TermsBox = styled.span`
   justify-content: center;
   border: 1.5px solid
     ${({ $checked }) =>
-      $checked ? theme.colors.primary.default : theme.colors.border.input};
+      $checked
+        ? `var(--ck-accent, ${theme.colors.primary.default})`
+        : theme.colors.border.input};
   border-radius: 6px;
   background: ${({ $checked }) =>
-    $checked ? theme.colors.primary.default : theme.colors.white};
+    $checked
+      ? `var(--ck-accent, ${theme.colors.primary.default})`
+      : theme.colors.white};
   box-sizing: border-box;
   transition:
     background 0.2s,
     border-color 0.2s;
 
   ${TermsInput}:focus-visible + & {
-    box-shadow: 0 0 0 3px rgba(26, 26, 173, 0.25);
+    box-shadow: 0 0 0 3px var(--ck-ring, rgba(26, 26, 173, 0.25));
   }
 `;
 const TermsLink = styled.a`
-  color: ${theme.colors.primary.default};
+  color: var(--ck-accent, ${theme.colors.primary.default});
   text-decoration: underline;
   text-underline-offset: 2px;
 `;
@@ -289,6 +294,7 @@ const keepInPlace = (event) => event.preventDefault();
 const DataStep = ({ plan, form, onNext }) => {
   const { values, handleChange, getFieldProps } = form;
   const isCard = values.paymentMethod === PAYMENT_METHOD.CARD;
+  const palette = getCheckoutPalette(plan);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -368,7 +374,7 @@ const DataStep = ({ plan, form, onNext }) => {
                     height={20}
                     viewBox="0 0 24 24"
                     color="none"
-                    stroke={theme.colors.primary.default}
+                    stroke={palette.accent}
                   />
                   {pixLabels.monthlyCharge} {formatPlanTotal(plan.price)}
                 </PixDetail>
@@ -377,7 +383,7 @@ const DataStep = ({ plan, form, onNext }) => {
                     width={20}
                     height={20}
                     viewBox="0 0 24 24"
-                    color={theme.colors.primary.default}
+                    color={palette.accent}
                   />
                   {pixLabels.security}
                 </PixDetail>
@@ -422,7 +428,7 @@ const DataStep = ({ plan, form, onNext }) => {
             width={16}
             height={16}
             viewBox="0 0 24 24"
-            color={theme.colors.primary.default}
+            color={palette.accent}
           />
           {labels.security}
         </Security>

@@ -13,6 +13,10 @@ import {
   checkoutLabels,
   checkoutSteps,
 } from "../../utils/checkoutData";
+import {
+  checkoutPaletteVars,
+  getCheckoutPalette,
+} from "../../utils/checkoutPalettes";
 import SectionBadge from "../SectionBadge";
 import CardIllustration from "./CardIllustration";
 import CheckoutStepper from "./CheckoutStepper";
@@ -150,6 +154,7 @@ const CheckoutModal = ({ plan, onClose }) => {
   const dialogRef = useRef(null);
   const header = checkoutHeaders[step];
   const isDataStep = step === CHECKOUT_STEP.DATA;
+  const paletteVars = checkoutPaletteVars(getCheckoutPalette(plan));
 
   useEffect(() => {
     const onKey = (event) => {
@@ -189,6 +194,7 @@ const CheckoutModal = ({ plan, onClose }) => {
         aria-modal="true"
         aria-labelledby="checkout-title"
         tabIndex={-1}
+        style={paletteVars}
       >
         <CardIllustration refined={isDataStep} />
         <CloseButton

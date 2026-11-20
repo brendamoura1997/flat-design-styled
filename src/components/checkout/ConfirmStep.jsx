@@ -20,9 +20,9 @@ import OrderSummary from "./OrderSummary";
 import PixBadge from "./PixBadge";
 import StepLayout from "./StepLayout";
 
-const PANEL_BORDER = "#e3dcff";
-const PANEL_BG = "#f5f2ff";
-const CARD_BORDER = "#ebe6ff";
+const PANEL_BORDER = "var(--ck-pix-border, #e3dcff)";
+const PANEL_BG = "var(--ck-confirm-panel, #f5f2ff)";
+const CARD_BORDER = "var(--ck-card-border, #ebe6ff)";
 
 const labels = checkoutLabels.confirm;
 const pixLabels = checkoutLabels.pix;
@@ -76,8 +76,8 @@ const Item = styled.div`
   padding: 6px 16px;
   border: 1px solid ${CARD_BORDER};
   border-radius: 8px;
-  background: #fdfcff;
-  border: 1px solid #e3dcff;
+  background: var(--ck-item-bg, #fdfcff);
+  border: 1px solid ${PANEL_BORDER};
 `;
 const ItemLabel = styled.span`
   font-size: 12px;
@@ -145,7 +145,7 @@ const PaymentRow = styled.div`
   align-items: center;
   gap: 20px;
   padding: 12px 20px 12px 17px;
-  background: #fdfcff;
+  background: var(--ck-item-bg, #fdfcff);
   flex-wrap: wrap;
   margin: 0 8px 8px 8px;
   border: 1px solid ${CARD_BORDER};
@@ -201,8 +201,8 @@ const Notice = styled.p`
   background: ${PANEL_BG};
   font-size: 13px;
   line-height: 1.4;
-  color: ${theme.colors.primary.active};
-  border: 1px solid #e3dcff;
+  color: var(--ck-notice, ${theme.colors.primary.active});
+  border: 1px solid ${PANEL_BORDER};
 
   svg {
     flex-shrink: 0;
@@ -229,7 +229,7 @@ const BackButton = styled(CheckoutButton)`
 
   &:hover,
   &:active {
-    background: ${theme.colors.secondary.second.soft};
+    background: var(--ck-hover-bg, ${theme.colors.secondary.second.soft});
   }
 
   @media ${theme.mediaQueries.mobile} {
