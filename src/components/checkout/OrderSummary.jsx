@@ -5,8 +5,6 @@ import { cardLabels } from "../../utils/priceData";
 import { checkoutLabels, formatPlanTotal } from "../../utils/checkoutData";
 import PlanIcon from "./PlanIcon";
 
-const MINT = "#b9f0d9";
-
 const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
 
 const Panel = styled.aside`
