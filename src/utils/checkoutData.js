@@ -43,7 +43,7 @@ export const checkoutHeaders = {
   [CHECKOUT_STEP.PIX]: {
     title: "Confirme sua",
     highlight: "assinatura",
-    subtitle: "Assinatura concluída! Aproveite os nossos serviços.",
+    subtitle: "Estamos quase lá!",
   },
   [CHECKOUT_STEP.SUCCESS]: {
     title: "Confirme sua",

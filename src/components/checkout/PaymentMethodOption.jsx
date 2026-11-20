@@ -12,8 +12,7 @@ const Option = styled.label`
     ${({ $checked }) =>
       $checked ? theme.colors.primary.default : theme.colors.border.input};
   border-radius: 12px;
-  background: ${({ $checked }) =>
-    $checked ? theme.colors.secondary.second.soft : theme.colors.white};
+  background: ${({ $checked }) => ($checked ? "#f5f2ff" : theme.colors.white)};
   cursor: pointer;
   transition:
     border-color 0.2s,

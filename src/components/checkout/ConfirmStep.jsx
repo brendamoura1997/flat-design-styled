@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import ArrowIcon from "../../icons/ArrowIcon";
 import CardIcon from "../../icons/CardIcon";
 import CheckBadgeIcon from "../../icons/CheckBadgeIcon";
 import ChevronLeftIcon from "../../icons/ChevronLeftIcon";
+import EditIcon from "../../icons/EditIcon";
 import InfoIcon from "../../icons/InfoIcon";
-import PencilIcon from "../../icons/PencilIcon";
 import PixLogoIcon from "../../icons/PixLogoIcon";
 import UserIcon from "../../icons/UserIcon";
 import { theme } from "../../styles/theme";
@@ -20,50 +21,48 @@ import PixBadge from "./PixBadge";
 import StepLayout from "./StepLayout";
 
 const PANEL_BORDER = "#e3dcff";
+const PANEL_BG = "#f5f2ff";
+const CARD_BORDER = "#ebe6ff";
 
 const labels = checkoutLabels.confirm;
 const pixLabels = checkoutLabels.pix;
-const personalRows = [personalFields.slice(0, 2), personalFields.slice(2)];
 
 const Main = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 15px;
   min-width: 0;
+
+  @media ${theme.mediaQueries.mobile} {
+    gap: 12px;
+  }
 `;
 const Panel = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 12px 14px;
+  gap: 6px;
+  padding: 12px 8px 8px;
   border: 1px solid ${PANEL_BORDER};
-  border-radius: 14px;
-  background: ${theme.colors.secondary.second.soft};
+  border-radius: 16px;
+  background: ${PANEL_BG};
 
   @media ${theme.mediaQueries.mobile} {
-    padding: 12px;
+    padding: 10px 8px 8px;
   }
 `;
 const PanelTitle = styled.h3`
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 0 7px;
   font-size: 16px;
   font-weight: 700;
   color: ${theme.colors.text.form};
 `;
-const Rows = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-`;
-const Row = styled.div`
+const Cards = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  padding: 8px 12px;
-  border-radius: 10px;
-  background: ${theme.colors.white};
+  gap: 8px;
 
   @media ${theme.mediaQueries.mobile} {
     grid-template-columns: 1fr;
@@ -74,6 +73,11 @@ const Item = styled.div`
   flex-direction: column;
   gap: 2px;
   min-width: 0;
+  padding: 6px 16px;
+  border: 1px solid ${CARD_BORDER};
+  border-radius: 8px;
+  background: #fdfcff;
+  border: 1px solid #e3dcff;
 `;
 const ItemLabel = styled.span`
   font-size: 12px;
@@ -89,28 +93,85 @@ const ItemValue = styled.span`
     font-size: 15px;
   }
 `;
+const DataLabel = styled(ItemLabel)`
+  font-size: 12px;
+`;
+const DataValue = styled(ItemValue)`
+  font-size: 14px;
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 15px;
+  }
+`;
+const PaymentPanel = styled.section`
+  overflow: hidden;
+  border: 1px solid ${PANEL_BORDER};
+  border-radius: 16px;
+  background: ${PANEL_BG};
+`;
+const PaymentHeader = styled(PanelTitle)`
+  padding: 10px 15px;
+`;
 const PixTitleRow = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 4px;
 `;
 const PixTitle = styled(ItemValue)`
+  font-size: 16px;
   font-weight: 700;
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 15px;
+  }
+`;
+const RecurringBadge = styled(PixBadge)`
+  padding: 3px 10px;
+  font-size: 11px;
+`;
+const PixDescription = styled(ItemLabel)`
+  max-width: 200px;
+  font-size: 13px;
+  line-height: 1.3;
+
+  @media ${theme.mediaQueries.mobile} {
+    max-width: none;
+    font-size: 12px;
+  }
 `;
 const PaymentRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 2px 4px 2px 0;
+  gap: 20px;
+  padding: 12px 20px 12px 17px;
+  background: #fdfcff;
   flex-wrap: wrap;
+  margin: 0 8px 8px 8px;
+  border: 1px solid ${CARD_BORDER};
+  border-radius: 8px;
+  // border: 1px solid red;
+
+  @media ${theme.mediaQueries.mobile} {
+    gap: 12px;
+    padding: 12px;
+  }
 `;
 const PaymentLogo = styled.div`
   display: flex;
   align-items: center;
-  padding-right: 12px;
+  padding-right: 21px;
   border-right: 1px solid ${PANEL_BORDER};
   align-self: stretch;
+
+  @media ${theme.mediaQueries.mobile} {
+    padding-right: 12px;
+
+    svg {
+      width: 92px;
+      height: auto;
+    }
+  }
 `;
 const PaymentInfo = styled.div`
   display: flex;
@@ -122,7 +183,7 @@ const PaymentInfo = styled.div`
 const EditButton = styled.button`
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   font-size: 13px;
   font-weight: 500;
   color: ${theme.colors.primary.default};
@@ -134,19 +195,22 @@ const EditButton = styled.button`
 const Notice = styled.p`
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  border-radius: 12px;
-  background: ${theme.colors.secondary.second.soft};
+  gap: 19px;
+  padding: 10px 26px;
+  border-radius: 16px;
+  background: ${PANEL_BG};
   font-size: 13px;
   line-height: 1.4;
-  color: ${theme.colors.text.form};
+  color: ${theme.colors.primary.active};
+  border: 1px solid #e3dcff;
 
   svg {
     flex-shrink: 0;
   }
 
   @media ${theme.mediaQueries.mobile} {
+    gap: 12px;
+    padding: 12px 14px;
     font-size: 13px;
   }
 `;
@@ -157,7 +221,8 @@ const Actions = styled.div`
   gap: 12px;
 `;
 const BackButton = styled(CheckoutButton)`
-  min-width: 0;
+  min-width: 140px;
+  border-radius: 14px;
   background: ${theme.colors.white};
   color: ${theme.colors.primary.default};
   border: 1.5px solid ${theme.colors.primary.default};
@@ -166,9 +231,19 @@ const BackButton = styled(CheckoutButton)`
   &:active {
     background: ${theme.colors.secondary.second.soft};
   }
+
+  @media ${theme.mediaQueries.mobile} {
+    min-width: 0;
+    border-radius: 12px;
+  }
 `;
 const ConfirmButton = styled(CheckoutButton)`
   min-width: 200px;
+  border-radius: 14px;
+
+  @media ${theme.mediaQueries.mobile} {
+    border-radius: 12px;
+  }
 `;
 
 const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
@@ -196,24 +271,20 @@ const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
             />
             {labels.personalTitle}
           </PanelTitle>
-          <Rows>
-            {personalRows.map((row) => (
-              <Row key={row[0].name}>
-                {row.map(({ name, title }) => (
-                  <Item key={name}>
-                    <ItemLabel>{title}</ItemLabel>
-                    <ItemValue>
-                      {values[name] || checkoutLabels.emptyValue}
-                    </ItemValue>
-                  </Item>
-                ))}
-              </Row>
+          <Cards>
+            {personalFields.map(({ name, title }) => (
+              <Item key={name}>
+                <DataLabel>{title}</DataLabel>
+                <DataValue>
+                  {values[name] || checkoutLabels.emptyValue}
+                </DataValue>
+              </Item>
             ))}
-          </Rows>
+          </Cards>
         </Panel>
 
-        <Panel>
-          <PanelTitle>
+        <PaymentPanel>
+          <PaymentHeader>
             <CardIcon
               width={20}
               height={20}
@@ -222,10 +293,14 @@ const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
               stroke={theme.colors.text.form}
             />
             {labels.paymentTitle}
-          </PanelTitle>
+          </PaymentHeader>
           <PaymentRow>
             <PaymentLogo>
-              {isCard ? <CardBrands /> : <PixLogoIcon width={96} height={46} />}
+              {isCard ? (
+                <CardBrands />
+              ) : (
+                <PixLogoIcon width={140} height={50} />
+              )}
             </PaymentLogo>
             <PaymentInfo>
               {isCard ? (
@@ -240,14 +315,14 @@ const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
                 <>
                   <PixTitleRow>
                     <PixTitle>{pixLabels.title}</PixTitle>
-                    <PixBadge>{pixLabels.badge}</PixBadge>
+                    <RecurringBadge>{pixLabels.badge}</RecurringBadge>
                   </PixTitleRow>
-                  <ItemLabel>{pixLabels.description}</ItemLabel>
+                  <PixDescription>{pixLabels.description}</PixDescription>
                 </>
               )}
             </PaymentInfo>
             <EditButton type="button" onClick={onBack}>
-              <PencilIcon
+              <EditIcon
                 width={16}
                 height={16}
                 viewBox="0 0 24 24"
@@ -257,12 +332,12 @@ const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
               {labels.edit}
             </EditButton>
           </PaymentRow>
-        </Panel>
+        </PaymentPanel>
 
         <Notice>
           <InfoIcon
-            width={22}
-            height={22}
+            width={26}
+            height={26}
             viewBox="0 0 24 24"
             color="none"
             stroke={theme.colors.primary.default}
@@ -291,14 +366,25 @@ const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
           size="medium"
           type="button"
           onClick={onConfirm}
+          iconPosition={isCard ? "left" : "right"}
           icon={
-            <CheckBadgeIcon
-              width={22}
-              height={22}
-              viewBox="0 0 24 24"
-              color="none"
-              stroke={theme.colors.white}
-            />
+            isCard ? (
+              <CheckBadgeIcon
+                width={20}
+                height={20}
+                viewBox="6 6 12 12"
+                color="none"
+                stroke={theme.colors.white}
+              />
+            ) : (
+              <ArrowIcon
+                width={18}
+                height={18}
+                viewBox="0 0 24 24"
+                color="none"
+                stroke={theme.colors.white}
+              />
+            )
           }
         >
           {isCard ? labels.confirm : labels.pixConfirm}

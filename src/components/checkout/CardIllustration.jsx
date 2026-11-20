@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { theme } from "../../styles/theme";
 import SparkleRays from "./SparkleRays";
 
@@ -39,20 +39,13 @@ const BlobSmall = styled.span`
 `;
 const Rays = styled(SparkleRays)`
   position: absolute;
-  top: 32px;
-  left: 22px;
-
-  ${({ $refined }) =>
-    $refined &&
-    css`
-      top: 30px;
-      left: 31px;
-    `}
+  top: 30px;
+  left: 31px;
 `;
 const Card = styled.div`
   position: absolute;
-  top: 42px;
-  right: 92px;
+  top: 38px;
+  right: 81px;
   width: 132px;
   height: 84px;
   border-radius: 11px;
@@ -64,13 +57,6 @@ const Card = styled.div`
   box-shadow: 0 9px 18px rgba(26, 26, 173, 0.25);
   transform: rotate(-10deg);
   overflow: hidden;
-
-  ${({ $refined }) =>
-    $refined &&
-    css`
-      top: 38px;
-      right: 81px;
-    `}
 `;
 const Stripe = styled.span`
   position: absolute;

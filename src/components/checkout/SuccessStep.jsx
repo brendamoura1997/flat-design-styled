@@ -15,13 +15,24 @@ const labels = checkoutLabels.success;
 
 const DecorCircle = styled.span`
   position: absolute;
-  left: -56px;
-  bottom: -72px;
+  left: -86px;
+  bottom: -92px;
+  width: 204px;
+  height: 204px;
+  border-radius: 50%;
+  background: #e4e1fc;
+  z-index: 0;
+  pointer-events: none;
+`;
+
+const DecorCircleSmall = styled.span`
+  position: absolute;
+  left: -86px;
+  bottom: -112px;
   width: 184px;
   height: 184px;
   border-radius: 50%;
-  background: ${theme.colors.secondary.second.light};
-  opacity: 0.35;
+  background: #cec9fa;
   z-index: 0;
   pointer-events: none;
 `;
@@ -136,7 +147,8 @@ const Summary = styled.div`
   gap: 22px;
   padding: 12px 22px;
   border-radius: 12px;
-  background: ${theme.colors.secondary.second.soft};
+  background: #f5f2ff;
+  border: 1px solid #e3dcff;
 
   @media ${theme.mediaQueries.mobile} {
     gap: 14px;
@@ -247,6 +259,7 @@ const CloseButton = styled(CheckoutButton)`
 const SuccessStep = ({ plan, email, onClose }) => (
   <>
     <DecorCircle aria-hidden="true" />
+    <DecorCircleSmall aria-hidden="true" />
     <DecorDot aria-hidden="true" />
     <DecorDots
       columns={4}
