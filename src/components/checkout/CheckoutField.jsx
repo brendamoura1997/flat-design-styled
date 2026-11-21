@@ -37,7 +37,7 @@ const Input = styled.input`
   }
 
   &:focus {
-    border-color: ${theme.colors.primary.default};
+    border-color: var(--ck-accent, ${theme.colors.primary.default});
   }
 
   @media ${theme.mediaQueries.mobile} {

@@ -7,16 +7,22 @@ import { theme } from "../../styles/theme";
 import useFormValues from "../../hooks/useFormValues";
 import {
   CHECKOUT_STEP,
+  PAYMENT_METHOD,
   checkoutHeaders,
   checkoutInitialValues,
   checkoutLabels,
   checkoutSteps,
 } from "../../utils/checkoutData";
+import {
+  checkoutPaletteVars,
+  getCheckoutPalette,
+} from "../../utils/checkoutPalettes";
 import SectionBadge from "../SectionBadge";
 import CardIllustration from "./CardIllustration";
 import CheckoutStepper from "./CheckoutStepper";
 import ConfirmStep from "./ConfirmStep";
 import DataStep from "./DataStep";
+import PixStep from "./PixStep";
 import SuccessStep from "./SuccessStep";
 
 const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
@@ -80,19 +86,19 @@ const ModalBox = styled.div`
 `;
 const CloseButton = styled.button`
   position: absolute;
-  top: 16px;
-  right: 18px;
+  top: 10px;
+  right: 14px;
   z-index: 2;
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   transition: background 0.2s;
-
+  background: rgba(255, 255, 255, 0.8);
   &:hover {
-    background: rgba(26, 26, 46, 0.08);
+    background: ${theme.colors.white};
   }
 
   @media ${theme.mediaQueries.mobile} {
@@ -147,6 +153,8 @@ const CheckoutModal = ({ plan, onClose }) => {
   const backdropRef = useRef(null);
   const dialogRef = useRef(null);
   const header = checkoutHeaders[step];
+  const isDataStep = step === CHECKOUT_STEP.DATA;
+  const paletteVars = checkoutPaletteVars(getCheckoutPalette(plan));
 
   useEffect(() => {
     const onKey = (event) => {
@@ -186,11 +194,13 @@ const CheckoutModal = ({ plan, onClose }) => {
         aria-modal="true"
         aria-labelledby="checkout-title"
         tabIndex={-1}
+        style={paletteVars}
       >
-        <CardIllustration />
+        <CardIllustration refined={isDataStep} />
         <CloseButton
           type="button"
           aria-label={checkoutLabels.close}
+          $refined={isDataStep}
           onClick={onClose}
         >
           <CloseIcon
@@ -226,8 +236,17 @@ const CheckoutModal = ({ plan, onClose }) => {
             plan={plan}
             values={form.values}
             onBack={() => setStep(CHECKOUT_STEP.DATA)}
-            onConfirm={() => setStep(CHECKOUT_STEP.SUCCESS)}
+            onConfirm={() =>
+              setStep(
+                form.values.paymentMethod === PAYMENT_METHOD.PIX
+                  ? CHECKOUT_STEP.PIX
+                  : CHECKOUT_STEP.SUCCESS,
+              )
+            }
           />
+        )}
+        {step === CHECKOUT_STEP.PIX && (
+          <PixStep plan={plan} onPaid={() => setStep(CHECKOUT_STEP.SUCCESS)} />
         )}
         {step === CHECKOUT_STEP.SUCCESS && (
           <SuccessStep

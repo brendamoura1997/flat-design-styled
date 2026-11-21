@@ -26,7 +26,7 @@ const Step = styled.li`
     flex: 1;
     height: 1px;
     margin: 0 12px 0 2px;
-    background: ${theme.colors.secondary.second.light};
+    background: var(--ck-step-line, ${theme.colors.secondary.second.light});
     opacity: 0.6;
   }
 
@@ -47,9 +47,7 @@ const Circle = styled.span`
   justify-content: center;
   flex-shrink: 0;
   background: ${({ $pending }) =>
-    $pending
-      ? theme.colors.secondary.second.light
-      : theme.colors.primary.default};
+    $pending ? "#b2bac8" : `var(--ck-accent, ${theme.colors.primary.default})`};
   color: ${theme.colors.white};
   font-size: 14px;
   font-weight: 700;
@@ -65,8 +63,7 @@ const Label = styled.span`
   font-size: 14px;
   font-weight: 700;
   line-height: 1.2;
-  color: ${({ $pending }) =>
-    $pending ? theme.colors.secondary.second.light : theme.colors.text.title};
+  color: ${({ $pending }) => ($pending ? "#b2bac8" : theme.colors.text.title)};
 
   @media ${theme.mediaQueries.mobile} {
     display: ${({ $active }) => ($active ? "block" : "none")};
@@ -75,12 +72,10 @@ const Label = styled.span`
 `;
 
 const CheckoutStepper = ({ steps, current }) => {
-  const lastId = steps[steps.length - 1].id;
-
   return (
     <Steps aria-label={checkoutLabels.stepsAriaLabel}>
       {steps.map(({ id, label }, index) => {
-        const isDone = id < current || current === lastId;
+        const isDone = id < current;
         const isActive = id === current && !isDone;
         const isPending = !isDone && !isActive;
 

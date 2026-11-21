@@ -4,6 +4,7 @@ import EmailIcon from "../../icons/EmailIcon";
 import { theme } from "../../styles/theme";
 import { cardLabels } from "../../utils/priceData";
 import { checkoutLabels, formatPlanTotal } from "../../utils/checkoutData";
+import { getCheckoutPalette } from "../../utils/checkoutPalettes";
 import DotsGrid from "../decor/DotsGrid";
 import CheckoutButton from "./CheckoutButton";
 import PlanIcon from "./PlanIcon";
@@ -15,13 +16,24 @@ const labels = checkoutLabels.success;
 
 const DecorCircle = styled.span`
   position: absolute;
-  left: -56px;
-  bottom: -72px;
+  left: -86px;
+  bottom: -92px;
+  width: 204px;
+  height: 204px;
+  border-radius: 50%;
+  background: var(--ck-pix-circle, #e4e1fc);
+  z-index: 0;
+  pointer-events: none;
+`;
+
+const DecorCircleSmall = styled.span`
+  position: absolute;
+  left: -86px;
+  bottom: -112px;
   width: 184px;
   height: 184px;
   border-radius: 50%;
-  background: ${theme.colors.secondary.second.light};
-  opacity: 0.35;
+  background: var(--ck-pix-circle-small, #cec9fa);
   z-index: 0;
   pointer-events: none;
 `;
@@ -136,7 +148,8 @@ const Summary = styled.div`
   gap: 22px;
   padding: 12px 22px;
   border-radius: 12px;
-  background: ${theme.colors.secondary.second.soft};
+  background: var(--ck-success-box, #f5f2ff);
+  border: 1px solid var(--ck-pix-border, #e3dcff);
 
   @media ${theme.mediaQueries.mobile} {
     gap: 14px;
@@ -161,7 +174,7 @@ const PlanText = styled.div`
 const PlanName = styled.span`
   font-size: 16px;
   font-weight: 700;
-  color: ${theme.colors.text.title};
+  color: var(--ck-plan-name, ${theme.colors.text.title});
 
   @media ${theme.mediaQueries.mobile} {
     font-size: 16px;
@@ -209,7 +222,7 @@ const Divider = styled.div`
   max-width: 600px;
   height: 1px;
   margin: 16px 0 12px;
-  background: ${theme.colors.border.input};
+  background: var(--ck-qr-divider, ${theme.colors.border.input});
 `;
 const EmailNotice = styled.div`
   display: flex;
@@ -244,70 +257,75 @@ const CloseButton = styled(CheckoutButton)`
   }
 `;
 
-const SuccessStep = ({ plan, email, onClose }) => (
-  <>
-    <DecorCircle aria-hidden="true" />
-    <DecorDot aria-hidden="true" />
-    <DecorDots
-      columns={4}
-      rows={4}
-      color={theme.colors.secondary.second.light}
-      size={4}
-      gap={12}
-      opacity={0.6}
-    />
-    <Content>
-      <Hero aria-hidden="true">
-        <HeroRays />
-        <HeroCircle>
-          <CheckBadgeIcon
-            width={48}
-            height={48}
-            viewBox="7 7 10 10"
-            color="none"
-            stroke={theme.colors.secondary.third.main}
-          />
-        </HeroCircle>
-        <HeroStar />
-        <HeroDot />
-      </Hero>
-      <Title>{labels.title}</Title>
-      <Message>{labels.message}</Message>
-      <Summary>
-        <PlanInfo>
-          <PlanIcon plan={plan} size={42} />
-          <PlanText>
-            <PlanName>
-              {cardLabels.planPrefix} {plan.type}
-            </PlanName>
-            <PlanFeature>{plan.features[0]}</PlanFeature>
-          </PlanText>
-        </PlanInfo>
-        <PriceInfo>
-          <PriceAmount>{formatPlanTotal(plan.price)}</PriceAmount>
-          <PriceNote>{cardLabels.period}</PriceNote>
-        </PriceInfo>
-      </Summary>
-      <Divider />
-      <EmailNotice>
-        <EmailLine>
-          <EmailIcon
-            width={20}
-            height={20}
-            viewBox="0 0 24 24"
-            color="none"
-            stroke={theme.colors.primary.default}
-            strokeWidth="1.5"
-          />
-          {labels.emailNotice}
-        </EmailLine>
-        <EmailAddress>{email || checkoutLabels.emptyValue}</EmailAddress>
-      </EmailNotice>
-      <CloseButton size="medium" type="button" onClick={onClose}>
-        {labels.close}
-      </CloseButton>
-    </Content>
-  </>
-);
+const SuccessStep = ({ plan, email, onClose }) => {
+  const palette = getCheckoutPalette(plan);
+
+  return (
+    <>
+      <DecorCircle aria-hidden="true" />
+      <DecorCircleSmall aria-hidden="true" />
+      <DecorDot aria-hidden="true" />
+      <DecorDots
+        columns={4}
+        rows={4}
+        color={palette.dots}
+        size={4}
+        gap={12}
+        opacity={0.6}
+      />
+      <Content>
+        <Hero aria-hidden="true">
+          <HeroRays />
+          <HeroCircle>
+            <CheckBadgeIcon
+              width={48}
+              height={48}
+              viewBox="7 7 10 10"
+              color="none"
+              stroke={palette.successCheck}
+            />
+          </HeroCircle>
+          <HeroStar />
+          <HeroDot />
+        </Hero>
+        <Title>{labels.title}</Title>
+        <Message>{labels.message}</Message>
+        <Summary>
+          <PlanInfo>
+            <PlanIcon plan={plan} size={42} />
+            <PlanText>
+              <PlanName>
+                {cardLabels.planPrefix} {plan.type}
+              </PlanName>
+              <PlanFeature>{plan.features[0]}</PlanFeature>
+            </PlanText>
+          </PlanInfo>
+          <PriceInfo>
+            <PriceAmount>{formatPlanTotal(plan.price)}</PriceAmount>
+            <PriceNote>{cardLabels.period}</PriceNote>
+          </PriceInfo>
+        </Summary>
+        <Divider />
+        <EmailNotice>
+          <EmailLine>
+            <EmailIcon
+              width={20}
+              height={20}
+              viewBox="0 0 24 24"
+              color="none"
+              stroke={theme.colors.primary.default}
+              strokeWidth="1.5"
+            />
+            {labels.emailNotice}
+          </EmailLine>
+          <EmailAddress>{email || checkoutLabels.emptyValue}</EmailAddress>
+        </EmailNotice>
+        <CloseButton size="medium" type="button" onClick={onClose}>
+          {labels.close}
+        </CloseButton>
+      </Content>
+    </>
+  );
+};
 
 export default SuccessStep;
