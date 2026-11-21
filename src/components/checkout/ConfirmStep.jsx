@@ -150,7 +150,6 @@ const PaymentRow = styled.div`
   margin: 0 8px 8px 8px;
   border: 1px solid ${CARD_BORDER};
   border-radius: 8px;
-  // border: 1px solid red;
 
   @media ${theme.mediaQueries.mobile} {
     gap: 12px;
@@ -201,7 +200,7 @@ const Notice = styled.p`
   background: ${PANEL_BG};
   font-size: 13px;
   line-height: 1.4;
-  color: var(--ck-notice, ${theme.colors.primary.active});
+  color: ${theme.colors.text.form};
   border: 1px solid ${PANEL_BORDER};
 
   svg {
@@ -340,7 +339,7 @@ const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
             height={26}
             viewBox="0 0 24 24"
             color="none"
-            stroke={theme.colors.primary.default}
+            stroke={theme.colors.text.form}
           />
           {isCard ? labels.notice : labels.pixNotice}
         </Notice>
