@@ -22,9 +22,9 @@ const Option = styled.label`
     background 0.2s;
 
   @media ${theme.mediaQueries.mobile} {
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 10px 12px;
+    width: 100%;
+    gap: 10px;
+    padding: 12px;
   }
 `;
 const RadioInput = styled.input`
@@ -67,7 +67,7 @@ const OptionBadge = styled(PixBadge)`
   margin-left: auto;
 
   @media ${theme.mediaQueries.mobile} {
-    margin-left: 28px;
+    margin-left: 0;
   }
 `;
 

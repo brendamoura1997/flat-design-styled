@@ -41,6 +41,8 @@ export const checkoutPalettes = {
     blobSmall: "#FDD2E4",
     confirmPanel: "#fff1f6",
     successBox: "#FFEEF5",
+    successBoxMobile: "#FFE5F0",
+    successBoxBorderMobile: "#FF93B5",
   },
   Premium: {
     accent: primary.default,
@@ -80,6 +82,8 @@ export const checkoutPalettes = {
     blobSmall: "#CEC9FA",
     confirmPanel: "#F5F2FF",
     successBox: "#F5F2FF",
+    successBoxMobile: "#E6E1FF",
+    successBoxBorderMobile: "#9E93FF",
   },
   Advanced: {
     accent: "#17915a",
@@ -119,6 +123,8 @@ export const checkoutPalettes = {
     blobSmall: "#BCF3D7",
     confirmPanel: "#f0faf4", //seus dados
     successBox: "#E7FAF1",
+    successBoxMobile: "#DBF2E6",
+    successBoxBorderMobile: "#8ED491",
   },
 };
 
@@ -157,6 +163,8 @@ export const checkoutPaletteVars = (palette) => ({
   "--ck-plan-icon": palette.planIcon,
   "--ck-confirm-panel": palette.confirmPanel,
   "--ck-success-box": palette.successBox,
+  "--ck-success-box-mobile": palette.successBoxMobile,
+  "--ck-success-box-border-mobile": palette.successBoxBorderMobile,
   "--ck-blob-large": palette.blobLarge,
   "--ck-blob-small": palette.blobSmall,
 });

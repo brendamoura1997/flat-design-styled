@@ -389,6 +389,10 @@ const FeatureList = styled.ul`
     align-self: start;
   }
 
+  @media ${theme.mediaQueries.mobile} {
+    gap: 6px;
+  }
+
   @media only screen and (width > 550px) and (width < 780px) {
     list-style: none;
     padding: 0;
@@ -408,6 +412,11 @@ const Feature = styled.li`
   @media ${tabletQuery} {
     font-size: 16px;
     gap: 12px;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    font-size: 13px;
+    gap: 10px;
   }
 `;
 const CheckBadge = styled.div`

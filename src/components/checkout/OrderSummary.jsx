@@ -1,5 +1,8 @@
+import { useState } from "react";
+import { useScreenSize } from "../../hooks/useDevice";
 import styled, { css } from "styled-components";
 import CheckBadgeIcon from "../../icons/CheckBadgeIcon";
+import ChevronLeftIcon from "../../icons/ChevronLeftIcon";
 import { theme } from "../../styles/theme";
 import { cardLabels } from "../../utils/priceData";
 import { checkoutLabels, formatPlanTotal } from "../../utils/checkoutData";
@@ -7,6 +10,7 @@ import { getCheckoutPalette } from "../../utils/checkoutPalettes";
 import PlanIcon from "./PlanIcon";
 
 const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
+const compactQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}, ${theme.mediaQueries.mobile}`;
 const TAG_COLOR = "#6046fd";
 
 const Panel = styled.aside`
@@ -24,8 +28,16 @@ const Panel = styled.aside`
   }
 
   @media ${theme.mediaQueries.mobile} {
-    padding: 62px 16px 24px;
+    padding: 46px 16px 24px;
   }
+
+  ${({ $collapsible, $collapsed }) =>
+    $collapsible &&
+    css`
+      @media ${compactQueries} {
+        padding-bottom: ${$collapsed ? "24px" : "92px"};
+      }
+    `}
 `;
 
 const Tag = styled.span`
@@ -64,6 +76,25 @@ const Content = styled.div`
     css`
       gap: 22px;
     `}
+
+  @media ${theme.mediaQueries.mobile} {
+    gap: 12px;
+    ${({ $roomy }) =>
+      $roomy &&
+      css`
+        gap: 12px;
+      `}
+  }
+`;
+
+const Details = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ $roomy }) => ($roomy ? "22px" : "12px")};
+
+  @media ${compactQueries} {
+    display: ${({ $collapsed }) => ($collapsed ? "none" : "flex")};
+  }
 `;
 
 const PlanRow = styled.div`
@@ -249,6 +280,15 @@ const Waves = styled.svg`
   height: 118px;
   z-index: 0;
   pointer-events: none;
+
+  ${({ $collapsible, $collapsed }) =>
+    $collapsible &&
+    css`
+      @media ${compactQueries} {
+        height: 84px;
+        display: ${$collapsed ? "none" : "block"};
+      }
+    `}
 `;
 
 const Sparkle = styled.svg`
@@ -260,14 +300,66 @@ const Sparkle = styled.svg`
   fill: ${theme.colors.white};
   z-index: 0;
   pointer-events: none;
+
+  ${({ $collapsible, $collapsed }) =>
+    $collapsible &&
+    css`
+      @media ${compactQueries} {
+        display: ${$collapsed ? "none" : "block"};
+      }
+    `}
 `;
 
-const WaveDecor = ({ colors }) => (
+const ToggleRow = styled.div`
+  display: none;
+
+  @media ${compactQueries} {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: -22px;
+
+    &::before,
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--ck-panel-border, #e3dcff);
+    }
+  }
+`;
+
+const ToggleButton = styled.button`
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--ck-plan-icon, ${theme.colors.secondary.second.main});
+
+  svg {
+    transform: rotate(${({ $expanded }) => ($expanded ? "90deg" : "-90deg")});
+    transition: transform 0.2s;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ck-accent, ${theme.colors.primary.default});
+    outline-offset: 2px;
+  }
+`;
+
+const WaveDecor = ({ colors, collapsible, collapsed }) => (
   <Waves
     viewBox="0 0 400 160"
     preserveAspectRatio="none"
     aria-hidden="true"
     focusable="false"
+    $collapsible={collapsible}
+    $collapsed={collapsed}
   >
     <path
       d="M0 14C50 4 110 22 170 52C240 88 330 92 400 58V160H0Z"
@@ -284,12 +376,14 @@ const WaveDecor = ({ colors }) => (
   </Waves>
 );
 
-const SparkleDecor = ({ left, bottom, size }) => (
+const SparkleDecor = ({ left, bottom, size, collapsible, collapsed }) => (
   <Sparkle
     viewBox="0 0 24 24"
     $left={left}
     $bottom={bottom}
     $size={size}
+    $collapsible={collapsible}
+    $collapsed={collapsed}
     aria-hidden="true"
     focusable="false"
   >
@@ -297,70 +391,129 @@ const SparkleDecor = ({ left, bottom, size }) => (
   </Sparkle>
 );
 
-const OrderSummary = ({ plan, label, roomy = false }) => (
-  <Panel $bg={getCheckoutPalette(plan).summaryBg} $roomy={roomy}>
-    <Tag $roomy={roomy}>{label}</Tag>
-    <WaveDecor colors={getCheckoutPalette(plan).waves} />
-    <SparkleDecor left={42} bottom={21} size={17} />
-    <SparkleDecor left={60} bottom={38} size={11} />
+const OrderSummary = ({ plan, label, roomy = false, collapsible = false }) => {
+  const [expanded, setExpanded] = useState(false);
+  const collapsed = collapsible && !expanded;
+  const { isMobile } = useScreenSize();
+  const planIconSize = isMobile ? 38 : roomy ? 52 : 48;
 
-    <Content $roomy={roomy}>
-      <PlanRow>
-        <PlanIcon plan={plan} size={roomy ? 52 : 48} />
+  return (
+    <>
+      <Panel
+        $bg={getCheckoutPalette(plan).summaryBg}
+        $roomy={roomy}
+        $collapsible={collapsible}
+        $collapsed={collapsed}
+      >
+        <Tag $roomy={roomy}>{label}</Tag>
+        <WaveDecor
+          colors={getCheckoutPalette(plan).waves}
+          collapsible={collapsible}
+          collapsed={collapsed}
+        />
+        <SparkleDecor
+          left={42}
+          bottom={21}
+          size={17}
+          collapsible={collapsible}
+          collapsed={collapsed}
+        />
+        <SparkleDecor
+          left={60}
+          bottom={38}
+          size={11}
+          collapsible={collapsible}
+          collapsed={collapsed}
+        />
 
-        <PlanInfo>
-          <PlanName $roomy={roomy}>
-            {cardLabels.planPrefix} {plan.type}
-          </PlanName>
+        <Content $roomy={roomy}>
+          <PlanRow>
+            <PlanIcon plan={plan} size={planIconSize} />
 
-          <PlanFeature $roomy={roomy}>{plan.features[0]}</PlanFeature>
-        </PlanInfo>
+            <PlanInfo>
+              <PlanName $roomy={roomy}>
+                {cardLabels.planPrefix} {plan.type}
+              </PlanName>
 
-        <PriceBox>
-          <PriceAmount $roomy={roomy}>
-            {cardLabels.currency} {plan.price}
-          </PriceAmount>
+              <PlanFeature $roomy={roomy}>{plan.features[0]}</PlanFeature>
+            </PlanInfo>
 
-          <PriceNote>{cardLabels.period}</PriceNote>
-        </PriceBox>
-      </PlanRow>
+            <PriceBox>
+              <PriceAmount $roomy={roomy}>
+                {cardLabels.currency} {plan.price}
+              </PriceAmount>
 
-      <Divider $roomy={roomy} />
+              <PriceNote>{cardLabels.period}</PriceNote>
+            </PriceBox>
+          </PlanRow>
 
-      <FeatureList $roomy={roomy}>
-        {plan.features.slice(1).map((feature) => (
-          <FeatureItem key={feature} $roomy={roomy}>
-            <CheckBadge $roomy={roomy}>
-              <CheckBadgeIcon
-                width={22}
-                height={22}
-                viewBox="0 0 24 24"
-                color="none"
-                stroke={theme.colors.secondary.third.main}
-              />
-            </CheckBadge>
-            {feature}
-          </FeatureItem>
-        ))}
-      </FeatureList>
+          <Details $roomy={roomy} $collapsed={collapsed}>
+            <Divider $roomy={roomy} />
 
-      <Divider $roomy={roomy} />
+            <FeatureList $roomy={roomy}>
+              {plan.features.slice(1).map((feature) => (
+                <FeatureItem key={feature} $roomy={roomy}>
+                  <CheckBadge $roomy={roomy}>
+                    <CheckBadgeIcon
+                      width={22}
+                      height={22}
+                      viewBox="0 0 24 24"
+                      color="none"
+                      stroke={theme.colors.secondary.third.main}
+                    />
+                  </CheckBadge>
+                  {feature}
+                </FeatureItem>
+              ))}
+            </FeatureList>
 
-      <div>
-        <TotalRow>
-          <TotalLabel $roomy={roomy}>{checkoutLabels.summary.total}</TotalLabel>
+            <Divider $roomy={roomy} />
 
-          <TotalValue $roomy={roomy}>{formatPlanTotal(plan.price)}</TotalValue>
-        </TotalRow>
+            <div>
+              <TotalRow>
+                <TotalLabel $roomy={roomy}>
+                  {checkoutLabels.summary.total}
+                </TotalLabel>
 
-        <Note>{checkoutLabels.summary.billing}</Note>
-      </div>
+                <TotalValue $roomy={roomy}>
+                  {formatPlanTotal(plan.price)}
+                </TotalValue>
+              </TotalRow>
 
-      <Cancellation $roomy={roomy}>
-        {checkoutLabels.summary.cancellation}
-      </Cancellation>
-    </Content>
-  </Panel>
-);
+              <Note>{checkoutLabels.summary.billing}</Note>
+            </div>
+
+            <Cancellation $roomy={roomy}>
+              {checkoutLabels.summary.cancellation}
+            </Cancellation>
+          </Details>
+        </Content>
+      </Panel>
+      {collapsible && (
+        <ToggleRow>
+          <ToggleButton
+            type="button"
+            $expanded={expanded}
+            aria-expanded={expanded}
+            aria-label={
+              expanded
+                ? "Ocultar detalhes do pedido"
+                : "Mostrar detalhes do pedido"
+            }
+            onClick={() => setExpanded((current) => !current)}
+          >
+            <ChevronLeftIcon
+              width={16}
+              height={16}
+              viewBox="0 0 24 24"
+              color="none"
+              stroke={theme.colors.white}
+            />
+          </ToggleButton>
+        </ToggleRow>
+      )}
+    </>
+  );
+};
 
 export default OrderSummary;

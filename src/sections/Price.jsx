@@ -121,6 +121,7 @@ const Cards = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 32px;
+    padding: 0 15px;
   }
 `;
 const Bubble = styled.span`
