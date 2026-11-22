@@ -117,6 +117,10 @@ const PixTitleRow = styled.div`
   align-items: center;
   flex-wrap: wrap;
   gap: 4px;
+
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
 `;
 const PixTitle = styled(ItemValue)`
   font-size: 16px;
@@ -124,6 +128,8 @@ const PixTitle = styled(ItemValue)`
 
   @media ${theme.mediaQueries.mobile} {
     font-size: 15px;
+    white-space: nowrap;
+    margin-left: 12px;
   }
 `;
 const RecurringBadge = styled(PixBadge)`
@@ -136,11 +142,14 @@ const PixDescription = styled(ItemLabel)`
   line-height: 1.3;
 
   @media ${theme.mediaQueries.mobile} {
-    max-width: none;
+    max-width: 200px;
     font-size: 12px;
+    padding-left: 10px;
+    border-left: 3px solid var(--ck-pix-decor, #e5e0ff);
   }
 `;
 const PaymentRow = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -152,8 +161,31 @@ const PaymentRow = styled.div`
   border-radius: 8px;
 
   @media ${theme.mediaQueries.mobile} {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
     gap: 12px;
     padding: 12px;
+    overflow: hidden;
+  }
+`;
+const PaymentDecor = styled.span`
+  display: none;
+
+  @media ${theme.mediaQueries.mobile} {
+    display: block;
+    position: absolute;
+    right: -54px;
+    bottom: -80px;
+    width: 130px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--ck-pix-decor, #e5e0ff);
+    pointer-events: none;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    display: none;
   }
 `;
 const PaymentLogo = styled.div`
@@ -164,10 +196,14 @@ const PaymentLogo = styled.div`
   align-self: stretch;
 
   @media ${theme.mediaQueries.mobile} {
-    padding-right: 12px;
+    grid-column: 1;
+    grid-row: 1;
+    padding-right: 0;
+    border-right: none;
+    align-self: center;
 
     svg {
-      width: 92px;
+      width: 112px;
       height: auto;
     }
   }
@@ -178,6 +214,14 @@ const PaymentInfo = styled.div`
   gap: 2px;
   flex: 1;
   min-width: 0;
+
+  @media ${theme.mediaQueries.mobile} {
+    position: relative;
+    z-index: 1;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    gap: 6px;
+  }
 `;
 const EditButton = styled.button`
   display: flex;
@@ -189,6 +233,13 @@ const EditButton = styled.button`
 
   &:hover {
     text-decoration: underline;
+  }
+
+  @media ${theme.mediaQueries.mobile} {
+    position: relative;
+    z-index: 1;
+    grid-column: 2;
+    grid-row: 1;
   }
 `;
 const Notice = styled.p`
@@ -218,6 +269,11 @@ const Actions = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 12px;
+
+  @media ${theme.mediaQueries.mobile} {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
 `;
 const BackButton = styled(CheckoutButton)`
   min-width: 140px;
@@ -233,7 +289,10 @@ const BackButton = styled(CheckoutButton)`
 
   @media ${theme.mediaQueries.mobile} {
     min-width: 0;
+    width: 100%;
+    flex: none;
     border-radius: 12px;
+    font-size: 14px;
   }
 `;
 const ConfirmButton = styled(CheckoutButton)`
@@ -241,7 +300,11 @@ const ConfirmButton = styled(CheckoutButton)`
   border-radius: 14px;
 
   @media ${theme.mediaQueries.mobile} {
+    min-width: 0;
+    width: 100%;
+    flex: none;
     border-radius: 12px;
+    font-size: 14px;
   }
 `;
 
@@ -257,7 +320,11 @@ const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
 
   return (
     <StepLayout>
-      <OrderSummary plan={plan} label={checkoutLabels.summary.chosenPlan} />
+      <OrderSummary
+        plan={plan}
+        label={checkoutLabels.summary.chosenPlan}
+        collapsible
+      />
       <Main>
         <Panel>
           <PanelTitle>
@@ -294,6 +361,7 @@ const ConfirmStep = ({ plan, values, onBack, onConfirm }) => {
             {labels.paymentTitle}
           </PaymentHeader>
           <PaymentRow>
+            {!isCard && <PaymentDecor aria-hidden="true" />}
             <PaymentLogo>
               {isCard ? (
                 <CardBrands />

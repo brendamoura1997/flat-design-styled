@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useScreenSize } from "../../hooks/useDevice";
 import { createPortal } from "react-dom";
 import styled, { keyframes } from "styled-components";
 import CloseIcon from "../../icons/CloseIcon";
@@ -104,6 +105,8 @@ const CloseButton = styled.button`
   @media ${theme.mediaQueries.mobile} {
     top: 14px;
     right: 12px;
+    width: 33px;
+    height: 33px;
   }
 `;
 const Header = styled.header`
@@ -135,6 +138,7 @@ const Title = styled.h2`
 
   @media ${theme.mediaQueries.mobile} {
     font-size: 28px;
+    max-width: 200px;
   }
 `;
 const Subtitle = styled.p`
@@ -143,7 +147,7 @@ const Subtitle = styled.p`
   color: ${theme.colors.text.title};
 
   @media ${theme.mediaQueries.mobile} {
-    font-size: 14px;
+    font-size: 15px;
   }
 `;
 
@@ -155,6 +159,7 @@ const CheckoutModal = ({ plan, onClose }) => {
   const header = checkoutHeaders[step];
   const isDataStep = step === CHECKOUT_STEP.DATA;
   const paletteVars = checkoutPaletteVars(getCheckoutPalette(plan));
+  const { isMobile } = useScreenSize();
 
   useEffect(() => {
     const onKey = (event) => {
@@ -196,7 +201,7 @@ const CheckoutModal = ({ plan, onClose }) => {
         tabIndex={-1}
         style={paletteVars}
       >
-        <CardIllustration refined={isDataStep} />
+        <CardIllustration refined />
         <CloseButton
           type="button"
           aria-label={checkoutLabels.close}
@@ -204,8 +209,8 @@ const CheckoutModal = ({ plan, onClose }) => {
           onClick={onClose}
         >
           <CloseIcon
-            width={22}
-            height={22}
+            width={isMobile ? 18 : 22}
+            height={isMobile ? 18 : 22}
             viewBox="0 0 24 24"
             color="none"
             stroke={theme.colors.text.title}
