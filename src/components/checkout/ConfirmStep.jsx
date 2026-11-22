@@ -118,6 +118,7 @@ const PixTitleRow = styled.div`
   flex-wrap: wrap;
   gap: 4px;
 
+  @media ${theme.mediaQueries.tablet} {
     flex-wrap: nowrap;
     gap: 10px;
   }
