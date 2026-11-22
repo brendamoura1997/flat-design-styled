@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { theme } from "../../styles/theme";
 import SparkleRays from "./SparkleRays";
 
-const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
+// const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tabletWide}`;
 
 const Wrapper = styled.div`
   position: absolute;
@@ -13,7 +13,13 @@ const Wrapper = styled.div`
   pointer-events: none;
   z-index: 0;
 
-  @media ${tabletQueries}, ${theme.mediaQueries.mobile} {
+  @media ${theme.mediaQueries.mobile} {
+    display: ${({ $showOnMobile }) => ($showOnMobile ? "block" : "none")};
+    transform: scale(0.54);
+    transform-origin: top right;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
     display: none;
   }
 `;
@@ -84,7 +90,7 @@ const Line = styled.span`
 `;
 
 const CardIllustration = ({ refined = false }) => (
-  <Wrapper aria-hidden="true">
+  <Wrapper aria-hidden="true" $showOnMobile={refined}>
     <Blob />
     <BlobSmall $refined={refined} />
     <Rays $refined={refined} />

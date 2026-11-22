@@ -30,6 +30,10 @@ const DecorCircle = styled.span`
   background: var(--ck-pix-circle, #e4e1fc);
   z-index: 0;
   pointer-events: none;
+
+  @media ${theme.mediaQueries.mobile} {
+    display: none;
+  }
 `;
 
 const DecorCircleSmall = styled.span`
@@ -42,6 +46,10 @@ const DecorCircleSmall = styled.span`
   background: var(--ck-pix-circle-small, #cec9fa);
   z-index: 0;
   pointer-events: none;
+
+  @media ${theme.mediaQueries.mobile} {
+    display: none;
+  }
 `;
 
 const DecorDot = styled.span`
@@ -247,7 +255,7 @@ const Waiting = styled.div`
   align-items: center;
   gap: 2px;
 `;
-const WaitingLine = styled.p`
+const WaitingLine = styled.div`
   display: flex;
   align-items: center;
   gap: 6px;
@@ -255,12 +263,19 @@ const WaitingLine = styled.p`
   font-weight: 700;
   color: var(--ck-waiting, ${theme.colors.text.form});
 
+  p {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
   svg {
     flex-shrink: 0;
   }
 
   @media ${theme.mediaQueries.mobile} {
     font-size: 12px;
+    align-items: flex-start;
   }
 `;
 const WaitingNote = styled.p`
@@ -365,7 +380,7 @@ const PixStep = ({ plan, onPaid }) => {
               color="none"
               stroke={palette.accent}
             />
-            {labels.waiting}
+            <p>{labels.waiting}</p>
           </WaitingLine>
           <WaitingNote>{labels.redirect}</WaitingNote>
         </Waiting>

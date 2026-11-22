@@ -4,6 +4,7 @@ import CalendarIcon from "../../icons/CalendarIcon";
 import CardIcon from "../../icons/CardIcon";
 import CheckBadgeIcon from "../../icons/CheckBadgeIcon";
 import LockIcon from "../../icons/LockIcon";
+import PhoneCheckIllustration from "../../icons/PhoneCheckIllustration";
 import PixLogoIcon from "../../icons/PixLogoIcon";
 import ShieldIcon from "../../icons/ShieldIcon";
 import UserIcon from "../../icons/UserIcon";
@@ -27,6 +28,30 @@ const tabletQueries = `${theme.mediaQueries.tablet}, ${theme.mediaQueries.tablet
 
 const labels = checkoutLabels.data;
 const pixLabels = checkoutLabels.pix;
+
+const phonePalettes = {
+  Basic: {
+    primaryColor: "#CC2160",
+    secondaryColor: "#f9c3d7",
+    tertiaryColor: "#faeaf0",
+    surfaceColor: "#FFFFFF",
+    accentColor: "#f35373",
+  },
+  Premium: {
+    primaryColor: "#6E4AA6",
+    secondaryColor: "#D9D0F2",
+    tertiaryColor: "#DFD6F4",
+    surfaceColor: "#FFFFFF",
+    accentColor: "#B272DA",
+  },
+  Advanced: {
+    primaryColor: "#167A50",
+    secondaryColor: "#A8E6C5",
+    tertiaryColor: "#D5F4E3",
+    surfaceColor: "#FFFFFF",
+    accentColor: "#20BFA0",
+  },
+};
 
 const Layout = styled(StepLayout)`
   grid-template-columns: minmax(0, 38fr) minmax(0, 62fr);
@@ -84,6 +109,7 @@ const Methods = styled.div`
   gap: 12px;
 
   @media ${theme.mediaQueries.mobile} {
+    grid-template-columns: 1fr;
     gap: 8px;
   }
 `;
@@ -120,6 +146,10 @@ const PixDecor = styled.span`
   border-radius: 50%;
   background: var(--ck-pix-decor, #e5e0ff);
   pointer-events: none;
+
+  @media ${theme.mediaQueries.mobile} {
+    display: none;
+  }
 `;
 
 const PixDecorTiny = styled.span`
@@ -131,6 +161,35 @@ const PixDecorTiny = styled.span`
   border-radius: 50%;
   background: var(--ck-pix-decor-tiny, #ded8ff);
   pointer-events: none;
+
+  @media ${theme.mediaQueries.mobile} {
+    display: none;
+  }
+`;
+
+const PixPhone = styled.div`
+  display: none;
+
+  @media ${theme.mediaQueries.mobile} {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 50%;
+    aspect-ratio: 461 / 286;
+    pointer-events: none;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    display: none;
+  }
 `;
 
 const PixIntro = styled.div`
@@ -154,8 +213,14 @@ const PixLogoBox = styled.div`
   border-right: 1px solid rgba(50, 188, 173, 0.45);
 
   @media ${theme.mediaQueries.mobile} {
+    align-self: flex-start;
     padding-right: 0;
     border-right: none;
+    min-height: 64px;
+  }
+
+  @media ${theme.mediaQueries.smallMobile} {
+    min-height: 0;
   }
 `;
 const PixText = styled.div`
@@ -178,6 +243,10 @@ const PixDescription = styled.p`
   @media ${theme.mediaQueries.mobile} {
     max-width: none;
     line-height: 1.4;
+  }
+
+  @media only screen and (width > 550px) and (width < 780px) {
+    max-width: 220px;
   }
 `;
 const PixDetails = styled.ul`
@@ -295,6 +364,7 @@ const DataStep = ({ plan, form, onNext }) => {
   const { values, handleChange, getFieldProps } = form;
   const isCard = values.paymentMethod === PAYMENT_METHOD.CARD;
   const palette = getCheckoutPalette(plan);
+  const phonePalette = phonePalettes[plan?.type] || phonePalettes.Premium;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -303,7 +373,12 @@ const DataStep = ({ plan, form, onNext }) => {
 
   return (
     <Layout as="form" onSubmit={handleSubmit} noValidate>
-      <OrderSummary plan={plan} label={checkoutLabels.summary.order} roomy />
+      <OrderSummary
+        plan={plan}
+        label={checkoutLabels.summary.order}
+        roomy
+        collapsible
+      />
       <Main>
         <Section>
           <SectionTitle>
@@ -358,6 +433,13 @@ const DataStep = ({ plan, form, onNext }) => {
             <PixPanel>
               <PixDecor aria-hidden="true" />
               <PixDecorTiny aria-hidden="true" />
+              <PixPhone aria-hidden="true">
+                <PhoneCheckIllustration
+                  width="100%"
+                  height="100%"
+                  {...phonePalette}
+                />
+              </PixPhone>
               <PixIntro>
                 <PixLogoBox>
                   <PixLogoIcon width={140} height={56} large />
