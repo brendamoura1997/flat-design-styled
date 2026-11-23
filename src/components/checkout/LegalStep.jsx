@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import CheckCircleIcon from "../../icons/CheckCircleIcon";
 import ChevronLeftIcon from "../../icons/ChevronLeftIcon";
 import InfoIcon from "../../icons/InfoIcon";
-import LockIcon from "../../icons/LockIcon";
 import { theme } from "../../styles/theme";
 import {
   LEGAL_TYPE,
@@ -11,11 +9,6 @@ import {
   legalNotices,
 } from "../../utils/legalData";
 import CheckoutButton from "./CheckoutButton";
-
-const tabIcons = {
-  [LEGAL_TYPE.TERMS]: CheckCircleIcon,
-  [LEGAL_TYPE.PRIVACY]: LockIcon,
-};
 
 const Wrapper = styled.div`
   position: relative;
@@ -211,7 +204,6 @@ const LegalStep = ({ type, onSelect, onBack }) => {
     <Wrapper>
       <Tabs role="tablist" aria-label={legalLabels.tabsAriaLabel}>
         {Object.values(LEGAL_TYPE).map((tabType) => {
-          const Icon = tabIcons[tabType];
           const active = tabType === type;
 
           return (
