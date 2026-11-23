@@ -212,7 +212,7 @@ function App() {
         <IntroShape />
         {!isDesktop && (
           <DotGrid $pos="tr" $cols={30} $rows={10} $color="#f53b5a">
-            {isTablet ? dots(320) : dots(1000)}
+            {isTablet ? dots(320) : dots(2000)}
           </DotGrid>
         )}
       </ContainerIntro>
