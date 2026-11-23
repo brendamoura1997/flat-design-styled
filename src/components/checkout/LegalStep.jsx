@@ -81,8 +81,67 @@ const Doc = styled.div`
   border: 1px solid var(--ck-pix-border, #e3dcff);
   border-radius: 16px;
   background: var(--ck-confirm-panel, #f5f2ff);
-  scrollbar-width: thin;
-  scrollbar-color: var(--ck-pix-circle-small, #cec9fa) transparent;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background-color: var(--ck-pix-circle-small, #cec9fa);
+    background-clip: padding-box;
+    transition: background-color 0.2s;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var(
+      --ck-plan-icon,
+      ${theme.colors.secondary.second.main}
+    );
+    background-clip: padding-box;
+    cursor: pointer;
+  }
+
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-button:vertical:start:decrement,
+  &::-webkit-scrollbar-button:vertical:end:increment {
+    display: block;
+    width: 10px;
+    height: 24px;
+    background: transparent;
+    background-repeat: no-repeat;
+    background-size: 10px 10px;
+  }
+
+  &::-webkit-scrollbar-button:vertical:start:decrement {
+    background-position: center 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 6.5 5 3.5 8 6.5' fill='none' stroke='%238d97bd' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  &::-webkit-scrollbar-button:vertical:end:increment {
+    background-position: center 4px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 3.5 5 6.5 8 3.5' fill='none' stroke='%238d97bd' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  &::-webkit-scrollbar-button:vertical:start:decrement:hover {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 6.5 5 3.5 8 6.5' fill='none' stroke='%23525f92' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  &::-webkit-scrollbar-button:vertical:end:increment:hover {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 3.5 5 6.5 8 3.5' fill='none' stroke='%23525f92' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  @supports not selector(::-webkit-scrollbar) {
+    scrollbar-width: thin;
+    scrollbar-color: var(--ck-pix-circle-small, #cec9fa) transparent;
+  }
 
   &:focus-visible {
     outline: 2px solid var(--ck-accent, ${theme.colors.primary.default});
