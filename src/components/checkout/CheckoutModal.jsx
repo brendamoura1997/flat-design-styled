@@ -14,6 +14,7 @@ import {
   checkoutLabels,
   checkoutSteps,
 } from "../../utils/checkoutData";
+import { legalHeaders } from "../../utils/legalData";
 import {
   checkoutPaletteVars,
   getCheckoutPalette,
@@ -24,6 +25,7 @@ import CardProcessingStep from "./CardProcessingStep";
 import CheckoutStepper from "./CheckoutStepper";
 import ConfirmStep from "./ConfirmStep";
 import DataStep from "./DataStep";
+import LegalStep from "./LegalStep";
 import PixStep from "./PixStep";
 import SuccessStep from "./SuccessStep";
 
@@ -154,10 +156,11 @@ const Subtitle = styled.p`
 
 const CheckoutModal = ({ plan, onClose }) => {
   const [step, setStep] = useState(CHECKOUT_STEP.DATA);
+  const [legal, setLegal] = useState(null);
   const form = useFormValues(checkoutInitialValues);
   const backdropRef = useRef(null);
   const dialogRef = useRef(null);
-  const header = checkoutHeaders[step];
+  const header = legal ? legalHeaders[legal] : checkoutHeaders[step];
   const isDataStep = step === CHECKOUT_STEP.DATA;
   const paletteVars = checkoutPaletteVars(getCheckoutPalette(plan));
   const { isMobile } = useScreenSize();
@@ -166,11 +169,13 @@ const CheckoutModal = ({ plan, onClose }) => {
 
   useEffect(() => {
     const onKey = (event) => {
-      if (event.key === "Escape") onClose();
+      if (event.key !== "Escape") return;
+      if (legal) setLegal(null);
+      else onClose();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [onClose]);
+  }, [onClose, legal]);
 
   useEffect(() => {
     const { overflow } = document.documentElement.style;
@@ -188,7 +193,7 @@ const CheckoutModal = ({ plan, onClose }) => {
   useEffect(() => {
     backdropRef.current?.scrollTo({ top: 0 });
     dialogRef.current?.focus();
-  }, [step]);
+  }, [step, legal]);
 
   const handleBackdropClick = (event) => {
     if (event.target === event.currentTarget) onClose();
@@ -231,44 +236,58 @@ const CheckoutModal = ({ plan, onClose }) => {
           </Title>
           <Subtitle>{header.subtitle}</Subtitle>
         </Header>
-        <CheckoutStepper steps={checkoutSteps} current={stepperCurrent} />
-        {step === CHECKOUT_STEP.DATA && (
-          <DataStep
-            plan={plan}
-            form={form}
-            onNext={() => setStep(CHECKOUT_STEP.CONFIRM)}
+        {legal ? (
+          <LegalStep
+            type={legal}
+            onSelect={setLegal}
+            onBack={() => setLegal(null)}
           />
-        )}
-        {step === CHECKOUT_STEP.CONFIRM && (
-          <ConfirmStep
-            plan={plan}
-            values={form.values}
-            onBack={() => setStep(CHECKOUT_STEP.DATA)}
-            onConfirm={() =>
-              setStep(
-                form.values.paymentMethod === PAYMENT_METHOD.PIX
-                  ? CHECKOUT_STEP.PIX
-                  : CHECKOUT_STEP.PROCESSING,
-              )
-            }
-          />
-        )}
-        {step === CHECKOUT_STEP.PIX && (
-          <PixStep plan={plan} onPaid={() => setStep(CHECKOUT_STEP.SUCCESS)} />
-        )}
-        {step === CHECKOUT_STEP.PROCESSING && (
-          <CardProcessingStep
-            plan={plan}
-            cardNumber={form.values.cardNumber}
-            onPaid={() => setStep(CHECKOUT_STEP.SUCCESS)}
-          />
-        )}
-        {step === CHECKOUT_STEP.SUCCESS && (
-          <SuccessStep
-            plan={plan}
-            email={form.values.email}
-            onClose={onClose}
-          />
+        ) : (
+          <>
+            <CheckoutStepper steps={checkoutSteps} current={stepperCurrent} />
+            {step === CHECKOUT_STEP.DATA && (
+              <DataStep
+                plan={plan}
+                form={form}
+                onNext={() => setStep(CHECKOUT_STEP.CONFIRM)}
+                onOpenLegal={setLegal}
+              />
+            )}
+            {step === CHECKOUT_STEP.CONFIRM && (
+              <ConfirmStep
+                plan={plan}
+                values={form.values}
+                onBack={() => setStep(CHECKOUT_STEP.DATA)}
+                onConfirm={() =>
+                  setStep(
+                    form.values.paymentMethod === PAYMENT_METHOD.PIX
+                      ? CHECKOUT_STEP.PIX
+                      : CHECKOUT_STEP.PROCESSING,
+                  )
+                }
+              />
+            )}
+            {step === CHECKOUT_STEP.PIX && (
+              <PixStep
+                plan={plan}
+                onPaid={() => setStep(CHECKOUT_STEP.SUCCESS)}
+              />
+            )}
+            {step === CHECKOUT_STEP.PROCESSING && (
+              <CardProcessingStep
+                plan={plan}
+                cardNumber={form.values.cardNumber}
+                onPaid={() => setStep(CHECKOUT_STEP.SUCCESS)}
+              />
+            )}
+            {step === CHECKOUT_STEP.SUCCESS && (
+              <SuccessStep
+                plan={plan}
+                email={form.values.email}
+                onClose={onClose}
+              />
+            )}
+          </>
         )}
       </ModalBox>
     </Backdrop>,

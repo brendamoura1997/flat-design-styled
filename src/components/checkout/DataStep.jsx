@@ -17,6 +17,7 @@ import {
   paymentMethods,
   personalFields,
 } from "../../utils/checkoutData";
+import { LEGAL_TYPE } from "../../utils/legalData";
 import { getCheckoutPalette } from "../../utils/checkoutPalettes";
 import CheckoutButton from "./CheckoutButton";
 import CheckoutField from "./CheckoutField";
@@ -358,9 +359,7 @@ const Actions = styled.div`
   }
 `;
 
-const keepInPlace = (event) => event.preventDefault();
-
-const DataStep = ({ plan, form, onNext }) => {
+const DataStep = ({ plan, form, onNext, onOpenLegal }) => {
   const { values, handleChange, getFieldProps } = form;
   const isCard = values.paymentMethod === PAYMENT_METHOD.CARD;
   const palette = getCheckoutPalette(plan);
@@ -369,6 +368,11 @@ const DataStep = ({ plan, form, onNext }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     onNext();
+  };
+
+  const openLegal = (type) => (event) => {
+    event.preventDefault();
+    onOpenLegal(type);
   };
 
   return (
@@ -493,11 +497,11 @@ const DataStep = ({ plan, form, onNext }) => {
           </TermsBox>
           <span>
             {labels.terms.prefix}
-            <TermsLink href="#" onClick={keepInPlace}>
+            <TermsLink href="#" onClick={openLegal(LEGAL_TYPE.TERMS)}>
               {labels.terms.termsOfUse}
             </TermsLink>
             {labels.terms.conjunction}
-            <TermsLink href="#" onClick={keepInPlace}>
+            <TermsLink href="#" onClick={openLegal(LEGAL_TYPE.PRIVACY)}>
               {labels.terms.privacyPolicy}
             </TermsLink>
             {labels.terms.suffix}
