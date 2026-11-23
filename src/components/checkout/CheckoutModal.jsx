@@ -20,6 +20,7 @@ import {
 } from "../../utils/checkoutPalettes";
 import SectionBadge from "../SectionBadge";
 import CardIllustration from "./CardIllustration";
+import CardProcessingStep from "./CardProcessingStep";
 import CheckoutStepper from "./CheckoutStepper";
 import ConfirmStep from "./ConfirmStep";
 import DataStep from "./DataStep";
@@ -160,6 +161,8 @@ const CheckoutModal = ({ plan, onClose }) => {
   const isDataStep = step === CHECKOUT_STEP.DATA;
   const paletteVars = checkoutPaletteVars(getCheckoutPalette(plan));
   const { isMobile } = useScreenSize();
+  const stepperCurrent =
+    step === CHECKOUT_STEP.PROCESSING ? CHECKOUT_STEP.PIX : step;
 
   useEffect(() => {
     const onKey = (event) => {
@@ -228,7 +231,7 @@ const CheckoutModal = ({ plan, onClose }) => {
           </Title>
           <Subtitle>{header.subtitle}</Subtitle>
         </Header>
-        <CheckoutStepper steps={checkoutSteps} current={step} />
+        <CheckoutStepper steps={checkoutSteps} current={stepperCurrent} />
         {step === CHECKOUT_STEP.DATA && (
           <DataStep
             plan={plan}
@@ -245,13 +248,20 @@ const CheckoutModal = ({ plan, onClose }) => {
               setStep(
                 form.values.paymentMethod === PAYMENT_METHOD.PIX
                   ? CHECKOUT_STEP.PIX
-                  : CHECKOUT_STEP.SUCCESS,
+                  : CHECKOUT_STEP.PROCESSING,
               )
             }
           />
         )}
         {step === CHECKOUT_STEP.PIX && (
           <PixStep plan={plan} onPaid={() => setStep(CHECKOUT_STEP.SUCCESS)} />
+        )}
+        {step === CHECKOUT_STEP.PROCESSING && (
+          <CardProcessingStep
+            plan={plan}
+            cardNumber={form.values.cardNumber}
+            onPaid={() => setStep(CHECKOUT_STEP.SUCCESS)}
+          />
         )}
         {step === CHECKOUT_STEP.SUCCESS && (
           <SuccessStep
