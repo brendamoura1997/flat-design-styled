@@ -21,7 +21,9 @@ const InputWrapper = styled.div`
 const Input = styled.input`
   width: 100%;
   padding: 10px 12px 10px ${({ $hasIcon }) => ($hasIcon ? "42px" : "14px")};
-  border: 1.5px solid ${theme.colors.border.input};
+  border: 1.5px solid
+    ${({ $hasError }) =>
+      $hasError ? theme.colors.brand.default : theme.colors.border.input};
   border-radius: 12px;
   background: ${theme.colors.white};
   color: ${theme.colors.text.form};
@@ -37,7 +39,10 @@ const Input = styled.input`
   }
 
   &:focus {
-    border-color: var(--ck-accent, ${theme.colors.primary.default});
+    border-color: ${({ $hasError }) =>
+      $hasError
+        ? theme.colors.brand.default
+        : `var(--ck-accent, ${theme.colors.primary.default})`};
   }
 
   @media ${theme.mediaQueries.mobile} {
@@ -62,17 +67,32 @@ const InputIcon = styled.span`
     left: 12px;
   }
 `;
+const ErrorMessage = styled.p`
+  margin: 0 0 0 4px;
+  font-size: 12px;
+  line-height: 1.3;
+  color: ${theme.colors.brand.default};
+`;
 
-const CheckoutField = ({ icon, label, ...rest }) => {
+const CheckoutField = ({ icon, label, error, ...rest }) => {
   const id = `checkout-${rest.name}`;
+  const errorId = error ? `${id}-error` : undefined;
 
   return (
     <Field>
       {label && <Label htmlFor={id}>{label}</Label>}
       <InputWrapper>
-        <Input id={id} $hasIcon={Boolean(icon)} {...rest} />
+        <Input
+          id={id}
+          $hasIcon={Boolean(icon)}
+          $hasError={Boolean(error)}
+          aria-invalid={Boolean(error)}
+          aria-describedby={errorId}
+          {...rest}
+        />
         {icon && <InputIcon>{icon}</InputIcon>}
       </InputWrapper>
+      {error && <ErrorMessage id={errorId}>{error}</ErrorMessage>}
     </Field>
   );
 };

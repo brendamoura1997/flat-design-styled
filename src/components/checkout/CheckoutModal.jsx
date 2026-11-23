@@ -14,6 +14,10 @@ import {
   checkoutLabels,
   checkoutSteps,
 } from "../../utils/checkoutData";
+import {
+  checkoutFormatters,
+  validateCheckoutForm,
+} from "../../utils/checkoutValidation";
 import { legalHeaders } from "../../utils/legalData";
 import {
   checkoutPaletteVars,
@@ -157,7 +161,10 @@ const Subtitle = styled.p`
 const CheckoutModal = ({ plan, onClose }) => {
   const [step, setStep] = useState(CHECKOUT_STEP.DATA);
   const [legal, setLegal] = useState(null);
-  const form = useFormValues(checkoutInitialValues);
+  const form = useFormValues(checkoutInitialValues, {
+    validate: validateCheckoutForm,
+    formatters: checkoutFormatters,
+  });
   const backdropRef = useRef(null);
   const dialogRef = useRef(null);
   const header = legal ? legalHeaders[legal] : checkoutHeaders[step];
@@ -195,12 +202,8 @@ const CheckoutModal = ({ plan, onClose }) => {
     dialogRef.current?.focus();
   }, [step, legal]);
 
-  const handleBackdropClick = (event) => {
-    if (event.target === event.currentTarget) onClose();
-  };
-
   return createPortal(
-    <Backdrop ref={backdropRef} onClick={handleBackdropClick}>
+    <Backdrop ref={backdropRef}>
       <ModalBox
         ref={dialogRef}
         role="dialog"
@@ -285,6 +288,7 @@ const CheckoutModal = ({ plan, onClose }) => {
             {step === CHECKOUT_STEP.SUCCESS && (
               <SuccessStep
                 plan={plan}
+                name={form.values.name}
                 email={form.values.email}
                 onClose={onClose}
               />

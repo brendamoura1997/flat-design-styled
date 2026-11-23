@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../styles/theme";
 import PrimaryButton from "../PrimaryButton";
 
@@ -27,6 +27,28 @@ const CheckoutButton = styled(PrimaryButton)`
     border-radius: 10px;
     font-size: 15px;
   }
+
+  ${({ $invalid }) =>
+    $invalid &&
+    css`
+      background: #cccccc;
+      color: #8a8a8a;
+      cursor: not-allowed;
+      box-shadow: none;
+
+      &::after {
+        display: none;
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        background: #cccccc;
+        color: #8a8a8a;
+        box-shadow: none;
+        transform: none;
+      }
+    `}
 `;
 
 export default CheckoutButton;
