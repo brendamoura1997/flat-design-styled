@@ -367,6 +367,8 @@ const MobileImageSection = styled.div`
   height: 100vh;
   overflow: hidden;
   right: 2%;
+  pointer-events: none;
+
   @media ${theme.mediaQueries.tabletWide} {
     position: absolute;
     bottom: 0%;

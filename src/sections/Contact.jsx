@@ -380,6 +380,7 @@ const InfoList = styled.div`
   border: 1.5px solid ${theme.colors.border.input};
   border-radius: 12px 0 0 12px;
   padding: 10px 0;
+  flex: 1;
 
   hr {
     border: none;
@@ -405,11 +406,13 @@ const InfoList = styled.div`
     }
   }
 `;
+
 const InfoItem = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
   padding: 18px 20px;
+  flex: 1;
 
   @media only screen and (max-width: 1200px) {
     padding: 15px 16px;
@@ -427,6 +430,7 @@ const InfoItem = styled.div`
   @media ${theme.mediaQueries.mobile} {
     gap: 14px;
     padding: 8px 14px;
+    flex: none;
   }
 `;
 const IconCircle = styled.div`
