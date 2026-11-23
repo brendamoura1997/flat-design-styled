@@ -123,6 +123,9 @@ const Cards = styled.div`
     gap: 32px;
     padding: 0 15px;
   }
+  @media ${theme.mediaQueries.smallMobile} {
+    padding: 0 0px;
+  }
 `;
 const Bubble = styled.span`
   position: absolute;

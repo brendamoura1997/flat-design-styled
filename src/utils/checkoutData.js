@@ -6,14 +6,21 @@ import UserIcon from "../icons/UserIcon";
 import { theme } from "../styles/theme";
 import { cardLabels } from "./priceData";
 
-export const CHECKOUT_STEP = { DATA: 0, CONFIRM: 1, PIX: 2, SUCCESS: 3 };
+export const CHECKOUT_STEP = {
+  DATA: 0,
+  CONFIRM: 1,
+  PIX: 2,
+  SUCCESS: 3,
+  PROCESSING: 4,
+};
 
 export const PAYMENT_METHOD = { CARD: "card", PIX: "pix" };
 
 export const PIX_PAYMENT_DELAY = 6000;
 
-export const PIX_CODE =
-  "00020101021226900014br.gov.bcb.pix0136flatdesign-exemplo-0000-0000-000000000000520400005303986540520.005802BR5913FLAT DESIGN6009SAO PAULO62070503***6304EXMP";
+export const CARD_PAYMENT_DELAY = 8000;
+
+export const PIX_CODE = "https://brendamourati.netlify.app/";
 
 const fieldIconProps = {
   width: 18,
@@ -41,6 +48,11 @@ export const checkoutHeaders = {
     subtitle: "Confira os dados abaixo antes de finalizar seu plano.",
   },
   [CHECKOUT_STEP.PIX]: {
+    title: "Confirme sua",
+    highlight: "assinatura",
+    subtitle: "Estamos quase lá!",
+  },
+  [CHECKOUT_STEP.PROCESSING]: {
     title: "Confirme sua",
     highlight: "assinatura",
     subtitle: "Estamos quase lá!",
@@ -109,6 +121,20 @@ export const checkoutLabels = {
     copied: "Código PIX copiado",
     waiting: "Aguardando confirmação do pagamento [SIMULAÇÃO]...",
     redirect: "Você será redirecionado automaticamente após a confirmação.",
+  },
+  cardStep: {
+    title: "Processando pagamento",
+    message:
+      "Aguarde enquanto confirmamos o pagamento no seu cartão de crédito.",
+    cardLabel: "Cartão de credito",
+    cardMask: "•••• ",
+    phases: [
+      "Validando os dados do cartão",
+      "Autorizando com a operadora",
+      "Confirmando sua assinatura",
+    ],
+    waiting: "Processando pagamento [SIMULAÇÃO]...",
+    redirect: "Não feche esta janela. Você será redirecionado automaticamente.",
   },
   success: {
     title: "Tudo certo!",
