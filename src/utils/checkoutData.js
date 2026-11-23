@@ -145,7 +145,10 @@ export const checkoutLabels = {
   },
 };
 
-export const checkoutInitialValues = {
+const devData =
+  process.env.NODE_ENV !== "production" ? require("./checkoutDevData") : null;
+
+const baseInitialValues = {
   name: "",
   email: "",
   cpf: "",
@@ -157,6 +160,15 @@ export const checkoutInitialValues = {
   cardCvv: "",
   acceptedTerms: false,
 };
+
+export const DEV_AUTOFILL_PROFILES = devData ? devData.devCheckoutProfiles : [];
+
+const AUTOFILL_ON_LOAD =
+  devData !== null && process.env.REACT_APP_CHECKOUT_AUTOFILL === "true";
+
+export const checkoutInitialValues = AUTOFILL_ON_LOAD
+  ? { ...baseInitialValues, ...DEV_AUTOFILL_PROFILES[0] }
+  : baseInitialValues;
 
 export const personalFields = [
   {
