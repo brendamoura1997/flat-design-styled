@@ -210,20 +210,22 @@ const CheckoutModal = ({ plan, onClose }) => {
         style={paletteVars}
       >
         <CardIllustration refined />
-        <CloseButton
-          type="button"
-          aria-label={checkoutLabels.close}
-          $refined={isDataStep}
-          onClick={onClose}
-        >
-          <CloseIcon
-            width={isMobile ? 18 : 22}
-            height={isMobile ? 18 : 22}
-            viewBox="0 0 24 24"
-            color="none"
-            stroke={theme.colors.text.title}
-          />
-        </CloseButton>
+        {!legal && (
+          <CloseButton
+            type="button"
+            aria-label={checkoutLabels.close}
+            $refined={isDataStep}
+            onClick={onClose}
+          >
+            <CloseIcon
+              width={isMobile ? 18 : 22}
+              height={isMobile ? 18 : 22}
+              viewBox="0 0 24 24"
+              color="none"
+              stroke={theme.colors.text.title}
+            />
+          </CloseButton>
+        )}
         <Header>
           <SecureBadge
             icon={ShieldHollowIcon}
