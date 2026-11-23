@@ -435,9 +435,11 @@ const CloseButton = styled(CheckoutButton)`
   }
 `;
 
-const SuccessStep = ({ plan, email, onClose }) => {
+const SuccessStep = ({ plan, name, email, onClose }) => {
   const palette = getCheckoutPalette(plan);
   const rocketColors = rocketPalettes[plan?.type] || rocketPalettes.Premium;
+  const firstName = (name || "").trim().split(/\s+/)[0];
+  const title = firstName ? `Tudo certo, ${firstName}!` : labels.title;
 
   return (
     <>
@@ -467,7 +469,7 @@ const SuccessStep = ({ plan, email, onClose }) => {
           <HeroStar />
           <HeroDot />
         </Hero>
-        <Title>{labels.title}</Title>
+        <Title>{title}</Title>
         <Message>{labels.message}</Message>
         <Summary>
           <PlanInfo>
