@@ -324,6 +324,12 @@ const TermsLink = styled.a`
   text-decoration: underline;
   text-underline-offset: 2px;
 `;
+const TermsError = styled.p`
+  margin: 0 0 0 4px;
+  font-size: 12px;
+  line-height: 1.3;
+  color: ${theme.colors.brand.default};
+`;
 const Footer = styled.div`
   display: flex;
   align-items: flex-start;
@@ -360,13 +366,31 @@ const Actions = styled.div`
 `;
 
 const DataStep = ({ plan, form, onNext, onOpenLegal }) => {
-  const { values, handleChange, getFieldProps } = form;
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    validateAll,
+    getFieldProps,
+  } = form;
+
   const isCard = values.paymentMethod === PAYMENT_METHOD.CARD;
   const palette = getCheckoutPalette(plan);
   const phonePalette = phonePalettes[plan?.type] || phonePalettes.Premium;
+  const termsError = touched.acceptedTerms ? errors.acceptedTerms : undefined;
+  const hasInvalidFields = Object.values(errors).some(Boolean);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const invalidFields = validateAll();
+
+    if (invalidFields.length > 0) {
+      event.currentTarget.elements.namedItem(invalidFields[0])?.focus();
+      return;
+    }
+
     onNext();
   };
 
@@ -483,6 +507,9 @@ const DataStep = ({ plan, form, onNext, onOpenLegal }) => {
             name="acceptedTerms"
             checked={values.acceptedTerms}
             onChange={handleChange}
+            onBlur={handleBlur}
+            aria-invalid={Boolean(termsError)}
+            aria-describedby={termsError ? "acceptedTerms-error" : undefined}
           />
           <TermsBox $checked={values.acceptedTerms} aria-hidden="true">
             {values.acceptedTerms && (
@@ -507,6 +534,9 @@ const DataStep = ({ plan, form, onNext, onOpenLegal }) => {
             {labels.terms.suffix}
           </span>
         </TermsLabel>
+        {termsError && (
+          <TermsError id="acceptedTerms-error">{termsError}</TermsError>
+        )}
       </Main>
       <Footer>
         <Security>
@@ -520,6 +550,7 @@ const DataStep = ({ plan, form, onNext, onOpenLegal }) => {
         </Security>
         <Actions>
           <CheckoutButton
+            $invalid={hasInvalidFields}
             size="medium"
             type="submit"
             iconPosition="right"
@@ -529,7 +560,7 @@ const DataStep = ({ plan, form, onNext, onOpenLegal }) => {
                 height={18}
                 viewBox="0 0 24 24"
                 color="none"
-                stroke={theme.colors.white}
+                stroke={hasInvalidFields ? "#8a8a8a" : theme.colors.white}
               />
             }
           >
